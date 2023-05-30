@@ -1,0 +1,162 @@
+﻿<!DOCTYPE html>
+<html>
+    <head title="TEAMS">
+        <title>ATA - Teams</title>
+
+        <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+        <link rel="icon" href="/favicon.ico" type="image/x-icon">
+
+        <!--Import materialize.css-->
+        <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection" />
+        <link type="text/css" rel="stylesheet" href="css/materialdesignicons.min.css" media="all" />
+
+        <!--Let browser know website is optimized for mobile-->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+        <!--Import jQuery before materialize.js-->
+        <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+        <script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
+        <script type="text/javascript" src="js/materialize.min.js"></script>
+		<script type="text/javascript" src="js/stupidtable.min.js"> </script>
+		<script type="text/javascript" src="js/scoresPrototypes.js"> </script>
+        <script type="text/javascript" src="js/utilities.js"></script>
+        <script type="text/javascript" src="js/mbox.js"></script>
+
+        <script type="text/javascript" src="js/SQLiteDirectives.js"> </script>
+        <script type="text/javascript" src="js/WSDirectives.js"> </script>
+
+        <link type="text/css" rel="stylesheet" href="css/ATA.css" media="screen,projection" />
+        <link type="text/css" rel="stylesheet" href="css/mbox.css" media="screen,projection" />
+
+        <script language="javascript" type="text/javascript">
+
+            function onCloseModal() {
+                closeModalDialog('#modalEdit');
+            }
+
+            function addRecord() {
+                resetForm_teams();
+
+                enableButton("#btnInsertTeam");
+                disableButton("#btnUpdateTeam");
+
+                openModalDialog('#modalEdit');
+            }
+
+            function addRecord_Proceed() {
+                var teamname = $("#teamname").val().toString();
+                var university = $("#university").val().toString();
+                var country = $("#country").val().toString();
+
+                if ((teamname.length > 0) && (university.length > 0)) {
+                    insertRecord_teams();
+                    closeModalDialog('#modalEdit');
+                }
+                else {
+                    ataToast('Please enter Team Name and University');
+                }
+            }
+
+            function editRecord(i) {
+                disableButton("#btnInsertTeam");
+                enableButton("#btnUpdateTeam");
+
+                loadRecord_teams(i);
+
+                openModalDialog('#modalEdit');
+            }
+
+            function editRecord_Proceed() {
+                var teamname = $("#teamname").val().toString();
+                var university = $("#university").val().toString();
+                var country = $("#country").val().toString();
+
+                if ((teamname.length > 0) && (university.length > 0)) {
+                    updateRecord_teams();
+                    closeModalDialog('#modalEdit');
+                }
+                else {
+                    ataToast('Please enter Team Name and University');
+                }
+            }
+
+            function deleteRecord(i) {
+                mbox.confirm('Are you sure to delete the selected item?', function (yes) {
+                    if (yes) {
+                        deleteRecord_teams(i);
+                        closeModalDialog('#modalEdit');
+                        ataToast('Team removed successfully');
+                    }
+                })
+            }
+
+        </script>
+    </head>
+
+    <body>
+        <main>
+            <!-- Modal Structure -->
+            <div id="modalEdit" class="modal modal-fixed-footer">
+                <form id="formTeam">
+                    <div class="modal-content">
+                        <div class="input-field col s12">
+                            <i class="mdi mdi-account-multiple prefix ata-green-text"></i>
+                            <input placeholder="Enter the Team Name" id="teamname" type="text" class="validate" />
+                            <label class="active" for="teamname">Team Name</label>
+                        </div>
+                        <div class="input-field col s12">
+                            <i class="mdi mdi-school prefix ata-green-text"></i>
+                            <input placeholder="Enter the University" id="university" type="text" class="validate" />
+                            <label class="active" for="university">University</label>
+                        </div>
+                        <div class="input-field col s12">
+                            <i class="mdi mdi-map prefix ata-green-text"></i>
+                            <input placeholder="Enter the Country" id="country" type="text" class="validate" />
+                            <label class="active" for="country">Country</label>
+                        </div>
+                    </div>
+
+                    <input type="hidden" id="id" />
+
+                    <div class="modal-footer modal-content-container">
+                        <div class="modal-img-container"></div>
+                        <div class="modal-blur"></div>
+                        <a class="waves-effect waves-green btn-flat" id="btnCloseTeam" onclick="if (!$(this).hasClass('disabled')) { onCloseModal(); } return false;">Close</a>
+                        <!--<a class="waves-effect waves-green btn-flat" id="btnResetTeam" onclick="if (!$(this).hasClass('disabled')) { resetForm_teams(); } return false;">Reset</a>-->
+                        <a class="waves-effect waves-green btn-flat" id="btnUpdateTeam" onclick="if (!$(this).hasClass('disabled')) { editRecord_Proceed(); } return false;">Update</a>
+                        <a class="waves-effect waves-green btn-flat" id="btnInsertTeam" onclick="if (!$(this).hasClass('disabled')) { addRecord_Proceed(); }">Insert</a>
+                    </div>
+                </form>
+            </div>
+
+            <div>
+                <table id="tTeam" class="bordered centered hoverable stupidtable-sorted" style="width: 98% !important; margin-left:auto; margin-right: auto;">
+                    <thead>
+                        <tr>
+                            <th data-field="actions">&nbsp;</th>
+                            <th style="cursor:pointer" data-sort="string" data-field="teamName">Team Name</th>
+                            <th style="cursor:pointer" data-sort="string" data-field="university">University</th>
+                            <th style="cursor:pointer" data-sort="string" data-field="country">Country</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tbodyTeams"></tbody>
+                </table>
+            </div>
+        </main>
+    </body>
+
+</html>
+
+<script language="javascript" type="text/javascript">
+    $(document).ready(function () {
+        Body.navBar();
+        Body.spinnerSignal();
+        Body.addButton('addRecord', 'mdi-tshirt-crew');
+
+        pageInitializeNavBar('Teams');
+
+        Body.footer();
+
+        showRecords_teams();
+    });
+</script>

@@ -1,0 +1,76 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+
+    <script language="javascript">
+        function encodeLogin(username, password) {
+            var tok = username + ':' + password;
+            var hash = btoa(tok);
+            return hash;
+        }
+
+        function decodeLogin(tok) {
+            return atob(tok);
+        }
+    </script>
+</head>
+<body>
+
+</body>
+</html>
+
+<script language="javascript" type="text/javascript">
+    document.write('<br /> CDMPRL85T13C351Q ' + btoa('CDMPRL85T13C351Q'));
+
+    document.write('<hr />');
+    document.write('<br /> FSAE2016 ' + btoa('FSAE2016'));
+    document.write('<br /> FSAE2017 ' + btoa('FSAE2017'));
+    document.write('<br /> FSAE2018 ' + btoa('FSAE2018'));
+    document.write('<br /> FSAE2019 ' + btoa('FSAE2019'));
+
+    document.write('<hr />');
+    document.write('<br /> B12_ita ' + btoa('B12_ita'));
+    document.write('<br /> A51_var ' + btoa('A51_var'));
+
+    document.write('<hr />');
+    document.write('<br />' + atob('QjEyX2l0YQ =='));
+    document.write('<br />' + atob('QTUxX3Zhcg=='));
+    document.write('<br />' + atob('RlNBRTIwMTY='));
+    document.write('<br />rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr' + atob('RlNBRTIwMTc='));  
+	document.write('<br />ttttttttttttttttttt' + atob('RlNBRTIwMTk='));  
+
+    document.write('<hr />');
+    document.write('<br />FSAE_scores_b1 B12_ita ' + encodeLogin('FSAE_scores_b1', 'B12_ita'));
+    document.write('<br />FSAE_scores_b2 A51_var' + encodeLogin('FSAE_scores_b2', 'A51_var'));
+
+	//FD 2021.09.07 - ATA 2021 - Adding Stage1 e 2 e modifiy Stage 3 - BEGIN
+	//Pwd Giudici 2021
+    document.write('<hr />');
+    document.write('NUOVO - BEGIN');
+    document.write('<br />Board_A: ' + encodeLogin('Board_A', 'FSI_Board1'));
+    document.write('<br />Board_B: ' + encodeLogin('Board_B', 'FSI_Board2'));
+    document.write('<br />Board_C: ' + encodeLogin('Board_C', 'FSI_Board3'));
+    document.write('<br />Board_D: ' + encodeLogin('Board_D', 'FSI_Board4'));
+	document.write('<br />Board_E: ' + encodeLogin('Board_E', 'FSI_Board5'));
+    document.write('<br>NUOVO - END');
+    document.write('<hr />');
+	//FD 2021.09.07 - ATA 2021 - Adding Stage1 e 2 e modifiy Stage 3 - END
+
+    document.write('<hr />');
+    document.write('<br />' + decodeLogin('RlNBRV9zY29yZXN5c19hZG1pbjpDRE1QUkw4NVQxM0MzNTFR'));
+    document.write('<br />' + decodeLogin('YW5uYTptYXlh'));
+    document.write('<br />' + decodeLogin('YXRhOmF0YQ=='));
+    document.write('<br />' + decodeLogin('ZW1zQHBvbGltYXRpY2EuaXQ6ZW01cDBsMW00dDFjNA=='));
+
+    document.write('<hr />');
+    document.write('<br />' + decodeLogin('RlNBRV9zY29yZXNfYjE6QjEyX2l0YQ=='));
+    document.write('<br />' + decodeLogin('RlNBRV9zY29yZXNfYjI6QTUxX3Zhcg=='));
+
+    document.write('<hr />');
+    document.write('<br />' + parseInt("-10"));
+    document.write('<br />' + parseFloat("-10"));
+
+</script>

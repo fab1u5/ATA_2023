@@ -1,0 +1,206 @@
+﻿<!DOCTYPE html>
+<html>
+    <head title="SCORES DETAILS">
+        <title>ATA - Scores Details</title>
+
+        <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+        <link rel="icon" href="/favicon.ico" type="image/x-icon">
+
+        <!--Import materialize.css-->
+        <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection" />
+        <link type="text/css" rel="stylesheet" href="css/materialdesignicons.min.css" media="all" />
+
+        <!--Let browser know website is optimized for mobile-->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    
+        <!--Import jQuery before materialize.js-->
+        <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+        <script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
+        <script type="text/javascript" src="js/materialize.min.js"></script>
+		<script type="text/javascript" src="js/stupidtable.min.js"> </script>
+		<script type="text/javascript" src="js/scoresPrototypes.js"> </script>
+        <script type="text/javascript" src="js/utilities.js"></script>
+        <script type="text/javascript" src="js/mbox.js"></script>
+
+        <script type="text/javascript" src="js/SQLiteDirectives.js"> </script>
+        <script type="text/javascript" src="js/WSDirectives.js"> </script>
+
+        <link rel="stylesheet" href="css/jquery.fancybox.css?v=2.1.5" type="text/css" media="screen" />
+        <script type="text/javascript" src="js/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+        <link type="text/css" rel="stylesheet" href="css/ATA.css" media="screen,projection" />
+        <link type="text/css" rel="stylesheet" href="css/mbox.css" media="screen,projection" />
+
+        <script language="javascript" type="text/javascript">
+
+            function editRecord(classid, eventid, carid, scoreid, pagetojump, maximumscore, totalscore, carno, carfuelid) {
+                sessionStorage.scoresbycar_classid		= classid;
+                sessionStorage.scoresbycar_eventid		= eventid;
+                sessionStorage.scoresbycar_carid		= carid;
+                sessionStorage.scoresbycar_scoreid		= scoreid;
+                sessionStorage.scoresbycar_maximumscore = maximumscore;
+                sessionStorage.scoresbycar_totalscore	= totalscore;
+                //Event 2017 - save also carno
+                sessionStorage.carno					= carno;
+                //Event 2017 - save also car fuelid to be used in Endurance scores if not set
+                sessionStorage.carfuelid				= carfuelid;
+
+                $("#iframe").fancybox({
+                    'autoScale': true,
+                    'autoDimensions': false,
+                    'scrolling': 'auto',
+                    'transitionIn': 'fade',
+                    'transitionOut': 'fade',
+                    'type': 'iframe',
+                    'overlayShow': true,
+                    'modal': true,
+                    'showCloseButton': false,
+                    'width': '100%',
+                    helpers: {
+                        //Event 2017 - Hide fancybox title - Info are display in the top of the window
+                        //title: { type: 'inside' }
+                    }, // helpers
+                    'titleShow': true,
+                    beforeLoad: function () {
+                        this.href = pagetojump;
+                        //Event 2017 - Hide fancybox title - Info are display in the top of the window
+                        //this.title = "<i class='black-text mdi mdi-car small'></i>&nbsp;Car No. " + carno;
+                    },
+                    afterClose: function () {
+                        //AF - Lug 2016 - take a while before reload the main page
+                        //waitON();
+                        //parent.location.reload(); 
+                        reloadTheParent_step1();
+                    }
+                });
+            }
+       
+            function reloadTheParent_step1() {
+                waitON();
+                ataToast("Refreshing data in progress ...", 2000);
+                window.setTimeout(reloadTheParent_step2, 2000);
+            }
+            function reloadTheParent_step2() {
+                parent.location.reload();
+            }
+        </script>
+    </head>
+
+    <body>
+        <main>
+            <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
+                <a class="btn-floating btn-large amber" id="btnBack" href="Scores.html">
+                    <i class="mdi mdi-arrow-left" title="Back To previous page"></i>
+                </a>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <p>
+                        <div class="breadcrumb">
+                            <a href="#"><span id="classname-spn"></span></a>
+                            <a href="#"><span id="eventtypename-spn"></span></a>
+                            <a href="#"><span id="eventname-spn"></span></a>
+                            <a href="#"><span id="description-spn"></span></a>
+                        </div>
+                    </p>
+                </div>
+            </div>
+            <table id="tblOldDetail">
+                <tr>
+                    <td>
+                        <div class="input-field col s3">
+                            <i class="mdi mdi-car prefix green-text"></i>
+                            <input placeholder="" id="classname" type="text" readonly class="green-text" />
+                            <label class="active" for="classname">Class</label>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="input-field col s3">
+                            <i class="mdi mdi-timer prefix green-text"></i>
+                            <input placeholder="" id="eventtypename" type="text" readonly class="green-text" />
+                            <label class="active" for="eventtypename">Type</label>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="input-field col s3">
+                            <input placeholder="" id="eventname" type="text" readonly class="green-text" />
+                            <label class="active" for="eventname">Event</label>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="input-field col s3">
+                            <input placeholder="" id="description" type="text" readonly class="green-text" />
+                            <label class="active" for="description">Test</label>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+
+            <form class="s12" id="theForm" action="#">
+                <div id="root-picker-outlet"></div>
+
+                <div>
+                    <table id="tScoreCar" class="bordered centered hoverable stupidtable-sorted" style="width: 98% !important; margin-left: auto; margin-right: auto;">
+                        <thead>
+                            <tr>
+                                <th data-field="actions"></th>
+                                <th style="cursor:pointer" data-sort="int" data-field="carno">Car No.</th>
+                                <th style="cursor:pointer" data-sort="string" data-field="teamname">Team</th>
+                                <th style="cursor:pointer" data-sort="string" data-field="university">University</th>
+                                <th style="cursor:pointer" data-sort="string" data-field="board" id="thBoard">Board</th>
+                                <th style="cursor:pointer" data-sort="int" data-field="GivenScore">Total Given Score</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="tbodyScores"></tbody>
+                    </table>
+                </div>
+            </form>
+        </main>
+    </body>
+</html>
+
+
+<script language="javascript" type="text/javascript">
+    $(document).ready(function () {
+        Body.navBar();
+        Body.spinnerSignal();
+
+        pageInitializeNavBar('Scores');
+
+        Body.footer();
+
+        //initDatabaseToLastVersion();
+
+        var classid = sessionStorage.scores_classid;
+        var eventid = sessionStorage.scores_eventid;
+
+        showRecords_scores_eventdetails(classid, eventid);
+        showRecords_scores();
+
+        $(".fancybox").fancybox();
+
+        $("#iframe").fancybox({
+            'autoScale': true,
+            'autoDimensions': false,
+            'scrolling': 'auto',
+            'transitionIn': 'fade',
+            'transitionOut': 'fade',
+            'type': 'iframe',
+            'overlayShow': true,
+            'modal': true,
+            'showCloseButton': false,
+            'width': '100%'
+        });
+
+        if (isATablet()) {
+            //hide Board column
+            $('#thBoard').hide();
+        }
+
+        $("#tblOldDetail").hide();
+    });
+</script>
+
+

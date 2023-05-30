@@ -1,0 +1,99 @@
+﻿<!DOCTYPE html>
+<html>
+    <head title="UPLOADCONFIGURATION">
+        <title>ATA - Configuration Upload</title>
+
+        <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+        <link rel="icon" href="/favicon.ico" type="image/x-icon">
+
+        <!--Import materialize.css-->
+        <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection" />
+        <link type="text/css" rel="stylesheet" href="css/materialdesignicons.min.css" media="all" />
+
+        <!--Let browser know website is optimized for mobile-->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+        <!--Import jQuery before materialize.js-->
+        <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+        <script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
+        <script type="text/javascript" src="js/materialize.min.js"></script>
+		<script type="text/javascript" src="js/stupidtable.min.js"> </script>
+		<script type="text/javascript" src="js/scoresPrototypes.js"> </script>
+        <script type="text/javascript" src="js/utilities.js"></script>
+        <script type="text/javascript" src="js/mbox.js"></script>
+        <script type="text/javascript" src="js/ConfigurationDirectives.js"> </script>
+
+        <script type="text/javascript" src="js/SQLiteDirectives.js"> </script>
+        <script type="text/javascript" src="js/WSDirectives.js"> </script>
+
+        <link type="text/css" rel="stylesheet" href="css/ATA.css" media="screen,projection" />
+        <link type="text/css" rel="stylesheet" href="css/mbox.css" media="screen,projection" />
+    </head>
+
+    <body>
+
+        <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
+            <a class="btn-floating btn-large amber" style="margin-right: 5px;" href="#" id="btnBack"><i class="large mdi mdi-arrow-left" title="Back"></i></a>
+        </div>
+
+        <main>
+            <div class="container">
+                <h5 class="ata-green-text">Allowed Activities</h5>
+                <h6 class="ata-green-text">What can you do here</h6>
+                <hr>
+                <div class="row">
+                    <div class="col s12 m4 l4">
+                        <h6>Hint</h6>
+                        <p>Here you can upload Scores to the Server.</p>
+                        <p>Click to start uploading operation by selecting the link in the right side of this page</p>
+                        <blockquote>
+                            Please, note that a network connection is required.
+                        </blockquote>
+                    </div>
+                    <div class="col s12 m4 l4">
+                        <h6>&nbsp;</h6>
+                        <div class="card navbar-ata-backgrounded-4">
+                            <div class="card-content white-text center">
+                                <img src="images/150x150_Upload.jpg">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col s12 m4 l4">
+                        <h6>&nbsp;</h6>
+                        <div class="collection">
+                            <a href="" id="uploadConf" class="tools-action"><i class="mdi mdi-upload"></i>Upload</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </body>
+</html>
+
+<script language="javascript" type="text/javascript">
+    $(document).ready(function () {
+        Body.navBar();
+        Body.spinnerSignal();
+
+        pageInitilizeHomeOnly('Upload Scores');
+
+        Body.footer();
+
+        waitOFF();
+
+        $('#btnBack').click(function (e) {
+            e.preventDefault();
+            window.location = "LoginTablet.html";
+        });
+
+        $('#uploadConf').click(function (event) {
+            event.preventDefault();
+
+            mbox.confirm('Scores already present on server will be overwritten. Continue?', function (yes) {
+                if (yes) {
+                    configuration_upload();
+                } else { }
+            })
+        });
+    });
+</script>

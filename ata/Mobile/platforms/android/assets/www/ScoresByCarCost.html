@@ -1,0 +1,136 @@
+﻿<!DOCTYPE html>
+<html>
+    <head title="SCORESBYCARCOST">
+        <title>ATA - Cost Scores</title>
+
+        <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+        <link rel="icon" href="/favicon.ico" type="image/x-icon">
+
+        <!--Import materialize.css-->
+        <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection" />
+        <link type="text/css" rel="stylesheet" href="css/materialdesignicons.min.css" media="all" />
+
+        <!--Let browser know website is optimized for mobile-->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+        <!--Import jQuery before materialize.js-->
+        <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+        <script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
+        <script type="text/javascript" src="js/materialize.min.js"></script>
+        <script type="text/javascript" src="js/utilities.js"></script>
+        <script type="text/javascript" src="js/mbox.js"></script>
+
+        <script type="text/javascript" src="js/SQLiteDirectives.js"></script>
+        <script type="text/javascript" src="js/WSDirectives.js"></script>
+
+        <link type="text/css" rel="stylesheet" href="css/ATA.css" media="screen,projection" />
+        <link type="text/css" rel="stylesheet" href="css/mbox.css" media="screen,projection" />
+
+        <script language="javascript" type="text/javascript">
+
+            var classid = sessionStorage.scoresbycar_classid;
+            var eventid = sessionStorage.scoresbycar_eventid;
+            var carid = sessionStorage.scoresbycar_carid;
+            var scoreid = sessionStorage.scoresbycar_scoreid;
+            var carno = sessionStorage.carno;
+
+            function backToScores() {
+                event.preventDefault();
+                parent.$.fancybox.close();
+            }
+        </script>
+    </head>
+
+    <body>
+
+        <!--//Event 2017 - Hide fancybox title - Info are display in the top of the window-->
+        <!--<div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
+            <a class="btn-floating btn-large green" style="margin-right: 5px;" href="#" id="btnSave"><i class="large mdi mdi-content-save" title="Save"></i></a>
+            <a style="margin-right: 45px;" href="#"></a>
+            <a class="btn-floating btn-large red" href="#" onclick="backToScores();" id="btnBack"><i class="large mdi mdi-close" title="Close"></i></a>    
+        </div>-->
+ 
+        <div id="div_scores" class="offset-l6">
+            <input type="hidden" name="id" id="id" />
+            <input type="hidden" name="scoreid" id="scoreid" />
+
+            <div class="row">
+                <div class="col l12 m12 s12 card transparent">
+                    <h6 class="navbar-ata-backgrounded-1" style="padding:5px">&nbsp;</h6>
+                    <div class="row">
+                        <div class="input-field col l2 m3 s12">
+                            <input id="LowestCost" placeholder="" value="0" type="number" min="0" />
+                            <label id="lbl_LowestCost" for="LowestCost">Lowest Cost</label>
+                        </div>
+                        <div class="input-field col l2 m3 s12">
+                            <input id="Accuracy" type="number" value="0" placeholder="" min="0" max="500" />
+                            <label id="lbl_Accuracy" for="Accuracy">Accuracy</label>
+                        </div>
+                        <div class="input-field col l2 m3 s12">
+                            <input id="EventDay" type="number" value="0" placeholder="" min="0" max="500" />
+                            <label id="lbl_EventDay" for="EventDay">Event Day</label>
+                        </div>
+                        <div class="input-field col l2 m3 s12">
+                            <input id="Presentation" type="number" value="0" placeholder="" min="0" max="500" />
+                            <label id="lbl_Presentation" for="Presentation">Presentation</label>
+                        </div>
+                        <div class="input-field col l2 m3 s12">
+                            <input id="Penalties" type="number" value="0" placeholder="" min="0" max="500" />
+                            <label id="lbl_Penalties" class="active" for="Penalties">Penalties</label>
+                        </div>
+                        <div class="input-field col l12 m12 s12">
+                            <textarea id="Notes" placeholder="" class="materialize-textarea"></textarea>
+                            <label id="lbl_Notes" class="active" for="Notes">Notes</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
+<script language="javascript" type="text/javascript">
+
+    $(document).ready(function () {
+        Body.navBarScores('Cost', 'backToScores');
+        Body.spinnerSignal();
+
+        pageInitializeTitleOnly('Scores - Cost Event');
+
+        //initDatabaseToLastVersion();
+
+        //Event 2017 - Hide fancybox title - Info are display in the top of the window
+        $("#carno").text(carno);
+
+        onlyNumbersWith4Decimals("#LowestCost");
+        onlyNumbersWith4Decimals("#Accuracy");
+        onlyNumbersWith4Decimals("#EventDay");
+        onlyNumbersWith4Decimals("#Presentation");
+        onlyNumbersWith4Decimals("#Penalties");
+
+        $("#btnSave").click(function () {
+            var id = $("#id").val();
+            var LowestCost = $("#LowestCost").val();
+            var Accuracy = $("#Accuracy").val();
+            var EventDay = $("#EventDay").val();
+            var Presentation = $("#Presentation").val();
+            var Penalties = $("#Penalties").val();
+            var Notes = $("#Notes").val();
+            // to calculate max e min
+            var max = 0;
+            var min = 0;
+            var Cost = 0;
+
+            if ((Number(scoreid) == -1) || (Number(id) == -1)) {
+                insertRecord_scores_cost(eventid, carid, scoreid, LowestCost, Accuracy, EventDay, Presentation, Penalties, Notes);
+            }
+            else {
+                updateRecord_scores_cost( scoreid, LowestCost, Accuracy, EventDay, Presentation, Penalties, Notes);
+            }
+            backToScores();
+        });
+
+        showRecords_scores_cost(scoreid);
+
+        waitOFF();
+    });
+</script>

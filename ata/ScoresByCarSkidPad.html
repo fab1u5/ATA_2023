@@ -1,0 +1,209 @@
+﻿<!DOCTYPE html>
+<html>
+    <head title="SCORESBYCARSKIDPAD">
+        <title>ATA - Skidpad Scores</title>
+
+        <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+        <link rel="icon" href="/favicon.ico" type="image/x-icon">
+
+        <!--Import materialize.css-->
+        <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection" />
+        <link type="text/css" rel="stylesheet" href="css/materialdesignicons.min.css" media="all" />
+
+        <!--Let browser know website is optimized for mobile-->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+        <!--Import jQuery before materialize.js-->
+        <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+        <script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
+        <script type="text/javascript" src="js/materialize.min.js"></script>
+		<script type="text/javascript" src="js/stupidtable.min.js"> </script>
+		<script type="text/javascript" src="js/scoresPrototypes.js"> </script>
+        <script type="text/javascript" src="js/utilities.js"></script>
+        <script type="text/javascript" src="js/mbox.js"></script>
+
+        <script type="text/javascript" src="js/SQLiteDirectives.js"> </script>
+        <script type="text/javascript" src="js/WSDirectives.js"> </script>
+
+        <link type="text/css" rel="stylesheet" href="css/ATA.css" media="screen,projection" />
+        <link type="text/css" rel="stylesheet" href="css/mbox.css" media="screen,projection" />
+
+        <script language="javascript" type="text/javascript">
+            var classid = sessionStorage.scoresbycar_classid;
+            var eventid = sessionStorage.scoresbycar_eventid;
+            var carid = sessionStorage.scoresbycar_carid;
+            var scoreid = sessionStorage.scoresbycar_scoreid;
+            var maximumscore = (Number(sessionStorage.scoresbycar_maximumscore) == 0) ? "150" : sessionStorage.scoresbycar_maximumscore;
+            var totalscore = sessionStorage.scoresbycar_totalscore;
+            var carno = sessionStorage.carno;
+
+            function calculateAdj(ooTime, ooCones, ooAdj) {
+                var time = parseFloat($(ooTime).val());
+                var cones = parseFloat($(ooCones).val());
+                var adj = parseFloat(calculate_scores_skidpad_adj(time, cones));
+
+                if (adj == -1){
+                    $(ooAdj).val('DNA');
+                }
+                else {
+                    $(ooAdj).val(adj);
+                }
+            }
+
+            function backToScores() {
+                event.preventDefault();
+                parent.$.fancybox.close();
+            }
+        </script>
+    </head>
+
+    <body>
+
+        <!--//Event 2017 - Hide fancybox title - Info are display in the top of the window-->
+        <!--<div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
+            <a class="btn-floating btn-large green" style="margin-right: 5px;" href="#" id="btnSave"><i class="large mdi mdi-content-save" title="Save"></i></a>
+            <a style="margin-right: 45px;" href="#"></a>
+            <a class="btn-floating btn-large red" href="#" onclick="backToScores();" id="btnBack"><i class="large mdi mdi-close" title="Close"></i></a>
+        </div>-->
+
+        <div id="div_scores">
+            <input type="hidden" name="id" id="id" />
+            <input type="hidden" name="scoreid" id="scoreid" />
+
+            <div class="row">
+                <div class="col l6 m6 s12 card transparent">
+                    <h6 class="navbar-ata-backgrounded-1" style="padding:5px">&nbsp;RUN #1</h6>
+                    <div class="row">
+                        <div class="input-field col l4 m4 s4">
+                            <input placeholder="Time" id="run1time" type="number" class="validate" />
+                            <label class="active" for="run1time">Time</label>
+                        </div>
+                        <div class="input-field col l4 m4 s4">
+                            <input placeholder="Num of Cones" id="run1numofcones" type="number" class="validate" />
+                            <label class="active" for="run1numofcones">Number of Cones</label>
+                        </div>
+                        <div class="input-field col l4 m4 s4">
+                            <input placeholder="" id="run1timeadj" type="text" class="validate" readonly="readonly" />
+                            <label class="active ata-green-text" for="run1timeadj">Adj.</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col l6 m6 s12 card transparent">
+                    <h6 class="navbar-ata-backgrounded-1" style="padding:5px">&nbsp;RUN #2</h6>
+                    <div class="row">
+                        <div class="input-field col l4 m4 s4">
+                            <input placeholder="Time" id="run2time" type="number" class="validate" />
+                            <label class="active" for="run2time">Time</label>
+                        </div>
+                        <div class="input-field col l4 m4 s4">
+                            <input placeholder="Num of Cones" id="run2numofcones" type="number" class="validate" />
+                            <label class="active" for="run2numofcones">Number of Cones</label>
+                        </div>
+                        <div class="input-field col l4 m4 s4">
+                            <input placeholder="" id="run2timeadj" type="text" class="validate" readonly="readonly" />
+                            <label class="active ata-green-text" for="run2timeadj">Adj.</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col l6 m6 s12 card transparent">
+                    <h6 class="navbar-ata-backgrounded-1" style="padding:5px">&nbsp;RUN #3</h6>
+                    <div class="row">
+                        <div class="input-field col l4 m4 s4">
+                            <input placeholder="Time" id="run3time" type="number" class="validate" />
+                            <label class="active" for="run3time">Time</label>
+                        </div>
+                        <div class="input-field col l4 m4 s4">
+                            <input placeholder="Num of Cones" id="run3numofcones" type="number" class="validate" />
+                            <label class="active" for="run3numofcones">Number of Cones</label>
+                        </div>
+                        <div class="input-field col l4 m4 s4">
+                            <input placeholder="" id="run3timeadj" type="text" class="validate" readonly="readonly" />
+                            <label class="active ata-green-text" for="run3timeadj">Adj.</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col l6 m6 s12 card transparent">
+                    <h6 class="navbar-ata-backgrounded-1" style="padding:5px">&nbsp;RUN #4</h6>
+                    <div class="row">
+                        <div class="input-field col l4 m4 s4">
+                            <input placeholder="Time" id="run4time" type="number" class="validate" />
+                            <label class="active" for="run4time">Time</label>
+                        </div>
+                        <div class="input-field col l4 m4 s4">
+                            <input placeholder="Num of Cones" id="run4numofcones" type="number" class="validate" />
+                            <label class="active" for="run4numofcones">Number of Cones</label>
+                        </div>
+                        <div class="input-field col l4 m4 s4">
+                            <input placeholder="" id="run4timeadj" type="text" class="validate" readonly="readonly" />
+                            <label class="active ata-green-text" for="run4timeadj">Adj.</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
+<script language="javascript" type="text/javascript">
+    $(document).ready(function () {
+        Body.navBarScores('Skid Pad', 'backToScores');
+        Body.spinnerSignal();
+
+        pageInitializeTitleOnly('Scores - Skid Pad');
+
+        //initDatabaseToLastVersion();
+
+        //Event 2017 - Hide fancybox title - Info are display in the top of the window
+        $("#carno").text(carno);
+
+        waitOFF();
+
+        showRecords_scores_skidpad(scoreid);
+
+        onlyNumbersWith4Decimals("#run1time");
+        onlyNumbersWith4Decimals("#run2time");
+        onlyNumbersWith4Decimals("#run3time");
+        onlyNumbersWith4Decimals("#run4time");
+
+        onlyNumbers("#run1numofcones");
+        onlyNumbers("#run2numofcones");
+        onlyNumbers("#run3numofcones");
+        onlyNumbers("#run4numofcones");
+
+        $("#run1time").bind("blur", function () { calculateAdj($("#run1time"), $("#run1numofcones"), $("#run1timeadj")); });
+        $("#run2time").bind("blur", function () { calculateAdj($("#run2time"), $("#run2numofcones"), $("#run2timeadj")); });
+        $("#run3time").bind("blur", function () { calculateAdj($("#run3time"), $("#run3numofcones"), $("#run3timeadj")); });
+        $("#run4time").bind("blur", function () { calculateAdj($("#run4time"), $("#run4numofcones"), $("#run4timeadj")); });
+
+        $("#run1numofcones").bind("blur", function () { calculateAdj($("#run1time"), $("#run1numofcones"), $("#run1timeadj")); });
+        $("#run2numofcones").bind("blur", function () { calculateAdj($("#run2time"), $("#run2numofcones"), $("#run2timeadj")); });
+        $("#run3numofcones").bind("blur", function () { calculateAdj($("#run3time"), $("#run3numofcones"), $("#run3timeadj")); });
+        $("#run4numofcones").bind("blur", function () { calculateAdj($("#run4time"), $("#run4numofcones"), $("#run4timeadj")); });
+
+        $("#btnSave").click(function () {
+
+            var id = $("#id").val();
+            var scoreid = $("#scoreid").val();
+            
+            var r1time = $("#run1time").val();
+            var r2time = $("#run2time").val();
+            var r3time = $("#run3time").val();
+            var r4time = $("#run4time").val();
+
+            var r1numofcones = $("#run1numofcones").val();
+            var r2numofcones = $("#run2numofcones").val();
+            var r3numofcones = $("#run3numofcones").val();
+            var r4numofcones = $("#run4numofcones").val();
+
+            if ((Number(scoreid) == -1) || (Number(id) == -1)) {
+                //Insert Mode
+                insertRecord_scores_skidpad(eventid, carid, scoreid, r1time, r1numofcones, r2time, r2numofcones, r3time, r3numofcones, r4time, r4numofcones);
+            }
+            else {
+                updateRecord_scores_skidpad(scoreid, r1time, r1numofcones, r2time, r2numofcones, r3time, r3numofcones, r4time, r4numofcones);
+            }
+
+            //backToScores();
+        });
+
+    });
+</script>

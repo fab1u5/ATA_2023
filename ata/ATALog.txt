@@ -1,0 +1,199 @@
+===========Start============= 15/09/2021 16:35:44
+Message: savePresentation: True
+===========End============= 15/09/2021 16:35:44
+===========Start============= 16/09/2021 16:31:54
+Message: savePresentation: True
+===========End============= 16/09/2021 16:31:54
+===========Start============= 16/09/2021 16:45:14
+Message: savePresentation: True
+===========End============= 16/09/2021 16:45:14
+===========Start============= 16/09/2021 19:16:13
+Message: savePresentation: True
+===========End============= 16/09/2021 19:16:13
+===========Start============= 16/09/2021 19:35:39
+Message: savePresentation: True
+===========End============= 16/09/2021 19:35:39
+===========Start============= 13/05/2022 16:07:53
+Error Type: System.Data.SqlClient.SqlException
+Error Message: Il nome di colonna 'St2BusinnesFigures4' non è valido.
+Il nome di colonna 'St2BusinnesFigures4' non è valido.
+Non è stato possibile utilizzare la vista o la funzione 'VW_Scores_Partial_Presentation' a causa di errori di associazione.
+Stack Trace:    in System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   in System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   in System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   in System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   in System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   in System.Data.SqlClient.SqlDataReader.get_MetaData()
+   in System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   in System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   in System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   in System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   in System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   in System.Data.SqlClient.SqlCommand.ExecuteReader()
+   in ATA.services.ATA_WebService.GetScoresPresentationPartials(String scoresidlist) in C:\fdt\fdt\ATA - Sorgenti - fase 4 patch 2\ATA - 2022\ata\services\ATA_WebService.asmx.cs:riga 5056
+===========End============= 13/05/2022 16:07:53
+===========Start============= 13/05/2022 17:31:01
+Error Type: System.Data.SqlClient.SqlException
+Error Message: Il nome di colonna 'St2BusinnesFigures4' non è valido.
+Il nome di colonna 'St2BusinnesFigures4' non è valido.
+Non è stato possibile utilizzare la vista o la funzione 'VW_Scores_Partial_Presentation' a causa di errori di associazione.
+Stack Trace:    in System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   in System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   in System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   in System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   in System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   in System.Data.SqlClient.SqlDataReader.get_MetaData()
+   in System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   in System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   in System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   in System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   in System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   in System.Data.SqlClient.SqlCommand.ExecuteReader()
+   in ATA.services.ATA_WebService.GetScoresPresentationPartials(String scoresidlist) in C:\fdt\fdt\ATA - Sorgenti - fase 4 patch 2\ATA - 2022\ata\services\ATA_WebService.asmx.cs:riga 5056
+===========End============= 13/05/2022 17:31:01
+===========Start============= 17/05/2022 12:57:47
+Message: savePresentation: True
+===========End============= 17/05/2022 12:57:47
+===========Start============= 31/05/2022 17:19:11
+Error Type: System.InvalidOperationException
+Error Message: La sequenza non contiene elementi
+Stack Trace:    in System.Linq.Enumerable.Max(IEnumerable`1 source)
+   in System.Linq.Enumerable.Max[TSource](IEnumerable`1 source, Func`2 selector)
+   in ATA.services.ATA_WebService.CalculateScorePresentation(Int32 classId) in C:\fdt\fdt\ATA - Sorgenti - fase 4 patch 2\ATA - 2022\ata\services\ATA_WebService.asmx.cs:riga 2951
+===========End============= 31/05/2022 17:19:11
+===========Start============= 31/05/2022 17:46:25
+Error Type: System.Exception
+Error Message: Passed invalid TemplatePath to Excel Template
+Stack Trace:    in OfficeOpenXml.ExcelPackage.CreateFromTemplate(FileInfo template, String password)
+   in OfficeOpenXml.ExcelPackage..ctor(FileInfo newFile, FileInfo template)
+   in ATA.services.ExcelHelper.OpenWorkbook() in C:\fdt\fdt\ATA - Sorgenti - fase 4 patch 2\ATA - 2022\ata\services\objects\ExcelHelper.cs:riga 148
+   in ATA.services.ExcelHelper.GetRanking(IEnumerable`1 rankingObjects) in C:\fdt\fdt\ATA - Sorgenti - fase 4 patch 2\ATA - 2022\ata\services\objects\ExcelHelper.cs:riga 263
+===========End============= 31/05/2022 17:46:25
+===========Start============= 31/05/2022 17:47:47
+Error Type: System.Exception
+Error Message: Passed invalid TemplatePath to Excel Template
+Stack Trace:    in OfficeOpenXml.ExcelPackage.CreateFromTemplate(FileInfo template, String password)
+   in OfficeOpenXml.ExcelPackage..ctor(FileInfo newFile, FileInfo template)
+   in ATA.services.ExcelHelper.OpenWorkbook() in C:\fdt\fdt\ATA - Sorgenti - fase 4 patch 2\ATA - 2022\ata\services\objects\ExcelHelper.cs:riga 148
+   in ATA.services.ExcelHelper.GetRanking(IEnumerable`1 rankingObjects) in C:\fdt\fdt\ATA - Sorgenti - fase 4 patch 2\ATA - 2022\ata\services\objects\ExcelHelper.cs:riga 263
+===========End============= 31/05/2022 17:47:47
+===========Start============= 07/06/2022 16:08:28
+Error Type: System.Exception
+Error Message: Passed invalid TemplatePath to Excel Template
+Stack Trace:    in OfficeOpenXml.ExcelPackage.CreateFromTemplate(FileInfo template, String password)
+   in OfficeOpenXml.ExcelPackage..ctor(FileInfo newFile, FileInfo template)
+   in ATA.services.ExcelHelper.OpenWorkbook() in C:\fdt\fdt\ATA - Sorgenti - fase 4 patch 2\ATA - 2022\ata\services\objects\ExcelHelper.cs:riga 148
+   in ATA.services.ExcelHelper.GetRanking(IEnumerable`1 rankingObjects) in C:\fdt\fdt\ATA - Sorgenti - fase 4 patch 2\ATA - 2022\ata\services\objects\ExcelHelper.cs:riga 263
+===========End============= 07/06/2022 16:08:28
+===========Start============= 07/06/2022 16:09:05
+Error Type: System.Exception
+Error Message: Passed invalid TemplatePath to Excel Template
+Stack Trace:    in OfficeOpenXml.ExcelPackage.CreateFromTemplate(FileInfo template, String password)
+   in OfficeOpenXml.ExcelPackage..ctor(FileInfo newFile, FileInfo template)
+   in ATA.services.ExcelHelper.OpenWorkbook() in C:\fdt\fdt\ATA - Sorgenti - fase 4 patch 2\ATA - 2022\ata\services\objects\ExcelHelper.cs:riga 148
+   in ATA.services.ExcelHelper.GetRanking(IEnumerable`1 rankingObjects) in C:\fdt\fdt\ATA - Sorgenti - fase 4 patch 2\ATA - 2022\ata\services\objects\ExcelHelper.cs:riga 263
+===========End============= 07/06/2022 16:09:05
+===========Start============= 07/06/2022 16:09:30
+Error Type: System.Exception
+Error Message: Passed invalid TemplatePath to Excel Template
+Stack Trace:    in OfficeOpenXml.ExcelPackage.CreateFromTemplate(FileInfo template, String password)
+   in OfficeOpenXml.ExcelPackage..ctor(FileInfo newFile, FileInfo template)
+   in ATA.services.ExcelHelper.OpenWorkbook() in C:\fdt\fdt\ATA - Sorgenti - fase 4 patch 2\ATA - 2022\ata\services\objects\ExcelHelper.cs:riga 148
+   in ATA.services.ExcelHelper.GetRanking(IEnumerable`1 rankingObjects) in C:\fdt\fdt\ATA - Sorgenti - fase 4 patch 2\ATA - 2022\ata\services\objects\ExcelHelper.cs:riga 263
+===========End============= 07/06/2022 16:09:30
+===========Start============= 04/07/2022 15:20:40
+Error Type: System.Data.Entity.Infrastructure.DbUpdateException
+Error Message: An error occurred while saving entities that do not expose foreign key properties for their relationships. The EntityEntries property will return null because a single entity cannot be identified as the source of the exception. Handling of exceptions while saving can be made easier by exposing foreign key properties in your entity types. See the InnerException for details.
+Stack Trace:    in System.Data.Entity.Internal.InternalContext.SaveChanges()
+   in System.Data.Entity.Internal.LazyInternalContext.SaveChanges()
+   in System.Data.Entity.DbContext.SaveChanges()
+   in ATA.services.ATA_ImportService.savePresentation(List`1 presentations, ATA_Context ctx, Int32 uploadingExamboard) in C:\fdt\fdt\ATA - Sorgenti - fase 4 patch 2\ATA - 2022\ata\services\ATA_ImportService.asmx.cs:riga 468
+===========End============= 04/07/2022 15:20:40
+===========Start============= 04/07/2022 15:20:40
+Message: savePresentation: False
+===========End============= 04/07/2022 15:20:40
+===========Start============= 04/07/2022 15:26:59
+Message: savePresentation: True
+===========End============= 04/07/2022 15:26:59
+===========Start============= 04/07/2022 15:30:13
+Message: savePresentation: True
+===========End============= 04/07/2022 15:30:13
+===========Start============= 04/07/2022 15:40:22
+Message: savePresentation: True
+===========End============= 04/07/2022 15:40:22
+===========Start============= 04/07/2022 16:20:11
+Message: savePresentation: True
+===========End============= 04/07/2022 16:20:11
+===========Start============= 04/07/2022 18:08:47
+Message: savePresentation: True
+===========End============= 04/07/2022 18:08:47
+===========Start============= 04/07/2022 18:13:07
+Message: savePresentation: True
+===========End============= 04/07/2022 18:13:07
+===========Start============= 06/07/2022 17:49:17
+Message: savePresentation: True
+===========End============= 06/07/2022 17:49:17
+===========Start============= 24/05/2023 16:24:18
+Error Type: System.Data.SqlClient.SqlException
+Error Message: Il nome di colonna 'St2Content0' non è valido.
+Il nome di colonna 'St2Content1' non è valido.
+Il nome di colonna 'St2Content2' non è valido.
+Il nome di colonna 'St2Content3' non è valido.
+Il nome di colonna 'St2Content4' non è valido.
+Il nome di colonna 'St2Investitors0' non è valido.
+Il nome di colonna 'St2Investitors1' non è valido.
+Il nome di colonna 'St2Investitors2' non è valido.
+Il nome di colonna 'St2Content0' non è valido.
+Il nome di colonna 'St2Content1' non è valido.
+Il nome di colonna 'St2Content2' non è valido.
+Il nome di colonna 'St2Content3' non è valido.
+Il nome di colonna 'St2Content4' non è valido.
+Il nome di colonna 'St2Investitors0' non è valido.
+Il nome di colonna 'St2Investitors1' non è valido.
+Il nome di colonna 'St2Investitors2' non è valido.
+Non è stato possibile utilizzare la vista o la funzione 'VW_Scores_Partial_Presentation' a causa di errori di associazione.
+Stack Trace:    in System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   in System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   in System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   in System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   in System.Data.SqlClient.SqlDataReader.get_MetaData()
+   in System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   in System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   in System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   in System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   in System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   in System.Data.SqlClient.SqlCommand.ExecuteReader()
+   in ATA.services.ATA_WebService.GetScoresPresentationPartials(String scoresidlist) in C:\fdt\fdt\ATA - Sorgenti - fase 4 patch 2\ATA - 2022\ata\services\ATA_WebService.asmx.cs:riga 5133
+===========End============= 24/05/2023 16:24:18
+===========Start============= 24/05/2023 16:26:13
+Error Type: System.Data.SqlClient.SqlException
+Error Message: Il nome di colonna 'St2Content0' non è valido.
+Il nome di colonna 'St2Content1' non è valido.
+Il nome di colonna 'St2Content2' non è valido.
+Il nome di colonna 'St2Content3' non è valido.
+Il nome di colonna 'St2Content4' non è valido.
+Il nome di colonna 'St2Investitors0' non è valido.
+Il nome di colonna 'St2Investitors1' non è valido.
+Il nome di colonna 'St2Investitors2' non è valido.
+Il nome di colonna 'St2Content0' non è valido.
+Il nome di colonna 'St2Content1' non è valido.
+Il nome di colonna 'St2Content2' non è valido.
+Il nome di colonna 'St2Content3' non è valido.
+Il nome di colonna 'St2Content4' non è valido.
+Il nome di colonna 'St2Investitors0' non è valido.
+Il nome di colonna 'St2Investitors1' non è valido.
+Il nome di colonna 'St2Investitors2' non è valido.
+Non è stato possibile utilizzare la vista o la funzione 'VW_Scores_Partial_Presentation' a causa di errori di associazione.
+Stack Trace:    in System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   in System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   in System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   in System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   in System.Data.SqlClient.SqlDataReader.get_MetaData()
+   in System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   in System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   in System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   in System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   in System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   in System.Data.SqlClient.SqlCommand.ExecuteReader()
+   in ATA.services.ATA_WebService.GetScoresPresentationPartials(String scoresidlist) in C:\fdt\fdt\ATA - Sorgenti - fase 4 patch 2\ATA - 2022\ata\services\ATA_WebService.asmx.cs:riga 5133
+===========End============= 24/05/2023 16:26:13

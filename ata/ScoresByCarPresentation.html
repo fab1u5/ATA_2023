@@ -1,0 +1,2129 @@
+﻿<!DOCTYPE html>
+<html>
+    <head title="SCORESBYCARPRESENTATION">
+        <title>ATA - Presentation Scores</title>
+
+        <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+        <link rel="icon" href="/favicon.ico" type="image/x-icon">
+
+        <!--Import materialize.css-->
+        <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection" />
+        <link type="text/css" rel="stylesheet" href="css/materialdesignicons.min.css" media="all" />
+
+        <!--Let browser know website is optimized for mobile-->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+        <!--Import jQuery before materialize.js-->
+        <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+        <script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
+        <script type="text/javascript" src="js/materialize.min.js"></script>
+		<script type="text/javascript" src="js/stupidtable.min.js"> </script>
+		<script type="text/javascript" src="js/scoresPrototypes.js"> </script>
+        <script type="text/javascript" src="js/utilities.js"></script>
+        <script type="text/javascript" src="js/mbox.js"></script>
+
+		<script type="text/javascript" src="js/SQLiteDirectives.js"> </script>
+        <script type="text/javascript" src="js/WSDirectives.js"></script>
+
+        <link type="text/css" rel="stylesheet" href="css/ATA.css" media="screen,projection" />
+        <link type="text/css" rel="stylesheet" href="css/mbox.css" media="screen,projection" />
+
+        <script language="javascript" type="text/javascript">
+            var classid			= sessionStorage.scoresbycar_classid;
+            var eventid			= sessionStorage.scoresbycar_eventid;
+            var carid			= sessionStorage.scoresbycar_carid;
+            var scoreid			= sessionStorage.scoresbycar_scoreid;
+            var maximumscore	= (Number(sessionStorage.scoresbycar_maximumscore) == 0) ? "150" : sessionStorage.scoresbycar_maximumscore;
+            var carno			= sessionStorage.carno;
+
+            var scoreP			= new ScorePresentation(-1, -1);
+
+            function backToScores() {
+                event.preventDefault();
+                parent.$.fancybox.close();
+            }
+
+            //Event 2019 - Presentation Event has been changed
+
+			//ERA IN PIU'
+            //function onNoveltyChange(oo) {
+            //    var ooChecked = $(oo).prop('checked');
+            //    if (Boolean(ooChecked)) {
+            //        scoreP.totalNovelty += parseFloat($(oo).val());
+            //    }
+            //    else {
+            //        scoreP.totalNovelty -= parseFloat($(oo).val());
+            //    }
+            //    $("#totalNovelty").val(scoreP.totalNovelty);
+            //    //Event 2017 - Display partial totals on section title
+            //    $("#totalNoveltyBadge").html(scoreP.totalNovelty);
+            //    updateTotalAndChips();
+            //}
+
+			//FD 2021.08.02 - ATA 2021 - Modify Stage3 - BEGIN
+			//function onExecutiveSummaryChange(oo) {
+            //	var ooChecked = $(oo).prop('checked');
+            //	if (Boolean(ooChecked)) {
+            //		scoreP.totalExecutiveSummary += parseFloat($(oo).val());
+            //	}
+            //	else {
+            //		scoreP.totalExecutiveSummary -= parseFloat($(oo).val());
+            //	}
+            //	$("#totalExecutiveSummary").val(scoreP.totalExecutiveSummary);
+            //	//Event 2017 - Display partial totals on section title
+            //	$("#totalExecutiveSummaryBadge").html(scoreP.totalExecutiveSummary);
+            //	updateTotalAndChips();
+			//}
+			//FD 2021.08.02 - ATA 2021 - Modify Stage3 - END
+
+            function onNoveltyChange(oo) {
+            	var ooChecked = $(oo).prop('checked');
+            	if (Boolean(ooChecked)) {
+            		scoreP.totalNovelty += parseFloat($(oo).val());
+            	}
+            	else {
+            		scoreP.totalNovelty -= parseFloat($(oo).val());
+            	}
+            	$("#totalNovelty").val(scoreP.totalNovelty);
+            	//Event 2017 - Display partial totals on section title
+            	$("#totalNoveltyBadge").html(scoreP.totalNovelty);
+            	updateTotalAndChips();
+			}
+
+			//FD 2021.08.02 - ATA 2021 - Adding Stage2 - Add Section <Stage2> - BEGIN
+			//FDT - ATA 2023 - eliminato Business Figures - INIZIO
+		   //         function onSt2BusinessFiguresChange(oo) {
+		   //         	scoreP.totalSt2BusinnesFigures = 0;
+		   //         	//Search for all input starting with the specified prefix, then add all values (there are some radio (mutually exclusive)  and check buttons)
+		   //         	$("input[id^='chkst2BusinessFigures']").each(function () {
+		   //         		if ($(this).prop('checked')) {
+		   //         			scoreP.totalSt2BusinnesFigures += parseFloat($(this).val());
+		   //         		}
+		   //         	});
+
+		   //         	$("#totalSt2BusinessFigures").val(scoreP.totalSt2BusinnesFigures);
+		   //         	$("#totalSt2BusinnesFiguresBadge").html(scoreP.totalSt2BusinnesFigures);
+		   //         	updateTotalAndChips();
+					//}
+			//FDT - ATA 2023 - eliminato Business Figures - FINE
+			//FDT ATA - TODO - Verifica le altre funzioni javascript
+			//FDT - ATA 2023 - aggiunto Financial Concept - INIZIO
+            function onSt2FinConceptChange(oo) {
+                var ooChecked = $(oo).prop('checked');
+                if (Boolean(ooChecked)) {
+                    scoreP.totalSt2FinConcept += parseFloat($(oo).val());
+                }
+                else {
+                    scoreP.totalSt2FinConcept -= parseFloat($(oo).val());
+                }
+                $("#totalSt2FinConcept").val(scoreP.totalSt2FinConcept);                
+                $("#totalSt2FinConceptBadge").html(scoreP.totalSt2FinConcept);
+                updateTotalAndChips();
+            }
+			//FDT - ATA 2023 - aggiunto Financial Concept - FINE
+
+			//FDT - ATA 2023 - aggiunto Financial KPIs & insights - INIZIO
+            function onSt2FinKPIsChange(oo) {
+                scoreP.totalSt2FinKPIs = 0;
+                //Search for all input starting with the specified prefix, then add all values (there are some radio (mutually exclusive)  and check buttons)
+                $("input[id^='chkSt2FinKPIs']").each(function () {
+                    if ($(this).prop('checked')) {
+                        scoreP.totalSt2FinKPIs += parseFloat($(this).val());
+                    }
+                });
+                $("#totalSt2FinKPIs").val(scoreP.totalSt2FinKPIs);
+                $("#totalSt2FinKPIsBadge").html(scoreP.totalSt2FinKPIs);
+                updateTotalAndChips();
+			}
+			//FDT - ATA 2023 - aggiunto Financial KPIs & insights - FINE
+
+			//FDT - ATA 2023 - eliminato Content e Investors - INIZIO
+   //         function onSt2ContentChange(oo) {
+   //         	var ooChecked = $(oo).prop('checked');
+   //         	if (Boolean(ooChecked)) {
+   //         		scoreP.totalSt2Content += parseFloat($(oo).val());
+   //         	}
+   //         	else {
+   //         		scoreP.totalSt2Content -= parseFloat($(oo).val());
+   //         	}
+   //         	$("#totalSt2Content").val(scoreP.totalSt2Content);
+   //         	//Event 2017 - Display partial totals on section title
+   //         	$("#totalSt2ContentBadge").html(scoreP.totalSt2Content);
+   //         	updateTotalAndChips();
+			//}
+			//FDT - ATA 2023 - eliminato Content e Investors - FINE
+            
+            function onSt2DemonstrationAndDeliveryChange(oo) {
+            	var ooChecked = $(oo).prop('checked');
+            	if (Boolean(ooChecked)) {
+            		scoreP.totalSt2DemonstrationAndDelivery += parseFloat($(oo).val());
+            	}
+            	else {
+            		scoreP.totalSt2DemonstrationAndDelivery -= parseFloat($(oo).val());
+            	}
+            	$("#totalSt2DemonstrationAndDelivery").val(scoreP.totalSt2DemonstrationAndDelivery);
+            	//Event 2017 - Display partial totals on section title
+            	$("#totalSt2DemonstrationAndDeliveryBadge").html(scoreP.totalSt2DemonstrationAndDelivery);
+            	updateTotalAndChips();
+            }
+
+			//FDT - ATA 2023 - eliminato Content e Investors - INIZIO
+   //         function onSt2InvestitorsChange(oo) {
+   //         	scoreP.totalSt2Investitors = 0;
+   //         	//Search for all input starting with the specified prefix, then add all values (there are some radio (mutually exclusive)  and check buttons)
+   //         	$("input[id^='chkSt2Investitors']").each(function () {
+   //         		if ($(this).prop('checked')) {
+   //         			scoreP.totalSt2Investitors += parseFloat($(this).val());
+   //         		}
+   //         	});
+   //         	$("#totalSt2Investitors").val(scoreP.totalSt2Investitors);
+   //         	//Event 2017 - Display partial totals on section title
+   //         	$("#totalSt2InvestitorsBadge").html(scoreP.totalSt2Investitors);
+   //         	updateTotalAndChips();
+			//}
+			//FDT - ATA 2023 - eliminato Content e Investors - FINO
+
+           
+			//FD 2021.08.02 - ATA 2021 - Adding Stage2 - Add Section <Stage2> - END
+
+            function onContentChange(oo) {
+            	var ooChecked = $(oo).prop('checked');
+            	if (Boolean(ooChecked)) {
+            		scoreP.totalContent += parseFloat($(oo).val());
+            	}
+            	else {
+            		scoreP.totalContent -= parseFloat($(oo).val());
+            	}
+            	$("#totalContent").val(scoreP.totalContent);
+            	//Event 2017 - Display partial totals on section title
+            	$("#totalContentBadge").html(scoreP.totalContent);
+            	updateTotalAndChips();
+			}
+
+            function onFinancesChange(oo) {
+            	scoreP.totalFinances = 0;
+            	//Search for all input starting with the specified prefix, then add all values (there are some radio (mutually exclusive)  and check buttons)
+            	$("input[id^='chkFinances']").each(function () {
+            		if ($(this).prop('checked')) {
+            			scoreP.totalFinances += parseFloat($(this).val());
+            		}
+            	});
+            	
+            	$("#totalFinances").val(scoreP.totalFinances);
+            	//Event 2017 - Display partial totals on section title
+            	$("#totalFinancesBadge").html(scoreP.totalFinances);
+            	updateTotalAndChips();
+			}
+
+            function onDeepDiveTopicChange(oo) {
+            	//FD 2021.08.02 - ATA 2021 - Modify Stage3 - BEGIN Add deepdivetopic4
+                //var ooChecked = $(oo).prop('checked');
+                //if (Boolean(ooChecked)) {
+                //	scoreP.totalDeepDiveTopic += parseFloat($(oo).val());
+                //}
+                //else {
+                //	scoreP.totalDeepDiveTopic -= parseFloat($(oo).val());
+            	//}
+
+            	scoreP.totalDeepDiveTopic = 0;
+            	//Search for all input starting with the specified prefix, then add all values (there are some radio (mutually exclusive)  and check buttons)
+            	$("input[id^='chkDeepDiveTopic']").each(function () {
+            		if ($(this).prop('checked')) {
+            			scoreP.totalDeepDiveTopic += parseFloat($(this).val());
+            		}
+            	});
+
+                $("#totalDeepDiveTopic").val(scoreP.totalDeepDiveTopic);
+                //Event 2017 - Display partial totals on section title
+                $("#totalDeepDiveTopicBadge").html(scoreP.totalDeepDiveTopic);
+                updateTotalAndChips();
+			}
+
+            function onDemonstrationAndStructureChange(oo) {
+            	var ooChecked = $(oo).prop('checked');
+            	if (Boolean(ooChecked)) {
+            		scoreP.totalDemonstrationAndStructure += parseFloat($(oo).val());
+            	}
+            	else {
+            		scoreP.totalDemonstrationAndStructure -= parseFloat($(oo).val());
+            	}
+            	$("#totalDemonstrationAndStructure").val(scoreP.totalDemonstrationAndStructure);
+            	//Event 2017 - Display partial totals on section title
+            	$("#totalDemonstrationAndStructureBadge").html(scoreP.totalDemonstrationAndStructure);
+            	updateTotalAndChips();
+			}
+
+			//FD 2021.08.02 - ATA 2021 - Modify Stage3 - Add Sezione <DemonstrationAndDelivery> - BEGIN
+
+            function onDemonstrationAndDeliveryChange(oo) {
+            	scoreP.totalDemonstrationAndDelivery = 0;
+            	//Search for all input starting with the specified prefix, then add all values (there are some radio (mutually exclusive)  and check buttons)
+            	$("input[id^='chkDemonstrationAndDelivery']").each(function () {
+            		if ($(this).prop('checked')) {
+            			scoreP.totalDemonstrationAndDelivery += parseFloat($(this).val());
+            		}
+            	});
+            	$("#totalDemonstrationAndDelivery").val(scoreP.totalDemonstrationAndDelivery);
+            	//Event 2017 - Display partial totals on section title
+            	$("#totalDemonstrationAndDeliveryBadge").html(scoreP.totalDemonstrationAndDelivery);
+            	updateTotalAndChips();
+
+            	//var ooChecked = $(oo).prop('checked');
+            	//if (Boolean(ooChecked)) {
+            	//	scoreP.totalDemonstrationAndDelivery += parseFloat($(oo).val());
+            	//}
+            	//else {
+            	//	scoreP.totalDemonstrationAndDelivery -= parseFloat($(oo).val());
+            	//}
+            	//$("#totalDemonstrationAndDelivery").val(scoreP.totalDemonstrationAndDelivery);
+            	//$("#totalDemonstrationAndDeliveryBadge").html(scoreP.totalDemonstrationAndDelivery);
+            	//updateTotalAndChips();
+            }
+			//FD 2021.08.02 - ATA 2021 - Modify Stage3 - Add Sezione <DemonstrationAndDelivery> - END
+
+			function onDeliveryChange(oo) {
+                var ooChecked = $(oo).prop('checked');
+                if (Boolean(ooChecked)) {
+                	scoreP.totalDelivery += parseFloat($(oo).val());
+                }
+                else {
+                	scoreP.totalDelivery -= parseFloat($(oo).val());
+                }
+                $("#totalDelivery").val(scoreP.totalDelivery);
+                //Event 2017 - Display partial totals on section title
+                $("#totalDeliveryBadge").html(scoreP.totalDelivery);
+                updateTotalAndChips();
+			}
+
+            function onQuestionsChange(oo) {
+            	scoreP.totalQuestions = 0;
+                //Search for all input starting with the specified prefix, then add all values (there are some radio (mutually exclusive)  and check buttons)
+                $("input[id^='chkQuestions']").each(function () {
+                    if ($(this).prop('checked')) {
+                    	scoreP.totalQuestions += parseFloat($(this).val());
+                    }
+                });
+                $("#totalQuestions").val(scoreP.totalQuestions);
+                //Event 2017 - Display partial totals on section title
+                $("#totalQuestionsBadge").html(scoreP.totalQuestions);
+                updateTotalAndChips();
+			}
+
+            function onGeneralImpressionChange(oo) {
+            	var ooChecked = $(oo).prop('checked');
+            	if (Boolean(ooChecked)) {
+            		scoreP.totalGeneralImpression += parseFloat($(oo).val());
+            	}
+            	else {
+            		scoreP.totalGeneralImpression -= parseFloat($(oo).val());
+            	}
+            	$("#totalGeneralImpression").val(scoreP.totalGeneralImpression);
+            	//Event 2017 - Display partial totals on section title
+            	$("#totalGeneralImpressionBadge").html(scoreP.totalGeneralImpression);
+            	updateTotalAndChips();
+			}
+
+            function updateTotalAndChips() {
+                //FD 2021.07.27 - ATA 2021  - Add Stage1
+            	//FD 2021.08.02 - ATA 2021 - Modify Stage3 - BEGIN
+            	//scoreP.totalPresentation = scoreP.Total(
+				//	scoreP.totalExecutiveSummary, scoreP.totalNovelty, scoreP.totalContent,
+				//	scoreP.totalFinances, scoreP.totalDeepDiveTopic, scoreP.totalDemonstrationAndStructure,
+				//	scoreP.totalDelivery, scoreP.totalQuestions, scoreP.totalGeneralImpression, scoreP.miscellaneous, scoreP.stage1
+            	//);
+
+            	//FD 2021.08.02 - ATA 2021 - Modify Stage3 - Add Sezione <DemonstrationAndDelivery>
+            	//scoreP.totalPresentation = scoreP.Total(scoreP.totalNovelty, scoreP.totalContent, scoreP.totalFinances, scoreP.totalDeepDiveTopic, scoreP.totalDemonstrationAndStructure, scoreP.totalDelivery, scoreP.totalQuestions, scoreP.totalGeneralImpression, scoreP.miscellaneous, scoreP.stage1);
+
+            	//FD 2021.08.02 - ATA 2021 - Modify Stage3 - Remove Sezione <DemonstrationAndStructure>
+            	//scoreP.totalPresentation = scoreP.Total(scoreP.totalNovelty, scoreP.totalContent, scoreP.totalFinances, scoreP.totalDeepDiveTopic, scoreP.totalDemonstrationAndStructure, scoreP.totalDemonstrationAndDelivery, scoreP.totalDelivery, scoreP.totalQuestions, scoreP.totalGeneralImpression, scoreP.miscellaneous, scoreP.stage1);
+
+            	//FD 2021.08.02 - ATA 2021 - Adding Stage2 - Add Section <Stage2>
+            	//scoreP.totalPresentation = scoreP.Total(scoreP.totalNovelty, scoreP.totalContent, scoreP.totalFinances, scoreP.totalDeepDiveTopic, scoreP.totalDemonstrationAndDelivery, scoreP.totalDelivery, scoreP.totalQuestions, scoreP.totalGeneralImpression, scoreP.miscellaneous, scoreP.stage1);
+            	//FD 2021.09.12 - ATA 2021 - Add Section <Finals in Stage3>
+            	//scoreP.totalPresentation = scoreP.Total(scoreP.totalNovelty, scoreP.totalContent, scoreP.totalFinances, scoreP.totalDeepDiveTopic, scoreP.totalDemonstrationAndDelivery, scoreP.totalDelivery, scoreP.totalQuestions, scoreP.totalGeneralImpression, scoreP.miscellaneous, scoreP.stage1, scoreP.totalSt2BusinnesFigures, scoreP.totalSt2Content, scoreP.totalSt2DemonstrationAndDelivery, scoreP.totalSt2Investitors);
+            	//FD 2021.09.12 - ATA 2021 - Add Section <Finals in Stage3>
+				//FDT - ATA 2023 - eliminato Business Figures, Content e Investors - INIZIO
+            	//scoreP.totalPresentation = scoreP.Total(scoreP.totalNovelty, scoreP.totalContent, scoreP.totalFinances, scoreP.totalDeepDiveTopic, scoreP.totalDemonstrationAndDelivery, scoreP.totalDelivery, scoreP.totalQuestions, scoreP.totalGeneralImpression, scoreP.miscellaneous, scoreP.stage1, scoreP.totalSt2BusinnesFigures, scoreP.totalSt2Content, scoreP.totalSt2DemonstrationAndDelivery, scoreP.totalSt2Investitors);
+            	//scoreP.totalPresentation = scoreP.Total(scoreP.totalNovelty, scoreP.totalContent, scoreP.totalFinances, scoreP.totalDeepDiveTopic, scoreP.totalDemonstrationAndDelivery, scoreP.totalDelivery, scoreP.totalQuestions, scoreP.totalGeneralImpression, scoreP.miscellaneous, scoreP.stage1, scoreP.totalSt2BusinnesFigures, scoreP.totalSt2Content, scoreP.totalSt2DemonstrationAndDelivery, scoreP.totalSt2Investitors, scoreP.finals);
+				//FDT - ATA 2023 - eliminato Business Figures - FINE
+
+				//FDT - ATA 2023 - aggiunto Financial Concept e Financial KPIs & insights - INIZIO
+                scoreP.totalPresentation = scoreP.Total(scoreP.totalNovelty, scoreP.totalContent, scoreP.totalFinances, scoreP.totalDeepDiveTopic, scoreP.totalDemonstrationAndDelivery, scoreP.totalDelivery, scoreP.totalQuestions, scoreP.totalGeneralImpression, scoreP.miscellaneous, scoreP.stage1, scoreP.totalSt2FinConcept, scoreP.totalSt2FinKPIs, scoreP.totalSt2DemonstrationAndDelivery);
+				//FDT - ATA 2023 - aggiunto Financial Concept - FINE
+
+            	$("#totalPresentation").val(scoreP.totalPresentation);
+            	$("#chiptotalpoints").text('  TOTAL POINTS : ' + scoreP.totalPresentation + '  ').css({ 'font-weight': 'bold' });
+            }
+        </script>
+    </head>
+
+    <body>
+
+        <!--//Event 2017 - Hide fancybox title - Info are display in the top of the window-->
+        <!--<div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
+            <a class="btn-floating btn-large green" style="margin-right: 5px;" href="#" id="btnSave"><i class="large mdi mdi-content-save" title="Save"></i></a>
+            <a style="margin-right: 45px;" href="#"></a>
+            <a class="btn-floating btn-large red" href="#" onclick="backToScores();" id="btnBack"><i class="large mdi mdi-close" title="Close"></i></a>    
+            <div class="chip fixed-action-btn white black-text" style="padding:1px; border:dashed red">
+                <span id="chiptotalpoints"></span>
+            </div>
+        </div>-->
+        <div id="div_scores">
+            <input type="hidden" name="id" id="id" />
+            <input type="hidden" name="scoreid" id="scoreid" />
+
+            <div class="row">
+                <div class="col l4 m5 s12">
+                    <ul class="collapsible" data-collapsible="accordion">
+                        <li>
+                            <div class="collapsible-header ata-red white-text active"><i class="mdi mdi-car"></i>STAGE 1</div>
+							<div class="collapsible-body">
+								<div class="collection">
+									<!--//FD 2021.07.27 - ATA 2021  - Add Stage1 - BEGIN-->
+									<a class="left-menu-action" id="stage1-anchor">Stage1 <span class="points badge badge-green" id="stage1Badge"></span></a>
+									<!--//FD 2021.07.27 - ATA 2021  - Add Stage1 - END -->
+                                </div>
+							</div>
+                        </li>
+
+						<!--//FD 2021.07.27 - ATA 2021  - Add Stage2 - BEGIN-->
+						<li>
+							<div class="collapsible-header ata-red white-text"><i class="mdi mdi-car"></i>STAGE 2</div>
+							<div class="collapsible-body">
+								<div class="collection">
+									<!--//FDT - ATA 2023 - eliminato Business Figures - INIZIO-->
+									<!--<a class="left-menu-action" id="st2businnesfigures-anchor">Business Figures<span class="points badge badge-green" id="totalSt2BusinnesFiguresBadge"></span></a>-->
+									<!--//FDT - ATA 2023 - eliminato Business Figures - FINE-->
+									<!--//FDT - ATA 2023 - aggiunto Financial Concept - INIZIO-->
+									<a class="left-menu-action" id="st2finconcept-anchor">Financial Concept<span class="points badge badge-green" id="totalSt2FinConceptBadge"></span></a>
+									<!--//FDT - ATA 2023 - aggiunto Financial Concept - FINE-->
+									<!--//FDT - ATA 2023 - aggiunto Financial KPIs & insights - INIZIO-->
+									<a class="left-menu-action" id="st2finkpis-anchor">Financial KPIs & insights<span class="points badge badge-green" id="totalSt2FinKPIsBadge"></span></a>
+									<!--//FDT - ATA 2023 - aggiunto Financial KPIs & insights - FINE-->
+									<!--//FDT - ATA 2023 - eliminato Content e Investors - INIZIO-->
+									<!--<a class="left-menu-action" id="st2content-anchor">Content <span class="points badge badge-green" id="totalSt2ContentBadge"></span></a>-->
+									<!--//FDT - ATA 2023 - eliminato Content e Investors - FINE-->
+									<a class="left-menu-action" id="st2demonstrationanddelivery-anchor">Demonstration &amp; Delivery <span class="points badge badge-green" id="totalSt2DemonstrationAndDeliveryBadge"></span></a>
+									<!--//FDT - ATA 2023 - eliminato Content e Investors - INIZIO-->
+									<!--<a class="left-menu-action" id="st2investitors-anchor">Are investors convinced of profitability<span class="points badge badge-green" id="totalSt2InvestitorsBadge"></span></a>-->
+									<!--//FDT - ATA 2023 - eliminato Content e Investors - FINE-->
+								</div>
+							</div>
+						</li>
+						<!--//FD 2021.07.27 - ATA 2021  - Add Stage - END -->
+
+						<li>
+							<div class="collapsible-header ata-red white-text"><i class="mdi mdi-car"></i>STAGE 3</div>
+							<div class="collapsible-body">
+								<div class="collection">
+									<!--//FD 2021.08.02 - ATA 2021 - Modify Stage3 - BEGIN -->
+									<!--<a class="left-menu-action" id="executivesummary-anchor">Executive Summary <span class="points badge badge-green" id="totalExecutiveSummaryBadge"></span></a>-->
+									<!--//FD 2021.08.02 - ATA 2021 - Modify Stage3 - END -->
+									<a class="left-menu-action" id="novelty-anchor">Novelty <span class="points badge badge-green" id="totalNoveltyBadge"></span></a>
+									<a class="left-menu-action" id="content-anchor">Content <span class="points badge badge-green" id="totalContentBadge"></span></a>
+									<a class="left-menu-action" id="finances-anchor">Finances <span class="points badge badge-green" id="totalFinancesBadge"></span></a>
+									<a class="left-menu-action" id="deepdivetopic-anchor">Deep Dive Topic <span class="points badge badge-green" id="totalDeepDiveTopicBadge"></span></a>
+
+									<!-- //FD 2021.08.02 - ATA 2021 - Modify Stage3 - Add Sezione <DemonstrationAndDelivery> -->
+									<a class="left-menu-action" id="demonstrationanddelivery-anchor">Demonstration &amp; Delivery <span class="points badge badge-green" id="totalDemonstrationAndDeliveryBadge"></span></a>
+
+									<!-- //FD 2021.08.02 - ATA 2021 - Modify Stage3 - Remove Sezione <DemonstrationAndStructure>-->
+									<a style="display:none" class="left-menu-action" id="demonstrationandstructure-anchor">Demonstration &amp; Structure <span class="points badge badge-green" id="totalDemonstrationAndStructureBadge"></span></a>
+									<a class="left-menu-action" id="delivery-anchor">Structure<span class="points badge badge-green" id="totalDeliveryBadge"></span></a>
+									<a class="left-menu-action" id="questions-anchor">Questions <span class="points badge badge-green" id="totalQuestionsBadge"></span></a>
+
+									<!-- //FD 2021.08.02 - ATA 2021 - Modify Stage3 - Remove Sezione <General Impression>-->
+									<a stye="display:none" class="left-menu-action" id="generalimpression-anchor">General Impression <span class="points badge badge-green" id="totalGeneralImpressionBadge"></span></a>
+									<a class="left-menu-action" id="miscellaneous-anchor">Miscellaneous <span class="points badge badge-green" id="miscellaneousBadge"></span></a>
+
+									<!--//FD 2021.09.12 - ATA 2021 - Add Section <Finals in Stage3> - BEGIN -->
+									<a class="left-menu-action" id="finals-anchor">Finals<span class="points badge badge-green" id="finalsBadge"></span></a>
+									<!--//FD 2021.09.12 - ATA 2021 - Add Section <Finals in Stage3> - END -->
+
+								</div>
+							</div>
+						</li>
+					</ul>
+
+					<a class="collection-header">
+						<div class="row">
+							<div class="col s12">
+								<h5 class="navbar-ata-backgrounded-1 white-text" style="padding:4px;">Total</h5>
+								<div class="divider"></div>
+								<div class="row">
+									<div class="col l12 m12 s12">
+										<input placeholder="Total" id="totalPresentation" type="number" class="validate right-align" readonly="readonly" />
+										<label for="totalPresentation" class="green-text right">Total Points</label>
+									</div>
+								</div>
+							</div>
+						</div>
+					</a>
+                    <div>
+                        <textarea id="presentationNotes" class="materialize-textarea"></textarea>
+                        <label for="presentationNotes">Presentation Notes</label>
+                    </div>
+                </div>
+                <div class="col l8 m7 s12">
+                    <!--//FD 2021.07.27 - ATA 2021  - Add Stage1 - BEGIN-->
+                    <div id="stage1-tab" class="card transparent">
+                        <ul class="collection" style="border:none;">
+                            <li class="collection-item" style="width:auto;height:auto">
+                                <h6 class="ata-red-text">Stage1</h6>
+                                <div class="secondary-content">
+                                    <span class="points-label">Points</span>
+                                    <label class="active right ata-red-text" for="stage1">____/(+-)150</label>
+                                    <!--//FDT - ATA 2022 - modify Stage 2-->
+                                    <input placeholder="Stage1" id="stage1" type="number" class="validate" min="-150" max="150" step="0.10" />
+                                </div>
+                                <blockquote>
+                                    Insert points for Stage1<br />
+                                </blockquote>
+                            </li>
+                        </ul>
+                    </div>
+                    <!--//FD 2021.07.27 - ATA 2021  - Add Stage1 - END-->
+                    <!--//FD 2021.07.27 - ATA 2021  - Add Stage2 - BEGIN-->
+                    <!--//FDT - ATA 2022 - modify Stage 2 - BEGIN-->
+                    <!--//FDT - ATA 2023 - eliminato Business Figures - INIZIO-->
+                    <!--<div id="st2businnesfigures-tab" class="row card transparent">
+    <div class="row"><div class="col"><h6 class="ata-red-text">Business Figures</h6></div></div>
+    <div class="col l6 m12 s12">
+        <div class="row" style="margin-top:10px;">
+            <div class="col l1 m1 s1">1.</div>
+            <div class="col l11 m11 s11">
+                <div class="row"><div class="col">Financial index</div></div>
+                <div class="row">
+                    <div class="col l10 m9 s9" style="font-variant:small-caps !important;">None</div>
+                    <div class="col l2 m3 s3 right">
+                        <input type="radio" id="chkst2BusinessFigures0" name="chkst2BusinessFigures11" class="with-gap min-width" value="0" onclick="onSt2BusinessFiguresChange(this);" />
+                        <label for="chkst2BusinessFigures0">0</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col l10 m9 s9" style="font-variant:small-caps !important;">Basic (e.g. BEP, ROI)</div>
+                    <div class="col l2 m3 s3 right">
+                        <input type="radio" id="chkst2BusinessFigures1" name="chkst2BusinessFigures11" class="with-gap min-width" value="1.5" onclick="onSt2BusinessFiguresChange(this);" />
+                        <label for="chkst2BusinessFigures1">1.5</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col l10 m9 s9" style="font-variant:small-caps !important;">Advanced</div>
+                    <div class="col l2 m3 s3 right">
+                        <input type="radio" id="chkst2BusinessFigures2" name="chkst2BusinessFigures11" class="with-gap min-width" value="3" onclick="onSt2BusinessFiguresChange(this);" />
+                        <label for="chkst2BusinessFigures2">3</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col l6 m12 s12">
+        <div class="row" style="margin-top:10px;">
+            <div class="col l1 m1 s1">2.</div>
+            <div class="col l8 m8 s8">Is business plan realistic?</div>
+            <div class="col l3 m3 s3">
+                <input type="checkbox" class="filled-in" id="chkst2BusinessFigures3" value="2" onclick="onSt2BusinessFiguresChange(this);" />
+                <label for="chkst2BusinessFigures3">2</label>
+            </div>
+        </div>-->
+                    <!--<div class="row">
+        <div class="col l1 m1 s1">3.</div>
+        <div class="col l8 m8 s8">Cost effective marketing and sales strategy ?</div>
+        <div class="col l3 m3 s3">
+            <input type="checkbox" class="filled-in" id="chkst2BusinessFigures4" value="1.5" onclick="onSt2BusinessFiguresChange(this);" />
+            <label for="chkst2BusinessFigures4">1.5</label>
+        </div>
+    </div>-->
+                    <!--//FDT - ATA 2022 - modify Stage 2 - END-->
+                    <!--<div class="divider"></div>
+            <div class="row">
+                <div class="col l9 m9 s9">
+                    <textarea id="st2businessFiguresNotes" class="materialize-textarea"></textarea>
+                    <label for="st2businessFiguresNotes">Business Figures Notes</label>
+                </div>
+                <div class="col l3 m3 s3">
+                    <input placeholder="plhSt2BusinessFigures" id="totalSt2BusinessFigures" type="text" class="validate" readonly="readonly" />
+                    <label for="totalSt2BusinessFigures">TOTAL</label>
+                </div>
+            </div>
+        </div>
+
+    </div>-->
+                    <!--//FDT - ATA 2023 - eliminato Business Figures - FINE-->
+                    <!--//FDT - ATA 2023 - aggiunto Financial Concept - INIZIO-->
+                    <div id="st2finconcept-tab" class="row card transparent">
+                        <div class="row"><div class="col"><h6 class="ata-red-text">Financial Content</h6></div></div>
+                        <div class="col l6 m12 s12">
+                            <div class="row" style="margin-top:10px;">
+                                <div class="col l1 m1 s1">1.</div>
+
+                                <div class="col l8 m8 s8">Does the financial presentation includes a market study / segmenetation to assess the accessable market?</div>
+                                <div class="col l3 m3 s3">
+                                    <input type="checkbox" class="filled-in" id="chkSt2FinConcept0" value="1" onclick="onSt2FinConceptChange(this);" />
+                                    <label for="chkSt2FinConcept0">1</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col l1 m1 s1">2.</div>
+
+                                <div class="col l8 m8 s8">Were the key costs shown / mentioned into the presentation?</div>
+                                <div class="col l3 m3 s3">
+                                    <input type="checkbox" class="filled-in" id="chkSt2FinConcept1" value="1" onclick="onSt2FinConceptChange(this);" />
+                                    <label for="chkSt2FinConcept1">1</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col l1 m1 s1">3.</div>
+                                <div class="col l8 m8 s8">Do you rate the cost of the product / service they sell as realistic?</div>
+                                <div class="col l3 m3 s3">
+                                    <input type="checkbox" class="filled-in" id="chkSt2FinConcept2" value="1" onclick="onSt2FinConceptChange(this);" />
+                                    <label for="chkSt2FinConcept2">1</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col l1 m1 s1">4.</div>
+                                <div class="col l8 m8 s8">Did they make a Risk assessment or a SWOT analysis?</div>
+                                <div class="col l3 m3 s3">
+                                    <input type="checkbox" class="filled-in" id="chkSt2FinConcept3" value="1" onclick="onSt2FinConceptChange(this);" />
+                                    <label for="chkSt2FinConcept3">1</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col l1 m1 s1">5.</div>
+                                <div class="col l8 m8 s8">Did the team assess any additional measure to finance the project, e.g. public funds, sponsors, … ?</div>
+                                <div class="col l3 m3 s3">
+                                    <input type="checkbox" class="filled-in" id="chkSt2FinConcept4" value="1" onclick="onSt2FinConceptChange(this);" />
+                                    <label for="chkSt2FinConcept4">1</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col l6 m12 s12">
+                            <div class="row">
+                                <div class="col l1 m1 s1">6.</div>
+                                <div class="col l8 m8 s8">Was a Marketing plan presented?</div>
+                                <div class="col l3 m3 s3">
+                                    <input type="checkbox" class="filled-in" id="chkSt2FinConcept5" value="1" onclick="onSt2FinConceptChange(this);" />
+                                    <label for="chkSt2FinConcept5">1</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col l1 m1 s1">7.</div>
+                                <div class="col l8 m8 s8">Do you believe the costs related to Marketing realistic?</div>
+                                <div class="col l3 m3 s3">
+                                    <input type="checkbox" class="filled-in" id="chkSt2FinConcept6" value="1" onclick="onSt2FinConceptChange(this);" />
+                                    <label for="chkSt2FinConcept6">1</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col l1 m1 s1">8.</div>
+                                <div class="col l8 m8 s8">Does the team have identified the General and Administration expences?</div>
+                                <div class="col l3 m3 s3">
+                                    <input type="checkbox" class="filled-in" id="chkSt2FinConcept7" value="1" onclick="onSt2FinConceptChange(this);" />
+                                    <label for="chkSt2FinConcept7">1</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col l1 m1 s1">9.</div>
+                                <div class="col l8 m8 s8">Do you think the Business Plan can provide a maximum cost-benefit for investors?</div>
+                                <div class="col l3 m3 s3">
+                                    <input type="checkbox" class="filled-in" id="chkSt2FinConcept8" value="1" onclick="onSt2FinConceptChange(this);" />
+                                    <label for="chkSt2FinConcept8">1</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col l1 m1 s1">10.</div>
+                                <div class="col l8 m8 s8">As a potential investor, would you invest your money?</div>
+                                <div class="col l3 m3 s3">
+                                    <input type="checkbox" class="filled-in" id="chkSt2FinConcept9" value="1" onclick="onSt2FinConceptChange(this);" />
+                                    <label for="chkSt2FinConcept9">1</label>
+                                </div>
+                            </div>
+                            <div class="divider"></div>
+                            <div class="row">
+                                <div class="col l9 m9 s9">
+                                    <textarea id="st2FinConceptNotes" class="materialize-textarea"></textarea>
+                                    <label for="st2FinConceptNotes">Financial Concept Notes</label>
+                                </div>
+                                <div class="col l3 m3 s3">
+                                    <input placeholder="plhSt2FinConcept" id="totalSt2FinConcept" type="text" class="validate" readonly="readonly" />
+                                    <label for="totalSt2FinConcept">TOTAL</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--//FDT - ATA 2023 - aggiunto Financial Concept - FINE-->
+                    <!--//FDT - ATA 2023 - aggiunto Financial KPIs & insights - INIZIO-->
+                    <div id="st2finkpis-tab" class="row card transparent">
+                        <div class="row"><div class="col"><h6 class="ata-red-text">Financial KPIs &amp; insights</h6></div></div>
+                        <div class="col l6 m12 s12">
+                            <div class="row" style="margin-top:10px;">
+                                <div class="col l1 m1 s1">1.</div>
+                                <div class="col l8 m8 s8">Are there any financials KPIs used correctly?</div>
+                                <div class="col l3 m3 s3">
+                                    <input type="checkbox" class="filled-in" id="chkSt2FinKPIs0" value="1" onclick="onSt2FinKPIsChange(this);" />
+                                    <label for="chkSt2FinKPIs0">1</label>
+                                </div>
+                            </div>
+                            <div class="row" style="margin-top:10px;">
+                                <div class="col l1 m1 s1">2.</div>
+                                <div class="col l11 m11 s11">
+                                    <div class="row"><div class="col">Are information about expenses, sales, profit, and cash flow shown?</div></div>
+                                    <div class="row">
+                                        <div class="col l10 m9 s9" style="font-variant:small-caps !important;">Poor</div>
+                                        <div class="col l2 m3 s3 right">
+                                            <input type="radio" id="chkSt2FinKPIs1" name="chkSt2FinKPIsPoint1" class="with-gap min-width" value="0" onclick="onSt2FinKPIsChange(this);" />
+                                            <label for="chkSt2FinKPIs1">0</label>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col l10 m9 s9" style="font-variant:small-caps !important;">Averages</div>
+                                        <div class="col l2 m3 s3 right">
+                                            <input type="radio" id="chkSt2FinKPIs2" name="chkSt2FinKPIsPoint1" class="with-gap min-width" value="1.5" onclick="onSt2FinKPIsChange(this);" />
+                                            <label for="chkSt2FinKPIs2">1.5</label>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col l10 m9 s9" style="font-variant:small-caps !important;">Clear and exhaustive</div>
+                                        <div class="col l2 m3 s3 right">
+                                            <input type="radio" id="chkSt2FinKPIs3" name="chkSt2FinKPIsPoint1" class="with-gap min-width" value="3" onclick="onSt2FinKPIsChange(this);" />
+                                            <label for="chkSt2FinKPIs3">3</label>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col l6 m12 s12">
+
+                            <div class="row">
+                                <div class="col l1 m1 s1">3.</div>
+                                <div class="col l8 m8 s8">Are there additional financial aspects covered, e.g. labour costs, energy, any other ressources?</div>
+                                <div class="col l3 m3 s3">
+                                    <input type="checkbox" class="filled-in" id="chkSt2FinKPIs4" value="1" onclick="onSt2FinKPIsChange(this);" />
+                                    <label for="chkSt2FinKPIs4">1</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col l9 m9 s9">
+                                    <textarea id="st2FinKPIsNotes" class="materialize-textarea"></textarea>
+                                    <label for="st2FinKPIsNotes">Financial KPIs &amp; insights Notes</label>
+                                </div>
+                                <div class="col l3 m3 s3">
+                                    <input placeholder="plhSt2FinKPIs" id="totalSt2FinKPIs" type="text" class="validate" readonly="readonly" />
+                                    <label for="totalSt2FinKPIs">TOTAL</label>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                    <!--//FDT - ATA 2023 - aggiunto Financial KPIs & insights - FINE-->
+                    <!--//FDT - ATA 2023 - eliminato Content e Investors - INIZIO-->
+                    <!--<div id="st2content-tab" class="row card transparent">
+    <div class="row"><div class="col"><h6 class="ata-red-text">Content</h6></div></div>
+    <div class="col l6 m12 s12">
+        <div class="row" style="margin-top:10px;">
+            <div class="col l1 m1 s1">1.</div>-->
+                    <!--FDT - ATA 2022 - modify Stage 2-->
+                    <!--<div class="col l8 m8 s8">Did they clearly express what they want from investors?</div>
+        <div class="col l3 m3 s3">
+            <input type="checkbox" class="filled-in" id="chkSt2Content0" value="1" onclick="onSt2ContentChange(this);" />
+            <label for="chkSt2Content0">1</label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col l1 m1 s1">2.</div>-->
+                    <!--FDT - ATA 2022 - modify Stage 2-->
+                    <!--<div class="col l8 m8 s8">Cost effective marketing and sales strategy?</div>
+                <div class="col l3 m3 s3">
+                    <input type="checkbox" class="filled-in" id="chkSt2Content1" value="1" onclick="onSt2ContentChange(this);" />
+                    <label for="chkSt2Content1">1</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col l1 m1 s1">3.</div>
+                <div class="col l8 m8 s8">Did the team include all key financial information in the 3 minutes presentation?</div>
+                <div class="col l3 m3 s3">
+                    <input type="checkbox" class="filled-in" id="chkSt2Content2" value="1" onclick="onSt2ContentChange(this);" />
+                    <label for="chkSt2Content2">1</label>
+                </div>
+            </div>
+        </div>
+        <div class="col l6 m12 s12">
+            <div class="row">
+                <div class="col l1 m1 s1">4.</div>
+                <div class="col l8 m8 s8">Are the financial details explained comprehensively?</div>
+                <div class="col l3 m3 s3">
+                    <input type="checkbox" class="filled-in" id="chkSt2Content3" value="1" onclick="onSt2ContentChange(this);" />
+                    <label for="chkSt2Content3">1</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col l1 m1 s1">5.</div>
+                <div class="col l8 m8 s8">Did the team include a summary slide to provide to investors the key financial messages?</div>
+                <div class="col l3 m3 s3">
+                    <input type="checkbox" class="filled-in" id="chkSt2Content4" value="1" onclick="onSt2ContentChange(this);" />
+                    <label for="chkSt2Content4">1</label>
+                </div>
+            </div>
+            <div class="divider"></div>
+            <div class="row">
+                <div class="col l9 m9 s9">
+                    <textarea id="st2contentNotes" class="materialize-textarea"></textarea>
+                    <label for="st2contentNotes">Content Notes</label>
+                </div>
+                <div class="col l3 m3 s3">
+                    <input placeholder="plhSt2Content" id="totalSt2Content" type="text" class="validate" readonly="readonly" />
+                    <label for="totalSt2Content">TOTAL</label>
+                </div>
+            </div>
+        </div>
+    </div>-->
+                    <!--//FDT - ATA 2023 - eliminato Content e Investors - FINE-->
+
+                    <div id="st2demonstrationanddelivery-tab" class="row card transparent">
+                        <div class="row"><div class="col"><h6 class="ata-red-text">Demonstration &amp; Delivery</h6></div></div>
+                        <div class="col l6 m12 s12">
+                            <div class="row" style="margin-top:10px;">
+                                <div class="col l1 m1 s1">1.</div>
+                                <div class="col l8 m8 s8">Is the financial presentation well structured?</div>
+                                <div class="col l3 m3 s3">
+                                    <input type="checkbox" class="filled-in" id="chkSt2DemonstrationAndDelivery0" value="1" onclick="onSt2DemonstrationAndDeliveryChange(this);" />
+                                    <label for="chkSt2DemonstrationAndDelivery0">1</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col l1 m1 s1">2.</div>
+                                <div class="col l8 m8 s8">Did the presentation include a summary slide?</div>
+                                <div class="col l3 m3 s3">
+                                    <input type="checkbox" class="filled-in" id="chkSt2DemonstrationAndDelivery1" value="1" onclick="onSt2DemonstrationAndDeliveryChange(this);" />
+                                    <label for="chkSt2DemonstrationAndDelivery1">1</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col l1 m1 s1">3.</div>
+                                <div class="col l8 m8 s8">Do you think they acted in a professional way? (dressing, speaking, …)</div>
+                                <div class="col l3 m3 s3">
+                                    <input type="checkbox" class="filled-in" id="chkSt2DemonstrationAndDelivery2" value="1" onclick="onSt2DemonstrationAndDeliveryChange(this);" />
+                                    <label for="chkSt2DemonstrationAndDelivery2">1</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col l6 m12 s12">
+                            <div class="row" style="margin-top:10px;">
+                                <div class="col l1 m1 s1">4.</div>
+                                <div class="col l8 m8 s8">Were the presenter(s) well prepared and confident?</div>
+                                <div class="col l3 m3 s3">
+                                    <input type="checkbox" class="filled-in" id="chkSt2DemonstrationAndDelivery3" value="1" onclick="onSt2DemonstrationAndDeliveryChange(this);" />
+                                    <label for="chkSt2DemonstrationAndDelivery3">1</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col l1 m1 s1">5.</div>
+                                <div class="col l8 m8 s8">Are you convinced of the answers received during the Q&A session?</div>
+                                <div class="col l3 m3 s3">
+                                    <input type="checkbox" class="filled-in" id="chkSt2DemonstrationAndDelivery4" value="1" onclick="onSt2DemonstrationAndDeliveryChange(this);" />
+                                    <label for="chkSt2DemonstrationAndDelivery4">1</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col l9 m9 s9">
+                                    <textarea id="st2demonstrationAndDeliveryNotes" class="materialize-textarea"></textarea>
+                                    <label for="st2demonstrationAndDeliveryNotes">Demonstration &amp;Delivery Notes</label>
+                                </div>
+                                <div class="col l3 m3 s3">
+                                    <input placeholder="plhst2DemonstrationAndDelivery" id="totalSt2DemonstrationAndDelivery" type="text" class="validate" readonly="readonly" />
+                                    <label for="totalSt2DemonstrationAndDelivery">TOTAL</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--//FDT - ATA 2023 - eliminato Content e Investors - INIZIO-->
+                    <!--<div id="st2investitors-tab" class="row card transparent">
+    <div class="row"><div class="col"><h6 class="ata-red-text">Are investors convinced of profitability</h6></div></div>
+    <div class="col l6 m12 s12">-->
+                    <!--FDT - ATA 2022 - modify Stage 2 - INIZIO-->
+                    <!--<div class="row" style="margin-top:10px;">
+        <div class="col l1 m1 s1">1.</div>
+        <div class="col l8 m8 s8">Is the overall business plan realistic and sustainable? </div>
+        <div class="col l3 m3 s3">
+            <input type="checkbox" class="filled-in" id="chkSt2Investitors0" value="1" onclick="onSt2InvestitorsChange(this);" />
+            <label for="chkSt2Investitors0">1</label>
+        </div>
+    </div>-->
+                    <!--<div class="row" style="margin-top:10px;">
+        <div class="col l1 m1 s1">1.</div>
+        <div class="col l11 m11 s11">
+            <div class="row"><div class="col">Are you convinced of profitability?</div></div>
+            <div class="row">
+                <div class="col l10 m9 s9" style="font-variant:small-caps !important;">No</div>
+                <div class="col l2 m3 s3 right">
+                    <input type="radio" id="chkSt2Investitors0" name="chkSt2Investitors11" class="with-gap min-width" value="0" onclick="onSt2InvestitorsChange(this);" />
+                    <label for="chkSt2Investitors0">0</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col l10 m9 s9" style="font-variant:small-caps !important;">Yes, but I need a deeper analysis</div>
+                <div class="col l2 m3 s3 right">
+                    <input type="radio" id="chkSt2Investitors1" name="chkSt2Investitors11" class="with-gap min-width" value="3" onclick="onSt2InvestitorsChange(this);" />
+                    <label for="chkSt2Investitors1">3</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col l10 m9 s9" style="font-variant:small-caps !important;">Definitively yes</div>
+                <div class="col l2 m3 s3 right">
+                    <input type="radio" id="chkSt2Investitors2" name="chkSt2Investitors11" class="with-gap min-width" value="5" onclick="onSt2InvestitorsChange(this);" />
+                    <label for="chkSt2Investitors2">5</label>
+                </div>
+            </div>
+        </div>
+    </div>-->
+                    <!--FDT - ATA 2022 - modify Stage 2 - FINE-->
+                    <!--</div>
+
+        <div class="col l6 m12 s12">
+            <div class="divider"></div>
+            <div class="row">
+                <div class="col l9 m9 s9">
+                    <textarea id="st2investitorsNotes" class="materialize-textarea"></textarea>
+                    <label for="st2investitorsNotes">Investitors Notes</label>
+                </div>
+                <div class="col l3 m3 s3">
+                    <input placeholder="plhSt2Investitors" id="totalSt2Investitors" type="text" class="validate" readonly="readonly" />
+                    <label for="totalSt2Investitors">TOTAL</label>
+                </div>
+            </div>
+        </div>
+
+    </div>
+                    <!--//FDT - ATA 2023 - eliminato Content e Investors - FINE-->
+                    <!--//FD 2021.07.27 - ATA 2021  - Add Stage - END -->
+                    <!--//FD 2021.08.02 - ATA 2021 - Modify Stage3 - BEGIN-->
+                    <!--<div id="executivesummary-tab" class="row card transparent">
+        <div class="row"><div class="col"><h6 class="ata-red-text">Executive Summary</h6></div></div>
+        <div class="col l6 m12 s12">
+            <div class="row" style="margin-top:10px;">
+                <div class="col l1 m1 s1">1.</div>
+                <div class="col l8 m8 s8">Was the Executive Summary easy to read and understand?</div>
+                <div class="col l3 m3 s3">
+                    <input type="checkbox" class="filled-in" id="chkExecutiveSummary0" value="2" onclick="onExecutiveSummaryChange(this);" />
+                    <label for="chkExecutiveSummary0">2</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col l1 m1 s1">2.</div>
+                <div class="col l8 m8 s8">Did the Executive Summary include all key information to assess the project?</div>
+                <div class="col l3 m3 s3">
+                    <input type="checkbox" class="filled-in" id="chkExecutiveSummary1" value="3" onclick="onExecutiveSummaryChange(this);" />
+                    <label for="chkExecutiveSummary1">3</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col l1 m1 s1">3.</div>
+                <div class="col l8 m8 s8">Are you convinced by the Executive Summary to evaluate the team proposal?</div>
+                <div class="col l3 m3 s3">
+                    <input type="checkbox" class="filled-in" id="chkExecutiveSummary2" value="3" onclick="onExecutiveSummaryChange(this);" />
+                    <label for="chkExecutiveSummary2">3</label>
+                </div>
+            </div>
+        </div>
+        <div class="col l6 m12 s12">
+            <div class="row" style="margin-top:10px;">
+                <div class="col l1 m1 s1">4.</div>
+                <div class="col l8 m8 s8">Was the Executive Summary according to rules (one page, submitted on line in time, with all data, …)?</div>
+                <div class="col l3 m3 s3">
+                    <input type="checkbox" class="filled-in" id="chkExecutiveSummary3" value="2" onclick="onExecutiveSummaryChange(this);" />
+                    <label for="chkExecutiveSummary3">2</label>
+                </div>
+            </div>
+            <div class="divider"></div>
+            <div class="row">
+                <div class="col l9 m9 s9">
+                    <textarea id="executiveSummaryNotes" class="materialize-textarea"></textarea>
+                    <label for="executiveSummaryNotes">Executive Summary Notes</label>
+                </div>
+                <div class="col l3 m3 s3">
+                    <input placeholder="ExecutiveSummary" id="totalExecutiveSummary" type="text" class="validate" readonly="readonly" />
+                    <label for="totalExecutiveSummary">TOTAL</label>
+                </div>
+            </div>
+        </div>
+    </div>-->
+                    <!--//FD 2021.08.02 - ATA 2021 - Modify Stage3 - END-->
+
+                    <div id="novelty-tab" class="row card transparent">
+                        <div class="row"><div class="col"><h6 class="ata-red-text">Novelty</h6></div></div>
+                        <div class="col l6 m12 s12">
+                            <div class="row" style="margin-top:10px;">
+                                <div class="col l1 m1 s1">1.</div>
+                                <div class="col l8 m8 s8">Is the business Idea a real breakthrough?</div>
+                                <div class="col l3 m3 s3">
+                                    <input type="checkbox" class="filled-in" id="chkNovelty0" value="3" onclick="onNoveltyChange(this);" />
+                                    <label for="chkNovelty0">3</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col l1 m1 s1">2.</div>
+                                <div class="col l8 m8 s8">Differentiation of the concept compared to the other teams or other business?</div>
+                                <div class="col l3 m3 s3">
+                                    <input type="checkbox" class="filled-in" id="chkNovelty1" value="1" onclick="onNoveltyChange(this);" />
+                                    <label for="chkNovelty1">1</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col l1 m1 s1">3.</div>
+                                <div class="col l8 m8 s8">Has the team introduced any innovative idea on product or process?</div>
+                                <div class="col l3 m3 s3">
+                                    <input type="checkbox" class="filled-in" id="chkNovelty2" value="1" onclick="onNoveltyChange(this);" />
+                                    <label for="chkNovelty2">1</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col l6 m12 s12">
+                            <!--<div class="row" style="margin-top:10px;">
+                <div class="col l1 m1 s1">4.</div>
+                <div class="col l8 m8 s8">Are there technological innovations that make the car more efficient?</div>
+                <div class="col l3 m3 s3">
+                    <input type="checkbox" class="filled-in" id="chkNovelty3" value="3" onclick="onNoveltyChange(this);" />
+                    <label for="chkNovelty3">3</label>
+                </div>
+            </div>-->
+                            <!--<div class="divider"></div>-->
+                            <div class="row">
+                                <div class="col l9 m9 s9">
+                                    <textarea id="noveltyNotes" class="materialize-textarea"></textarea>
+                                    <label for="noveltyNotes">Novelty Notes</label>
+                                </div>
+                                <div class="col l3 m3 s3">
+                                    <input placeholder="Novelty" id="totalNovelty" type="text" class="validate" readonly="readonly" />
+                                    <label for="totalNovelty">TOTAL</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="content-tab" class="row card transparent">
+                        <div class="row"><div class="col"><h6 class="ata-red-text">Content</h6></div></div>
+                        <div class="col l6 m12 s12">
+                            <div class="row" style="margin-top:10px;">
+                                <div class="col l1 m1 s1">1.</div>
+                                <div class="col l8 m8 s8">Clear and exhaustive presentation of the product/service?</div>
+                                <div class="col l3 m3 s3">
+                                    <input type="checkbox" class="filled-in" id="chkContent0" value="1" onclick="onContentChange(this);" />
+                                    <label for="chkContent0">1</label>
+                                </div>
+                            </div>
+                            <!--<div class="row">
+                <div class="col l1 m1 s1">2.</div>
+                <div class="col l8 m8 s8">Are the technical details explained comprehensively?</div>
+                <div class="col l3 m3 s3">
+                    <input type="checkbox" class="filled-in" id="chkContent1" value="1" onclick="onContentChange(this);" />
+                    <label for="chkContent1">1</label>
+                </div>
+            </div>-->
+                            <div class="row">
+                                <div class="col l1 m1 s1">2.</div>
+                                <div class="col l8 m8 s8">Did the team find suitable sponsors?</div>
+                                <div class="col l3 m3 s3">
+                                    <input type="checkbox" class="filled-in" id="chkContent1" value="1" onclick="onContentChange(this);" />
+                                    <label for="chkContent1">1</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col l1 m1 s1">3.</div>
+                                <div class="col l8 m8 s8">Did they study the reference market?</div>
+                                <div class="col l3 m3 s3">
+                                    <input type="checkbox" class="filled-in" id="chkContent2" value="1" onclick="onContentChange(this);" />
+                                    <label for="chkContent2">1</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col l1 m1 s1">4.</div>
+                                <div class="col l8 m8 s8">Is their product fitting the target customer?</div>
+                                <div class="col l3 m3 s3">
+                                    <input type="checkbox" class="filled-in" id="chkContent3" value="1" onclick="onContentChange(this);" />
+                                    <label for="chkContent3">1</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col l1 m1 s1">5.</div>
+                                <div class="col l8 m8 s8">Are we convinced that the team can reach the target customers with the proposed tools?</div>
+                                <div class="col l3 m3 s3">
+                                    <input type="checkbox" class="filled-in" id="chkContent4" value="1" onclick="onContentChange(this);" />
+                                    <label for="chkContent4">1</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col l6 m12 s12">
+                            <div class="row" style="margin-top:10px;">
+                                <div class="col l1 m1 s1">6.</div>
+                                <div class="col l8 m8 s8">Did the team analyse risks and opportunities (e.g. Risk Assessmenet, SWOT, …)</div>
+                                <div class="col l3 m3 s3">
+                                    <input type="checkbox" class="filled-in" id="chkContent5" value="1" onclick="onContentChange(this);" />
+                                    <label for="chkContent5">1</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col l1 m1 s1">7.</div>
+                                <div class="col l8 m8 s8">Did the team include USP?</div>
+                                <div class="col l3 m3 s3">
+                                    <input type="checkbox" class="filled-in" id="chkContent6" value="1" onclick="onContentChange(this);" />
+                                    <label for="chkContent6">1</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col l1 m1 s1">8.</div>
+                                <div class="col l8 m8 s8">Does the project fulfill the environmental global megatrends?</div>
+                                <div class="col l3 m3 s3">
+                                    <input type="checkbox" class="filled-in" id="chkContent7" value="1" onclick="onContentChange(this);" />
+                                    <label for="chkContent7">1</label>
+                                </div>
+                            </div>
+                            <!--//FD 2021.08.02 - ATA 2021 - Modify Stage3 - BEGIN Add Content9 - BEGIN-->
+                            <div class="row">
+                                <div class="col l1 m1 s1">9.</div>
+                                <div class="col l8 m8 s8">Did the team include a summary slide to provide to investors the key financial messages?</div>
+                                <div class="col l3 m3 s3">
+                                    <input type="checkbox" class="filled-in" id="chkContent8" value="2" onclick="onContentChange(this);" />
+                                    <label for="chkContent8">2</label>
+                                </div>
+                            </div>
+                            <!--//FD 2021.08.02 - ATA 2021 - Modify Stage3 - BEGIN Add Content9 - END-->
+
+                            <div class="divider"></div>
+                            <div class="row">
+                                <div class="col l9 m9 s9">
+                                    <textarea id="contentNotes" class="materialize-textarea"></textarea>
+                                    <label for="contentNotes">Content Notes</label>
+                                </div>
+                                <div class="col l3 m3 s3">
+                                    <input placeholder="Content" id="totalContent" type="text" class="validate" readonly="readonly" />
+                                    <label for="totalContent">TOTAL</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="finances-tab" class="row card transparent">
+                        <div class="row"><div class="col"><h6 class="ata-red-text">Finances</h6></div></div>
+                        <div class="col l6 m12 s12">
+                            <div class="row" style="margin-top:10px;">
+                                <div class="col l1 m1 s1">1.</div>
+                                <div class="col l8 m8 s8">Were all costs realisticly assessed?</div>
+                                <div class="col l3 m3 s3">
+                                    <input type="checkbox" class="filled-in" id="chkFinances0" value="1" onclick="onFinancesChange(this);" />
+                                    <label for="chkFinances0">1</label>
+                                </div>
+                            </div>
+                            <!--//FD 2021.08.02 - ATA 2021 - Modify Stage3 - BEGIN tolta parte Finances2 e Finances4-->
+                            <!--<div class="row">
+                <div class="col l1 m1 s1">2.</div>
+                <div class="col l8 m8 s8">Realistic costs/revenues/timing?</div>
+                <div class="col l3 m3 s3">
+                    <input type="checkbox" class="filled-in" id="chkFinances1" value="2" onclick="onFinancesChange(this);" />
+                    <label for="chkFinances1">2</label>
+                </div>
+            </div>-->
+                            <div class="row">
+                                <div class="col l1 m1 s1">2.</div>
+                                <div class="col l8 m8 s8">Cost effective marketing and sales strategy ?</div>
+                                <div class="col l3 m3 s3">
+                                    <input type="checkbox" class="filled-in" id="chkFinances1" value="1" onclick="onFinancesChange(this);" />
+                                    <label for="chkFinances1">1</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col l1 m1 s1">3.</div>
+                                <div class="col l8 m8 s8">Is the overall business plan realistic and sustainable?</div>
+                                <div class="col l3 m3 s3">
+                                    <input type="checkbox" class="filled-in" id="chkFinances2" value="3" onclick="onFinancesChange(this);" />
+                                    <label for="chkFinances2">3</label>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col l6 m12 s12">
+                            <!--//FD 2021.08.02 - ATA 2021 - Modify Stage3 - BEGIN tolta parte Finances2 e Finances4-->
+                            <!--<div class="row" style="margin-top:10px;">
+                <div class="col l1 m1 s1">4.</div>
+                <div class="col l11 m11 s11">
+                    <div class="row"><div class="col">Financial index</div></div>
+                    <div class="row">
+                        <div class="col l10 m9 s9" style="font-variant:small-caps !important;">No</div>
+                        <div class="col l2 m3 s3 right">
+                            <input type="radio" id="chkFinances3" name="chkFinancesPoint1" class="with-gap min-width" value="0" onclick="onFinancesChange(this);" />
+                            <label for="chkFinances3">0</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col l10 m9 s9" style="font-variant:small-caps !important;">Basic (e.g. BEP)</div>
+                        <div class="col l2 m3 s3 right">
+                            <input type="radio" id="chkFinances4" name="chkFinancesPoint1" class="with-gap min-width" value="1" onclick="onFinancesChange(this);" />
+                            <label for="chkFinances4">1</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col l10 m9 s9" style="font-variant:small-caps !important;">Advanced</div>
+                        <div class="col l2 m3 s3 right">
+                            <input type="radio" id="chkFinances5" name="chkFinancesPoint1" class="with-gap min-width" value="2" onclick="onFinancesChange(this);" />
+                            <label for="chkFinances5">2</label>
+                        </div>
+                    </div>
+                </div>
+            </div>-->
+                            <div class="row">
+                                <div class="col l9 m9 s9">
+                                    <textarea id="financesNotes" class="materialize-textarea"></textarea>
+                                    <label for="financesNotes">Finances Notes</label>
+                                </div>
+                                <div class="col l3 m3 s3">
+                                    <input placeholder="Finances" id="totalFinances" type="text" class="validate" readonly="readonly" />
+                                    <label for="totalFinances">TOTAL</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="deepdivetopic-tab" class="row card transparent">
+                        <div class="row"><div class="col"><h6 class="ata-red-text">Deep Dive Topic</h6></div></div>
+                        <div class="col l6 m12 s12">
+                            <div class="row" style="margin-top:10px;">
+                                <div class="col l1 m1 s1">1.</div>
+                                <div class="col l8 m8 s8">Does the content of the deep dive match what was requested by the Jury?</div>
+                                <div class="col l3 m3 s3">
+                                    <input type="checkbox" class="filled-in" id="chkDeepDiveTopic0" value="3" onclick="onDeepDiveTopicChange(this);" />
+                                    <label for="chkDeepDiveTopic0">3</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col l1 m1 s1">2.</div>
+                                <div class="col l8 m8 s8">Were the Deep Dive slides clear and understandable for the audience?</div>
+                                <div class="col l3 m3 s3">
+                                    <input type="checkbox" class="filled-in" id="chkDeepDiveTopic1" value="3" onclick="onDeepDiveTopicChange(this);" />
+                                    <label for="chkDeepDiveTopic1">3</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col l1 m1 s1">3.</div>
+                                <div class="col l8 m8 s8">Was the team presenting the deep dive topic well prepared on the subject?</div>
+                                <div class="col l3 m3 s3">
+                                    <input type="checkbox" class="filled-in" id="chkDeepDiveTopic2" value="4" onclick="onDeepDiveTopicChange(this);" />
+                                    <label for="chkDeepDiveTopic2">4</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col l6 m12 s12">
+                            <div class="row">
+                                <!--<div class="row" style="margin-top:10px;">-->
+                                <!--<div class="col l1 m1 s1">3.</div>-->
+                                <!--<div class="col l11 m11 s11">-->
+                                <!--<div class="row"><div class="col">Team presenting the deep dive topic</div></div>
+                <div class="row">
+                    <div class="col l10 m9 s9" style="font-variant:small-caps !important;">None</div>
+                    <div class="col l2 m3 s3 right">
+                        <input type="radio" id="chkDeepDiveTopic2" name="chkDeepDivePoint11" class="with-gap min-width" value="0" onclick="onDeepDiveTopicChange(this);" />
+                        <label for="chkDeepDiveTopic2">0</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col l10 m9 s9" style="font-variant:small-caps !important;">Was well prepared on the subject</div>
+                    <div class="col l2 m3 s3 right">
+                        <input type="radio" id="chkDeepDiveTopic3" name="chkDeepDivePoint11" class="with-gap min-width" value="2.5" onclick="onDeepDiveTopicChange(this);" />
+                        <label for="chkDeepDiveTopic3">2.5</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col l10 m9 s9" style="font-variant:small-caps !important;">Was well prepared and did give also the impression of having mastered the subject</div>
+                    <div class="col l2 m3 s3 right">
+                        <input type="radio" id="chkDeepDiveTopic4" name="chkDeepDivePoint11" class="with-gap min-width" value="5" onclick="onDeepDiveTopicChange(this);" />
+                        <label for="chkDeepDiveTopic4">5</label>
+                    </div>
+                </div>-->
+                                <!--<div class="divider"></div>-->
+                                <div class="row">
+                                    <div class="col l9 m9 s9">
+                                        <textarea id="deepDiveTopicNotes" class="materialize-textarea"></textarea>
+                                        <label for="deepDiveTopicNotes">Deep Dive Topic Notes</label>
+                                    </div>
+                                    <div class="col l3 m3 s3">
+                                        <input placeholder="DeepDiveTopic" id="totalDeepDiveTopic" type="text" class="validate" readonly="readonly" />
+                                        <label for="totalDeepDiveTopic">TOTAL</label>
+                                    </div>
+                                </div>
+                                <!--</div>-->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- //FD 2021.08.02 - ATA 2021 - Modify Stage3 - Remove Sezione <DemonstrationAndStructure>-->
+                    <div id="demonstrationandstructure-tab" class="row card transparent" style="display:none">
+                        <div class="row"><div class="col"><h6 class="ata-red-text">Demonstration &amp; Structure</h6></div></div>
+                        <div class="col l6 m12 s12">
+                            <div class="row" style="margin-top:10px;">
+                                <div class="col l1 m1 s1">1.</div>
+                                <div class="col l8 m8 s8">Is the presentation clearly structured?</div>
+                                <div class="col l3 m3 s3">
+                                    <input type="checkbox" class="filled-in" id="chkDemonstrationAndStructure0" value="4" onclick="onDemonstrationAndStructureChange(this);" />
+                                    <label for="chkDemonstrationAndStructure0">4</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col l1 m1 s1">2.</div>
+                                <div class="col l8 m8 s8">Does the presentation have a common thread?</div>
+                                <div class="col l3 m3 s3">
+                                    <input type="checkbox" class="filled-in" id="chkDemonstrationAndStructure1" value="2" onclick="onDemonstrationAndStructureChange(this);" />
+                                    <label for="chkDemonstrationAndStructure1">2</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col l1 m1 s1">3.</div>
+                                <div class="col l8 m8 s8">Are visual aids used?</div>
+                                <div class="col l3 m3 s3">
+                                    <input type="checkbox" class="filled-in" id="chkDemonstrationAndStructure2" value="2" onclick="onDemonstrationAndStructureChange(this);" />
+                                    <label for="chkDemonstrationAndStructure2">2</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col l6 m12 s12">
+                            <div class="row" style="margin-top:10px;">
+                                <div class="col l1 m1 s1">4.</div>
+                                <div class="col l8 m8 s8">Did the team convey the key messages of the project?</div>
+                                <div class="col l3 m3 s3">
+                                    <input type="checkbox" class="filled-in" id="chkDemonstrationAndStructure3" value="4" onclick="onDemonstrationAndStructureChange(this);" />
+                                    <label for="chkDemonstrationAndStructure3">4</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col l1 m1 s1">5.</div>
+                                <div class="col l8 m8 s8">Is there a coherent presentation design?</div>
+                                <div class="col l3 m3 s3">
+                                    <input type="checkbox" class="filled-in" id="chkDemonstrationAndStructure4" value="3" onclick="onDemonstrationAndStructureChange(this);" />
+                                    <label for="chkDemonstrationAndStructure4">3</label>
+                                </div>
+                            </div>
+                            <div class="divider"></div>
+                            <div class="row">
+                                <div class="col l9 m9 s9">
+                                    <textarea id="demonstrationAndStructureNotes" class="materialize-textarea"></textarea>
+                                    <label for="demonstrationAndStructureNotes">Demonstration &amp; Structure Notes</label>
+                                </div>
+                                <div class="col l3 m3 s3">
+                                    <input placeholder="DemonstrationAndStructure" id="totalDemonstrationAndStructure" type="text" class="validate" readonly="readonly" />
+                                    <label for="totalDemonstrationAndStructure">TOTAL</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="delivery-tab" class="row card transparent">
+                        <div class="row"><div class="col"><h6 class="ata-red-text">Structure</h6></div></div>
+                        <div class="col l6 m12 s12">
+                            <div class="row" style="margin-top:10px;">
+                                <div class="col l1 m1 s1">1.</div>
+                                <div class="col l8 m8 s8">Introduction of themselves and the rest of the team/organization?</div>
+                                <div class="col l3 m3 s3">
+                                    <input type="checkbox" class="filled-in" id="chkDelivery0" value="1" onclick="onDeliveryChange(this);" />
+                                    <label for="chkDelivery0">1</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col l1 m1 s1">2.</div>
+                                <div class="col l8 m8 s8">Presenter well prepared?</div>
+                                <div class="col l3 m3 s3">
+                                    <input type="checkbox" class="filled-in" id="chkDelivery1" value="1" onclick="onDeliveryChange(this);" />
+                                    <label for="chkDelivery1">1</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col l1 m1 s1">3.</div>
+                                <div class="col l8 m8 s8">Presenter confidence?</div>
+                                <div class="col l3 m3 s3">
+                                    <input type="checkbox" class="filled-in" id="chkDelivery2" value="1.5" onclick="onDeliveryChange(this);" />
+                                    <label for="chkDelivery2">1.5</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col l1 m1 s1">4.</div>
+                                <div class="col l8 m8 s8">Eye contact?</div>
+                                <div class="col l3 m3 s3">
+                                    <input type="checkbox" class="filled-in" id="chkDelivery3" value="1" onclick="onDeliveryChange(this);" />
+                                    <label for="chkDelivery3">1</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col l1 m1 s1">5.</div>
+                                <div class="col l8 m8 s8">Appropriate language?</div>
+                                <div class="col l3 m3 s3">
+                                    <input type="checkbox" class="filled-in" id="chkDelivery4" value="1" onclick="onDeliveryChange(this);" />
+                                    <label for="chkDelivery4">1</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col l6 m12 s12">
+                            <div class="row" style="margin-top:10px;">
+                                <div class="col l1 m1 s1">6.</div>
+                                <div class="col l8 m8 s8">Good English?</div>
+                                <div class="col l3 m3 s3">
+                                    <input type="checkbox" class="filled-in" id="chkDelivery5" value="1" onclick="onDeliveryChange(this);" />
+                                    <label for="chkDelivery5">1</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col l1 m1 s1">7.</div>
+                                <div class="col l8 m8 s8">Clear audible voice?</div>
+                                <div class="col l3 m3 s3">
+                                    <input type="checkbox" class="filled-in" id="chkDelivery6" value="1" onclick="onDeliveryChange(this);" />
+                                    <label for="chkDelivery6">1</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col l1 m1 s1">8.</div>
+                                <div class="col l8 m8 s8">Enthusiasm?</div>
+                                <div class="col l3 m3 s3">
+                                    <input type="checkbox" class="filled-in" id="chkDelivery7" value="1" onclick="onDeliveryChange(this);" />
+                                    <label for="chkDelivery7">1</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col l1 m1 s1">9.</div>
+                                <div class="col l8 m8 s8">Able to catch the attention of the audience?</div>
+                                <div class="col l3 m3 s3">
+                                    <input type="checkbox" class="filled-in" id="chkDelivery8" value="1.5" onclick="onDeliveryChange(this);" />
+                                    <label for="chkDelivery8">1.5</label>
+                                </div>
+                            </div>
+                            <div class="divider"></div>
+                            <div class="row">
+                                <div class="col l9 m9 s9">
+                                    <textarea id="deliveryNotes" class="materialize-textarea"></textarea>
+                                    <label for="deliveryNotes">Structure Notes</label>
+                                </div>
+                                <div class="col l3 m3 s3">
+                                    <input placeholder="Delivery" id="totalDelivery" type="text" class="validate" readonly="readonly" />
+                                    <label for="totalDelivery">TOTAL</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="questions-tab" class="row card transparent">
+                        <div class="row"><div class="col"><h6 class="ata-red-text">Questions</h6></div></div>
+                        <div class="col l6 m12 s12">
+                            <div class="row" style="margin-top:10px;">
+                                <div class="col l1 m1 s1">1.</div>
+                                <div class="col l11 m11 s11">
+                                    <div class="row"><div class="col">Question comprehension?</div></div>
+                                    <div class="row">
+                                        <div class="col l10 m9 s9" style="font-variant:small-caps !important;">None</div>
+                                        <div class="col l2 m3 s3 right">
+                                            <input type="radio" id="chkQuestions0" name="chkQuestionsPoint1" class="with-gap min-width" value="0" onclick="onQuestionsChange(this);" />
+                                            <label for="chkQuestions0">0</label>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col l10 m9 s9" style="font-variant:small-caps !important;">Sufficient comprehension</div>
+                                        <div class="col l2 m3 s3 right">
+                                            <input type="radio" id="chkQuestions1" name="chkQuestionsPoint1" class="with-gap min-width" value="1" onclick="onQuestionsChange(this);" />
+                                            <label for="chkQuestions1">1</label>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col l10 m9 s9" style="font-variant:small-caps !important;">Discrete comprehension</div>
+                                        <div class="col l2 m3 s3 right">
+                                            <input type="radio" id="chkQuestions2" name="chkQuestionsPoint1" class="with-gap min-width" value="2.5" onclick="onQuestionsChange(this);" />
+                                            <label for="chkQuestions2">2.5</label>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col l10 m9 s9" style="font-variant:small-caps !important;">Total comprehension</div>
+                                        <div class="col l2 m3 s3 right">
+                                            <input type="radio" id="chkQuestions3" name="chkQuestionsPoint1" class="with-gap min-width" value="4" onclick="onQuestionsChange(this);" />
+                                            <label for="chkQuestions3">4</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col l1 m1 s1">2.</div>
+                                <div class="col l8 m8 s8">Answer without hesitation?</div>
+                                <div class="col l3 m3 s3">
+                                    <input type="checkbox" class="filled-in min-width" id="chkQuestions4" value="1" onclick="onQuestionsChange(this);" />
+                                    <label for="chkQuestions4">1</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col l6 m12 s12">
+                            <div class="row" style="margin-top:10px;">
+                                <div class="col l1 m1 s1">3.</div>
+                                <div class="col l11 m11 s11">
+                                    <div class="row"><div class="col">Complete and convincing answer?</div></div>
+                                    <div class="row">
+                                        <div class="col l10 m9 s9" style="font-variant:small-caps !important;">None</div>
+                                        <div class="col l2 m3 s3 right">
+                                            <input type="radio" id="chkQuestions5" name="chkQuestionsPoint3" class="with-gap min-width" value="0" onclick="onQuestionsChange(this);" />
+                                            <label for="chkQuestions5">0</label>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col l10 m9 s9" style="font-variant:small-caps !important;">Sufficiently convincing</div>
+                                        <div class="col l2 m3 s3 right">
+                                            <input type="radio" id="chkQuestions6" name="chkQuestionsPoint3" class="with-gap min-width" value="1" onclick="onQuestionsChange(this);" />
+                                            <label for="chkQuestions6">1</label>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col l10 m9 s9" style="font-variant:small-caps !important;">Discretely convincing</div>
+                                        <div class="col l2 m3 s3 right">
+                                            <input type="radio" id="chkQuestions7" name="chkQuestionsPoint3" class="with-gap min-width" value="2.5" onclick="onQuestionsChange(this);" />
+                                            <label for="chkQuestions7">2.5</label>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col l10 m9 s9" style="font-variant:small-caps !important;">Totally convincing</div>
+                                        <div class="col l2 m3 s3 right">
+                                            <input type="radio" id="chkQuestions8" name="chkQuestionsPoint3" class="with-gap min-width" value="4" onclick="onQuestionsChange(this);" />
+                                            <label for="chkQuestions8">4</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col l1 m1 s1">4.</div>
+                                <div class="col l8 m8 s8">Did the team additional documentation to support answers (e.g. Back-up slides, Excel file, other document,…)?</div>
+                                <div class="col l3 m3 s3">
+                                    <input type="checkbox" class="filled-in min-width" id="chkQuestions9" value="1" onclick="onQuestionsChange(this);" />
+                                    <label for="chkQuestions9">1</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col l9 m9 s9">
+                                    <textarea id="questionsNotes" class="materialize-textarea"></textarea>
+                                    <label for="questionsNotes">Questions Notes</label>
+                                </div>
+                                <div class="col l3 m3 s3">
+                                    <input placeholder="Questions" id="totalQuestions" type="text" class="validate" readonly="readonly" />
+                                    <label for="totalQuestions">TOTAL</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--//FD 2021.08.02 - ATA 2021 - Modify Stage3 - Remove Sezione <General Impression> -->
+                    <div styke="display:none" id="generalimpression-tab" class="row card transparent">
+                        <div class="row"><div class="col"><h6 class="ata-red-text">General Impression</h6></div></div>
+                        <div class="col l6 m12 s12">
+                            <div class="row" style="margin-top:10px;">
+                                <div class="col l1 m1 s1">1.</div>
+                                <div class="col l8 m8 s8">Appropriate Dress?</div>
+                                <div class="col l3 m3 s3">
+                                    <input type="checkbox" class="filled-in" id="chkGeneralImpression0" value="1" onclick="onGeneralImpressionChange(this);" />
+                                    <label for="chkGeneralImpression0">1</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col l1 m1 s1">2.</div>
+                                <div class="col l8 m8 s8">Good knowledge of presented material?</div>
+                                <div class="col l3 m3 s3">
+                                    <input type="checkbox" class="filled-in" id="chkGeneralImpression1" value="2" onclick="onGeneralImpressionChange(this);" />
+                                    <label for="chkGeneralImpression1">2</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col l1 m1 s1">3.</div>
+                                <div class="col l8 m8 s8">Empathy?</div>
+                                <div class="col l3 m3 s3">
+                                    <input type="checkbox" class="filled-in" id="chkGeneralImpression2" value="2" onclick="onGeneralImpressionChange(this);" />
+                                    <label for="chkGeneralImpression2">2</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col l6 m12 s12">
+                            <div class="row" style="margin-top:10px;">
+                                <div class="col l9 m9 s9">
+                                    <textarea id="generalImpressionNotes" class="materialize-textarea"></textarea>
+                                    <label for="generalImpressionNotes">General Impression Notes</label>
+                                </div>
+                                <div class="col l3 m3 s3">
+                                    <input placeholder="Visual Aids" id="totalGeneralImpression" type="text" class="validate" readonly="readonly" />
+                                    <label for="totalGeneralImpression">TOTAL</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="miscellaneous-tab" class="card transparent">
+                        <ul class="collection" style="border:none;">
+                            <li class="collection-item" style="width:auto;height:auto">
+                                <h6 class="ata-red-text">Miscellaneous</h6>
+                                <div class="secondary-content">
+                                    <span class="points-label">Points</span>
+                                    <label class="active right ata-red-text" for="miscellaneous">____/(+-)150</label>
+                                    <!--FDT - ATA 2022 - modify Stage 2-->
+                                    <input placeholder="Miscellaneous" id="miscellaneous" type="number" class="validate" min="-150" max="150" step="0.10" />
+                                </div>
+                                <blockquote>
+                                    Do you want add or remove points or write additional comments?
+                                    <br />Enter here below.
+                                </blockquote>
+                                <br /><br /><br />
+                                <div class="divider"></div>
+                                <div>
+                                    <textarea id="miscellaneousNotes" class="materialize-textarea"></textarea>
+                                    <label for="miscellaneousNotes">Miscellaneous Notes</label>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!--//FD 2021.09.12 - ATA 2021 - Add Section <Finals in Stage3> - BEGIN-->
+                    <div id="finals-tab" class="card transparent">
+                        <ul class="collection" style="border:none;">
+                            <li class="collection-item" style="width:auto;height:auto">
+                                <h6 class="ata-red-text">Finals</h6>
+                                <div class="secondary-content">
+                                    <span class="points-label">Points</span>
+                                    <label class="active right ata-red-text" for="finals">____/(+-)150</label>
+                                    <!--FDT - ATA 2022 - modify Stage 2-->
+                                    <input placeholder="Finals" id="finals" type="number" class="validate" min="-150" max="150" step="0.10" />
+                                </div>
+                                <blockquote>
+                                    Insert points for Finals<br />
+                                </blockquote>
+                            </li>
+                        </ul>
+                    </div>
+                    <!--//FD 2021.09.12 - ATA 2021 - Add Section <Finals in Stage3> - END-->
+                    <!--//FD 2021.08.02 - ATA 2021 - Modify Stage3 - Add Sezione <demonstrationanddelivery> -BEGIN-->
+                    <div id="demonstrationanddelivery-tab" class="row card transparent">
+                        <div class="row"><div class="col"><h6 class="ata-red-text">Demonstration &amp; Delivery</h6></div></div>
+                        <div class="col l6 m12 s12">
+                            <div class="row" style="margin-top:10px;">
+                                <div class="col l1 m1 s1">1.</div>
+                                <div class="col l8 m8 s8">Is there a coherent presentation design and flow?</div>
+                                <div class="col l3 m3 s3">
+                                    <input type="checkbox" class="filled-in" id="chkDemonstrationAndDelivery0" value="1" onclick="onDemonstrationAndDeliveryChange(this);" />
+                                    <label for="chkDemonstrationAndDelivery0">1</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col l1 m1 s1">2.</div>
+                                <div class="col l8 m8 s8">Did the team convey the key messages of the project?</div>
+                                <div class="col l3 m3 s3">
+                                    <input type="checkbox" class="filled-in" id="chkDemonstrationAndDelivery1" value="1" onclick="onDemonstrationAndDeliveryChange(this);" />
+                                    <label for="chkDemonstrationAndDelivery1">1</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col l6 m12 s12">
+                            <div class="row" style="margin-top:10px;">
+                                <div class="col l1 m1 s1">3.</div>
+                                <div class="col l11 m11 s11">
+                                    <div class="row"><div class="col">Are visual aids used?</div></div>
+                                    <div class="row">
+                                        <div class="col l10 m9 s9" style="font-variant:small-caps !important;">No visual aids</div>
+                                        <div class="col l2 m3 s3 right">
+                                            <input type="radio" id="chkDemonstrationAndDelivery2" name="chkchkDemonstrationAndDeliveryPoint11" class="with-gap min-width" value="0" onclick="onDemonstrationAndDeliveryChange(this);" />
+                                            <label for="chkDemonstrationAndDelivery2">0</label>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col l10 m9 s9" style="font-variant:small-caps !important;">Just photos</div>
+                                        <div class="col l2 m3 s3 right">
+                                            <input type="radio" id="chkDemonstrationAndDelivery3" name="chkchkDemonstrationAndDeliveryPoint11" class="with-gap min-width" value="1.5" onclick="onDemonstrationAndDeliveryChange(this);" />
+                                            <label for="chkDemonstrationAndDelivery3">1.5</label>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col l10 m9 s9" style="font-variant:small-caps !important;">Video</div>
+                                        <div class="col l2 m3 s3 right">
+                                            <input type="radio" id="chkDemonstrationAndDelivery4" name="chkchkDemonstrationAndDeliveryPoint11" class="with-gap min-width" value="3" onclick="onDemonstrationAndDeliveryChange(this);" />
+                                            <label for="chkDemonstrationAndDelivery4">3</label>
+                                        </div>
+                                    </div>
+                                    <!--<div class="row">
+                        <div class="col l10 m9 s9" style="font-variant:small-caps !important;">Professional video</div>
+                        <div class="col l2 m3 s3 right">
+                            <input type="radio" id="chkDemonstrationAndDelivery5" name="chkchkDemonstrationAndDeliveryPoint11" class="with-gap min-width" value="3" onclick="onDemonstrationAndDeliveryChange(this);" />
+                            <label for="chkDemonstrationAndDelivery5">3</label>
+                        </div>
+                    </div>-->
+                                    <div class="row">
+                                        <div class="col l9 m9 s9">
+                                            <textarea id="demonstrationAndDeliveryNotes" class="materialize-textarea"></textarea>
+                                            <label for="demonstrationAndDeliveryNotes">Demonstration &amp;Delivery Notes</label>
+                                        </div>
+                                        <div class="col l3 m3 s3">
+                                            <input placeholder="DemonstrationAndDelivery" id="totalDemonstrationAndDelivery" type="text" class="validate" readonly="readonly" />
+                                            <label for="totalDemonstrationAndDelivery">TOTAL</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--//FD 2021.08.02 - ATA 2021 - Modify Stage3 - Add Sezione <demonstrationanddelivery> -END-->
+
+                    <div class="row">
+                        <div class="col l12 m12 s12">
+                            <blockquote style="font-size:smaller" class="black-text">
+                                (1)	Allowed time for team presentation is strictly limited to 3 minutes.
+                                <br />IMPORTANT: Every team must be informed in advance about the above mentioned rule
+                            </blockquote>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
+<script language="javascript" type="text/javascript">
+	$(document).ready(function () {
+
+        Body.navBarScoresAdv('Presentation', 'backToScores');
+        Body.spinnerSignal();
+
+        pageInitializeTitleOnly('Scores - Presentation Event');
+
+        //initDatabaseToLastVersion();
+
+        //Event 2017 - Hide fancybox title - Info are display in the top of the window
+        $("#carno").text(carno);
+
+        if (needToChangeLayoutForTablet("#div_scores"), TabletScenarios.Presentation.scenario) {
+        }
+
+        waitOFF();
+
+		//FDT - ATA 2022 - modify Stage 2
+        //onlyNumbersWithMinMax("#miscellaneous");
+        $('input[min]').each(function (index) {
+        	$(this).focusout(function () {
+        		$("#miscellaneousBadge").html($("#miscellaneous").val());
+        		scoreP.miscellaneous = $("#miscellaneous").val();
+        		if (scoreP.miscellaneous == '')
+        			scoreP.miscellaneous = 0;
+				updateTotalAndChips();
+        	});
+        });
+
+		//FD 2021.07.27 - ATA 2021  - Add Stage1 - BEGIN
+		//FDT - ATA 2022 - modify Stage 2
+        //onlyNumbersWithMinMax("#stage1");
+        $('input[min]').each(function (index) {
+        	$(this).focusout(function () {
+        		$("#stage1Badge").html($("#stage1").val());
+        		scoreP.stage1 = $("#stage1").val();
+        		if (scoreP.stage1 == '')
+        			scoreP.stage1 = 0;
+        		updateTotalAndChips();
+        	});
+        });
+		//FD 2021.07.27 - ATA 2021  - Add Stage1 - END
+
+		//FD 2021.09.12 - ATA 2021 - Add Section <Finals in Stage3> - BEGIN
+		//FDT - ATA 2022 - modify Stage 2
+        //onlyNumbersWithMinMax("#finals");
+        $('input[min]').each(function (index) {
+        	$(this).focusout(function () {
+        		$("#finalsBadge").html($("#finals").val());
+        		scoreP.finals = $("#finals").val();
+        		if (scoreP.finals == '')
+        			scoreP.finals = 0;
+        		updateTotalAndChips();
+        	});
+        });
+		//FD 2021.09.12 - ATA 2021 - Add Section <Finals in Stage3> - END
+
+        showRecords_scores_presentation(scoreid, scoreP);
+
+    	//SERVER SIDE ONLY: the total score (automatically calculated) can be modified by the user - req.Ciadamidaro Set 2015
+        if (!isATablet()) {
+            $("#totalPresentation").removeAttr('readonly');
+            onlyNumbersWith1Decimals("#totalPresentation");
+        }
+
+		/********* SAVE BUTTON **********/
+        $("#btnSave").click(function () {
+           	var scoreP = new ScorePresentation(-1, -1);
+
+        	scoreP.id = $("#id").val();
+        	scoreP.scoreid = $("#scoreid").val();
+
+        	//Check if radiobuttons have been selected (they must have one option checked)
+        	//FD 2021.08.02 - ATA 2021 - Modify Stage3 - BEGIN tolta parte Finances2 e Finances4
+        	//var finances_4 = isRadioButtonChecked('chkFinancesPoint1');
+        	var options_1 = isRadioButtonChecked('chkQuestionsPoint1');
+        	var options_2 = isRadioButtonChecked('chkQuestionsPoint3');
+
+        	//FD 2021.08.02 - ATA 2021 - Modify Stage3 - BEGIN tolta parte Finances2 e Finances4
+        	//var message = (!finances_4) ? "\n- Finances : [4. Financial index]" : "";
+        	message = (!options_1) ? "\n- Questions : [1. Question comprehension?]" : "";
+        	message += (!options_2) ? "\n- Questions : [3. Complete and convincing answer?]" : "";
+
+			//Check if radiobuttons have been selected (they must have one option checked)
+        	if (message.length > 0) {
+        		alert('No options have been selected in' + message + '\n\nPlease To proceed please select ');
+        		return;
+        	}
+
+        	//FD 2021.08.02 - ATA 2021 - Modify Stage3 - BEGIN tolta parte di executive summary
+        	//$.each(scoreP.executiveSummary, function (index, value) {
+            //	var ooChecked = $("#chkExecutiveSummary" + index).prop('checked');
+            //	if (Boolean(ooChecked)) {
+            //		scoreP.executiveSummary[index] = parseFloat($("#chkExecutiveSummary" + index).val());
+            //	}
+            //	else {
+            //		scoreP.executiveSummary[index] = 0;
+            //	}
+            //});
+        	//scoreP.executiveSummaryNotes = $('#executiveSummaryNotes').val().toString();
+
+        	//FD 2021.08.02 - ATA 2021 - Adding Stage2 - Add Section <Stage2> - BEGIN
+			//FDT - ATA 2023 - eliminato Business Figures - INIZIO
+			//BUSINESS FIGURES
+			//     	$.each(scoreP.st2BusinnesFigures, function (index, value) {
+			//     		var ooChecked = $("#chkst2BusinessFigures" + index).prop('checked');
+			//     		if (Boolean(ooChecked)) {
+			//     			scoreP.st2BusinnesFigures[index] = parseFloat($("#chkst2BusinessFigures" + index).val());
+			//     		}
+			//     		else {
+			//     			scoreP.st2BusinnesFigures[index] = 0;
+			//     		}
+			//     	});
+			//scoreP.st2BusinnesFiguresNotes = $('#st2businessFiguresNotes').val().toString();
+			//FDT - ATA 2023 - eliminato Business Figures - FINE
+
+			//FDT - ATA 2023 - aggiunto Financial Concept - INIZIO
+            $.each(scoreP.st2FinConcept, function (index, value) {
+                var ooChecked = $("#chkSt2FinConcept" + index).prop('checked');
+                if (Boolean(ooChecked)) {
+                    scoreP.st2FinConcept[index] = parseFloat($("#chkSt2FinConcept" + index).val());
+                }
+                else {
+                    scoreP.st2FinConcept[index] = 0;
+                }
+            });
+            scoreP.st2FinConceptNotes = $('#st2FinConceptNotes').val().toString();
+			//FDT - ATA 2023 - aggiunto Financial Concept - FINE
+
+			//FDT - ATA 2023 - aggiunto Financial KPIs & insights - INIZIO
+            $.each(scoreP.st2FinKPIs, function (index, value) {
+                var ooChecked = $("#chkSt2FinKPIs" + index).prop('checked');
+                if (Boolean(ooChecked)) {
+                    scoreP.st2FinKPIs[index] = parseFloat($("#chkSt2FinKPIs" + index).val());
+                }
+                else {
+                    scoreP.st2FinKPIs[index] = 0;
+                }
+            });
+            scoreP.st2FinKPIsNotes = $('#st2FinKPIsNotes').val().toString();
+			//FDT - ATA 2023 - aggiunto Financial KPIs & insights - FINE
+
+			//FDT - ATA 2023 - eliminato Content e Investors - INIZIO
+        	//CONTENT
+   //     	$.each(scoreP.st2Content, function (index, value) {
+   //     		var ooChecked = $("#chkSt2Content" + index).prop('checked');
+   //     		if (Boolean(ooChecked)) {
+   //     			scoreP.st2Content[index] = parseFloat($("#chkSt2Content" + index).val());
+   //     		}
+   //     		else {
+   //     			scoreP.st2Content[index] = 0;
+   //     		}
+   //     	});
+			//scoreP.st2ContentNotes = $('#st2contentNotes').val().toString();
+			//FDT - ATA 2023 - eliminato Content e Investors - FINE
+
+        	//DEMONSTRATION & DELIVERY
+        	//FD 2021.08.02 - ATA 2021 - Modify Stage3 - Add Sezione <DemonstrationAndDelivery>- BEGIN
+        	$.each(scoreP.st2DemonstrationAndDelivery, function (index, value) {
+        		var ooChecked = $("#chkSt2DemonstrationAndDelivery" + index).prop('checked');
+        		if (Boolean(ooChecked)) {
+        			scoreP.st2DemonstrationAndDelivery[index] = parseFloat($("#chkSt2DemonstrationAndDelivery" + index).val());
+        		}
+        		else {
+        			scoreP.st2DemonstrationAndDelivery[index] = 0;
+        		}
+        	});
+        	scoreP.st2DemonstrationAndDeliveryNotes = $('#st2demonstrationAndDeliveryNotes').val().toString();
+
+			//FDT - ATA 2023 - eliminato Content e Investors - INIZIO
+        	//ARE INVESTORS CONVINCED OF PROFITABILITY
+   //     	$.each(scoreP.st2Investitors, function (index, value) {
+   //     		var ooChecked = $("#chkSt2Investitors" + index).prop('checked');
+   //     		if (Boolean(ooChecked)) {
+   //     			scoreP.st2Investitors[index] = parseFloat($("#chkSt2Investitors" + index).val());
+   //     		}
+   //     		else {
+   //     			scoreP.st2Investitors[index] = 0;
+   //     		}
+   //     	});
+			//scoreP.st2InvestitorsNotes = $('#st2investitorsNotes').val().toString();
+			//FDT - ATA 2023 - eliminato Content e Investors - FINE
+        	//FD 2021.08.02 - ATA 2021 - Adding Stage2 - Add Section <Stage2> - END
+
+        	$.each(scoreP.novelty, function (index, value) {
+            	var ooChecked = $("#chkNovelty" + index).prop('checked');
+            	if (Boolean(ooChecked)) {
+            		scoreP.novelty[index] = parseFloat($("#chkNovelty" + index).val());
+            	}
+            	else {
+            		scoreP.novelty[index] = 0;
+            	}
+            });
+        	scoreP.noveltyNotes = $('#noveltyNotes').val().toString();
+
+        	$.each(scoreP.content, function (index, value) {
+                var ooChecked = $("#chkContent" + index).prop('checked');
+                if (Boolean(ooChecked)) {
+                	scoreP.content[index] = parseFloat($("#chkContent" + index).val());
+                }
+                else {
+                	scoreP.content[index] = 0;
+                }
+            });
+        	scoreP.contentNotes = $('#contentNotes').val().toString();
+
+        	$.each(scoreP.finances, function (index, value) {
+                var ooChecked = $("#chkFinances" + index).prop('checked');
+                if (Boolean(ooChecked)) {
+                	scoreP.finances[index] = parseFloat($("#chkFinances" + index).val());
+                }
+                else {
+                	scoreP.finances[index] = 0;
+                }
+            });
+        	scoreP.financesNotes = $('#financesNotes').val().toString();
+
+        	$.each(scoreP.deepDiveTopic, function (index, value) {
+            	var ooChecked = $("#chkDeepDiveTopic" + index).prop('checked');
+                if (Boolean(ooChecked)) {
+                	scoreP.deepDiveTopic[index] = parseFloat($("#chkDeepDiveTopic" + index).val());
+                }
+                else {
+                	scoreP.deepDiveTopic[index] = 0;
+                }
+            });
+        	scoreP.deepDiveTopicNotes = $('#deepDiveTopicNotes').val().toString();
+
+        	$.each(scoreP.demonstrationAndStructure, function (index, value) {
+            	var ooChecked = $("#chkDemonstrationAndStructure" + index).prop('checked');
+            	if (Boolean(ooChecked)) {
+            		scoreP.demonstrationAndStructure[index] = parseFloat($("#chkDemonstrationAndStructure" + index).val());
+            	}
+            	else {
+            		scoreP.demonstrationAndStructure[index] = 0;
+            	}
+            });
+        	scoreP.demonstrationAndStructureNotes = $('#demonstrationAndStructureNotes').val().toString();
+
+        	//FD 2021.08.02 - ATA 2021 - Modify Stage3 - Add Sezione <DemonstrationAndDelivery>- BEGIN
+        	$.each(scoreP.demonstrationAndDelivery, function (index, value) {
+        		var ooChecked = $("#chkDemonstrationAndDelivery" + index).prop('checked');
+        		if (Boolean(ooChecked)) {
+        			scoreP.demonstrationAndDelivery[index] = parseFloat($("#chkDemonstrationAndDelivery" + index).val());
+        		}
+        		else {
+        			scoreP.demonstrationAndDelivery[index] = 0;
+        		}
+        	});
+        	scoreP.demonstrationAndDeliveryNotes = $('#demonstrationAndDeliveryNotes').val().toString();
+        	//FD 2021.08.02 - ATA 2021 - Modify Stage3 - Add Sezione <DemonstrationAndDelivery>- END
+
+        	$.each(scoreP.delivery, function (index, value) {
+                var ooChecked = $("#chkDelivery" + index).prop('checked');
+                if (Boolean(ooChecked)) {
+                	scoreP.delivery[index] = parseFloat($("#chkDelivery" + index).val());
+                }
+                else {
+                	scoreP.delivery[index] = 0;
+                }
+            });
+        	scoreP.deliveryNotes = $('#deliveryNotes').val().toString();
+
+        	$.each(scoreP.questions, function (index, value) {
+                var ooChecked = $("#chkQuestions" + index).prop('checked');
+                if (Boolean(ooChecked)) {
+                	scoreP.questions[index] = parseFloat($("#chkQuestions" + index).val());
+                }
+                else {
+                	scoreP.questions[index] = 0;
+                }
+            });
+        	scoreP.questionsNotes = $('#questionsNotes').val().toString();
+
+        	$.each(scoreP.generalImpression, function (index, value) {
+            	var ooChecked = $("#chkGeneralImpression" + index).prop('checked');
+            	if (Boolean(ooChecked)) {
+            		scoreP.generalImpression[index] = parseFloat($("#chkGeneralImpression" + index).val());
+            	}
+            	else {
+            		scoreP.generalImpression[index] = 0;
+            	}
+            });
+        	scoreP.generalImpressionNotes = $('#generalImpressionNotes').val().toString();
+
+        	scoreP.miscellaneous		= $("#miscellaneous").val();
+        	if (scoreP.miscellaneous == "")
+        		scoreP.miscellaneous	= 0;
+        	scoreP.miscellaneousNotes	= $("#miscellaneousNotes").val();
+
+            //FD 2021.07.27 - ATA 2021  - Add Stage1 - BEGIN
+        	scoreP.stage1				= $("#stage1").val();
+        	if (scoreP.stage1 == "")
+        		scoreP.stage1			= 0;
+            //FD 2021.07.27 - ATA 2021  - Add Stage1 - END
+
+        	//FD 2021.09.12 - ATA 2021 - Add Section <Finals in Stage3> - BEGIN
+        	scoreP.finals = $("#finals").val();
+        	if (scoreP.finals == "")
+        		scoreP.finals = 0;
+        	//FD 2021.09.12 - ATA 2021 - Add Section <Finals in Stage3> _END
+
+        	scoreP.presentationNotes				= $("#presentationNotes").val();
+        	scoreP.totalPresentation				= $("#totalPresentation").val();
+
+        	//FD 2021.08.02 - ATA 2021 - Adding Stage2 - Add Section <Stage2> - BEGIN
+			//FDT - ATA 2023 - eliminato Business Figures - INIZIO
+			//scoreP.totalSt2BusinnesFigures = scoreP.Total(scoreP.st2BusinnesFigures);
+			//FDT - ATA 2023 - eliminato Business Figures - FINE
+
+			//FDT - ATA 2023 - aggiunto Financial Concept - INIZIO
+            scoreP.totalSt2FinConcept = scoreP.Total(scoreP.st2FinConcept);
+			//FDT - ATA 2023 - aggiunto Financial Concept - FINE
+			//FDT - ATA 2023 - aggiunto Financial KPIs & insights - INIZIO
+            scoreP.totalSt2FinKPIs = scoreP.Total(scoreP.st2FinKPIs);
+			//FDT - ATA 2023 - aggiunto Financial KPIs & insights - FINE
+			//FDT - ATA 2023 - eliminato Content e Investors - INIZIO
+			//scoreP.totalSt2Content = scoreP.Total(scoreP.st2Content);
+			//FDT - ATA 2023 - eliminato Content e Investors - FINE
+			scoreP.totalSt2DemonstrationAndDelivery = scoreP.Total(scoreP.st2DemonstrationAndDelivery);
+			//FDT - ATA 2023 - eliminato Content e Investors - INIZIO
+			//scoreP.totalSt2Investitors = scoreP.Total(scoreP.st2Investitors);
+			//FDT - ATA 2023 - eliminato Content e Investors - FINE
+        	//FD 2021.08.02 - ATA 2021 - Adding Stage2 - Add Section <Stage2> - END
+
+        	//FD 2021.08.02 - ATA 2021 - Modify Stage3 - BEGIN tolta parte di executive summary
+        	//scoreP.totalExecutiveSummary = scoreP.Total(scoreP.executiveSummary);
+        	scoreP.totalNovelty						= scoreP.Total(scoreP.novelty);
+        	scoreP.totalContent						= scoreP.Total(scoreP.content);
+        	scoreP.totalFinances					= scoreP.Total(scoreP.finances);
+        	scoreP.totalDeepDiveTopic = scoreP.Total(scoreP.deepDiveTopic);
+
+        	//FD 2021.08.02 - ATA 2021 - Modify Stage3 - Remove Sezione <DemonstrationAndStructure>
+        	//scoreP.totalDemonstrationAndStructure	= scoreP.Total(scoreP.demonstrationAndStructure);
+
+        	scoreP.totalDelivery					= scoreP.Total(scoreP.delivery);
+        	scoreP.totalQuestions					= scoreP.Total(scoreP.questions);
+        	scoreP.totalGeneralImpression			= scoreP.Total(scoreP.generalImpression);
+
+        	//FD 2021.08.02 - ATA 2021 - Modify Stage3 - Add Sezione <DemonstrationAndDelivery>
+        	scoreP.totalDemonstrationAndDelivery	= scoreP.Total(scoreP.demonstrationAndDelivery);
+
+            //FD 2021.07.27 - ATA 2021  - Add Stage1
+        	//scoreP.totalPresentation = scoreP.Total(
+			//	scoreP.totalExecutiveSummary, scoreP.totalNovelty, scoreP.totalContent,
+			//	scoreP.totalFinances, scoreP.totalDeepDiveTopic, scoreP.totalDemonstrationAndStructure,
+			//	scoreP.totalDelivery, scoreP.totalQuestions, scoreP.totalGeneralImpression, scoreP.miscellaneous,
+            //    scoreP.stage1
+			//);
+        	//FD 2021.08.02 - ATA 2021 - Modify Stage3 - BEGIN tolta parte di executive summary
+        	//scoreP.totalPresentation = scoreP.Total(scoreP.totalNovelty, scoreP.totalContent, scoreP.totalFinances, scoreP.totalDeepDiveTopic, scoreP.totalDemonstrationAndStructure, scoreP.totalDelivery, scoreP.totalQuestions, scoreP.totalGeneralImpression, scoreP.miscellaneous, scoreP.stage1, scoreP.totalDemonstrationAndDelivery);
+
+        	//FD 2021.08.02 - ATA 2021 - Modify Stage3 - Remove Sezione <DemonstrationAndStructure>
+        	//FD 2021.08.02 - ATA 2021 - Adding Stage2 - Add Section <Stage2>
+        	//scoreP.totalPresentation = scoreP.Total(scoreP.totalNovelty, scoreP.totalContent, scoreP.totalFinances, scoreP.totalDeepDiveTopic, scoreP.totalDelivery, scoreP.totalQuestions, scoreP.totalGeneralImpression, scoreP.miscellaneous, scoreP.stage1, scoreP.totalDemonstrationAndDelivery);
+        	//FD 2021.09.12 - ATA 2021 - Add Section <Finals in Stage3>
+        	//scoreP.totalPresentation = scoreP.Total(scoreP.totalNovelty, scoreP.totalContent, scoreP.totalFinances, scoreP.totalDeepDiveTopic, scoreP.totalDelivery,scoreP.totalQuestions, scoreP.totalGeneralImpression, scoreP.miscellaneous, scoreP.stage1, scoreP.totalDemonstrationAndDelivery,scoreP.totalSt2BusinnesFigures, scoreP.totalSt2Content, scoreP.totalSt2DemonstrationAndDelivery, scoreP.totalSt2Investitors);
+        	//FD 2021.09.12 - ATA 2021 - Add Section <Finals in Stage3>
+			//FDT - ATA 2023 - eliminato Business Figures,Content e Investors  - INIZIO
+			//scoreP.totalPresentation = scoreP.Total(scoreP.totalNovelty, scoreP.totalContent, scoreP.totalFinances, scoreP.totalDeepDiveTopic, scoreP.totalDelivery, scoreP.totalQuestions, scoreP.totalGeneralImpression, scoreP.miscellaneous, scoreP.stage1, scoreP.totalDemonstrationAndDelivery, scoreP.totalSt2BusinnesFigures, scoreP.totalSt2Content, scoreP.totalSt2DemonstrationAndDelivery, scoreP.totalSt2Investitors);
+			//FDT - ATA 2023 - eliminato Business Figures - FINE
+			//FDT - ATA 2023 - aggiunto Financial Concept, Financial KPIs & insights - INIZIO
+			scoreP.totalPresentation = scoreP.Total(scoreP.totalNovelty, scoreP.totalContent, scoreP.totalFinances, scoreP.totalDeepDiveTopic,
+				scoreP.totalDelivery, scoreP.totalQuestions, scoreP.totalGeneralImpression, scoreP.miscellaneous, scoreP.stage1,
+                scoreP.totalDemonstrationAndDelivery, scoreP.totalSt2FinConcept, scoreP.totalSt2FinKPIs,  /*scoreP.totalSt2Content,*/
+				scoreP.totalSt2DemonstrationAndDelivery /*,scoreP.totalSt2Investitors*/);
+			//FDT - ATA 2023 - aggiunto Financial Concept - FINE
+			//scoreP.totalPresentation = scoreP.Total(scoreP.totalNovelty,			scoreP.totalContent,			scoreP.totalFinances,						scoreP.totalDeepDiveTopic,	scoreP.totalDelivery,
+			//										scoreP.totalQuestions,			scoreP.totalGeneralImpression,	scoreP.miscellaneous,						scoreP.stage1,				scoreP.totalDemonstrationAndDelivery,
+			//										scoreP.totalSt2BusinnesFigures, scoreP.totalSt2Content,			scoreP.totalSt2DemonstrationAndDelivery,	scoreP.totalSt2Investitors,	scoreP.finals);
+
+        	//Event 2017 - Confirm requested when partial totals found to zero
+        	//FD 2021.08.02 - ATA 2021 - Modify Stage3 - BEGIN tolta parte di executive summary
+        	//if (scoreP.totalExecutiveSummary                == 0
+			//	|| scoreP.totalNovelty                      == 0
+			//	|| scoreP.totalContent                      == 0
+			//	|| scoreP.totalFinances                     == 0
+			//	|| scoreP.totalDeepDiveTopic                == 0
+			//	|| scoreP.totalDemonstrationAndStructure    == 0
+			//	|| scoreP.totalDelivery                     == 0
+			//	|| scoreP.totalQuestions                    == 0
+        	//	|| scoreP.totalGeneralImpression            == 0) {
+        	if (scoreP.totalNovelty							== 0
+				|| scoreP.totalContent						== 0
+				|| scoreP.totalFinances						== 0
+				|| scoreP.totalDeepDiveTopic == 0
+
+        		//FD 2021.08.02 - ATA 2021 - Modify Stage3 - Add Sezione <DemonstrationAndDelivery>
+				|| scoreP.totalDemonstrationAndDelivery == 0
+
+        		//FD 2021.08.02 - ATA 2021 - Modify Stage3 - Remove Sezione <DemonstrationAndStructure>
+				//|| scoreP.totalDemonstrationAndStructure	== 0
+				|| scoreP.totalDelivery						== 0
+				|| scoreP.totalQuestions					== 0
+				|| scoreP.totalGeneralImpression == 0) {
+
+                var someTotalDetails = "";
+
+        		//FD 2021.08.02 - ATA 2021 - Modify Stage3 - BEGIN tolta parte di executive summary
+                //someTotalDetails += (scoreP.totalExecutiveSummary == 0) ? "Executive Summary" : "";
+                someTotalDetails += (scoreP.totalNovelty					== 0)		? ((someTotalDetails.length > 0) ? " - " : "") + "Novelty" : "";
+                someTotalDetails += (scoreP.totalContent					== 0)		? ((someTotalDetails.length > 0) ? " - " : "") + "Content" : "";
+                someTotalDetails += (scoreP.totalFinances					== 0)		? ((someTotalDetails.length > 0) ? " - " : "") + "Finances" : "";
+                someTotalDetails += (scoreP.totalDeepDiveTopic				== 0)		? ((someTotalDetails.length > 0) ? " - " : "") + "Deep Dive Topic" : "";
+
+        		//FD 2021.08.02 - ATA 2021 - Modify Stage3 - Add Sezione <DemonstrationAndDelivery>
+                someTotalDetails += (scoreP.totalDemonstrationAndDelivery	== 0)		? ((someTotalDetails.length > 0) ? " - " : "") + "Demonstration &amp; Delivery" : "";
+
+        		//FD 2021.08.02 - ATA 2021 - Modify Stage3 - Remove Sezione <DemonstrationAndStructure>
+                //someTotalDetails += (scoreP.totalDemonstrationAndStructure == 0) ? ((someTotalDetails.length > 0) ? " - " : "") + "Demonstration &amp; Structure" : "";
+
+                someTotalDetails += (scoreP.totalDelivery == 0)						? ((someTotalDetails.length > 0) ? " - " : "") + "Structure" : "";
+                someTotalDetails += (scoreP.totalQuestions == 0)					? ((someTotalDetails.length > 0) ? " - " : "") + "Questions" : "";
+                someTotalDetails += (scoreP.totalGeneralImpression == 0)			? ((someTotalDetails.length > 0) ? " - " : "") + "General Impression" : "";
+
+                var someTotalsAreMissing = "Warning, some scores or data (" + someTotalDetails + ") have not been entered. Proceed anyway?";
+                if (!confirm(someTotalsAreMissing)) {
+                    return;
+                }
+            }
+
+            //SERVER SIDE ONLY: the total score (automatically calculated) can be modified by the user - req.Ciadamidaro Set 2015
+            //So add total as parameter
+        	if ((Number(scoreP.scoreid) == -1) || (Number(scoreP.id) == -1)) {
+                //Insert Mode
+        		insertRecord_scores_presentation(eventid, carid, scoreP);
+                }
+            else {
+        		updateRecord_scores_presentation(scoreP);
+            }
+            //backToScores();
+        });
+
+		//FD 2021.08.02 - ATA 2021 - Modify Stage3 - BEGIN tolta parte di executive summary
+		//$("#executivesummary-anchor").click();
+		$("#stage1-anchor").click();
+    });
+
+    function isRadioButtonChecked(name)
+    {
+    	var oo = $("input:radio[name='" + name + "']");
+    	return (oo.is(":checked"));
+    	//{$(oo.first().attr('id')).attr('checked', 'checked').trigger('click');}
+    }
+</script>

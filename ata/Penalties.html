@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+    <head title="Penalites">
+        <title>ATA - Penalties</title>
+
+        <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+        <link rel="icon" href="/favicon.ico" type="image/x-icon">
+
+        <!--Import materialize.css-->
+        <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="all" />
+        <link type="text/css" rel="stylesheet" href="css/materialdesignicons.min.css" media="all" />    
+
+        <!--Let browser know website is optimized for mobile-->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+        <!--Import jQuery before materialize.js-->
+        <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+        <script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
+        <script type="text/javascript" src="js/materialize.min.js"></script>
+		<script type="text/javascript" src="js/stupidtable.min.js"> </script>
+		<script type="text/javascript" src="js/scoresPrototypes.js"> </script>
+        <script type="text/javascript" src="js/utilities.js"></script>
+        <script type="text/javascript" src="js/mbox.js"></script>
+
+        <script type="text/javascript" src="js/SQLiteDirectives.js"> </script>
+        <script type="text/javascript" src="js/WSDirectives.js"> </script>
+
+        <link type="text/css" rel="stylesheet" href="css/ATA.css" media="screen,projection" />
+        <link type="text/css" rel="stylesheet" href="css/mbox.css" media="screen,projection" />
+
+        <script language="javascript" type="text/javascript">
+
+            function calcPenalties() {
+                var body = $("#tbodyPenalties tr");
+                var data = [];
+                body.each(function (i, m) {
+
+                    var Documents = $(this).find(".documents").val();
+                    var lack = $(this).find(".lackOfSef").val();
+                    var DriverMeeting = $(this).find(".driverMeeting").val();
+                    var DriverPenalties = $(this).find(".driverPenalties").val();
+                    var PostEndurance = $(this).find(".postEndurance").val();
+                    var tot = parseInt(Documents) + parseInt(lack) + parseInt(DriverMeeting) + parseInt(DriverPenalties) + parseInt(PostEndurance);
+                    var PenaltiesNotes = $(this).find(".penaltiesnotes").val();
+                    $(this).find(".totalPenalties").val(tot);
+
+                });
+            }
+
+        </script>
+
+        <style type="text/css">
+            table.hoverable tbody tr:hover {
+                background-color: #D4E2FD;
+            }
+
+            #tbodyPenalties tr td {
+                padding: 5px 8px;
+            }
+
+            #tbodyPenalties tr td input {
+                text-align: center;
+            }
+
+            .carNo {
+                font-size: 1rem;
+            }
+
+            .teamName {
+                font-size: 1rem;
+            }
+        </style>
+    </head>
+    <body>
+        <main>
+            <div>
+                <table id="tPenalties" class="bordered striped centered hoverable stupidtable-sorted" style="width: 98% !important; margin-left:auto; margin-right: auto;">
+                    <thead>
+                        <tr>
+                            <th>&nbsp;</th>
+                            <th style="cursor:default" data-sort="string" data-field="type" width="100">Car No.</th>
+                            <th style="cursor:default" data-sort="string" data-field="TeamName" width="220">Team Name</th>
+                            <th style="cursor:default" data-sort="string" data-field="Documents">Documents</th>
+                            <th style="cursor:default" data-sort="string" data-field="SEF">Lack or Incomplete SEF</th>
+                            <th style="cursor:default" data-sort="string" data-field="DriverMeetingAttendance">Driver Meeting Attendance</th>
+                            <th style="cursor:default" data-sort="string" data-field="DriverPenalties">Driver Penalties</th>
+                            <th style="cursor:default" data-sort="string" data-field="PostEnduranceScrutineering">Post Endurance Scrutineering</th>
+                            <th style="cursor:default" data-sort="string" data-field="TotalPenalties"> Total Penalties </th>
+                            <th style="cursor:default" data-sort="string" data-field="Notes">Notes</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="tbodyPenalties"></tbody>
+                </table>
+            </div>
+        </main>
+    </body>
+</html>
+
+<script language="javascript" type="text/javascript">
+    $(document).ready(function () {
+        Body.navBar();
+        Body.spinnerSignal();
+        Body.saveButton('WS_SavePenalties', 'mdi-content-save');
+
+        pageInitializeNavBar('Penalties');
+
+        Body.footer();
+
+        //initDatabaseToLastVersion();
+        if (!isATablet()) {
+            WS_ShowPenalties();
+        }
+    });
+</script>

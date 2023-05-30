@@ -1,0 +1,471 @@
+﻿<!DOCTYPE html>
+<html>
+    <head title="SCORESBYCARDESIGN1E">
+        <title>ATA - Design1E Scores</title>
+
+        <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+        <link rel="icon" href="/favicon.ico" type="image/x-icon">
+
+        <!--Import materialize.css-->
+        <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection" />
+        <link type="text/css" rel="stylesheet" href="css/materialdesignicons.min.css" media="all" />
+
+        <!--Let browser know website is optimized for mobile-->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+        <!--Import jQuery before materialize.js-->
+        <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+        <script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
+        <script type="text/javascript" src="js/materialize.min.js"></script>
+		<script type="text/javascript" src="js/stupidtable.min.js"> </script>
+		<script type="text/javascript" src="js/scoresPrototypes.js"> </script>
+        <script type="text/javascript" src="js/utilities.js"></script>
+        <script type="text/javascript" src="js/mbox.js"></script>
+
+        <script type="text/javascript" src="js/SQLiteDirectives.js"> </script>
+        <script type="text/javascript" src="js/WSDirectives.js"></script>
+
+        <link type="text/css" rel="stylesheet" href="css/ATA.css" media="screen,projection" />
+        <link type="text/css" rel="stylesheet" href="css/mbox.css" media="screen,projection" />
+
+        <script language="javascript" type="text/javascript">
+            var classid = sessionStorage.scoresbycar_classid;
+            var eventid = sessionStorage.scoresbycar_eventid;
+            var carid = sessionStorage.scoresbycar_carid;
+            var scoreid = sessionStorage.scoresbycar_scoreid;
+            var maximumscore = (Number(sessionStorage.scoresbycar_maximumscore) == 0) ? "150" : sessionStorage.scoresbycar_maximumscore;
+            var totalscore = sessionStorage.scoresbycar_totalscore;
+            var carno = sessionStorage.carno;
+
+            function backToScores() {
+                event.preventDefault();
+                parent.$.fancybox.close();
+            }
+        </script>
+    </head>
+
+    <body>
+
+        <!--//Event 2017 - Hide fancybox title - Info are display in the top of the window-->
+        <!--<div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
+            <a class="btn-floating btn-large green" style="margin-right: 5px;" href="#" id="btnSave"><i class="large mdi mdi-content-save" title="Save"></i></a>
+            <a style="margin-right: 45px;" href="#"></a>
+            <a class="btn-floating btn-large red" href="#" onclick="backToScores();" id="btnBack"><i class="large mdi mdi-close" title="Close"></i></a>     
+            <div class="chip fixed-action-btn white black-text" style="padding:1px; border:dashed red">
+                <span id="chiptotalpoints"></span>
+            </div>
+        </div>-->
+        <div id="div_scores">
+            <input type="hidden" name="id" id="id" />
+            <input type="hidden" name="scoreid" id="scoreid" />
+
+            <div class="row">
+                <div class="col l5 m5 s12">
+                    <div class="collection">
+                        <a class="left-menu-action" id="suspension-anchor">Suspensions <span class="points badge badge-green" id="suspensionBadge"></span></a>
+                        <a class="left-menu-action" id="framebody-anchor">Frame/Body/Aero <span class="points badge badge-green" id="framebodyBadge"></span></a>
+                        <a class="left-menu-action" id="tractive-anchor">Tractive/Drive/Recovery System <span class="points badge badge-green" id="tractiveBadge"></span></a>
+                        <a class="left-menu-action" id="cockpit-anchor">Cockpit/Controls/Brakes/Safety <span class="points badge badge-green" id="cockpitBadge"></span></a>
+                        <a class="left-menu-action" id="systemmanag-anchor">Systems Management/Integration <span class="points badge badge-green" id="systemmanagBadge"></span></a>
+                        <a class="left-menu-action" id="manufact-anchor">Manufacturability/Serviceability <span class="points badge badge-green" id="manufactBadge"></span></a>
+                        <a class="left-menu-action" id="aesthetics-anchor">Aesthetics/Style <span class="points badge badge-green" id="aestheticsBadge"></span></a>
+                        <a class="left-menu-action" id="creativity-anchor">Creativity <span class="points badge badge-green" id="creativityBadge"></span></a>
+                        <a class="left-menu-action" id="miscellaneous-anchor">Miscellaneous <span class="points badge badge-green" id="miscellaneousBadge"></span></a>
+                        <a class="collection-header">
+                            <div class="row">
+                                <div class="col s12">
+                                    <h5 class="navbar-ata-backgrounded-1 white-text" style="padding:4px;">Total</h5>
+                                    <div class="divider"></div>
+                                    <div class="row">
+                                        <div class="col l4 m6 s6">
+                                            <input placeholder="Car Weight" id="carweight" type="number" class="validate" />
+                                            <label class="active ata-green-text" for="carweight">Car Weight</label>
+                                        </div>
+                                        <div class="col l8 m6 s6">
+                                            <input placeholder="Overall Design Score" id="overall" type="number" class="validate right-align" readonly="readonly" />
+                                            <label class="active right ata-green-text" for="overall" id="labeloverall">____/150</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col l7 m7 s12">
+                    <div id="suspension-tab" class="card transparent">
+                        <ul class="collection" style="border:none;">
+                            <li class="collection-item " style="width:auto;height:auto">
+                                <h6 class="ata-red-text">Suspensions</h6>
+                                <div class="secondary-content">
+                                    <span class="points-label">Points</span>
+                                    <label class="active right ata-red-text" for="suspension">____/25</label>
+                                    <input placeholder="Suspension" id="suspension" type="number" class="validate" min="0" max="25" />
+                                </div>
+                                <blockquote>
+                                    <span class="ata-green-text">
+                                        ° Design<br />
+                                        ° Build<br />
+                                        ° Refinement/Validation<br />
+                                        ° Understanding
+                                    </span>
+                                    <br /><br />
+                                    Tires, wheels, hubs, uprights, control arms, steering linkage, springs, dampers, anti-roll bars,
+                                    geometry, kinematics, vehicle dynamics. Selection and use of materials.
+                                </blockquote>
+                                <div class="divider"></div>
+                                <div>
+                                    <textarea id="suspensionnotes" class="materialize-textarea"></textarea>
+                                    <label for="suspensionnotes">Suspension Notes</label>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div id="framebody-tab" class="card transparent">
+                        <ul class="collection" style="border:none;">
+                            <li class="collection-item" style="width:auto;height:auto">
+                                <h6 class="ata-red-text">Frame/Body/Aero</h6>
+                                <div class="secondary-content">
+                                    <span class="points-label">Points</span>
+                                    <label class="active right ata-red-text" for="framebody">____/25</label>
+                                    <input placeholder="Frame/Body/Aero" id="framebody" type="number" class="validate" min="0" max="25" />
+                                </div>
+                                <blockquote>
+                                    <span class="ata-green-text">
+                                        ° Design<br />
+                                        ° Build<br />
+                                        ° Refinement/Validation<br />
+                                        ° Understanding
+                                    </span>
+                                    <br /><br />
+                                    Primary structure/tub/tubing, body, and aerodynamic/ ductwork systems. Rigidity and stress-relief methods.
+                                    <br />Load analyses. Fasteners. Selection and use of materials.
+                                </blockquote>
+                                <div class="divider"></div>
+                                <div>
+                                    <textarea id="framebodynotes" class="materialize-textarea"></textarea>
+                                    <label for="framebodynotes">Frame/Body/Aero Notes</label>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div id="tractive-tab" class="card transparent">
+                        <ul class="collection" style="border:none;">
+                            <li class="collection-item" style="width:auto;height:auto">
+                                <h6 class="ata-red-text">Tractive/Drive/Recovery System</h6>
+                                <div class="secondary-content">
+                                    <span class="points-label">Points</span>
+                                    <label class="active right ata-red-text" for="tractive">____/25</label>
+                                    <input placeholder="Tractive/Drive/Recovery System" id="tractive" type="number" class="validate" min="0" max="25" />
+                                </div>
+                                <blockquote>
+                                    <span class="ata-green-text">
+                                        ° Design<br />
+                                        ° Build<br />
+                                        ° Refinement/Validation<br />
+                                        ° Understanding
+                                    </span>
+                                    <br /><br />
+                                    Accumulator(s), Power conversion, Motor/Controller selection/design, Wiring considerations, Transmission.
+                                    <br />Torque vectoring. Gearing. Regenerative braking. Selection/use of materials.
+                                </blockquote>
+                                <div class="divider"></div>
+                                <div>
+                                    <textarea id="tractivenotes" class="materialize-textarea"></textarea>
+                                    <label for="tractivenotes">Tractive/Drive/Recovery System Notes</label>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div id="cockpit-tab" class="card transparent">
+                        <ul class="collection" style="border:none;">
+                            <li class="collection-item" style="width:auto;height:auto">
+                                <h6 class="ata-red-text">Cockpit/Controls/Brakes/Safety</h6>
+                                <div class="secondary-content">
+                                    <span class="points-label">Points</span>
+                                    <label class="active right ata-red-text" for="cockpit">____/25</label>
+                                    <input placeholder="Cockpit/Controls/Brakes/Safety" id="cockpit" type="number" class="validate" min="0" max="25" />
+                                </div>
+                                <blockquote>
+                                    <span class="ata-green-text">
+                                        ° Design<br />
+                                        ° Build<br />
+                                        ° Refinement/Validation<br />
+                                        ° Understanding
+                                    </span>
+                                    <br /><br />
+                                    Driver interfaces, seat, belts, steering wheel, steering column, control panel/dash, cockpit sizing & protection,
+                                    driver comfort/ease of control, pedals, braking system.
+                                    <br />Is this car as safe as it can be? Selection and use of materials.
+                                </blockquote>
+                                <div class="divider"></div>
+                                <div>
+                                    <textarea id="cockpitnotes" class="materialize-textarea"></textarea>
+                                    <label for="cockipitnotes">Cockpit Notes</label>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div id="systemmanag-tab" class="card transparent">
+                        <ul class="collection" style="border:none;">
+                            <li class="collection-item" style="width:auto;height:auto">
+                                <h6 class="ata-red-text">Systems Management/Integration</h6>
+                                <div class="secondary-content">
+                                    <span class="points-label">Points</span>
+                                    <label class="active right ata-red-text" for="systemmanag">____/20</label>
+                                    <input placeholder="Systems Management/Integration" id="systemmanag" type="number" class="validate" min="0" max="20" />
+                                </div>
+                                <blockquote>
+                                    <span class="ata-green-text">
+                                        ° Packaging<br />
+                                        ° Electronics/power mgmt<br />
+                                        ° Team Organization<br />
+                                        ° Analysis methods/tools<br />
+                                    </span>
+                                    <br /><br />
+                                    Design integration, plumbing/wiring, power management, schematics. Are sensitive items protected?
+                                    <br />Proper use of data? Do systems compliment another?
+                                    <br />Are progressive project management/ organization methods evident?
+                                    <br />Special communication tools utilized? What testing/development tools have been used or created?
+                                </blockquote>
+                                <div class="divider"></div>
+                                <div>
+                                    <textarea id="systemmanagnotes" class="materialize-textarea"></textarea>
+                                    <label for="systemmanagnotes">Systems Management/Integration Notes</label>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div id="manufact-tab" class="card transparent">
+                        <ul class="collection" style="border:none;">
+                            <li class="collection-item" style="width:auto;height:auto">
+                                <h6 class="ata-red-text">Manufacturability/Serviceability</h6>
+                                <div class="secondary-content">
+                                    <span class="points-label">Points</span>
+                                    <label class="active right ata-red-text" for="manufact">____/15</label>
+                                    <input placeholder="Manufacturability/Serviceability" id="manufact" type="number" class="validate" min="0" max="15" />
+                                </div>
+                                <blockquote>
+                                    Ease of repair? Sub-systems accessibility, parts interchangeability, manufacturing complexity?
+                                    <br />Have fasteners been standardized?
+                                    <br />Are special tools required to diagnose/service vehicle?
+                                </blockquote>
+                                <br /><br /><br />
+                                <div class="divider"></div>
+                                <div>
+                                    <textarea id="manufactnotes" class="materialize-textarea"></textarea>
+                                    <label for="manufactnotes">Manufacturability/Serviceability Notes</label>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div id="aesthetics-tab" class="card transparent">
+                        <ul class="collection" style="border:none;">
+                            <li class="collection-item" style="width:auto;height:auto">
+                                <h6 class="ata-red-text">Aesthetics/Style</h6>
+                                <div class="secondary-content">
+                                    <span class="points-label">Points</span>
+                                    <label class="active right ata-red-text" for="aesthetics">____/5</label>
+                                    <input placeholder="Aesthetics/Style" id="aesthetics" type="number" class="validate" min="0" max="5" />
+                                </div>
+                                <blockquote>
+                                    Attractive overall appearance? Is car clean, reflective of professional work?
+                                    <br />Does car instill pride in team, or apologies?
+                                </blockquote>
+                                <br /><br /><br />
+                                <div class="divider"></div>
+                                <div>
+                                    <textarea id="aestheticsnotes" class="materialize-textarea"></textarea>
+                                    <label for="aestheticsnotes">Aesthetics/Style Notes</label>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div id="creativity-tab" class="card transparent">
+                        <ul class="collection" style="border:none;">
+                            <li class="collection-item" style="width:auto;height:auto">
+                                <h6 class="ata-red-text">Creativity</h6>
+                                <div class="secondary-content">
+                                    <span class="points-label">Points</span>
+                                    <label class="active right ata-red-text" for="creativity">____/10</label>
+                                    <input placeholder="Creativity" id="creativity" type="number" class="validate" min="0" max="10" />
+                                </div>
+                                <blockquote>
+                                    Will this car cause a rules change? Have the judges learned something new?
+                                    <br />On rare occasions, creative or innovative design may merit special points.
+                                </blockquote>
+                                <br /><br /><br />
+                                <div class="divider"></div>
+                                <div>
+                                    <textarea id="creativitynotes" class="materialize-textarea"></textarea>
+                                    <label for="creativitynotes">Creativity Notes</label>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div id="miscellaneous-tab" class="card transparent">
+                        <ul class="collection" style="border:none;">
+                            <li class="collection-item" style="width:auto;height:auto">
+                                <h6 class="ata-red-text">Miscellaneous</h6>
+                                <div class="secondary-content">
+                                    <span class="points-label">Points</span>
+                                    <label class="active right ata-red-text" for="miscellaneous">____/(+-)150</label>
+                                    <input placeholder="Miscellaneous" id="miscellaneous" type="number" class="validate" min="-150" max="150" />
+                                </div>
+                                <blockquote>
+                                    Do you want add or remove points or write additional comments?
+                                    <br />Enter here below.
+                                </blockquote>
+                                <br /><br /><br />
+                                <div class="divider"></div>
+                                <div>
+                                    <textarea id="miscellaneousnotes" class="materialize-textarea"></textarea>
+                                    <label for="miscellaneousnotes">Miscellaneous Notes</label>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
+<script language="javascript" type="text/javascript">
+    $(document).ready(function () {
+        Body.navBarScoresAdv('Design', 'backToScores');
+        Body.spinnerSignal();
+
+        pageInitializeTitleOnly('Scores - Design Event');
+
+        //initDatabaseToLastVersion();
+
+        //Event 2017 - Hide fancybox title - Info are display in the top of the window
+        $("#carno").text(carno);
+
+        if (needToChangeLayoutForTablet("#div_scores"), TabletScenarios.Design.scenario) {
+        	$("#cockpit-anchor").html(TabletTitles.Design1E.cockpit + '<span class="points badge badge-green" id="cockpitBadge"></span>');
+        	$("#systemmanag-anchor").html(TabletTitles.Design1E.systemmanag + '<span class="points badge badge-green" id="systemmanagBadge"></span>');
+        	$("#manufact-anchor").html(TabletTitles.Design1E.manufact + '<span class="points badge badge-green" id="manufactBadge"></span>');
+        }
+
+        waitOFF();
+
+        onlyNumbersWithMinMax("#suspension");
+        onlyNumbersWithMinMax("#framebody");
+        onlyNumbersWithMinMax("#tractive");
+        onlyNumbersWithMinMax("#cockpit");
+        onlyNumbersWithMinMax("#systemmanag");
+        onlyNumbersWithMinMax("#manufact");
+        onlyNumbersWithMinMax("#aesthetics");
+        onlyNumbersWithMinMax("#creativity");
+        onlyNumbersWithMinMax("#miscellaneous");
+        onlyNumbers("#carweight");
+
+        $('input[min]').each(function (index) {
+            $(this).focusout(function () {
+
+                var totalscore =
+                Number($("#suspension").val())
+                + Number($("#framebody").val())
+                + Number($("#tractive").val())
+                + Number($("#cockpit").val())
+                + Number($("#systemmanag").val())
+                + Number($("#manufact").val())
+                + Number($("#aesthetics").val())
+                + Number($("#creativity").val())
+                + Number($("#miscellaneous").val())
+                ;
+
+                //Event 2017 - Display partial totals on section title
+                $("#suspensionBadge").html($("#suspension").val());
+                $("#framebodyBadge").html($("#framebody").val());
+                $("#tractiveBadge").html($("#tractive").val());
+                $("#cockpitBadge").html($("#cockpit").val());
+                $("#systemmanagBadge").html($("#systemmanag").val());
+                $("#manufactBadge").html($("#manufact").val());
+                $("#aestheticsBadge").html($("#aesthetics").val());
+                $("#creativityBadge").html($("#creativity").val());
+                $("#miscellaneousBadge").html($("#miscellaneous").val());
+
+                $("#overall").val(totalscore);
+                $("#chiptotalpoints").text(' Overall Design Score : ' + totalscore + '/' + maximumscore + ' ').css({ 'font-weight': 'bold' });
+            });
+        });
+
+        $("#overall").val(totalscore);
+        $("#labeloverall").html('Overall Design Score ____/' + maximumscore);
+        $("#chiptotalpoints").text(' Overall Design Score : ' + totalscore + '/' + maximumscore + ' ').css({ 'font-weight': 'bold' });
+
+        //SERVER SIDE ONLY: the total score (automatically calculated) can be modified by the user - req.Ciadamidaro Set 2015
+        if (!isATablet()) {
+            $("#overall").removeAttr('readonly');
+            onlyNumbers("#overall");
+        }
+
+        showRecords_scores_design1E(scoreid);
+
+        $("#btnSave").click(function () {
+
+            var id = $("#id").val();
+            var scoreid = $("#scoreid").val();
+
+            var suspension = $("#suspension").val();
+            var framebodyaero = $("#framebody").val();
+            var tractivedriverecoverysystem = $("#tractive").val();
+            var cockpitcontrolsbrakessafety = $("#cockpit").val();
+            var systemmanagementintegration = $("#systemmanag").val();
+            var manufacturabilityserviceability = $("#manufact").val();
+            var aestheticsstyle = $("#aesthetics").val();
+            var creativity = $("#creativity").val();
+            var carweight = $("#carweight").val();
+
+            var overall = $("#overall").val();
+
+            var suspensionnotes = $("#suspensionnotes").val();
+            var framebodyaeronotes = $("#framebodynotes").val();
+            var tractivedriverecoverysystemnotes = $("#tractivenotes").val();
+            var cockpitcontrolsbrakessafetynotes = $("#cockpitnotes").val();
+            var systemmanagementintegrationnotes = $("#systemmanagnotes").val();
+            var manufacturabilityserviceabilitynotes = $("#manufactnotes").val();
+            var aestheticsstylenotes = $("#aestheticsnotes").val();
+            var creativitynotes = $("#creativitynotes").val();
+
+            var miscellaneous = $("#miscellaneous").val();
+            var miscellaneousnotes = $("#miscellaneousnotes").val();
+
+            //Event 2017 - Confirm requested when partial totals found to zero
+            //if (suspension == 0 || framebodyaero == 0 || tractivedriverecoverysystem == 0 || cockpitcontrolsbrakessafety == 0 || systemmanagementintegration == 0 || manufacturabilityserviceability == 0 || aestheticsstyle == 0 || creativity == 0 || miscellaneous == 0 || carweight == 0) {
+            if (suspension == 0 || framebodyaero == 0 || tractivedriverecoverysystem == 0 || cockpitcontrolsbrakessafety == 0 || systemmanagementintegration == 0 || manufacturabilityserviceability == 0 || aestheticsstyle == 0 || creativity == 0) {
+                var someTotalDetails = "";
+                someTotalDetails += (suspension == 0) ? "Suspension" : "";
+                someTotalDetails += (framebodyaero == 0) ? ((someTotalDetails.length > 0) ? " - " : "") + "Frame/Body/Aero" : "";
+                someTotalDetails += (tractivedriverecoverysystem == 0) ? ((someTotalDetails.length > 0) ? " - " : "") + "Tractive/Drive/Recovery System" : "";
+                someTotalDetails += (cockpitcontrolsbrakessafety == 0) ? ((someTotalDetails.length > 0) ? " - " : "") + "Cockpit/Controls/Brakes/Safety" : "";
+                someTotalDetails += (systemmanagementintegration == 0) ? ((someTotalDetails.length > 0) ? " - " : "") + "Systems Management/Integration" : "";
+                someTotalDetails += (manufacturabilityserviceability == 0) ? ((someTotalDetails.length > 0) ? " - " : "") + "Manufacturability/Serviceability" : "";
+                someTotalDetails += (aestheticsstyle == 0) ? ((someTotalDetails.length > 0) ? " - " : "") + "Aesthetics/Style" : "";
+                someTotalDetails += (creativity == 0) ? ((someTotalDetails.length > 0) ? " - " : "") + "Creativity" : "";
+                //someTotalDetails += (miscellaneous == 0) ? ((someTotalDetails.length > 0) ? " - " : "") + "Miscellaneous" : "";
+                //someTotalDetails += (carweight == 0) ? ((someTotalDetails.length > 0) ? " - " : "") + "Car Weight" : "";
+
+                var someTotalsAreMissing = "Warning, some scores o data (" + someTotalDetails + ") have not been entered. Proceed anyway?";
+                if (!confirm(someTotalsAreMissing)) {
+                    return;
+                }
+            }
+
+            //SERVER SIDE ONLY: the total score (automatically calculated) can be modified by the user - req.Ciadamidaro Set 2015
+            //So add total as parameter
+            if ((Number(scoreid) == -1) || (Number(id) == -1)) {
+                //Insert Mode
+                insertRecord_scores_design1E(eventid, carid, scoreid, suspension, framebodyaero, tractivedriverecoverysystem, cockpitcontrolsbrakessafety, systemmanagementintegration, manufacturabilityserviceability, aestheticsstyle, creativity, carweight, overall, suspensionnotes, framebodyaeronotes, tractivedriverecoverysystemnotes, cockpitcontrolsbrakessafetynotes, systemmanagementintegrationnotes, manufacturabilityserviceabilitynotes, aestheticsstylenotes, creativitynotes, miscellaneous, miscellaneousnotes);
+            }
+            else {
+                updateRecord_scores_design1E(scoreid, suspension, framebodyaero, tractivedriverecoverysystem, cockpitcontrolsbrakessafety, systemmanagementintegration, manufacturabilityserviceability, aestheticsstyle, creativity, carweight, overall, suspensionnotes, framebodyaeronotes, tractivedriverecoverysystemnotes, cockpitcontrolsbrakessafetynotes, systemmanagementintegrationnotes, manufacturabilityserviceabilitynotes, aestheticsstylenotes, creativitynotes, miscellaneous, miscellaneousnotes);
+            }
+
+            //backToScores();
+        });
+
+        $("#suspension-anchor").click();
+    });
+</script>

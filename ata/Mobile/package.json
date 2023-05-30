@@ -1,0 +1,17 @@
+{
+  "name": "it.polimatica.ata",
+  "version": "0.0.1",
+  "displayName": "Formula ATA",
+  "cordova": {
+    "platforms": [
+      "android"
+    ],
+    "plugins": {
+      "cordova-plugin-whitelist": {}
+    }
+  },
+  "dependencies": {
+    "cordova-android": "^6.2.3",
+    "cordova-plugin-whitelist": "1"
+  }
+}

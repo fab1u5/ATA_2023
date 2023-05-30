@@ -1,0 +1,258 @@
+﻿<!DOCTYPE html>
+<html>
+    <head title="Events">
+        <title>ATA - Events</title>
+
+        <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+        <link rel="icon" href="/favicon.ico" type="image/x-icon">
+
+        <!--Import materialize.css-->
+        <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection" />
+        <link type="text/css" rel="stylesheet" href="css/materialdesignicons.min.css" media="all" />        
+
+        <!--Let browser know website is optimized for mobile-->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+        <!--Import jQuery before materialize.js-->
+        <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+        <script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
+        <script type="text/javascript" src="js/materialize.min.js"></script>
+		<script type="text/javascript" src="js/stupidtable.min.js"> </script>
+		<script type="text/javascript" src="js/scoresPrototypes.js"> </script>
+        <script type="text/javascript" src="js/utilities.js"></script>
+        <script type="text/javascript" src="js/mbox.js"></script>
+
+        <script type="text/javascript" src="js/SQLiteDirectives.js"> </script>
+        <script type="text/javascript" src="js/WSDirectives.js"> </script>
+
+        <link type="text/css" rel="stylesheet" href="css/ATA.css" media="screen,projection" />
+        <link type="text/css" rel="stylesheet" href="css/mbox.css" media="screen,projection" />
+
+        <script language="javascript" type="text/javascript">
+            function endurance_otherFields() {
+                var eventname = $("select#eventname :selected").text();
+                if (eventname.toLowerCase().indexOf('endurance') != -1) {
+                    //Show more parameters
+                    getTotalLapEndurance();
+                    getLapLenghtEndurance();
+                    getConsumptionMaxEndurance();
+                    $("#endurancefields").show();
+                }
+                else {
+                    //Hide
+                    $("#endurancefields").hide();
+                }
+            }
+
+            function endurance_otherFields_update() {
+                if ($('#endurancefields').is(':visible')) {
+                    var totallaps = $("#totallaps").val();
+                    var lapslength = $("#lapslength").val();
+                    var consumptionmax = $("#consumptionmax").val();
+                    set_endurance_settings(totallaps, lapslength, consumptionmax);
+                }
+            }
+
+            function eventname_changed() {
+                endurance_otherFields();
+            }
+
+            function eventtype_changed() {
+                showRecords_events_eventsnames();
+            }
+
+            function scoretypenumeric_changed() {
+                if ($('#scoretypenumeric').prop('checked'))
+                {
+                    $('#maximumscore').prop("disabled", false);
+                    $('#maximumscore').toggleClass("disabled", false);
+                }
+                else
+                {
+                    $('#maximumscore').prop("disabled", true);
+                    $('#maximumscore').toggleClass("disabled", true);
+                }
+            }
+
+            function addRecord() {
+                resetForm_events();
+
+                enableButton("#btnInsertEvent");
+                disableButton("#btnUpdateEvent");
+
+                openModalDialog('#modalEdit');
+            }
+
+            function addRecord_Proceed() {
+                var eventtypeid = $("#eventtype").val().toString();
+                var eventnameid = $("#eventname").val().toString();
+                var description = $("#description").val().toString();
+                var scoretypenumeric = $("#scoretypenumeric").prop('checked');
+                var maximumscore = $("#maximumscore").val().toString();
+
+                if ((eventnameid.length > 0) && (eventtypeid.length > 0)) {
+
+                    if ((scoretypenumeric) && (maximumscore.length == 0)) {
+                        ataToast("Please enter Maximum Score");
+                        return;
+                    }                    
+                    insertRecord_events();
+                    closeModalDialog('#modalEdit');
+                }
+                else
+                    ataToast("Please enter value in all fields");
+            }
+
+            function editRecord(i) {
+                disableButton("#btnInsertEvent");
+                enableButton("#btnUpdateEvent");
+                loadRecord_events(i);
+                openModalDialog('#modalEdit');
+            }
+
+            function editRecord_Proceed() {
+
+                var eventtypeid = $("#eventtype").val().toString();
+                var eventnameid = $("#eventname").val().toString();
+                var description = $("#description").val().toString();
+                var scoretypenumeric = $("#scoretypenumeric").prop('checked');
+                var maximumscore = $("#maximumscore").val().toString();
+
+                if ((eventnameid.length > 0) && (eventtypeid.length > 0)) {
+                    if ((scoretypenumeric) && (maximumscore.length == 0)) {
+                        ataToast("Please enter Maximum Score");
+                        return;
+                    }
+                    updateRecord_events();
+                    closeModalDialog('#modalEdit');
+                }
+                else
+                    ataToast("Please enter value in all fields");
+            }
+
+            function deleteRecord(i) {
+                mbox.confirm('Are you sure to delete the selected item?', function (yes) {
+                    if (yes) {
+                        deleteRecord_events(i);
+                        closeModalDialog('#modalEdit');
+                        ataToast("Event removed successfully");
+                    }
+                })
+            }
+
+            function onCloseModal() {
+                closeModalDialog('#modalEdit');
+            }
+
+        </script>
+    </head>
+
+    <body>
+        <main>
+            <!-- Modal Structure -->
+            <div id="modalEdit" class="modal modal-fixed-footer">
+                <form id="formEvent">
+                    <div class="modal-content">
+                        <div class="row">
+                            <div class="input-field col s6">
+                                <label class="active" for="eventtype">Type</label>
+                                <select id="eventtype" onchange="eventtype_changed();"></select>
+                            </div>
+                            <div class="input-field col s6">
+                                <label class="active" for="eventname">Name</label>
+                                <select id="eventname" onchange="eventname_changed();"></select>
+                            </div>
+                            <div class="input-field col s12">
+                                <input placeholder="Enter the Description" id="description" type="text" class="validate" />
+                                <label class="active" for="description">Description</label>
+                            </div>
+                            <div class="input-field col s6">
+                                <div class="switch">
+                                    <label>
+                                        Timing (secs)
+                                        <input placeholder="Select Score Type" type="checkbox" id="scoretypenumeric" onclick="scoretypenumeric_changed();">
+                                        <span class="lever"></span>
+                                        Numeric (pt.)
+                                    </label>
+                                    <label class="active" for="scoretypenumeric">Score Type</label>
+                                </div>
+                            </div>
+                            <div class="input-field col s6">
+                                <input placeholder="Enter the Maximum Score" id="maximumscore" type="text" class="validate" disabled='disabled' />
+                                <label class="active" for="maximumscore">Maximum Score (pt.)</label>
+                            </div>
+                        </div>
+                        <div class="row" id="endurancefields">
+                            <div class="input-field col s4">
+                                <input placeholder="Enter Total Laps" id="totallaps" type="text" class="validate" />
+                                <label class="active" for="totallaps">Total Laps</label>
+                            </div>
+                            <div class="input-field col s4">
+                                <input placeholder="Enter Laps Length" id="lapslength" type="text" class="validate" />
+                                <label class="active" for="lapslength">Laps Length</label>
+                            </div>
+                            <div class="input-field col s4">
+                                <input placeholder="Enter Consumption Max." id="consumptionmax" type="text" class="validate" />
+                                <label class="active" for="consumptionmax">Consumption Max.</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <input type="hidden" id="id" />
+
+                    <div class="modal-footer modal-content-container">
+                        <div class="modal-img-container"></div>
+                        <div class="modal-blur"></div>
+                        <a class="waves-effect waves-green btn-flat" id="btnCloseTeam" onclick="onCloseModal()">Close</a>
+                        <!--<a class="waves-effect waves-green btn-flat" id="btnResetEvent" onclick="resetForm_events()">Reset</a>-->
+                        <a class="waves-effect waves-green btn-flat" id="btnUpdateEvent" onclick="editRecord_Proceed()">Update</a>
+                        <a class="waves-effect waves-green btn-flat" id="btnInsertEvent" onclick="addRecord_Proceed()">Insert</a>
+                    </div>
+                </form>
+            </div>
+            <!-- END Modal Structure -->
+
+            <div>
+                <table id="tEvents" class="bordered centered hoverable stupidtable-sorted" style=" width 98% !important; margin-left:auto; margin-right:auto;">
+                    <thead>
+                        <tr>
+                            <th data-field="actions">&nbsp;</th>
+                            <th style="cursor:pointer" data-sort="string" data-field="type">Type</th>
+                            <th style="cursor:pointer" data-sort="string" data-field="name">Name</th>
+                            <th style="cursor:pointer" data-sort="string" data-field="description">Description</th>
+                            <th style="cursor:pointer" data-sort="string" data-field="scoretypenumeric">Score Type</th>
+                            <th style="cursor:pointer" data-sort="string" data-field="maximumscore">Maximum Score</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="tbodyEvents"></tbody>
+                </table>
+            </div>
+        </main>
+    </body>
+</html>
+
+<script language="javascript" type="text/javascript">
+    $(document).ready(function () {
+
+        Body.navBar();
+        Body.spinnerSignal();
+        Body.addButton('addRecord', 'mdi-timer');
+
+        pageInitializeNavBar('Events');
+
+        Body.footer();
+
+        $('select').material_select();
+      
+        onlyNumbersWith4Decimals("#maximumscore");
+
+        onlyNumbers("#totallaps");
+        onlyNumbersWith4Decimals("#lapslength");
+        onlyNumbersWith4Decimals("#consumptionmax");
+
+        showRecords_events();
+        showRecords_events_eventstypes();
+        showRecords_events_eventsnames();
+    });
+</script>

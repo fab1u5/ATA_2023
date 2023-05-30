@@ -1,0 +1,326 @@
+﻿<!DOCTYPE html>
+<html>
+    <head title="CARS">
+        <title>ATA - Cars</title>
+
+        <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+        <link rel="icon" href="/favicon.ico" type="image/x-icon">
+
+        <!--Import materialize.css-->
+        <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="all" />
+        <link type="text/css" rel="stylesheet" href="css/materialdesignicons.min.css" media="all" />
+
+        <!--Let browser know website is optimized for mobile-->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+        <!--Import jQuery before materialize.js-->
+        <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+        <script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
+        <script type="text/javascript" src="js/materialize.min.js"></script>
+		<script type="text/javascript" src="js/stupidtable.min.js"> </script>
+		<script type="text/javascript" src="js/scoresPrototypes.js"> </script>
+        <script type="text/javascript" src="js/utilities.js"></script>
+        <script type="text/javascript" src="js/mbox.js"></script>
+
+        <script type="text/javascript" src="js/SQLiteDirectives.js"> </script>
+        <script type="text/javascript" src="js/WSDirectives.js"> </script>
+
+        <link type="text/css" rel="stylesheet" href="css/ATA.css" media="screen,projection" />
+        <link type="text/css" rel="stylesheet" href="css/mbox.css" media="screen,projection" />
+
+        <script language="javascript" type="text/javascript">
+
+            function filterON() {
+
+                var filterBy = [];
+                var where = ' WHERE ';
+
+                if ($('#searchcarno').val().length > 0) {
+                    filterBy.push(where + ' carno = ' + $('#searchcarno').val());
+                    where = ' AND ';
+                }
+                if ($('#searchteamid').val().length > 0) {
+                    filterBy.push(where + ' teamid = ' + $('#searchteamid').val());
+                    where = ' AND ';
+                }
+                if ($('#searchclassid').val().length > 0) {
+                    filterBy.push(where + ' classid = ' + $('#searchclassid').val());
+                    where = ' AND ';
+                }
+                if ($('#searchfuelid').val().length > 0) {
+                    filterBy.push(where + ' fuelid = ' + $('#searchfuelid').val());
+                    where = ' AND ';
+                }
+                if ($('#searchdeliverydocdate').val().length > 0) {
+                    filterBy.push(where + ' deliverydocdate = \'' + $('#searchdeliverydocdate').val() + '\'');
+                    where = ' AND ';
+                }
+                if ($('#searchboxno').val().length > 0) {
+                    filterBy.push(where + ' boxno = ' + $('#searchboxno').val());
+                    where = ' AND ';
+                }
+                //Save criteria to session
+                sessionStorage.filterByCars = filterBy.join(' ');
+                showRecords_cars();
+            }
+
+            function filterOFF() {
+
+                $("#searchcarno").val("");
+                $("#searchregno").val("");
+                $("#searchteamid").val("");
+                $("#searchclassid").val("");
+                $("#searchfuelid").val("");
+                $("#searchdeliverydocdate").val("");
+                $("#searchboxno").val("");
+
+                //Refresh selects otherwise does not work!
+                $('#searchclassid').material_select();
+                $('#searchfuelid').material_select();
+                $('#searchteamid').material_select();
+
+                //Clear criteria
+                sessionStorage.filterByCars = '';
+                showRecords_cars();
+            }
+
+            function addRecord() {
+                resetForm_cars();
+
+                enableButton("#btnInsertCar");
+                disableButton("#btnUpdateCar");
+
+                openModalDialog('#modalEdit');
+            }
+
+            function addRecord_Proceed() {
+                var carno = $("#carno").val().toString();
+                var regno = $("#regno").val().toString();
+                var teamid = $("#teamid").val().toString();
+                var classid = $("#classid").val().toString();
+                var fuelid = $("#fuelid").val().toString();
+                var deliverydocdate = $("#deliverydocdate").val().toString();
+                var boxno = $("#boxno").val().toString();
+
+                if ((carno.length > 0) && (teamid.length > 0) && (classid.length > 0) && (fuelid.length > 0)) {
+                    insertRecord_cars();
+                    closeModalDialog('#modalEdit');
+                }
+                else
+                    ataToast("Please enter Car Number, Team, Class and Fuel", 2500);
+            }
+
+            function editRecord(i) {
+                disableButton("#btnInsertCar");
+                enableButton("#btnUpdateCar");
+
+                loadRecord_cars(i);
+
+                openModalDialog('#modalEdit');
+            }
+
+            function editRecord_Proceed() {
+                var carno = $("#carno").val().toString();
+                var regno = $("#regno").val().toString();
+                var teamid = $("#teamid").val().toString();
+                var classid = $("#classid").val().toString();
+                var fuelid = $("#fuelid").val().toString();
+                var deliverydocdate = $("#deliverydocdate").val().toString();
+                var boxno = $("#boxno").val().toString();
+
+                if ((carno.length > 0) && (teamid.length > 0) && (classid.length > 0) && (fuelid.length > 0)) {
+                    updateRecord_cars();
+                    closeModalDialog('#modalEdit');
+                }
+                else
+                    ataToast("Please enter Car Number, Team, Class and Fuel");
+            }
+
+            function deleteRecord(i) {
+                mbox.confirm('Warning, any data will be lost!\nAre you sure to delete the selected item?', function (yes) {
+                    if (yes) {
+                        deleteRecord_cars(i);
+                        ataToast("Car removed successfully");
+                    }
+                })
+            }
+
+            function onCloseModal() {
+                closeModalDialog('#modalEdit');
+            }
+
+        </script>
+    </head>
+
+    <body>
+        <main>
+
+            <!-- Modal Structure -->
+            <div id="modalEdit" class="modal modal-fixed-footer">
+                <div class="modal-content">
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <i class="mdi mdi-car prefix ata-green-text"></i>
+                            <input placeholder="Enter Car No." id="carno" type="number" class="validate" min="0" max="2147483647" />
+                            <label class="active" for="carno">Car No.</label>
+                        </div>
+                        <input type="hidden" id="regno" value="0">
+                        <div class="input-field col s6">
+                            <label class="active" for="teamid">Team</label>
+                            <select id="teamid"></select>
+                        </div>
+                        <div class="input-field col s6">
+                            <label class="active" for="classid">Class</label>
+                            <select id="classid"></select>
+                        </div>
+                        <div class="input-field col s6">
+                            <label class="active" for="fuelid">Fuel</label>
+                            <select id="fuelid"></select>
+                        </div>
+                        <div class="input-field col s6">
+                            <input type="date" class="datepicker" id="deliverydocdate" value="" />
+                            <label class="active" for="deliverydocdate">Doc. Delivery Date</label>
+                        </div>
+                        <div class="input-field col s6">
+                            <input placeholder="Enter Box No." id="boxno" type="number" class="validate"  min="0" max="2147483647"/>
+                            <label class="active" for="boxno">Box No.</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <blockquote>
+                                Hint : For Car/Box No. you can enter values from 0 up to 2147483647
+                            </blockquote>
+                        </div>
+                    </div>
+                </div>
+
+                <input type="hidden" id="id" />
+
+                <div class="modal-footer modal-content-container">
+                    <div class="modal-img-container"></div>
+                    <div class="modal-blur"></div>
+                    <a class="waves-effect waves-green btn-flat" id="btnCloseCar">Close</a>
+                    <!--<a class="waves-effect waves-green btn-flat" id="btnResetCar" onclick="resetForm_cars()">Reset</a>-->
+                    <a class="waves-effect waves-green btn-flat" id="btnUpdateCar">Update</a>
+                    <a class="waves-effect waves-green btn-flat" id="btnInsertCar">Insert</a>
+                </div>
+            </div>
+            <!-- END Modal Structure -->
+
+            <div id="root-picker-outlet"></div>
+
+            <div class="row">
+                <!-- Filter Criteria -->
+                <div class="row card-panel" id="search" style="display: table-row;">
+                    <div class="section scrollspy col s2">
+                        <p class="text-darken-4 green-text">&nbsp;&nbsp;Filters:&nbsp;</p>
+                    </div>
+                    <div class="section scrollspy col s1">
+                        <input placeholder="Car No." id="searchcarno" type="number" class="validate amber-text" min="0" max="2147483647"/>
+                    </div>
+                    <div class="section scrollspy col s2">
+                        <select id="searchteamid"></select>
+                    </div>
+                    <div class="section scrollspy col s1">
+                        <select id="searchclassid"></select>
+                    </div>
+                    <div class="section scrollspy col s1">
+                        <select id="searchfuelid"></select>
+                    </div>
+                    <div class="section scrollspy col s1">
+                        <input placeholder="Delivery Date" type="date" class="datepicker" id="searchdeliverydocdate" value="" />
+                    </div>
+                    <div class="section scrollspy col s1">
+                        <input placeholder="Box No." id="searchboxno" type="number" class="validate" min="0" max="2147483647" />
+                    </div>
+                    <div class="section scrollspy col s2">
+                        <p>
+                            <a class="btn-floating btn-small waves-effect waves-light ata-green" onclick="filterON();"><i class="mdi mdi-filter" title="Filter"></i></a>
+                            <a class="btn-floating btn-small waves-effect waves-light ata-red " onclick="filterOFF();"><i class="mdi mdi-filter-remove" title="Clear Filters"></i></a>
+                        </p>
+                    </div>
+                </div>
+                <!-- END Filter Criteria -->
+
+                <table id="tCars" class="bordered centered hoverable stupidtable-sorted" style="width: 98% !important; margin-left:auto; margin-right: auto; margin-top: 20px;">
+                    <thead>
+                        <tr>
+                            <th data-field="actions">&nbsp;</th>
+                            <th style="cursor:pointer" data-sort="int" data-field="carno">Car No.</th>
+                            <th style="cursor:pointer" data-sort="string" data-field="team">Team</th>
+                            <th style="cursor:pointer" data-sort="string" data-field="university">University</th>
+                            <th style="cursor:pointer" data-sort="string" data-field="country">Country</th>
+                            <th style="cursor:pointer" data-sort="string" data-field="class">Class</th>
+                            <th style="cursor:pointer" data-sort="string" data-field="fuel">Fuel</th>
+                            <th style="cursor:pointer" data-sort="string" data-field="deliverydocdate">Doc. Delivery Date</th>
+                            <th style="cursor:pointer" data-sort="int" data-field="boxno">Box No.</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="tbodyCars"></tbody>
+                </table>
+            </div>
+        </main>
+    </body>
+</html>
+
+<script language="javascript" type="text/javascript">
+    $(document).ready(function () {
+        Body.navBar();
+        Body.spinnerSignal();
+        Body.addButton('addRecord', 'mdi-car');
+
+        pageInitializeNavBar('Cars');
+
+        Body.footer();
+
+        //Clear Filter criteria
+        sessionStorage.filterByCars = '';
+
+        $('select').material_select();
+
+        //if (!isATablet()) {
+            showRecords_cars();
+        //}
+
+        $('.datepicker').pickadate({
+            selectMonths: true, // Creates a dropdown to control month
+            selectYears: 25,    // Creates a dropdown of 50 years to control year
+            container: '#root-picker-outlet',
+            format: 'yyyy-mm-dd'
+        });
+     
+        //Fill Cars select controls
+        showRecords_cars_classes();
+        showRecords_cars_fuels();
+        showRecords_cars_teams();
+
+        //Fill Cars select controls for filter criteria
+        showRecords_cars_classes('searchclassid');
+        showRecords_cars_fuels('searchfuelid');
+        showRecords_cars_teams('searchteamid');
+
+        onlyNumbersWithMinMax("#searchcarno");
+        onlyNumbersWithMinMax("#searchregno");
+        onlyNumbersWithMinMax("#searchboxno");
+        onlyNumbersWithMinMax("#carno");
+        onlyNumbersWithMinMax("#regno");
+        onlyNumbersWithMinMax("#boxno");
+
+        $('#btnCloseCar').click(function () {
+            if (!$(this).hasClass('disabled')) { onCloseModal(); }
+        });
+
+        $('#btnUpdateCar').click(function () {
+            if (!$(this).hasClass('disabled')) {
+                editRecord_Proceed();
+            }
+        });
+
+        $('#btnInsertCar').click(function () {
+            if (!$(this).hasClass('disabled')) { addRecord_Proceed(); }
+        });
+
+    });
+</script>

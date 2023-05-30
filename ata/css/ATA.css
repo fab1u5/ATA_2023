@@ -1,0 +1,1116 @@
+﻿@font-face {
+    font-family: 'Roboto';
+    src: url('../font/roboto/Roboto-Regular-webfont.eot');
+    src: url('../font/roboto/Roboto-Regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../font/roboto/Roboto-Regular-webfont.woff') format('woff'),
+         url('../font/roboto/Roboto-Regular-webfont.ttf') format('truetype'),
+         url('../font/roboto/Roboto-Regular-webfont.svg#RobotoRegular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+ 
+@font-face {
+    font-family: 'Roboto';
+    src: url('../font/roboto/Roboto-Italic-webfont.eot');
+    src: url('../font/roboto/Roboto-Italic-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../font/roboto/Roboto-Italic-webfont.woff') format('woff'),
+         url('../font/roboto/Roboto-Italic-webfont.ttf') format('truetype'),
+         url('../font/roboto/Roboto-Italic-webfont.svg#RobotoItalic') format('svg');
+    font-weight: normal;
+    font-style: italic;
+}
+ 
+@font-face {
+    font-family: 'Roboto';
+    src: url('../font/roboto/Roboto-Bold-webfont.eot');
+    src: url('../font/roboto/Roboto-Bold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../font/roboto/Roboto-Bold-webfont.woff') format('woff'),
+         url('../font/roboto/Roboto-Bold-webfont.ttf') format('truetype'),
+         url('../font/roboto/Roboto-Bold-webfont.svg#RobotoBold') format('svg');
+    font-weight: bold;
+    font-style: normal;
+}
+ 
+@font-face {
+    font-family: 'Roboto';
+    src: url('../font/roboto/Roboto-BoldItalic-webfont.eot');
+    src: url('../font/roboto/Roboto-BoldItalic-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../font/roboto/Roboto-BoldItalic-webfont.woff') format('woff'),
+         url('../font/roboto/Roboto-BoldItalic-webfont.ttf') format('truetype'),
+         url('../font/roboto/Roboto-BoldItalic-webfont.svg#RobotoBoldItalic') format('svg');
+    font-weight: bold;
+    font-style: italic;
+}
+ 
+@font-face {
+    font-family: 'Roboto';
+    src: url('../font/roboto/Roboto-Thin-webfont.eot');
+    src: url('../font/roboto/Roboto-Thin-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../font/roboto/Roboto-Thin-webfont.woff') format('woff'),
+         url('../font/roboto/Roboto-Thin-webfont.ttf') format('truetype'),
+         url('../font/roboto/Roboto-Thin-webfont.svg#RobotoThin') format('svg');
+    font-weight: 200;
+    font-style: normal;
+}
+
+/*(under the Apache Software License). */
+@font-face {
+    font-family: 'Roboto';
+    src: url('../font/roboto/Roboto-ThinItalic-webfont.eot');
+    src: url('../font/roboto/Roboto-ThinItalic-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../font/roboto/Roboto-ThinItalic-webfont.woff') format('woff'),
+         url('../font/roboto/Roboto-ThinItalic-webfont.ttf') format('truetype'),
+         url('../font/roboto/Roboto-ThinItalic-webfont.svg#RobotoThinItalic') format('svg'); 
+    font-weight: 200;
+    font-style: italic;
+}
+ 
+@font-face {
+    font-family: 'Roboto';
+    src: url('../font/roboto/Roboto-Light-webfont.eot');
+    src: url('../font/roboto/Roboto-Light-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../font/roboto/Roboto-Light-webfont.woff') format('woff'),
+         url('../font/roboto/Roboto-Light-webfont.ttf') format('truetype'),
+         url('../font/roboto/Roboto-Light-webfont.svg#RobotoLight') format('svg');
+    font-weight: 100;
+    font-style: normal;
+}
+ 
+@font-face {
+    font-family: 'Roboto';
+    src: url('../font/roboto/Roboto-LightItalic-webfont.eot');
+    src: url('../font/roboto/Roboto-LightItalic-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../font/roboto/Roboto-LightItalic-webfont.woff') format('woff'),
+         url('../font/roboto/Roboto-LightItalic-webfont.ttf') format('truetype'),
+         url('../font/roboto/Roboto-LightItalic-webfont.svg#RobotoLightItalic') format('svg');
+    font-weight: 100;
+    font-style: italic;
+}
+ 
+@font-face {
+    font-family: 'Roboto';
+    src: url('../font/roboto/Roboto-Medium-webfont.eot');
+    src: url('../font/roboto/Roboto-Medium-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../font/roboto/Roboto-Medium-webfont.woff') format('woff'),
+         url('../font/roboto/Roboto-Medium-webfont.ttf') format('truetype'),
+         url('../font/roboto/Roboto-Medium-webfont.svg#RobotoMedium') format('svg');
+    font-weight: 300;
+    font-style: normal;
+}
+ 
+@font-face {
+    font-family: 'Roboto';
+    src: url('../font/roboto/Roboto-MediumItalic-webfont.eot');
+    src: url('../font/roboto/Roboto-MediumItalic-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../font/roboto/Roboto-MediumItalic-webfont.woff') format('woff'),
+         url('../font/roboto/Roboto-MediumItalic-webfont.ttf') format('truetype'),
+         url('../font/roboto/Roboto-MediumItalic-webfont.svg#RobotoMediumItalic') format('svg');
+    font-weight: 300;
+    font-style: italic;
+}
+
+.material-icons {
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -webkit-font-feature-settings: 'liga';
+  -webkit-font-smoothing: antialiased;
+}
+
+/*******************************
+************* STYLES ***********
+********************************/
+
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+main {
+    flex: 1 0 auto;
+}
+
+/*******************************
+************* FOOTER ***********
+********************************/
+
+footer.page-footer {
+    padding-top: 0px !important;
+    /*background-color: #ef5350 !important;*/
+    background-color: #c52d2f !important;
+    background: url('../images/bg03.jpg') no-repeat center fixed;
+    -webkit-background-size: 100% auto;
+    -moz-background-size: 100% auto;
+    -o-background-size: 100% auto;
+    background-size: 100% auto;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+  footer.page-footer .footer-copyright {
+    overflow: hidden;
+    height: 50px;
+    line-height: 50px;
+    color: rgba(255, 255, 255, 0.8);
+    background-color: rgba(51, 51, 51, 0.08); 
+  }
+
+
+/*******************************
+************ DROPDOWN **********
+********************************/
+.dropdown-content li>span{
+    color:red;
+}
+
+/*******************************
+************* INPUT ************
+********************************/
+.input-field label.active{
+   color:#c52d2f;
+}
+a.collection-header input.validate {
+    color:#000;
+}
+input.validate {
+    border-bottom-color : #c52d2f;
+}
+placeholder {
+    color:#c52d2f;
+}
+label.active {
+    color:#c52d2f;
+}
+input[type=text]:focus:not([readonly]) + label {
+    color:#c52d2f;
+}
+input[type=date]:focus:not([readonly]) + label {
+    color:#c52d2f;
+}
+input[type="radio"].with-gap:checked+label:before {
+    border: 2px solid #2E7D32;
+}
+input[type="radio"].with-gap:checked+label:after {
+    border: 2px solid #2E7D32;
+    background-color: #2E7D32;
+}
+[type="radio"] + label:before, [type="radio"] + label:after {
+    /*width:20px;
+    height:20px;*/
+}
+input[type="radio"].min-width + label {
+    min-width:60px;
+}
+
+input[type="checkbox"].min-width + label {
+    min-width:60px;
+}
+input[type="checkbox"].filled-in:checked+label:after {
+    border: 2px solid #2E7D32;
+    background-color: #2E7D32;
+}
+input[type=checkbox] {
+    color:#c52d2f;
+}
+input:read-only {
+    color: #2E7D32 !important;
+}
+input[type=text]:focus:not([readonly]), input[type=password]:focus:not([readonly]), input[type=email]:focus:not([readonly]), input[type=url]:focus:not([readonly]), input[type=time]:focus:not([readonly]), input[type=date]:focus:not([readonly]), input[type=datetime-local]:focus:not([readonly]), input[type=tel]:focus:not([readonly]), input[type=number]:focus:not([readonly]), input[type=search]:focus:not([readonly]), textarea.materialize-textarea:focus:not([readonly]) {
+    border-bottom: 1px solid #c52d2f;
+    box-shadow: 0 1px 0 0 #c52d2f; 
+}
+input[type=text]:focus:not([readonly]) + label, input[type=password]:focus:not([readonly]) + label, input[type=email]:focus:not([readonly]) + label, input[type=url]:focus:not([readonly]) + label, input[type=time]:focus:not([readonly]) + label, input[type=date]:focus:not([readonly]) + label, input[type=datetime-local]:focus:not([readonly]) + label, input[type=tel]:focus:not([readonly]) + label, input[type=number]:focus:not([readonly]) + label, input[type=search]:focus:not([readonly]) + label, textarea.materialize-textarea:focus:not([readonly]) + label {
+    color: #c52d2f; 
+}
+.input-field .prefix.active {
+    color: #c52d2f; 
+}
+a.collection-header textarea.materialize-textarea{
+    color:#000;
+}
+textarea.materialize-textarea {
+    /*background-color:papayawhip;*/
+    color:#c52d2f;
+    font-size:small;
+}
+
+.btn:hover, .btn-large:hover, .btn-flat:hover {
+    background-color: #f6787a; 
+}
+
+.btn.disabled:hover, .btn-large.disabled:hover, .btn-flat.disabled:hover  {
+    background-color: transparent; 
+}
+
+.switch label input[type=checkbox]:checked + .lever {
+    color:#c52d2f;
+    background-color:#c52d2f;
+}
+.switch label input[type=checkbox]:checked + .lever:after {
+    color:#c52d2f;
+    background-color:#c52d2f;
+}
+
+.card .card-action a {
+    color: #fff;
+}
+
+/*******************************
+*********** DATEPICKER *********
+********************************/
+.picker__date-display{
+    background-color:#c52d2f;
+}
+.picker__weekday-display{
+    background-color:#c52d2f;
+}
+.picker__day-display{
+    background-color:#c52d2f;
+}
+.picker__year-display{
+    background-color:#c52d2f;
+}
+.picker__weekday-display{
+    background-color:#c52d2f;
+}
+.picker__day.picker__day--today {
+    color:#c52d2f;
+}
+.picker__day--selected, .picker__day--selected:hover, .picker--focused .picker__day--selected {
+    background-color:#c52d2f;
+}
+.picker__day.picker__day--today.picker__day--selected {
+    background-color:#c52d2f;
+}
+.picker__today{
+    color:#c52d2f;
+}
+.picker__clear{
+    color:#c52d2f;
+}
+.picker__close{
+    color:#c52d2f;
+}
+
+/*******************************
+*********** SEARCH BAR *********
+********************************/
+#search ul>li span{
+    font-size: smaller;
+    /*color:#ffc107*/
+}
+#search input{
+    font-size:smaller;
+    /*color:#ffc107*/
+}
+
+/*******************************
+************* TABLE ************
+********************************/
+table.centered thead tr th {
+    color: #c52d2f;
+}
+tr.fake_row { 
+    display: none; 
+}
+
+@keyframes ex4 { /* CSS3 */
+    0% {background-color: white;}
+    50% {background-color: #f9c9cb;}
+    100% {background-color: #a5d6a7;}        
+}
+
+@-moz-keyframes ex4 { /* Firefox */
+    0% {background-color: white;}
+    50% {background-color: #f9c9cb;}
+    100% {background-color: #a5d6a7;}        
+}
+
+@-webkit-keyframes ex4 { /* Webkit */
+    0% {background-color: white;}
+    50% {background-color: #f9c9cb;}
+    100% {background-color: #a5d6a7;}
+}
+
+.ex4 {
+    animation: ex4 5s infinite; /* CSS3 */
+    -moz-animation: ex4 5s infinite; /* Firefox */
+    -webkit-animation: ex4 5s infinite; /* Webkit */
+}
+
+/*Electric Car has to be green-colored - req.Ciadamidaro Set 2015*/
+.electric {
+    /*background-color: #a5d6a7 !important;*/
+    /*color:white !important;*/
+    color: #2E7D32 !important; 
+}
+.electric td:nth-child(0n+2) {
+    /*background-color: #a5d6a7 !important;*/
+    /*color:white !important;*/
+    font-weight:bolder;
+    background:url(../images/car-black3.png) no-repeat center ;
+    background-size: cover;
+}
+
+.not-electric td:nth-child(0n+2) {
+    /*background-color: #a5d6a7 !important;*/
+    /*color:white !important;*/
+    font-weight:bolder;
+    background:url(../images/car-black3.png) no-repeat center ;
+    background-size: cover;
+}
+
+/*******************************
+************* BADGES ***********
+********************************/
+span.badge.points.tab-badge {
+    position:inherit;
+    color: #fff;
+    background-color: #c52d2f;
+    /*background-color:#FF948E;*/
+    padding: 5px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    font-size: 0.7rem;
+    vertical-align: middle;
+    display:none;
+}
+
+span.badge.points.tab-badge:after {
+    /*content: " pt";*/
+}
+
+span.badge.points.badge-green {
+    background-color:transparent;
+    color: #2E7D32;
+    font-variant:small-caps;
+    font-weight:bold;
+}
+
+span.badge.points:before {
+}
+
+span.badge.points:after {
+    content: " points";
+}
+span.badge.points {
+    font-weight: 300;
+    font-size: 0.8rem;
+    color: #fff;
+    background-color: #c52d2f;
+    border-radius: 2px;
+}
+
+span.badge {
+    min-width: 3rem;
+    padding: 0 6px;
+    text-align: center;
+    font-size: 1rem;
+    line-height: inherit;
+    color: #757575;
+    position: absolute;
+    right: 15px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+li.padded {
+    padding-right: .8em;
+    padding-left: .8em;
+}
+
+li.collection-item.padded {
+    padding: 7px 10px;
+    background-color:transparent;
+}
+
+.secondary-content {
+    color: rgba(0,0,0,0.87);
+}
+
+span.points-label {
+    color: #c52d2f;
+    font-variant:small-caps;
+    /*font-weight:bold;*/
+}
+
+/*******************************
+************ PARALLAX **********
+********************************/
+.parallax-container {
+    min-height: 380px;
+    line-height: 0;
+    height: auto;
+    color: rgba(255,255,255,.9);
+}
+.parallax-container .section {
+    width: 100%;
+  }
+
+@media only screen and (max-width : 992px) {
+    .parallax-container .section {
+        position: absolute;
+        top: 40%;
+    }
+  #index-banner .section {
+        top: 10%;
+  }
+}
+
+@media only screen and (max-width : 600px) {
+    #index-banner .section {
+        top: 0;
+    }
+}
+
+/*******************************
+*********** ATA STYLES *********
+*REWRITE MATERIALIZE CSS STYLES*
+********************************/
+.ata-btn {
+    background: #c52d2f;
+    color: #fff;
+    border-radius: 4px;
+}
+.ata-btn-green {
+    background: #2E7D32;
+    color: #fff;
+    border-radius: 4px;
+}
+.ata-red {
+    background-color: #c52d2f !important;
+}
+.ata-red-text {
+    color: #c52d2f !important;
+}
+.ata-green {
+    background-color: #2E7D32 !important; 
+}
+
+.ata-green-text {
+    color: #2E7D32 !important; 
+}
+
+.ata-tab-text {
+    top: 5px;
+    left: 0;
+    width: 130px;
+    display: block;
+    font-size: 13px;
+    -webkit-font-smoothing: antialiased;
+    color: #E57373;
+}
+
+.ata-tab-text-sm {
+    position: relative;
+    left: 28px;
+    font-size: 11px;
+    color: #EF9A9A;
+}
+
+.navbar-ata-backgrounded-1 {
+    color:white;
+    background: url('../images/bg03.jpg') no-repeat center fixed;
+    -webkit-background-size: 100% auto;
+    -moz-background-size: 100% auto;
+    -o-background-size: 100% auto;
+    background-size: 100% auto;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.navbar-ata-backgrounded-2 {
+    color:white;
+    background: url('../images/bg04.jpg') no-repeat center fixed;
+    -webkit-background-size: 100% auto;
+    -moz-background-size: 100% auto;
+    -o-background-size: 100% auto;
+    background-size: 100% auto;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.navbar-ata-backgrounded-3 {
+    color:white;
+    background: url('../images/bg06.jpg') no-repeat center fixed;
+    -webkit-background-size: 100% auto;
+    -moz-background-size: 100% auto;
+    -o-background-size: 100% auto;
+    background-size: 100% auto;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.navbar-ata-backgrounded-4 {
+    color:white;
+    background: url('../images/bg01.jpg') no-repeat center fixed;
+    -webkit-background-size: 100% auto;
+    -moz-background-size: 100% auto;
+    -o-background-size: 100% auto;
+    background-size: 100% auto;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.navbar-ata-backgrounded-5 {
+    color:white;
+    background: url('../images/bg08.png') no-repeat center fixed;
+    -webkit-background-size: 100% auto;
+    -moz-background-size: 100% auto;
+    -o-background-size: 100% auto;
+    background-size: 100% auto;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.navbar-ata-backgrounded-6 {
+    color:white;
+    background: url('../images/bg09.png') no-repeat center fixed;
+    -webkit-background-size: 100% auto;
+    -moz-background-size: 100% auto;
+    -o-background-size: 100% auto;
+    background-size: 100% auto;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.navbar-ata-backgrounded-7 {
+    color:white;
+    background: url('../images/bg10.png') no-repeat center fixed;
+    -webkit-background-size: 100% auto;
+    -moz-background-size: 100% auto;
+    -o-background-size: 100% auto;
+    background-size: 100% auto;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.navbar-ata-backgrounded-8 {
+    color:white;
+    background: url('../images/bg11.png') no-repeat center fixed;
+    -webkit-background-size: 100% auto;
+    -moz-background-size: 100% auto;
+    -o-background-size: 100% auto;
+    background-size: 100% auto;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.navbar-ata-backgrounded-9 {
+    color:white;
+    background: url('../images/bg12.png') no-repeat center fixed;
+    -webkit-background-size: 100% auto;
+    -moz-background-size: 100% auto;
+    -o-background-size: 100% auto;
+    background-size: 100% auto;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+
+.collection .collection-item.avatar.autoheight {
+    height: auto;
+}
+
+/*******************************
+********* DIVFIXEDTORIGHT ******
+********************************/
+#div-fixed-to-right {
+	height: 0px;
+	width: 85px;
+	position: fixed;
+	right: 0;
+	top: 50%;
+	z-index: 1000;
+	transform: rotate(-90deg);
+	-webkit-transform: rotate(-90deg);
+	-moz-transform: rotate(-90deg);
+	-o-transform: rotate(-90deg);
+	filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+    cursor:pointer;
+}
+#div-fixed-to-right a {
+	display: block;
+	background:#c52d2f;
+	height: 52px;
+	padding-top: 10px;
+	width: 155px;
+	text-align: center;
+	color: #fff;
+	font-family: Arial, sans-serif;
+	font-size: 17px;
+	font-weight: bold;
+	text-decoration: none;
+}
+#div-fixed-to-right a:hover {
+	background:#00495d;
+	background:#f6787a;
+}
+
+/*******************************
+************* SPINNER **********
+********************************/
+/*body {overflow: hidden;}*/
+
+.spinner div {
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    left: -20px;
+    top: 140px;
+    background-color: #c52d2f;
+    border-radius: 50%;
+    animation: move 4s infinite cubic-bezier(.2,.64,.81,.23);
+}
+.spinner div:nth-child(2) {
+    animation-delay: 150ms;
+}
+.spinner div:nth-child(3) {
+    animation-delay: 300ms;
+}
+.spinner div:nth-child(4) {
+    animation-delay: 450ms;
+}
+@keyframes move {
+    0% {left: 0%;}
+    75% {left:98.5%;}
+    100% {left:98.5%;}
+}
+
+/*******************************
+********** SPINNER SIGNAL ******
+********************************/
+
+.spinner-signal {
+    border: 5px solid #333;
+    border-radius: 30px;
+    height: 30px;
+    left: 50%;
+    margin: -15px 0 0 -15px;
+    opacity: 0;
+    position: absolute;
+    top: 50%;
+    width: 30px;
+    border-color: #c52d2f;
+ 
+    animation: pulsate 1s ease-out;
+    animation-iteration-count: infinite;
+}
+
+@keyframes pulsate {
+    0% {
+      transform: scale(.1);
+      opacity: 0.0;
+    }
+    50% {
+      opacity: 1;
+    }
+    100% {
+      transform: scale(1.2);
+      opacity: 0;
+    }
+}
+
+/*******************************
+******** MODAL FOOTER BLUR *****
+********************************/
+.modal-footer .btn-flat {
+    color:#fff;
+}
+
+.modal-footer .btn-flat.disabled {
+    color: #b3b3b3;
+    cursor: default;
+}
+
+.modal-img-container {
+    background-image: url(../images/bg01.jpg);
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    -webkit-filter: blur(15px);
+    -o-filter: blur(15px);
+    filter: blur(15px);
+    filter: progid: DXImageTransform.Microsoft.Blur(PixelRadius='15');
+    background-size: cover;
+}
+
+.modal-content-container {
+    width: 100%;
+    height: 1000px;
+    position: relative;
+    overflow: hidden;
+    -webkit-transform: translateZ(0);
+    -ms-transform: translateZ(0);
+    -o-transform: translateZ(0);
+    transform: translateZ(0);
+}
+
+.modal-blur {
+    /* All the background image supports */
+    background-image: -webkit-linear-gradient(bottom left, rgba(43, 40, 50, 0.8) 0%, rgba(83, 86, 99, 0.8) 45%, rgba(69, 77, 91, 0.6) 60%);
+    background-image: -moz-linear-gradient(bottom left, rgba(43, 40, 50, 0.8) 0%, rgba(83, 86, 99, 0.8) 45%, rgba(69, 77, 91, 0.6) 60%);
+    background-image: -o-linear-gradient(bottom left, rgba(43, 40, 50, 0.8) 0%, rgba(83, 86, 99, 0.8) 45%, rgba(69, 77, 91, 0.6) 60%);
+    background-image: linear-gradient(to top right, rgba(43, 40, 50, 0.8) 0%, rgba(83, 86, 99, 0.8) 45%, rgba(69, 77, 91, 0.6) 60%);
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-filter: blur(50px);
+    -o-filter: blur(50px);
+    filter: blur(50px);
+    filter: progid: DXImageTransform.Microsoft.Blur(PixelRadius='70');
+    top: -70px;
+    right: -70px;
+    left: -70px;
+    padding: 70px;
+}
+
+.modal-blur:after {
+    content: '';
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    z-index: 1001;
+    background-image: -webkit-linear-gradient(339deg, rgba(43, 40, 50, 0.8) 0%, rgba(43, 40, 50, 0.4) 46%, rgba(0, 0, 0, 0.05) 50%);
+    background-image: -moz-linear-gradient(339deg, rgba(43, 40, 50, 0.8) 0%, rgba(43, 40, 50, 0.4) 46%, rgba(0, 0, 0, 0.05) 50%);
+    background-image: -o-linear-gradient(339deg, rgba(43, 40, 50, 0.8) 0%, rgba(43, 40, 50, 0.4) 46%, rgba(0, 0, 0, 0.05) 50%);
+    background-image: linear-gradient(339deg, rgba(43, 40, 50, 0.8) 0%, rgba(43, 40, 50, 0.4) 46%, rgba(0, 0, 0, 0.05) 50%);
+    -webkit-filter: blur(70px);
+    -o-filter: blur(70px);
+    filter: progid: DXImageTransform.Microsoft.Blur(PixelRadius='70');
+    filter: blur(70px);
+}
+
+/*******************************
+********** TOOLS DWN/UPL *******
+********************************/
+.tools-action {
+    display: block;
+    cursor: pointer;
+    height: 3rem;
+    line-height: 3rem;
+    padding: 0 1rem;
+    background-color: #fff;
+    border-bottom: 1px solid #ddd;
+    color:black
+}
+.tools-action i {
+    width: 2rem;
+    font-size: 1.6rem;
+    line-height: 3rem;
+    display: block;
+    float: left;
+    text-align: center;
+    margin-right: 1rem;
+}
+.tools-action:hover {
+    display: block;
+    cursor: pointer;
+    height: 3rem;
+    line-height: 3rem;
+    padding: 0 1rem;
+    background-color: #ddd;
+    border-bottom: 1px solid #ddd;
+    color:black
+}
+
+.tools-action i.mdi.mdi-table.i-tiny {
+    margin-right: 0.1rem;
+    color: #c52d2f;
+}
+
+.tools-action i.mdi.mdi-panorama-wide-angle.i-tiny {
+    margin-right: 0.1rem;
+    color: #2E7D32;
+}
+
+/*******************************
+*********** BREADCRUMBS ********
+********************************/
+.breadcrumb {
+	/*centering*/
+	display: inline-block;
+	box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.35);
+	overflow: hidden;
+	border-radius: 5px;
+	/*Lets add the numbers for each link using CSS counters. flag is the name of the counter. to be defined using counter-reset in the parent element of the links*/
+	counter-reset: flag; 
+	text-align: center;
+	font-family: 'Merriweather Sans', arial, verdana;
+}
+
+.breadcrumb a {
+	text-decoration: none;
+	outline: none;
+	display: block;
+	float: left;
+	font-size: 12px;
+	line-height: 36px;
+	color: white;
+	/*need more margin on the left of links to accomodate the numbers*/
+	padding: 0 10px 0 60px;
+	background: #666;
+	background: linear-gradient(#666, #333);
+	position: relative;
+}
+/*since the first link does not have a triangle before it we can reduce the left padding to make it look consistent with other links*/
+.breadcrumb a:first-child {
+	padding-left: 46px;
+	border-radius: 5px 0 0 5px; /*to match with the parent's radius*/
+}
+.breadcrumb a:first-child:before {
+	left: 14px;
+}
+.breadcrumb a:last-child {
+	border-radius: 0 5px 5px 0; /*this was to prevent glitches on hover*/
+	padding-right: 20px;
+}
+
+/*hover/active styles*/
+.breadcrumb a.active, .breadcrumb a:hover{
+	background: #333;
+	background: linear-gradient(#333, #000);
+}
+.breadcrumb a.active:after, .breadcrumb a:hover:after {
+	background: #333;
+	background: linear-gradient(135deg, #333, #000);
+}
+
+/*adding the arrows for the breadcrumbs using rotated pseudo elements*/
+.breadcrumb a:after {
+	content: '';
+	position: absolute;
+	top: 0; 
+	right: -18px; /*half of square's length*/
+	/*same dimension as the line-height of .breadcrumb a */
+	width: 36px; 
+	height: 36px;
+	/*as you see the rotated square takes a larger height. which makes it tough to position it properly. So we are going to scale it down so that the diagonals become equal to the line-height of the link. We scale it to 70.7% because if square's: 
+	length = 1; diagonal = (1^2 + 1^2)^0.5 = 1.414 (pythagoras theorem)
+	if diagonal required = 1; length = 1/1.414 = 0.707*/
+	transform: scale(0.707) rotate(45deg);
+	/*we need to prevent the arrows from getting buried under the next link*/
+	z-index: 1;
+	/*background same as links but the gradient will be rotated to compensate with the transform applied*/
+	background: #666;
+	background: linear-gradient(135deg, #666, #333);
+	/*stylish arrow design using box shadow*/
+	box-shadow: 
+		2px -2px 0 2px rgba(0, 0, 0, 0.4), 
+		3px -3px 0 2px rgba(255, 255, 255, 0.1);
+	/*
+		5px - for rounded arrows and 
+		50px - to prevent hover glitches on the border created using shadows*/
+	border-radius: 0 5px 0 50px;
+}
+/*we dont need an arrow after the last link*/
+.breadcrumb a:last-child:after {
+	content: none;
+}
+/*we will use the :before element to show numbers*/
+.breadcrumb a:before {
+	content: counter(flag);
+	counter-increment: flag;
+	/*some styles now*/
+	border-radius: 100%;
+	width: 20px;
+	height: 20px;
+	line-height: 20px;
+	margin: 8px 0;
+	position: absolute;
+	top: 0;
+	left: 30px;
+	background: #444;
+	background: linear-gradient(#444, #222);
+	font-weight: bold;
+}
+
+.flat a, .flat a:after {
+	background: white;
+	color: black;
+	transition: all 0.5s;
+}
+.flat a:before {
+	background: white;
+	box-shadow: 0 0 0 1px #ccc;
+}
+.flat a:hover, .flat a.active, 
+.flat a:hover:after, .flat a.active:after{
+	background: #9EEB62;
+}
+
+/*******************************
+*************** TABS ***********
+********************************/
+.tabs {
+    background-color: #fff;
+}
+.tabs .tab a {
+    color: #c52d2f;
+}
+.tabs .tab a:hover {
+    color: #f9c9cb; 
+}
+.tabs .indicator {
+    background-color: #c52d2f;
+}
+
+/*******************************
+************* ACCORDION ********
+********************************/
+.ata-collapsible li.active i {
+    -ms-transform: rotate(180deg); /* IE 9 */
+    -webkit-transform: rotate(180deg); /* Chrome, Safari, Opera */
+    transform: rotate(180deg);
+}
+
+/*******************************
+********* LEFT MENU ITEMS ******
+********************************/
+.left-menu-action {
+    display: block;
+    cursor: pointer;
+    height: 3rem;
+    line-height: 3rem;
+    padding: 0 1rem;
+    background-color: #fff;
+    border-bottom: 1px solid #ddd;
+    color: #c52d2f;
+}
+.left-menu-action i {
+    width: 2rem;
+    font-size: 1.6rem;
+    line-height: 3rem;
+    display: block;
+    float: left;
+    text-align: center;
+    margin-right: 1rem;
+}
+.left-menu-action:hover {
+    display: block;
+    cursor: pointer;
+    height: 3rem;
+    line-height: 3rem;
+    padding: 0 1rem;
+    border-bottom: 1px solid #ddd;
+    background-color: #ddd;
+    color: #c52d2f;
+}
+
+.left-menu-action-active {
+    background-color: #FEDEDE !important;
+}
+
+/*******************************
+******** VERTICAL TABLE TH *****
+********************************/
+.rotate {
+    filter:  progid:DXImageTransform.Microsoft.BasicImage(rotation=0.083);  /* IE6,IE7 */
+    -ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=0.083)"; /* IE8 */
+    -moz-transform: rotate(-90.0deg);  /* FF3.5+ */
+    -ms-transform: rotate(-90.0deg);  /* IE9+ */
+    -o-transform: rotate(-90.0deg);  /* Opera 10.5 */
+    -webkit-transform: rotate(-90.0deg);  /* Safari 3.1+, Chrome */
+    transform: rotate(-90.0deg);  /* Standard */
+}
+
+
+th.v { 
+    /*background: red;*/ 
+    height: 166px;
+    min-width: 90px;
+    /* 
+      min-width is large enough to stop 
+      the longest header text you will have from 
+      overlapping when the table is the smallest it will be 
+    */
+}
+
+th.v span {
+    display: block;
+    -webkit-transform: rotate(-90deg);
+    -moz-transform: rotate(-90deg);
+    -o-transform: rotate(-90deg);
+    -ms-transform: rotate(-90deg);
+    transform: rotate(-90deg);
+    font-weight: normal;
+    text-transform: uppercase;
+    max-width: 156px;
+    /*color: #FFF;*/
+    /*
+      max-width contains the span and 
+      must match the height of the th minus 
+      any padding you want 
+    */
+}
+
+
+/*******************************
+*** tScoreCar PARTIAL CELLS ****
+********************************/
+/*  Define the background color for all the ODD table columns  */
+#tScoreCar tr td.partial:nth-child(odd){ 
+    /*background: #FEDEDE;*/
+    /*color:#333;*/
+    border-left: 1px solid #D4D1CC;
+    border-right: 1px solid #D4D1CC;
+}
+/*  Define the background color for all the EVEN table columns  */
+#tScoreCar tr td.partial:nth-child(even){
+    /*background: #F3F2F0;*/
+    /*color:rgba(83, 86, 99, 0.8);*/
+    border-left: 1px solid #D4D1CC;
+    border-right: 1px solid #D4D1CC;
+}
+
+#tScoreCar th.partial  {
+  border-left: 1px solid white;
+  border-right:1px solid white;
+}
+
+#tScoreCar td.bold  {
+    font-weight:bold;
+}
+
+/*******************************
+******* RANKING Winners ********
+********************************/
+.firstPlace {
+    background-color: #ffd700 !important;
+}
+.secondPlace {
+    background-color: #c0c0c0 !important;
+}
+.thirdPlace {
+    background-color: #cd7f32 !important;
+}

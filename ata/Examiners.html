@@ -1,0 +1,170 @@
+﻿<!DOCTYPE html>
+<html>
+    <head title="EXAMINERS">
+        <title>ATA - Examiners</title>
+
+        <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+        <link rel="icon" href="/favicon.ico" type="image/x-icon">
+
+        <!--Import materialize.css-->
+        <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection" />
+        <link type="text/css" rel="stylesheet" href="css/materialdesignicons.min.css" media="all" />
+
+        <!--Let browser know website is optimized for mobile-->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+        <!--Import jQuery before materialize.js-->
+        <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+        <script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
+        <script type="text/javascript" src="js/materialize.min.js"></script>
+		<script type="text/javascript" src="js/stupidtable.min.js"> </script>
+		<script type="text/javascript" src="js/scoresPrototypes.js"> </script>
+        <script type="text/javascript" src="js/utilities.js"></script>
+        <script type="text/javascript" src="js/mbox.js"></script>
+
+        <script type="text/javascript" src="js/SQLiteDirectives.js"> </script>
+        <script type="text/javascript" src="js/WSDirectives.js"> </script>
+
+        <link type="text/css" rel="stylesheet" href="css/ATA.css" media="screen,projection" />
+        <link type="text/css" rel="stylesheet" href="css/mbox.css" media="screen,projection" />
+
+        <script language="javascript" type="text/javascript">
+
+            function addRecord() {
+                resetForm_examiners();
+
+                enableButton("#btnInsertExaminer");
+                disableButton("#btnUpdateExaminer");
+
+                openModalDialog('#modalEdit');
+            }
+
+            function addRecord_Proceed() {
+                var firstname = $("#firstname").val().toString();
+                var surname = $("#surname").val().toString();
+                var phone = $("#phone").val().toString();
+
+                if ((firstname.length > 0) && (surname.length > 0)) {
+                    insertRecord_examiners();
+                    closeModalDialog('#modalEdit');
+                }
+                else
+                    ataToast("Please enter Firstname and Surname");
+            }
+
+            function editRecord(i) {
+                disableButton("#btnInsertExaminer");
+                enableButton("#btnUpdateExaminer");
+
+                loadRecord_examiners(i);
+
+                openModalDialog('#modalEdit');
+            }
+
+            function editRecord_Proceed() {
+                var firstname = $("#firstname").val().toString();
+                var surname = $("#surname").val().toString();
+                var phone = $("#phone").val().toString();
+
+                if ((firstname.length > 0) && (surname.length > 0)) {
+                    updateRecord_examiners();
+                    closeModalDialog('#modalEdit');
+                }
+                else
+                    ataToast("Please enter Firstname and Surname");
+            }
+
+            function deleteRecord(i) {
+                mbox.confirm('Are you sure to delete the selected item?', function (yes) {
+                    if (yes) {
+                        deleteRecord_examiners(i);
+                        ataToast("Examiner removed successfully");
+                    }
+                })
+            }
+
+            function onCloseModal() {
+                closeModalDialog('#modalEdit');
+            }
+        </script>
+    </head>
+
+    <body>
+        <main>
+            <!-- Modal Structure -->
+            <div id="modalEdit" class="modal modal-footer">
+                <form id="formExaminer">
+                    <div class="modal-content">
+                        <div class="row">
+                            <div class="input-field col s6">
+                                <i class="mdi mdi-account prefix ata-green-text"></i>
+                                <input placeholder="Enter the Firstname" id="firstname" type="text" class="validate" />
+                                <label class="active" for="firstname">Firstname</label>
+                            </div>
+                            <div class="input-field col s6">
+                                <input placeholder="Enter the Surname" id="surname" type="text" class="validate" />
+                                <label class="active" for="surname">Surname</label>
+                            </div>
+                            <div class="input-field col s6">
+                                <i class="mdi mdi-phone prefix ata-green-text"></i>
+                                <input placeholder="Enter a Phone number" id="phone" type="text" class="validate" />
+                                <label class="active" for="phone">Phone</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <input type="hidden" id="id" />
+
+                    <div class="modal-footer modal-content-container">
+                        <div class="modal-img-container"></div>
+                        <div class="modal-blur"></div>
+                        <a class="waves-effect waves-green btn-flat" id="btnCloseExaminer" onclick="onCloseModal()">Close</a>
+                        <!--<a class="waves-effect waves-green btn-flat" id="btnResetExaminer" onclick="resetForm_examiners()">Reset</a>-->
+                        <a class="waves-effect waves-green btn-flat" id="btnUpdateExaminer">Update</a>
+                        <a class="waves-effect waves-green btn-flat" id="btnInsertExaminer">Insert</a>
+                    </div>
+                </form>
+            </div>
+            <!-- END Modal Structure -->
+
+            <div id="root-picker-outlet"></div>
+
+            <div>
+                <table id="tExaminers" class="bordered centered hoverable stupidtable-sorted" style="width: 98% !important; margin-left:auto; margin-right: auto;">
+                    <thead>
+                        <tr>
+                            <th data-field="actions">&nbsp;</th>
+                            <th style="cursor:pointer" data-sort="string" data-field="surName">Surname</th>
+                            <th style="cursor:pointer" data-sort="string" data-field=" firstname">Name</th>
+                            <th style="cursor:pointer" data-sort="string" data-field="phone">Phone</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="tbodyExaminers"></tbody>
+                </table>
+            </div>
+        </main>
+    </body>
+
+</html>
+
+<script language="javascript" type="text/javascript">
+    $(document).ready(function () {
+        Body.navBar();
+        Body.spinnerSignal();
+        Body.addButton('addRecord', 'mdi-library');
+
+        pageInitializeNavBar('Examiners');
+
+        Body.footer();
+
+        showRecords_examiners();
+
+        $('#btnUpdateExaminer').click(function () {
+            if (!$(this).hasClass('disabled')) { editRecord_Proceed(); }
+        });
+        $('#btnInsertExaminer').click(function () {
+            if (!$(this).hasClass('disabled')) { addRecord_Proceed(); }
+        });
+    });
+</script>
