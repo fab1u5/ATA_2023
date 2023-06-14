@@ -3767,9 +3767,12 @@ namespace ATA.services
                         //c = 71.5 * a / b + 3.5;
                         //if (c < 3.5)
                         //    c = 3.5;
-                        c = 95.5 * a / b + 4.5;
-                        if (c < 4.5)
-                            c = 4.5;
+                        //FDT - ATA 2023 - modifiche formula - INIZIO
+                        //c = 95.5 * a / b + 4.5;
+                        c = 71.5 * a / b + 3.5;                        
+                        if (c < 3.5)
+                            c = 3.5;
+                        //FDT - ATA 2023 - modifiche formula - FINE
                     }
                     else
                         c = 0;
@@ -4279,7 +4282,10 @@ namespace ATA.services
                 if (MinScore != null)
                     min = MinScore.BestTime;
 
-                max = 1.45 * min; // excel formula. don't know why
+                //FDT - ATA 2023 - modifiche formula - INIZIO
+                //max = 1.45 * min; // excel formula. don't know why
+                max = 1.25 * min;
+                //FDT - ATA 2023 - modifiche formula - FINE
 
                 DynamicRankingObjectAutoCross MyRank;
                 Score myScore;
@@ -4295,9 +4301,12 @@ namespace ATA.services
                         //c = 142.5 * (a / b) + 7.5;
                         //if (c < 7.5)
                         //    c = 7.5;
-                        c = 118.5 * (a / b) + 6.5;
-                        if (c < 6.5)
-                            c = 6.5;
+                        //FDT - ATA 2023 - modifiche formula - INIZIO
+                        //c = 118.5 * (a / b) + 6.5;
+                        c = 95.5 * (a / b) + 4.5;                        
+                        if (c < 4.5)
+                            c = 4.5;
+                        //FDT - ATA 2023 - modifiche formula - FINE
                     }
                     else
                         c = 0;
@@ -4581,7 +4590,10 @@ namespace ATA.services
                 double fuelEfficiencyFactorMax;
 
                 totalLap = getTotalLapEndurance();
-
+                //FDT - ATA 2023 - modifiche formula - INIZIO
+                double TotalLenght = LapLenght * totalLap;
+                double minTimeNonCorretto = myScores.Min(d => d.Time);
+                //FDT - ATA 2023 - modifiche formula - FINE
                 foreach (ScoreEndurance i in myScores)
                 {
 
@@ -4590,18 +4602,29 @@ namespace ATA.services
                     i.AvgLapTime = i.calculateAvgLapTime(i.AdjTime, (double)i.Laps);
                     i.AvgLapTimeEfficiency = i.calcAvgLapTimeEfficiency(i.AdjTimeDNF, (double)i.Laps);
 
+                    //SELECT * FROM Fuels
+                    //Id  Name
+                    //1   RON98
+                    //2   E85
+                    //3   Electric
+
+                    //FDT - ATA 2023 - modifiche formula - INIZIO
                     switch (i.FuelType)
                     {
                         case 1:
                             i.Co2Used = i.FuelUsed * 2.31;
+                            i.EnergyCorr = (i.FuelUsed * 100) / TotalLenght;
                             break;
                         case 2:
                             i.Co2Used = i.FuelUsed * 1.65;
+                            i.EnergyCorr = ((i.FuelUsed * 100) / TotalLenght) / 1.45;
                             break;
                         case 3:
                             i.Co2Used = i.FuelUsed * 0.65;
+                            i.EnergyCorr = (i.FuelUsed * 100) / TotalLenght;
                             break;
                     }
+                    //FDT - ATA 2023 - modifiche formula - FINE
                 }
 
                 minTime = 0;
@@ -4609,10 +4632,13 @@ namespace ATA.services
                 var item = myScores.Where(d => d.AdjTime > 0).OrderBy(d => d.AdjTime).FirstOrDefault();
                 if (item != null) { minTime = item.AdjTime; }
 
-                maxTime = 1.45 * minTime;
-                int minimumLapNumber = (int)totalLap / 2; // check only integer part
+                //FDT - ATA 2023 - modifiche formula - INIZIO
+                //maxTime = 1.45 * minTime;
+                maxTime = 1.333 * minTime;
+                //FDT - ATA 2023 - modifiche formula - FINE
+                //int minimumLapNumber = (int)totalLap / 2; // check only integer part
                 double maximumLapTime = maxTime / Convert.ToDouble(getTotalLapEndurance());
-                double TotalLenght = LapLenght * totalLap;
+                
                 double ConsumptionMaxCo2 = (ConsumptionMax / 100) * TotalLenght;
 
                 foreach (ScoreEndurance i in myScores)
@@ -4653,24 +4679,53 @@ namespace ATA.services
 
                 foreach (ScoreEndurance i in myScores)
                 {
-                    if (i.Laps > 0 && i.FuelUsed > 0 && i.AvgLapTimeEfficiency < maximumLapTime)
+                    //FDT - ATA 2023 - modifiche formula - INIZIO
+                    if (i.Laps > 0 && i.FuelUsed > 0 && i.Time < 1.33 * minTimeNonCorretto)
                     {
-                        i.EfficencyFactor = 100 * TminLapTotalmin / (i.AdjTimeDNF / i.Laps) * (minLapTotalCo2 / (i.Co2Used / i.Laps));
+                        switch (i.FuelType)
+                        {
+                            case 1:
+                                if(i.EnergyCorr < 15)
+                                {
+                                    i.EfficencyFactor = (i.Time * i.Time * i.EnergyCorr) / 1000000;
+                                }
+                                else { i.EfficencyFactor = 0; }
+                                break;
+                            case 2:
+                                if (i.EnergyCorr < 21.75)
+                                {
+                                    i.EfficencyFactor = (i.Time * i.Time * i.EnergyCorr) / 1000000;
+                                }
+                                else { i.EfficencyFactor = 0; }
+                                break;
+                            case 3:
+                                i.EfficencyFactor = (i.Time * i.Time * i.EnergyCorr) / 1000000;
+                                break;
+                        }
+                        //i.EfficencyFactor = 100 * TminLapTotalmin / (i.AdjTimeDNF / i.Laps) * (minLapTotalCo2 / (i.Co2Used / i.Laps));
+                        //i.EfficencyFactor = (i.Time * i.Time * i.EnergyCorr)/1000000;
                     }
                     else { i.EfficencyFactor = 0; }
+                    //FDT - ATA 2023 - modifiche formula - FINE
                 }
 
-                fuelEfficiencyFactorMin = 100 * (TminLapTotalmin / maximumLapTime) * minLapTotalCo2 / Co2MaxLap;
-                fuelEfficiencyFactorMax = myScores.Max(d => d.EfficencyFactor);
+                //FDT - ATA 2023 - modifiche formula - INIZIO
+                fuelEfficiencyFactorMin = myScores.Min(d => d.EfficencyFactor); //100 * (TminLapTotalmin / maximumLapTime) * minLapTotalCo2 / Co2MaxLap;
+                fuelEfficiencyFactorMax = 1.5 * fuelEfficiencyFactorMin; //myScores.Max(d => d.EfficencyFactor);
+                //FDT - ATA 2023 - modifiche formula - FINE
+                
                 foreach (ScoreEndurance i in myScores)
                 {
-                    if (i.Laps > 0 && i.FuelUsed > 0 && i.EfficencyFactor > 0 && i.DriverChangeStart == true)
-                    {
-                        i.EfficienctyScore = 100 * (fuelEfficiencyFactorMin / i.EfficencyFactor - 1) / (fuelEfficiencyFactorMin / fuelEfficiencyFactorMax - 1);
+                    //FDT - ATA 2023 - modifiche formula - INIZIO
+                    if (i.Laps > 0 && i.FuelUsed > 0 && i.EfficencyFactor > 0 )
+                    {                        
+                        i.EfficienctyScore = 100 * (fuelEfficiencyFactorMax - i.EfficencyFactor) / (fuelEfficiencyFactorMax - fuelEfficiencyFactorMin);
+                        //i.EfficienctyScore = 100 * (fuelEfficiencyFactorMin / i.EfficencyFactor - 1) / (fuelEfficiencyFactorMin / fuelEfficiencyFactorMax - 1);
                         if (i.EfficienctyScore < 0)
                             i.EfficienctyScore = 0;
                     }
                     else { i.EfficienctyScore = 0; }
+                    //FDT - ATA 2023 - modifiche formula - FINE
 
                     i.TotalScore = i.EfficienctyScore + i.EnduranceScore;
                     if (i.TotalScore < 0)

@@ -13,8 +13,11 @@ namespace ATA.services
 
             if (time != 0)
             {
-				//Event 2019 - Was .25
-				return time + (cones * 0.125);
+                //FDT - ATA 2023 - modifiche formula - INIZIO
+                //Event 2019 - Was .25
+                //return time + (cones * 0.125);
+                return time + (cones * 0.2);
+                //FDT - ATA 2023 - modifiche formula - FINE
             }
             else
             {

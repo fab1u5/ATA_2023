@@ -22,7 +22,10 @@ namespace ATA.services
 
             if (time != 0)
             {
-                return time + (cones * 2) + (DOC * 20);
+                //FDT - ATA 2023 - modifiche formula - INIZIO
+                //return time + (cones * 2) + (DOC * 20);
+                return time + (cones * 2) + (DOC * 10);
+                //FDT - ATA 2023 - modifiche formula - FINE
             }
             else
             {

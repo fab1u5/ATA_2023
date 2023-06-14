@@ -34,7 +34,9 @@ namespace ATA.services
         public int FuelType { get; set; }
 
         public double Co2Used { get; set; }
-
+        //FDT - ATA 2023 - modifiche formula - INIZIO
+        public double EnergyCorr { get; set; }
+        //FDT - ATA 2023 - modifiche formula - FINE
         public double Co2Lap { get; set; }
 
         public double TminAvg { get; set; }
@@ -66,7 +68,10 @@ namespace ATA.services
         public double calculateAdjTime(double time, int laps, int penalities, int cone, int doc, double totLaps)
         {
             if (laps >= totLaps)
-                return time + penalities + cone * 2 + doc * 20;
+                //FDT - ATA 2023 - modifiche formula - INIZIO
+                //return time + penalities + cone * 2 + doc * 20;
+                return time + penalities + cone * 2 + doc * 10;
+                //FDT - ATA 2023 - modifiche formula - FINE
             else
                 return 0;
         }
@@ -98,8 +103,10 @@ namespace ATA.services
         public double calcEnduranceScore(double adj, double maxTime, double minTime, int laps)
         {
             //laps < totLaps, see calculateAdjTime function - race not completed, number of performed laps returned
+            //FDT - ATA 2023 - modifiche formula - INIZIO
             if (adj == 0)
-                return laps;
+                return 0;
+            //FDT - ATA 2023 - modifiche formula - FINE
 
             //Too long, return 25 (default value)
             if (adj > maxTime)
@@ -107,9 +114,14 @@ namespace ATA.services
 
             if (adj > 1)
             {
-                return 250 * (maxTime / adj - 1) / (maxTime / minTime - 1) + 25;
+                //FDT - ATA 2023 - modifiche formula - INIZIO
+                //return 250 * (maxTime / adj - 1) / (maxTime / minTime - 1) + 25;
+                return 300 * (maxTime / adj - 1) / (maxTime / minTime - 1) + 25;
+                //FDT - ATA 2023 - modifiche formula - INIZIO
             }
-            else return laps;
+            //FDT - ATA 2023 - modifiche formula - INIZIO
+            else return 0;
+            //FDT - ATA 2023 - modifiche formula - FINE
         }
 
         public double calcCo2Lap(double laps, double fuelUsed, double avgLapTimeForEfficency, double maxLapTime, double AvgLapTime, double Co2used)

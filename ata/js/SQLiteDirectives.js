@@ -242,13 +242,13 @@ createStatementView_scores_partial_presentation += " IFNULL(finals, 0) finals, "
 createStatementView_scores_partial_presentation += " IFNULL(st2finconcept0				+ st2finconcept1			+ st2finconcept2		    + st2finconcept3 + st2finconcept4 + st2finconcept5 + st2finconcept6 + st2finconcept7 + st2finconcept8 + st2finconcept9   + ";
 //FDT - ATA 2023 - aggiunto Financial Concept - FINE
 //FDT - ATA 2023 - aggiunto Financial KPIs & insights - INIZIO
-createStatementView_scores_partial_presentation += " IFNULL(st2finkpis0 + st2finkpis1 + st2finkpis2 + st2finkpis3 + st2finkpis4  + ";
+createStatementView_scores_partial_presentation += " st2finkpis0 + st2finkpis1 + st2finkpis2 + st2finkpis3 + st2finkpis4  + ";
 
 //FDT - ATA 2023 - aggiunto Financial KPIs & insights - FINE
 //FDT - ATA 2023 - eliminato Content e Investors - INIZIO
 //createStatementView_scores_partial_presentation += "		st2content0						+ st2content1					+ st2content2					+ st2content3					+ st2content4					+ ";
 //FDT - ATA 2023 - eliminato Content e Investors - FINE
-createStatementView_scores_partial_presentation += "		st2demonstrationanddelivery0	+ st2demonstrationanddelivery1	+ st2demonstrationanddelivery2	+ st2demonstrationanddelivery3	+ st2demonstrationanddelivery4	+ ";
+createStatementView_scores_partial_presentation += "		st2demonstrationanddelivery0	+ st2demonstrationanddelivery1	+ st2demonstrationanddelivery2	+ st2demonstrationanddelivery3	+ st2demonstrationanddelivery4 ";
 //FDT - ATA 2023 - eliminato Content e Investors - INIZIO
 //FDT - ATA 2022 - modify Stage 2
 //createStatementView_scores_partial_presentation += "		st2investitors0					+ st2investitors1				+ st2investitors2				+ st2investitors3 ";
@@ -732,21 +732,45 @@ updateStatement_scores_presentation += "questions0 = ?, questions1 = ?, question
 updateStatement_scores_presentation += "generalimpression0 = ?, generalimpression1 = ?, generalimpression2 = ?, generalimpressionnotes = ?, ";
 updateStatement_scores_presentation += "miscellaneous = ?, miscellaneousnotes = ?, ";
 
+//FDT - ATA 2023 - eliminato Business Figures, Content - INIZIO
 //FD 2021.08.02 - ATA 2021 - Adding Stage2 - Add Section <Stage2> - BEGIN
-updateStatement_scores_presentation += " st2businnesfigures0 = ?, ";
-updateStatement_scores_presentation += " st2businnesfigures1 = ?, ";
-updateStatement_scores_presentation += " st2businnesfigures2 = ?, ";
-updateStatement_scores_presentation += " st2businnesfigures3 = ?, ";
-//FDT - ATA 2022 - modify Stage 2
-//updateStatement_scores_presentation += " st2businnesfigures4 = ?, ";
-updateStatement_scores_presentation += " st2businnesfiguresnotes = ?, ";
+//updateStatement_scores_presentation += " st2businnesfigures0 = ?, ";
+//updateStatement_scores_presentation += " st2businnesfigures1 = ?, ";
+//updateStatement_scores_presentation += " st2businnesfigures2 = ?, ";
+//updateStatement_scores_presentation += " st2businnesfigures3 = ?, ";
+////FDT - ATA 2022 - modify Stage 2
+////updateStatement_scores_presentation += " st2businnesfigures4 = ?, ";
+//updateStatement_scores_presentation += " st2businnesfiguresnotes = ?, ";
 
-updateStatement_scores_presentation += " st2content0 = ?, ";
-updateStatement_scores_presentation += " st2content1 = ?, ";
-updateStatement_scores_presentation += " st2content2 = ?, ";
-updateStatement_scores_presentation += " st2content3 = ?, ";
-updateStatement_scores_presentation += " st2content4 = ?, ";
-updateStatement_scores_presentation += " st2contentnotes = ?, ";
+//updateStatement_scores_presentation += " st2content0 = ?, ";
+//updateStatement_scores_presentation += " st2content1 = ?, ";
+//updateStatement_scores_presentation += " st2content2 = ?, ";
+//updateStatement_scores_presentation += " st2content3 = ?, ";
+//updateStatement_scores_presentation += " st2content4 = ?, ";
+//updateStatement_scores_presentation += " st2contentnotes = ?, ";
+//FDT - ATA 2023 - eliminato Business Figures, Content - FINE
+
+//FDT - ATA 2023 - aggiunto Financial Concept, Financial KPIs & insights - INIZIO
+updateStatement_scores_presentation += " st2finconcept0 = ?, ";
+updateStatement_scores_presentation += " st2finconcept1 = ?, ";
+updateStatement_scores_presentation += " st2finconcept2 = ?, ";
+updateStatement_scores_presentation += " st2finconcept3 = ?, ";
+updateStatement_scores_presentation += " st2finconcept4 = ?, ";
+updateStatement_scores_presentation += " st2finconcept5 = ?, ";
+updateStatement_scores_presentation += " st2finconcept6 = ?, ";
+updateStatement_scores_presentation += " st2finconcept7 = ?, ";
+updateStatement_scores_presentation += " st2finconcept8 = ?, ";
+updateStatement_scores_presentation += " st2finconcept9 = ?, ";
+updateStatement_scores_presentation += " st2finconceptnotes = ?, ";
+
+updateStatement_scores_presentation += " st2finkpis0 = ?, ";
+updateStatement_scores_presentation += " st2finkpis1 = ?, ";
+updateStatement_scores_presentation += " st2finkpis2 = ?, ";
+updateStatement_scores_presentation += " st2finkpis3 = ?, ";
+updateStatement_scores_presentation += " st2finkpis4 = ?, ";
+updateStatement_scores_presentation += " st2finkpisnotes = ?, ";
+
+//FDT - ATA 2023 - aggiunto Financial Concept, Financial KPIs & insights - FINE
 
 updateStatement_scores_presentation += " st2demonstrationanddelivery0 = ?, ";
 updateStatement_scores_presentation += " st2demonstrationanddelivery1 = ?, ";
@@ -755,12 +779,15 @@ updateStatement_scores_presentation += " st2demonstrationanddelivery3 = ?, ";
 updateStatement_scores_presentation += " st2demonstrationanddelivery4 = ?, ";
 updateStatement_scores_presentation += " st2demonstrationanddeliverynotes = ?, ";
 
-updateStatement_scores_presentation += " st2investitors0 = ?, ";
-updateStatement_scores_presentation += " st2investitors1 = ?, ";
-updateStatement_scores_presentation += " st2investitors2 = ?, ";
-//FDT - ATA 2022 - modify Stage 2
-//updateStatement_scores_presentation += " st2investitors3 = ?, ";
-updateStatement_scores_presentation += " st2investitorsnotes  = ?, ";
+//FDT - ATA 2023 - eliminato  Investors - INIZIO
+//updateStatement_scores_presentation += " st2investitors0 = ?, ";
+//updateStatement_scores_presentation += " st2investitors1 = ?, ";
+//updateStatement_scores_presentation += " st2investitors2 = ?, ";
+////FDT - ATA 2022 - modify Stage 2
+////updateStatement_scores_presentation += " st2investitors3 = ?, ";
+//updateStatement_scores_presentation += " st2investitorsnotes  = ?, ";
+//FDT - ATA 2023 - eliminato  Investors - FINE
+
 //FD 2021.08.02 - ATA 2021 - Adding Stage2 - Add Section <Stage2> - END
 
 updateStatement_scores_presentation += "presentationnotes = ?, ";
@@ -889,7 +916,7 @@ function initDatabase() {
 
 			createTable_scores();
 			createTable_scores_design1E();
-			createTable_scores_design1C3();
+            createTable_scores_design1C3();
 			createTable_scores_presentation();
 			createTable_scores_cost();
 			createTable_scores_acceleration();
@@ -933,7 +960,8 @@ function initDatabase() {
 
 function onError(tx, error) {
 	//alert(error.message);
-	ataToast(error.message, 4000);
+    ataToast(error.message, 4000);
+    console.log("Errore: ", error.message)
 }
 
 function foo() {
@@ -4042,7 +4070,8 @@ function showRecords_scores_presentation(scoreid) {
                     });
                     $("#totalSt2FinConcept").val(scoreP.totalSt2FinConcept);
                     $("#totalSt2FinConceptBadge").html(scoreP.totalSt2FinConcept);                    
-                    $('#st2finconceptNotes').val(scoreP.st2FinConceptNotes);
+                    $('#st2FinConceptNotes').val(scoreP.st2FinConceptNotes);
+                    
 	                //FDT - ATA 2023 - aggiunto Financial Concept - FINE
 
                     //FDT - ATA 2023 - aggiunto Financial KPIs & insights - INIZIO
@@ -4052,7 +4081,8 @@ function showRecords_scores_presentation(scoreid) {
                     });
                     $("#totalSt2FinKPIs").val(scoreP.totalSt2FinKPIs);
                     $("#totalSt2FinKPIsBadge").html(scoreP.totalSt2FinKPIs);
-                    $('#st2finckpisNotes').val(scoreP.st2FinKPIsNotes);
+                    $('#st2FinKPIsNotes').val(scoreP.st2FinKPIsNotes);
+                    
 	                //FDT - ATA 2023 - aggiunto Financial KPIs & insights - FINE
 
                     //FDT - ATA 2023 - eliminato Content e Investors - INIZIO
@@ -4377,15 +4407,15 @@ function insertRecord_scores_presentation(eventid, carid, scoreP) {
             //FDT - ATA 2023 - eliminato Business Figures - FINE
 
             //FDT - ATA 2023 - aggiunto Financial Concept - INIZIO
-            SqlString += "St2FinConcept0, St2FinConcept1, St2FinConcept2, St2FinConcept3, St2FinConcept4, St2FinConcept5, St2FinConcept6, St2FinConcept7, St2FinConcept8, St2FinConcept9, St2FinConceptNotes, ";
+            SqlString += "st2finconcept0, st2finconcept1, st2finconcept2, st2finconcept3, st2finconcept4, st2finconcept5, st2finconcept6, st2finconcept7, st2finconcept8, st2finconcept9, st2finconceptnotes, ";
             //FDT - ATA 2023 - aggiunto Financial Concept - FINE
             //FDT - ATA 2023 - aggiunto Financial KPIs & insights - INIZIO
-            SqlString += "St2FinKPIs0, St2FinKPIs1, St2FinKPIs2, St2FinKPIs3, St2FinKPIs4, St2FinKPIsNotes, ";
+            SqlString += "st2finkpis0, st2finkpis1, st2finkpis2, st2finkpis3, st2finkpis4, st2finkpisnotes, ";
 	        //FDT - ATA 2023 - aggiunto Financial KPIs & insights - FINE
             //FDT - ATA 2023 - eliminato Content e Investors - INIZIO
             //SqlString += "St2Content0, St2Content1, St2Content2, St2Content3, St2Content4, St2ContentNotes, ";
             //FDT - ATA 2023 - eliminato Content e Investors - FINE
-			SqlString += "St2DemonstrationAndDelivery0, St2DemonstrationAndDelivery1, St2DemonstrationAndDelivery2, St2DemonstrationAndDelivery3, St2DemonstrationAndDelivery4, St2DemonstrationAndDeliveryNotes, ";
+            SqlString += "st2demonstrationanddelivery0, st2demonstrationanddelivery1, st2demonstrationanddelivery2, st2demonstrationanddelivery3, st2demonstrationanddelivery4, st2demonstrationanddeliverynotes, ";
             //FDT - ATA 2023 - eliminato Content e Investors - INIZIO
             //FDT - ATA 2022 - modify Stage 2
             //SqlString += "St2Investitors0, St2Investitors1, St2Investitors2, St2Investitors3, St2InvestitorsNotes, ";
@@ -4427,12 +4457,20 @@ function insertRecord_scores_presentation(eventid, carid, scoreP) {
 			SqlString += "?, ?, ";																	//miscellaneous - 2
 
 			//FD 2021.08.02 - ATA 2021 - Adding Stage2 - Add Section <Stage2> - BEGIN
+            //FDT - ATA 2023 - eliminato Business Figures, Content - INIZIO
             //FDT - ATA 2022 - modify Stage 2
-			SqlString += "?, ?, ?, ?, ?, ";														    //St2BusinnesFigures - 5
-			SqlString += "?, ?, ?, ?, ?, ?, ";														//St2Content - 6
+			//SqlString += "?, ?, ?, ?, ?, ";														    //St2BusinnesFigures - 5
+            //SqlString += "?, ?, ?, ?, ?, ?, ";														//St2Content - 6
+            //FDT - ATA 2023 - eliminato Business Figures, Content - FINE
+            //FDT - ATA 2023 - aggiunto Financial Concept, Financial kpi - INIZIO
+            SqlString += "?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ";                                       //St2FinConcept -11
+            SqlString += "?, ?, ?, ?, ?, ?, ";                                                      //St2FinKPIs - 6
+            //FDT - ATA 2023 - aggiunto Financial Concept, Financial kpi - FINE
             SqlString += "?, ?, ?, ?, ?, ?, ";														//St2DemonstrationAndDeliveryNotes - 6
             //FDT - ATA 2022 - modify Stage 2
-			SqlString += "?, ?, ?, ?, ";															//St2Investitors - 4
+            //FDT - ATA 2023 - eliminato Content e Investors - INIZIO
+			//SqlString += "?, ?, ?, ?, ";															//St2Investitors - 4
+            //FDT - ATA 2023 - eliminato Content e Investors - FINE
 			//FD 2021.08.02 - ATA 2021 - Adding Stage2 - Add Section <Stage2> - END
 
 			//FD 2021.07.27 - ATA 2021  - Add Stage1
@@ -4482,12 +4520,21 @@ function insertRecord_scores_presentation(eventid, carid, scoreP) {
 
                         //FDT - ATA 2022 - modify Stage 2
                         //scoreP.st2BusinnesFigures[0], scoreP.st2BusinnesFigures[1], scoreP.st2BusinnesFigures[2], scoreP.st2BusinnesFigures[3], scoreP.st2BusinnesFigures[4], scoreP.st2BusinnesFiguresNotes,
-                        scoreP.st2BusinnesFigures[0], scoreP.st2BusinnesFigures[1], scoreP.st2BusinnesFigures[2], scoreP.st2BusinnesFigures[3], scoreP.st2BusinnesFiguresNotes,
-						scoreP.st2Content[0], scoreP.st2Content[1], scoreP.st2Content[2], scoreP.st2Content[3], scoreP.st2Content[4], scoreP.st2ContentNotes,
-						scoreP.st2DemonstrationAndDelivery[0], scoreP.st2DemonstrationAndDelivery[1], scoreP.st2DemonstrationAndDelivery[2], scoreP.st2DemonstrationAndDelivery[3], scoreP.st2DemonstrationAndDelivery[4], scoreP.st2DemonstrationAndDeliveryNotes,
+                        //FDT - ATA 2023 - eliminato Business Figures,Content - INIZIO
+                        //scoreP.st2BusinnesFigures[0], scoreP.st2BusinnesFigures[1], scoreP.st2BusinnesFigures[2], scoreP.st2BusinnesFigures[3], scoreP.st2BusinnesFiguresNotes,
+						//scoreP.st2Content[0], scoreP.st2Content[1], scoreP.st2Content[2], scoreP.st2Content[3], scoreP.st2Content[4], scoreP.st2ContentNotes,
+                        //FDT - ATA 2023 - eliminato Business Figures, Content - FINE
+                        //FDT - ATA 2023 - aggiunto Financial Concept, Financial KPIs & insights - INIZIO
+                        scoreP.st2FinConcept[0], scoreP.st2FinConcept[1], scoreP.st2FinConcept[2], scoreP.st2FinConcept[3], scoreP.st2FinConcept[4], scoreP.st2FinConcept[5], scoreP.st2FinConcept[6], scoreP.st2FinConcept[7],
+                        scoreP.st2FinConcept[8], scoreP.st2FinConcept[9], scoreP.st2FinConceptNotes,
+                        scoreP.st2FinKPIs[0], scoreP.st2FinKPIs[1], scoreP.st2FinKPIs[2], scoreP.st2FinKPIs[3], scoreP.st2FinKPIs[4], scoreP.st2FinKPIsNotes,
+                        //FDT - ATA 2023 - aggiunto Financial Concept, Financial KPIs & insights - FINE
+                        scoreP.st2DemonstrationAndDelivery[0], scoreP.st2DemonstrationAndDelivery[1], scoreP.st2DemonstrationAndDelivery[2], scoreP.st2DemonstrationAndDelivery[3], scoreP.st2DemonstrationAndDelivery[4], scoreP.st2DemonstrationAndDeliveryNotes,
+                        //FDT - ATA 2023 - eliminato  Investors - INIZIO
                         //FDT - ATA 2022 - modify Stage 2
                         //scoreP.st2Investitors[0], scoreP.st2Investitors[1], scoreP.st2Investitors[2], scoreP.st2Investitors[3], scoreP.st2InvestitorsNotes,
-                        scoreP.st2Investitors[0], scoreP.st2Investitors[1], scoreP.st2Investitors[2], scoreP.st2InvestitorsNotes,
+                        //scoreP.st2Investitors[0], scoreP.st2Investitors[1], scoreP.st2Investitors[2], scoreP.st2InvestitorsNotes,
+                        //FDT - ATA 2023 - eliminato  Investors - FINE
 
             			scoreP.presentationNotes, scoreP.stage1, scoreP.finals
             		],
@@ -4521,12 +4568,20 @@ function insertRecord_scores_presentation(eventid, carid, scoreP) {
 				SqlString += "?, ?, ";															//miscellaneous - 2
 
 				//FD 2021.08.02 - ATA 2021 - Adding Stage2 - Add Section <Stage2> - BEGIN
+                //FDT - ATA 2023 - eliminato Business Figures, Content - INIZIO
                 //FDT - ATA 2022 - modify Stage 2
-				SqlString += "?, ?, ?, ?, ?, ";												//St2BusinnesFigures - 5
-				SqlString += "?, ?, ?, ?, ?, ?, ";												//St2Content - 6
+				//SqlString += "?, ?, ?, ?, ?, ";												//St2BusinnesFigures - 5
+                //SqlString += "?, ?, ?, ?, ?, ?, ";												//St2Content - 6
+                //FDT - ATA 2023 - eliminato Business Figures, Content - FINE
+                //FDT - ATA 2023 - aggiunto Financial Concept, Fin KPI - INIZIO
+                SqlString += "?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ";                                       //St2FinConcept -11
+                SqlString += "?, ?, ?, ?, ?, ?, ";                                                      //St2FinKPIs - 6
+                //FDT - ATA 2023 - aggiunto Financial Concept, Fin KPI - FINE
 				SqlString += "?, ?, ?, ?, ?, ?, ";												//St2DemonstrationAndDeliveryNotes - 6
                 //FDT - ATA 2022 - modify Stage 2
-                SqlString += "?, ?, ?, ?, ";													//St2Investitors - 4
+                //FDT - ATA 2023 - eliminato Content e Investors - INIZIO
+                //SqlString += "?, ?, ?, ?, ";													//St2Investitors - 4
+                //FDT - ATA 2023 - eliminato Content e Investors - FINE
 				//FD 2021.08.02 - ATA 2021 - Adding Stage2 - Add Section <Stage2> - END
 
 				//FD 2021.07.27 - ATA 2021  - Add Stage1
@@ -4562,14 +4617,23 @@ function insertRecord_scores_presentation(eventid, carid, scoreP) {
 							scoreP.generalImpression[0], scoreP.generalImpression[1], scoreP.generalImpression[2], scoreP.generalImpressionNotes,
 							scoreP.miscellaneous, scoreP.miscellaneousNotes,
 
+                            //FDT - ATA 2023 - eliminato Business Figures, Content - INIZIO
                             //FDT - ATA 2022 - modify Stage 2
                             //scoreP.st2BusinnesFigures[0], scoreP.st2BusinnesFigures[1], scoreP.st2BusinnesFigures[2], scoreP.st2BusinnesFigures[3], scoreP.st2BusinnesFigures[4], scoreP.st2BusinnesFiguresNotes,
-                            scoreP.st2BusinnesFigures[0], scoreP.st2BusinnesFigures[1], scoreP.st2BusinnesFigures[2], scoreP.st2BusinnesFigures[3], scoreP.st2BusinnesFiguresNotes,
-							scoreP.st2Content[0], scoreP.st2Content[1], scoreP.st2Content[2], scoreP.st2Content[3], scoreP.st2Content[4], scoreP.st2ContentNotes,
-							scoreP.st2DemonstrationAndDelivery[0], scoreP.st2DemonstrationAndDelivery[1], scoreP.st2DemonstrationAndDelivery[2], scoreP.st2DemonstrationAndDelivery[3], scoreP.st2DemonstrationAndDelivery[4], scoreP.st2DemonstrationAndDeliveryNotes,
+                            //scoreP.st2BusinnesFigures[0], scoreP.st2BusinnesFigures[1], scoreP.st2BusinnesFigures[2], scoreP.st2BusinnesFigures[3], scoreP.st2BusinnesFiguresNotes,
+							//scoreP.st2Content[0], scoreP.st2Content[1], scoreP.st2Content[2], scoreP.st2Content[3], scoreP.st2Content[4], scoreP.st2ContentNotes,
+                            //FDT - ATA 2023 - eliminato Business Figures, Content - FINE
+
+                            scoreP.st2DemonstrationAndDelivery[0], scoreP.st2DemonstrationAndDelivery[1], scoreP.st2DemonstrationAndDelivery[2], scoreP.st2DemonstrationAndDelivery[3], scoreP.st2DemonstrationAndDelivery[4], scoreP.st2DemonstrationAndDeliveryNotes,
+                            //FDT - ATA 2023 - aggiunto Financial concept, Financial KPIs & insights - INIZIO
+                            scoreP.st2FinConcept[0], scoreP.st2FinConcept[1], scoreP.st2FinConcept[2], scoreP.st2FinConcept[3], scoreP.st2FinConcept[4], scoreP.st2FinConcept[5], scoreP.st2FinConcept[6], scoreP.st2FinConcept[7], scoreP.st2FinConcept[8], scoreP.st2FinConcept[9], scoreP.st2FinConceptNotes,
+                            scoreP.st2FinKPIs[0], scoreP.st2FinKPIs[1], scoreP.st2FinKPIs[2], scoreP.st2FinKPIs[3], scoreP.st2FinKPIs[4], scoreP.st2FinKPIsNotes,
+                            //FDT - ATA 2023 - aggiunto Financial concept, Financial KPIs & insights - FINE
+                            //FDT - ATA 2023 - eliminato Investors - INIZIO
                             //FDT - ATA 2022 - modify Stage 2
                             //scoreP.st2Investitors[0], scoreP.st2Investitors[1], scoreP.st2Investitors[2], scoreP.st2Investitors[3], scoreP.st2InvestitorsNotes,
-                            scoreP.st2Investitors[0], scoreP.st2Investitors[1], scoreP.st2Investitors[2], scoreP.st2InvestitorsNotes,
+                            //scoreP.st2Investitors[0], scoreP.st2Investitors[1], scoreP.st2Investitors[2], scoreP.st2InvestitorsNotes,
+                            //FDT - ATA 2023 - eliminato Investors - FINE
 
 							scoreP.presentationNotes, scoreP.stage1, scoreP.finals
 				],
@@ -4663,7 +4727,7 @@ function updateRecord_scores_presentation(scoreP) {
                                                 /*scoreP.totalSt2BusinnesFigures,*/
                                                 //FDT - ATA 2023 - eliminato Business Figures - FINE
                                                 //FDT - ATA 2023 - aggiunto Financial Concept - INIZIO
-                                                scoreP.totalSt2FInConcept,
+                                                scoreP.totalSt2FinConcept,
 	                                            //FDT - ATA 2023 - aggiunto Financial Concept - FINE
                                                 //FDT - ATA 2023 - aggiunto Financial KPIs & insights - INIZIO
                                                 scoreP.totalSt2FinKPIs,
@@ -4671,7 +4735,7 @@ function updateRecord_scores_presentation(scoreP) {
                                                 //FDT - ATA 2023 - eliminato Content e Investors - INIZIO
                                                 //scoreP.totalSt2Content,
                                                 //FDT - ATA 2023 - eliminato Content e Investors - FINE
-                                                scoreP.totalSt2DemonstrationAndDelivery,
+                                                scoreP.totalSt2DemonstrationAndDelivery
                                                 //FDT - ATA 2023 - eliminato Content e Investors - INIZIO
                                                 //scoreP.totalSt2Investitors
                                                 //FDT - ATA 2023 - eliminato Content e Investors - FINE
@@ -4693,7 +4757,7 @@ function updateRecord_scores_presentation(scoreP) {
 			//FD 2021.08.02 - ATA 2021 - Modify Stage3 - BEGIN tolta parte Finances2 e Finances4
 			//FD 2021.08.02 - ATA 2021 - Modify Stage3 - BEGIN Add Content9
 			//FD 2021.08.02 - ATA 2021 - Modify Stage3 - Add deepdivetopic4
-			//FD 2021.08.02 - ATA 2021 - Modify Stage3 - Remove Sezione <DemonstrationAndStructure>
+            //FD 2021.08.02 - ATA 2021 - Modify Stage3 - Remove Sezione <DemonstrationAndStructure>
 			tx.executeSql(
 				updateStatement_scores_presentation,
 				[

@@ -64,5 +64,12 @@ namespace ATA.services
 
         public ATA_Context() : base("ATA_ConnectionString") 
         {}
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            Database.SetInitializer<ATA_Context>(null);
+            base.OnModelCreating(modelBuilder);
+        }
+
     }
 }
