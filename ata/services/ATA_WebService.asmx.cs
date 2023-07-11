@@ -1813,7 +1813,8 @@ namespace ATA.services
             {
                 try
                 {
-                    string SQLCommandString = "SELECT EventId, Description, IsScoreNumeric, MaximumScore, EventNameId, EventTypeId, EventName, EventTypeName, CarId, CarNo, RegNo, DeliveryDocDate, BoxNo, ClassId, FuelId, TeamId, ClassName, FuelName, TeamName, University, Country, GivenScore, PenalityScore, PenalityNotes, CorrectedScore, PageToJump, ScoreId, UploadingExamboard FROM VW_Scores WHERE ClassId = " + classid + " AND EventId = " + eventid;
+                    //FDT - ATA 2023 - modifiche stage3
+                    string SQLCommandString = "SELECT EventId, Description, IsScoreNumeric, MaximumScore, EventNameId, EventTypeId, EventName, EventTypeName, CarId, CarNo, RegNo, DeliveryDocDate, BoxNo, ClassId, FuelId, TeamId, ClassName, FuelName, TeamName, University, Country, GivenScore, PenalityScore, PenalityNotes, CorrectedScore, PageToJump, ScoreId, UploadingExamboard,EfficiencyScore, EnduranceScore FROM VW_Scores WHERE ClassId = " + classid + " AND EventId = " + eventid;
                     connection.Open();
                     SqlCommand command = new SqlCommand(SQLCommandString, connection);
                     using (SqlDataReader dr = command.ExecuteReader())
@@ -1855,6 +1856,10 @@ namespace ATA.services
 
                             //Electric Car has to be green-colored - req.Ciadamidaro Set 2015
                             score.IsAnElectricCar = (score.FuelName.ToUpper().Contains("ELECTRI"));
+
+                            //FDT - ATA 2023 - modifiche stage3
+                            score.EfficiencyScore = Math.Round((double)dr["EfficiencyScore"], 3);
+                            score.EnduranceScore = Math.Round((double)dr["EnduranceScore"], 3);
 
                             Car car = context.Cars.Where(c => c.Id.Equals(score.CarId)).FirstOrDefault();
                             if (car != null)
@@ -2687,11 +2692,12 @@ namespace ATA.services
 		//FD 2021.08.02 - ATA 2021 - Modify Stage3 - BEGIN tolta parte di executive summary
 		public bool InsertScorePresentation(int eventid, int carid, int scoreid,
 			//double [] executiveSummary, string executiveSummaryNotes,
-			double [] novelty,						string noveltyNotes,
+            //FDT - ATA 2023 - modifiche stage3
+			//double [] novelty,						string noveltyNotes,
 			double [] content,						string contentNotes,
 			double [] finances,						string financesNotes,
 			double [] deepDiveTopic,				string deepDiveTopicNotes,
-			double [] demonstrationAndStructure,	string demonstrationAndStructureNotes,
+			double [] structure,	                string structureNotes,
 			double [] delivery,						string deliveryNotes,
 			double [] questions,					string questionsNotes,
 			double [] generalImpression,			string generalImpressionNotes,
@@ -2700,7 +2706,7 @@ namespace ATA.services
 			//FD 2021.07.27 - ATA 2021  - Add Stage1
 			double    stage1,
 			//FD 2021.08.02 - ATA 2021 - Modify Stage3 - Add Sezione <DemonstrationAndDelivery>
-			double [] demonstrationAndDelivery,		string demonstrationAndDeliveryNotes,
+			double [] demonstration,		string demonstrationNotes,
 
             //FD 2021.08.02 - ATA 2021 - Adding Stage2 - Add Section <Stage2> - BEGIN
             //FDT - ATA 2023 - eliminato Business Figures - INIZIO
@@ -2760,18 +2766,20 @@ namespace ATA.services
 				//scoreP.SetData(novelty, noveltyNotes, content, contentNotes, finances, financesNotes, deepDiveTopic, deepDiveTopicNotes, demonstrationAndStructure, demonstrationAndStructureNotes, delivery, deliveryNotes, questions, questionsNotes, generalImpression, generalImpressionNotes, miscellaneous, miscellaneousNotes, presentationNotes, stage1, demonstrationAndDelivery, demonstrationAndDeliveryNotes);
 				//FD 2021.09.12 - ATA 2021 - Add Section <Finals in Stage3>
 				//scoreP.SetData(novelty, noveltyNotes, content, contentNotes, finances, financesNotes, deepDiveTopic, deepDiveTopicNotes, demonstrationAndStructure, demonstrationAndStructureNotes, delivery, deliveryNotes, questions, questionsNotes, generalImpression, generalImpressionNotes, miscellaneous, miscellaneousNotes, presentationNotes, stage1, demonstrationAndDelivery, demonstrationAndDeliveryNotes,st2BusinessFigure, st2BusinessFigureNotes, st2Content, st2ContentNotes,st2DemonstrationAndDelivery, st2DemonstrationAndDeliveryNotes,st2Investitors,	st2InvestitorsNotes,0);
-				scoreP.SetData(	novelty,						noveltyNotes,	
+				scoreP.SetData(	
+                                //FDT - ATA 2023 - modifiche stage3
+                                //novelty,						noveltyNotes,	
 								content,						contentNotes, 
 								finances,						financesNotes,	
 								deepDiveTopic,					deepDiveTopicNotes,
-								demonstrationAndStructure,		demonstrationAndStructureNotes,
+								structure,		                structureNotes,
 								delivery,						deliveryNotes,
 								questions,						questionsNotes,
 								generalImpression,				generalImpressionNotes,
 								miscellaneous,					miscellaneousNotes,
 								presentationNotes, 
 								stage1,
-								demonstrationAndDelivery,		demonstrationAndDeliveryNotes,
+								demonstration,		            demonstrationNotes,
                                 //FDT - ATA 2023 - eliminato Business Figures - INIZIO
                                 //st2BusinessFigure,				st2BusinessFigureNotes,
                                 //FDT - ATA 2023 - eliminato Business Figures - FINE
@@ -2819,20 +2827,21 @@ namespace ATA.services
 		//FD 2021.08.02 - ATA 2021 - Modify Stage3 - BEGIN tolta parte di executive summary
         public bool UpdateScorePresentation(int scoreid,
 			//double[] executiveSummary,				string executiveSummaryNotes,
-			double[] novelty,							string noveltyNotes,
+			//FDT - ATA 2023 - modifiche stage3
+            //double[] novelty,							string noveltyNotes,
 			double[] content,							string contentNotes,
 			double[] finances,							string financesNotes,
 			double[] deepDiveTopic,						string deepDiveTopicNotes,
-			double[] demonstrationAndStructure,			string demonstrationAndStructureNotes,
+			double[] structure,			                string structureNotes,
 			double[] delivery,							string deliveryNotes,
 			double[] questions,							string questionsNotes,
 			double[] generalImpression,					string generalImpressionNotes,
 			double miscellaneous,						string miscellaneousNotes,
-			string presentationNotes,					double totalPresentation
+			string presentationNotes,					double totalPresentation,
 			//FD 2021.07.27 - ATA 2021  - Add Stage1
-			,double stage1
+			double stage1,
 			//FD 2021.08.02 - ATA 2021 - Modify Stage3 - Add Sezione <DemonstrationAndDelivery>
-			,double[] demonstrationAndDelivery,			string demonstrationAndDeliveryNotes,
+			double[] demonstration,			            string demonstrationNotes,
 
             //FD 2021.08.02 - ATA 2021 - Adding Stage2 - Add Section <Stage2> - BEGIN
             //FDT - ATA 2023 - eliminato Business Figures - INIZIO
@@ -2872,17 +2881,17 @@ namespace ATA.services
 					//scoreP.SetData(executiveSummary, executiveSummaryNotes, novelty, noveltyNotes, content, contentNotes, finances, financesNotes, deepDiveTopic, deepDiveTopicNotes, demonstrationAndStructure, demonstrationAndStructureNotes, delivery, deliveryNotes, questions, questionsNotes, generalImpression, generalImpressionNotes, miscellaneous, miscellaneousNotes, presentationNotes, stage1);
 					//FD 2021.08.02 - ATA 2021 - Modify Stage3 - Add Sezione <DemonstrationAndDelivery>
 					//scoreP.SetData(novelty, noveltyNotes, content, contentNotes, finances, financesNotes, deepDiveTopic, deepDiveTopicNotes, demonstrationAndStructure, demonstrationAndStructureNotes, delivery, deliveryNotes, questions, questionsNotes, generalImpression, generalImpressionNotes, miscellaneous, miscellaneousNotes, presentationNotes, stage1);
-					scoreP.SetData(	novelty,						noveltyNotes, 
+					scoreP.SetData(	//novelty,						noveltyNotes, 
 									content,						contentNotes, 
 									finances,						financesNotes, 
 									deepDiveTopic,					deepDiveTopicNotes, 
-									demonstrationAndStructure,		demonstrationAndStructureNotes, 
+									structure,		                structureNotes, 
 									delivery,						deliveryNotes, 
 									questions,						questionsNotes, 
 									generalImpression,				generalImpressionNotes, 
 									miscellaneous,					miscellaneousNotes, 
 									presentationNotes,				stage1, 
-									demonstrationAndDelivery,		demonstrationAndDeliveryNotes,
+									demonstration,		            demonstrationNotes,
                                     //FDT - ATA 2023 - eliminato Business Figures - INIZIO
                                     //st2BusinessFigure,				st2BusinessFigureNotes,
                                     //FDT - ATA 2023 - eliminato Business Figures - INIZIO
@@ -3049,20 +3058,29 @@ namespace ATA.services
 
 					//FD 2021.08.02 - ATA 2021 - Modify Stage3 - BEGIN tolta parte di executive summary
 					//myrank.Notes.Add(scoreP.ExecutiveSummaryNotes.ToString());
-					myrank.Notes.Add(scoreP.NoveltyNotes.ToString());
+					//myrank.Notes.Add(scoreP.NoveltyNotes.ToString());
 					myrank.Notes.Add(scoreP.ContentNotes.ToString());
 					myrank.Notes.Add(scoreP.FinancesNotes.ToString());
 					myrank.Notes.Add(scoreP.DeepDiveTopicNotes.ToString());
 					
 					//FD 2021.08.02 - ATA 2021 - Modify Stage3 - Add Sezione <DemonstrationAndDelivery>
-					myrank.Notes.Add(scoreP.DemonstrationAndDeliveryNotes.ToString());
-
-					//myrank.Notes.Add(scoreP.DemonstrationAndStructureNotes.ToString());
+					myrank.Notes.Add(scoreP.DemonstrationNotes.ToString());
+                    					
 					myrank.Notes.Add(scoreP.DeliveryNotes.ToString());
+                    myrank.Notes.Add(scoreP.StructureNotes.ToString());
 					myrank.Notes.Add(scoreP.QuestionsNotes.ToString());
 					myrank.Notes.Add(scoreP.GeneralImpressionNotes.ToString());
 					myrank.Notes.Add(scoreP.MiscellaneousNotes.ToString());
 					myrank.Notes.Add(scoreP.PresentationNotes.ToString());
+
+                    //FDT - ATA 2023 - modifiche stage3
+                    //WORKAROUND
+                    ExamBoard a = s.Car.ExamBoards.Where(d => d.Name.ToUpper().Contains("PRESENTATION")).FirstOrDefault();
+                    if (a != null)
+                        myrank.ExamBoardName = a.Name;
+                    else
+                        myrank.ExamBoardName = "-";
+
 
                     ranks.Add(myrank);
                 }
@@ -3990,11 +4008,11 @@ namespace ATA.services
 
                 foreach (ScoreSkidPad i in myScores)
                 {
-					//Event 2019 - Was .25
-                    i.Run1TimeAdj = i.Run1Time + (i.Run1NumOfCones * .125);
-                    i.Run2TimeAdj = i.Run2Time + (i.Run2NumOfCones * .125);
-                    i.Run3TimeAdj = i.Run3Time + (i.Run3NumOfCones * .125);
-                    i.Run4TimeAdj = i.Run4Time + (i.Run4NumOfCones * .125);
+					//FDT - ATA 2023 - modifiche stage3
+                    i.Run1TimeAdj = i.Run1Time + (i.Run1NumOfCones * .2);
+                    i.Run2TimeAdj = i.Run2Time + (i.Run2NumOfCones * .2);
+                    i.Run3TimeAdj = i.Run3Time + (i.Run3NumOfCones * .2);
+                    i.Run4TimeAdj = i.Run4Time + (i.Run4NumOfCones * .2);
                     List<double> r = new List<double>();
                     if (i.Run1TimeAdj != 0)
                         r.Add(i.Run1TimeAdj);
@@ -4258,10 +4276,11 @@ namespace ATA.services
 
                 foreach (ScoreAutoCross i in myScores)
                 {
-                    i.Run1TimeAdj = i.Run1Time + (i.Run1NumOfCones * 2) + (i.Run1Doc * 20);
-                    i.Run2TimeAdj = i.Run2Time + (i.Run2NumOfCones * 2) + (i.Run2Doc * 20);
-                    i.Run3TimeAdj = i.Run3Time + (i.Run3NumOfCones * 2) + (i.Run3Doc * 20);
-                    i.Run4TimeAdj = i.Run4Time + (i.Run4NumOfCones * 2) + (i.Run4Doc * 20);
+                    //FDT - ATA 2023 - modifiche 2023
+                    i.Run1TimeAdj = i.Run1Time + (i.Run1NumOfCones * 2) + (i.Run1Doc * 10);
+                    i.Run2TimeAdj = i.Run2Time + (i.Run2NumOfCones * 2) + (i.Run2Doc * 10);
+                    i.Run3TimeAdj = i.Run3Time + (i.Run3NumOfCones * 2) + (i.Run3Doc * 10);
+                    i.Run4TimeAdj = i.Run4Time + (i.Run4NumOfCones * 2) + (i.Run4Doc * 10);
 
                     List<double> r = new List<double>();
                     if (i.Run1TimeAdj != 0)
@@ -4418,6 +4437,9 @@ namespace ATA.services
                 var fuel = context.Fuels.Where(d => d.Id.Equals(se.FuelType)).FirstOrDefault();
                 if (fuel != null) { obj.FuelType = fuel.Name; }
                 obj.FuelUsed = Math.Round(se.FuelUsed, 3);
+
+                //FDT - ATA 2023
+                obj.EnergyCorr = Math.Round(se.EnergyCorr,3);
 
             }
             return obj;
@@ -4592,7 +4614,7 @@ namespace ATA.services
                 totalLap = getTotalLapEndurance();
                 //FDT - ATA 2023 - modifiche formula - INIZIO
                 double TotalLenght = LapLenght * totalLap;
-                double minTimeNonCorretto = myScores.Min(d => d.Time);
+                double minTimeNonCorretto = myScores.Where(x => x.Time > 0 && x.Laps >= totalLap).Min(d => d.Time);
                 //FDT - ATA 2023 - modifiche formula - FINE
                 foreach (ScoreEndurance i in myScores)
                 {
@@ -4710,7 +4732,8 @@ namespace ATA.services
                 }
 
                 //FDT - ATA 2023 - modifiche formula - INIZIO
-                fuelEfficiencyFactorMin = myScores.Min(d => d.EfficencyFactor); //100 * (TminLapTotalmin / maximumLapTime) * minLapTotalCo2 / Co2MaxLap;
+                fuelEfficiencyFactorMin = (myScores.Where(x => x.EfficencyFactor > 0).Count() == 0 ? 0 : myScores.Where(x => x.EfficencyFactor > 0).Min(d => d.EfficencyFactor));
+                //100 * (TminLapTotalmin / maximumLapTime) * minLapTotalCo2 / Co2MaxLap;
                 fuelEfficiencyFactorMax = 1.5 * fuelEfficiencyFactorMin; //myScores.Max(d => d.EfficencyFactor);
                 //FDT - ATA 2023 - modifiche formula - FINE
                 
@@ -4766,6 +4789,8 @@ namespace ATA.services
                         myRank.EnduranceScore = Math.Round(i.EnduranceScore, 3);
                         myRank.EfficiencyScore = Math.Round(i.EfficienctyScore, 3);
                         myRank.TotalScore = Math.Round(i.TotalScore, 3);
+                        //FDT - ATA 2023 - modifiche stage3
+                        myRank.Time = Math.Round(i.Time, 3);
 
                         ranks.Add(myRank);
                     }
@@ -4782,7 +4807,7 @@ namespace ATA.services
                 ExceptionLogHelper.Error(ex);
                 return ranks = new List<EnduranceRankingObject>();
             }
-            return ranks.OrderByDescending(d => d.TotalScore).ToList();
+            return ranks.OrderByDescending(d => d.TotalScore).ThenByDescending(x => x.Time).ToList();
         }
 
         #endregion
@@ -5182,7 +5207,10 @@ namespace ATA.services
 					//string SQLCommandString = "SELECT ScoreId, Stage1, Novelty, Content, Finances, DeepDiveTopic, DemonstrationAndStructure, Delivery, Questions, GeneralImpression, Miscellaneous, DemonstrationAndDelivery FROM VW_Scores_Partial_Presentation WHERE ScoreId IN (" + scoresidlist + ")";
 					//FD 2021.09.12 - ATA 2021 - Add Section <Finals in Stage3>
 					//string SQLCommandString = "SELECT ScoreId, Stage1, Stage2, Novelty, Content, Finances, DeepDiveTopic, DemonstrationAndDelivery, Delivery, Questions, GeneralImpression, Miscellaneous FROM VW_Scores_Partial_Presentation WHERE ScoreId IN (" + scoresidlist + ")";
-					string SQLCommandString = "SELECT ScoreId, Stage1, Stage2, Novelty, Content, Finances, DeepDiveTopic, DemonstrationAndDelivery, Delivery, Questions, GeneralImpression, Miscellaneous, Finals FROM VW_Scores_Partial_Presentation WHERE ScoreId IN (" + scoresidlist + ")";
+					string SQLCommandString = "SELECT ScoreId, Stage1, Stage2, " +
+                        //"Novelty, " +
+                        "Content, Finances, DeepDiveTopic, Demonstration, Structure, Delivery, Questions, GeneralImpression, Miscellaneous, Finals " +
+                        "FROM VW_Scores_Partial_Presentation WHERE ScoreId IN (" + scoresidlist + ")";
                     connection.Open();
                     SqlCommand command = new SqlCommand(SQLCommandString, connection);
                     using (SqlDataReader dr = command.ExecuteReader())
@@ -5195,18 +5223,19 @@ namespace ATA.services
 
 							//FD 2021.08.02 - ATA 2021 - Modify Stage3 - BEGIN tolta parte di executive summary
 							//partialScore.ExecutiveSummary           = (double)dr["ExecutiveSummary"];
-							partialScore.Novelty                    = (double)dr["Novelty"];
+							//partialScore.Novelty                    = (double)dr["Novelty"];
 							partialScore.Content                    = (double)dr["Content"];
 							partialScore.Finances                   = (double)dr["Finances"];
 							partialScore.DeepDiveTopic              = (double)dr["DeepDiveTopic"];
 
 							//FD 2021.08.02 - ATA 2021 - Modify Stage3 - Add Sezione <DemonstrationAndDelivery>
-							partialScore.DemonstrationAndDelivery	= (double)dr["DemonstrationAndDelivery"];
+							partialScore.Demonstration	= (double)dr["Demonstration"];
 
 							//FD 2021.08.02 - ATA 2021 - Modify Stage3 - Remove Sezione <DemonstrationAndStructure>
 							//partialScore.DemonstrationAndStructure  = (double)dr["DemonstrationAndStructure"];
 
 							partialScore.Delivery                   = (double)dr["Delivery"];
+                            partialScore.Structure                  = (double)dr["Structure"];
                             partialScore.Questions					= (double)dr["Questions"];
 							partialScore.GeneralImpression			= (double)dr["GeneralImpression"];
 							partialScore.Miscellaneous				= (double)dr["Miscellaneous"];
@@ -5359,6 +5388,9 @@ namespace ATA.services
 
         //AF - Lug 2016 - Added Notes for Presentation
         public List<String> Notes { get; set; }
+
+        //FDT - ATA 2023 - modifiche stage3
+        public string ExamBoardName { get; set; }
 
         public RankingObject()
         {
@@ -5514,6 +5546,8 @@ namespace ATA.services
         public double TotalScore { get; set; }
         public int Laps { get; set; }
         public double AdjTime { get; set; }
+        //FDT - ATA 2023 - modifiche 2023
+        public double Time { get; set; }
 
     }
     public class EnduranceDetailRankingObject
@@ -5557,6 +5591,9 @@ namespace ATA.services
         public double EfficienctyScore { get; set; }
 
         public double TotalScore { get; set; }
+
+        //FDT - ATA 2023
+        public double EnergyCorr { get; set; }
 
     }
     public class OverallRankingObject : RankingObject

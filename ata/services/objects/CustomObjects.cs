@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Permissions;
 using System.Web;
 
 namespace ATA.services
@@ -56,6 +57,10 @@ namespace ATA.services
         //Electric Car has to be green-colored - req.Ciadamidaro Set 2015
         public bool IsAnElectricCar;
 
+        //FDT - ATA 2023 - modifiche stage3
+        public double EfficiencyScore;
+        public double EnduranceScore;
+
         public CustomScores() { }
     }
 
@@ -84,20 +89,21 @@ namespace ATA.services
 		//FD 2021.08.02 - ATA 2021 - Adding Stage2 - Add Section <Stage2>
 		public double Stage2;
 
-		//FD 2021.08.02 - ATA 2021 - Modify Stage3 - BEGIN tolta parte di executive summary
+		//FDT - ATA 2023 - modifiche stage3
+        //FD 2021.08.02 - ATA 2021 - Modify Stage3 - BEGIN tolta parte di executive summary
 		//public double ExecutiveSummary;
-		public double Novelty;
+		//public double Novelty;
 		public double Content;
 		public double Finances;
 		public double DeepDiveTopic;
-		public double DemonstrationAndStructure;
+		public double Structure;
         public double Delivery;
         public double Questions;
 		public double GeneralImpression;
 		public double Miscellaneous;
 
 		//FD 2021.08.02 - ATA 2021 - Modify Stage3 - Add Sezione <DemonstrationAndDelivery>
-		public double DemonstrationAndDelivery;
+		public double Demonstration;
 		public CustomScoresPresentationPartial() { }
     }
 

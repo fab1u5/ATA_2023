@@ -147,7 +147,10 @@
                                 <th style="cursor:pointer" data-sort="int" data-field="carno">Car No.</th>
                                 <th style="cursor:pointer" data-sort="string" data-field="teamname">Team</th>
                                 <th style="cursor:pointer" data-sort="string" data-field="university">University</th>
+                                <!-- FDT - ATA 2023 - Modifica Stage 3 -->
                                 <th style="cursor:pointer" data-sort="string" data-field="board" id="thBoard">Board</th>
+                                <th style="cursor:pointer" data-sort="int" data-field="EfficienctyScore" id="EfficienctyScore">Efficiency Score</th>
+                                <th style="cursor:pointer" data-sort="int" data-field="EnduranceScore" id="EnduranceScore">Endurance Score</th>
                                 <th style="cursor:pointer" data-sort="int" data-field="GivenScore">Total Given Score</th>
                             </tr>
                         </thead>
@@ -196,6 +199,19 @@
         if (isATablet()) {
             //hide Board column
             $('#thBoard').hide();
+            $('#EfficienctyScore').hide();
+            $('#EnduranceScore').hide();
+        } else {
+            if (eventid == 7) {
+                $('#thBoard').hide();
+                $('#EfficienctyScore').show();
+                $('#EnduranceScore').show();
+            }
+            else {
+                $('#thBoard').show();
+                $('#EfficienctyScore').hide();
+                $('#EnduranceScore').hide();
+            }
         }
 
         $("#tblOldDetail").hide();

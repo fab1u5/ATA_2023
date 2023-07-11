@@ -985,6 +985,9 @@ span.points-label {
     background-color: #c52d2f;
 }
 
+.disabledTablet{
+    display: none!important;
+}
 /*******************************
 ************* ACCORDION ********
 ********************************/

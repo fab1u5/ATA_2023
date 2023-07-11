@@ -359,10 +359,11 @@ namespace ATA.services
                         //////        ).FirstOrDefault()
                         //////    );
 
-                        item.Novelty0 = a.novelty0;
-                        item.Novelty1 = a.novelty1;
-                        item.Novelty2 = a.novelty2;
-                        item.NoveltyNotes = a.noveltynotes;
+                        //FDT - ATA 2023 - modifiche stage3
+                        //item.Novelty0 = a.novelty0;
+                        //item.Novelty1 = a.novelty1;
+                        //item.Novelty2 = a.novelty2;
+                        //item.NoveltyNotes = a.noveltynotes;
                         item.Content0 = a.content0;
                         item.Content1 = a.content1;
                         item.Content2 = a.content2;
@@ -371,25 +372,35 @@ namespace ATA.services
                         item.Content5 = a.content5;
                         item.Content6 = a.content6;
                         item.Content7 = a.content7;
-                        item.Content8 = a.content8;
+                        //item.Content8 = a.content8;
                         item.ContentNotes = a.contentnotes;
 
                         item.Finances0 = a.finances0;
                         item.Finances1 = a.finances1;
                         item.Finances2 = a.finances2;
+                        item.Finances3 = a.finances3;
                         item.FinancesNotes = a.financesnotes;
 
                         item.DeepDiveTopic0 = a.deepdivetopic0;
                         item.DeepDiveTopic1 = a.deepdivetopic1;
                         item.DeepDiveTopic2 = a.deepdivetopic2;
+                        item.DeepDiveTopic3 = a.deepdivetopic3;
                         item.DeepDiveTopicNotes = a.deepdivetopicnotes;
 
-                        item.DemonstrationAndDelivery0 = a.demonstrationanddelivery0;
-                        item.DemonstrationAndDelivery1 = a.demonstrationanddelivery1;
-                        item.DemonstrationAndDelivery2 = a.demonstrationanddelivery2;
-                        item.DemonstrationAndDelivery3 = a.demonstrationanddelivery3;
-                        item.DemonstrationAndDelivery4 = a.demonstrationanddelivery4;
-                        item.DemonstrationAndDeliveryNotes = a.demonstrationanddeliverynotes;
+                        item.Demonstration0 = a.demonstration0;
+                        item.Demonstration1 = a.demonstration1;
+                        item.Demonstration2 = a.demonstration2;
+                        item.Demonstration3 = a.demonstration3;                                              
+                        item.DemonstrationNotes = a.demonstrationnotes;
+
+                        item.Structure0 = a.structure0;
+                        item.Structure1 = a.structure1;
+                        item.Structure2 = a.structure2;
+                        item.Structure3 = a.structure3;
+                        item.Structure4 = a.structure4;
+                        item.Structure5 = a.structure5;
+                        item.StructureNotes = a.structurenotes;
+
 
                         item.Delivery0 = a.delivery0;
                         item.Delivery1 = a.delivery1;
@@ -400,6 +411,7 @@ namespace ATA.services
                         item.Delivery6 = a.delivery6;
                         item.Delivery7 = a.delivery7;
                         item.Delivery8 = a.delivery8;
+                        item.Delivery9 = a.delivery9;
                         item.DeliveryNotes = a.deliverynotes;
 
                         item.Questions0 = a.questions0;
@@ -409,9 +421,7 @@ namespace ATA.services
                         item.Questions4 = a.questions4;
                         item.Questions5 = a.questions5;
                         item.Questions6 = a.questions6;
-                        item.Questions7 = a.questions7;
-                        item.Questions8 = a.questions8;
-                        item.Questions9 = a.questions9;
+                        item.Questions7 = a.questions7;                        
                         item.QuestionsNotes = a.questionsnotes;
 
                         item.GeneralImpression0 = a.generalimpression0;
@@ -479,30 +489,32 @@ namespace ATA.services
                         //var executivesummary = ToArray(a.executivesummary0, a.executivesummary1, a.executivesummary2, a.executivesummary3);
                         //FD 2021.08.02 - ATA 2021 - Modify Stage3 - BEGIN tolta parte novelty3
                         //var novelty = ToArray(a.novelty0, a.novelty1, a.novelty2, a.novelty3);
-                        var novelty = ToArray(a.novelty0, a.novelty1, a.novelty2);
+
+                        //FDT - ATA 2023 - modifiche stage3
+                        //var novelty = ToArray(a.novelty0, a.novelty1, a.novelty2);
 
                         //FD 2021.08.02 - ATA 2021 - Modify Stage3 - BEGIN Add Content9
                         //var content = ToArray(a.content0, a.content1, a.content2, a.content3, a.content4, a.content5, a.content6, a.content7, a.content8);
                         //var content = ToArray(a.content0, a.content1, a.content2, a.content3, a.content4, a.content5, a.content6, a.content7, a.content8, a.content9);
-                        var content = ToArray(a.content0, a.content1, a.content2, a.content3, a.content4, a.content5, a.content6, a.content7, a.content8);
+                        var content = ToArray(a.content0, a.content1, a.content2, a.content3, a.content4, a.content5, a.content6, a.content7);
 
                         //FD 2021.08.02 - ATA 2021 - Modify Stage3 - BEGIN tolta parte Finances2 e Finances4
                         //var finances = ToArray(a.finances0, a.finances1, a.finances2, a.finances3, a.finances4, a.finances5, a.finances6);
-                        var finances = ToArray(a.finances0, a.finances1, a.finances2);
+                        var finances = ToArray(a.finances0, a.finances1, a.finances2, a.finances3);
 
                         //FD 2021.08.02 - ATA 2021 - Modify Stage3 - BEGIN Add deepdivetopic4
                         //var deepdivetopic = ToArray(a.deepdivetopic0, a.deepdivetopic1, a.deepdivetopic2, a.deepdivetopic3);
                         //var deepdivetopic = ToArray(a.deepdivetopic0, a.deepdivetopic1, a.deepdivetopic2, a.deepdivetopic3, a.deepdivetopic4);
-                        var deepdivetopic = ToArray(a.deepdivetopic0, a.deepdivetopic1, a.deepdivetopic2);
+                        var deepdivetopic = ToArray(a.deepdivetopic0, a.deepdivetopic1, a.deepdivetopic2, a.deepdivetopic3);
 
                         //FD 2021.08.02 - ATA 2021 - Modify Stage3 - Add Sezione <DemonstrationAndDelivery>
                         //var demonstrationanddelivery = ToArray(a.demonstrationanddelivery0, a.demonstrationanddelivery1, a.demonstrationanddelivery2, a.demonstrationanddelivery3, a.demonstrationanddelivery4, a.demonstrationanddelivery5);
-                        var demonstrationanddelivery = ToArray(a.demonstrationanddelivery0, a.demonstrationanddelivery1, a.demonstrationanddelivery2, a.demonstrationanddelivery3, a.demonstrationanddelivery4);
+                        var demonstration = ToArray(a.demonstration0, a.demonstration1, a.demonstration2, a.demonstration3);
 
                         //FD 2021.08.02 - ATA 2021 - Modify Stage3 - Remove Sezione <DemonstrationAndStructure>
-                        var demonstrationandstructure = ToArray(a.demonstrationandstructure0, a.demonstrationandstructure1, a.demonstrationandstructure2, a.demonstrationandstructure3, a.demonstrationandstructure4);
-                        var delivery = ToArray(a.delivery0, a.delivery1, a.delivery2, a.delivery3, a.delivery4, a.delivery5, a.delivery6, a.delivery7, a.delivery8);
-                        var questions = ToArray(a.questions0, a.questions1, a.questions2, a.questions3, a.questions4, a.questions5, a.questions6, a.questions7, a.questions8, a.questions9);
+                        var structure = ToArray(a.structure0, a.structure1, a.structure2, a.structure3, a.structure4, a.structure5);
+                        var delivery = ToArray(a.delivery0, a.delivery1, a.delivery2, a.delivery3, a.delivery4, a.delivery5, a.delivery6, a.delivery7, a.delivery8, a.delivery9);
+                        var questions = ToArray(a.questions0, a.questions1, a.questions2, a.questions3, a.questions4, a.questions5, a.questions6, a.questions7);
                         var generalimpression = ToArray(a.generalimpression0, a.generalimpression1, a.generalimpression2);
 
                         //FD 2021.07.27 - ATA 2021  - Add Stage1
@@ -512,17 +524,17 @@ namespace ATA.services
                         //item.SetData(novelty, a.noveltynotes, content, a.contentnotes, finances, a.financesnotes, deepdivetopic, a.deepdivetopicnotes, demonstrationandstructure, a.demonstrationandstructurenotes, delivery, a.deliverynotes, questions, a.questionsnotes, generalimpression, a.generalimpressionnotes, a.miscellaneous, a.miscellaneousnotes, a.presentationnotes, a.stage1);
                         //FD 2021.08.02 - ATA 2021 - Adding Stage2 - Add Section <Stage2>
                         //item.SetData(novelty, a.noveltynotes, content, a.contentnotes, finances, a.financesnotes, deepdivetopic, a.deepdivetopicnotes, demonstrationandstructure, a.demonstrationandstructurenotes, delivery, a.deliverynotes, questions, a.questionsnotes, generalimpression, a.generalimpressionnotes, a.miscellaneous, a.miscellaneousnotes, a.presentationnotes, a.stage1, demonstrationanddelivery, a.demonstrationanddeliverynotes);
-                        item.SetData(novelty, a.noveltynotes,
+                        item.SetData(   //novelty, a.noveltynotes,
                                         content, a.contentnotes,
                                         finances, a.financesnotes,
                                         deepdivetopic, a.deepdivetopicnotes,
-                                        demonstrationandstructure, a.demonstrationandstructurenotes,
+                                        structure, a.structurenotes,
                                         delivery, a.deliverynotes,
                                         questions, a.questionsnotes,
                                         generalimpression, a.generalimpressionnotes,
                                         a.miscellaneous, a.miscellaneousnotes,
                                         a.presentationnotes, a.stage1,
-                                        demonstrationanddelivery, a.demonstrationanddeliverynotes,
+                                        demonstration, a.demonstrationnotes,
                                         //FDT - ATA 2023 - eliminato Business Figures - INIZIO
                                         //St2BusinnesFigures, a.St2BusinnesFiguresNotes,
                                         //FDT - ATA 2023 - eliminato Business Figures - FINE

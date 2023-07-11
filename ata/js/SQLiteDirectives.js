@@ -83,30 +83,31 @@ var dropStatement_scores_design1E = "DROP TABLE IF EXISTS TB_Scores_Design1E";
 var createStatement_scores_design1C3 = "CREATE TABLE IF NOT EXISTS TB_Scores_Design1C3 (id INTEGER PRIMARY KEY AUTOINCREMENT, scoreid INTEGER, suspension DOUBLE(4,4), framebodyaero DOUBLE(4,4), powertrain DOUBLE(4,4), cockpitcontrolsbrakessafety DOUBLE(4,4), systemmanagementintegration DOUBLE(4,4), manufacturabilityserviceability DOUBLE(4,4), aestheticsstyle DOUBLE(4,4), creativity DOUBLE(4,4), carweight DOUBLE(4,4), suspensionnotes STRING, framebodyaeronotes STRING, powertrainnotes STRING, cockpitcontrolsbrakessafetynotes STRING, systemmanagementintegrationnotes STRING, manufacturabilityserviceabilitynotes STRING, aestheticsstylenotes STRING, creativitynotes STRING, miscellaneous DOUBLE(4,4), miscellaneousnotes STRING, FOREIGN KEY (scoreid) REFERENCES TB_Scores(id) ON DELETE CASCADE);";
 var dropStatement_scores_design1C3 = "DROP TABLE IF EXISTS TB_Scores_Design1CE";
 
+//FDT - ATA2023 - modifiche Stage3
 //Event 2019 - Presentation Event has been changed
 var createStatement_scores_presentation = "CREATE TABLE IF NOT EXISTS TB_Scores_Presentation (id INTEGER PRIMARY KEY AUTOINCREMENT, scoreid INTEGER, ";
 //FD 2021.08.02 - ATA 2021 - Modify Stage3 - BEGIN tolta parte di executive summary
 //FD 2021.08.02 - ATA 2021 - Modify Stage3 - BEGIN tolta parte novelty3
-createStatement_scores_presentation += "novelty0 DOUBLE, novelty1 DOUBLE, novelty2 DOUBLE, noveltynotes STRING, ";
+//createStatement_scores_presentation += "novelty0 DOUBLE, novelty1 DOUBLE, novelty2 DOUBLE, noveltynotes STRING, ";
 
 //FD 2021.08.02 - ATA 2021 - Modify Stage3 - BEGIN Add Content9
 //createStatement_scores_presentation += "content0 DOUBLE, content1 DOUBLE, content2 DOUBLE, content3 DOUBLE, content4 DOUBLE, content5 DOUBLE, content6 DOUBLE, content7 DOUBLE, content8 DOUBLE, content9 DOUBLE, contentnotes STRING, ";
 createStatement_scores_presentation += "content0 DOUBLE, content1 DOUBLE, content2 DOUBLE, content3 DOUBLE, content4 DOUBLE, content5 DOUBLE, content6 DOUBLE, content7 DOUBLE, content8 DOUBLE, contentnotes STRING, ";
 
 //FD 2021.08.02 - ATA 2021 - Modify Stage3 - BEGIN tolta parte Finances2 e Finances4
-createStatement_scores_presentation += "finances0 DOUBLE, finances1 DOUBLE, finances2 DOUBLE, financesnotes STRING, ";
+createStatement_scores_presentation += "finances0 DOUBLE, finances1 DOUBLE, finances2 DOUBLE, finances3 DOUBLE, financesnotes STRING, ";
 
 //FD 2021.08.02 - ATA 2021 - Modify Stage3 - Add deepdivetopic4
 //createStatement_scores_presentation += "deepdivetopic0 DOUBLE, deepdivetopic1 DOUBLE, deepdivetopic2 DOUBLE, deepdivetopic3 DOUBLE, deepdivetopic4 DOUBLE, deepdivetopicnotes STRING, ";
-createStatement_scores_presentation += "deepdivetopic0 DOUBLE, deepdivetopic1 DOUBLE, deepdivetopic2 DOUBLE, deepdivetopicnotes STRING, ";
+createStatement_scores_presentation += "deepdivetopic0 DOUBLE, deepdivetopic1 DOUBLE, deepdivetopic2 DOUBLE,deepdivetopic3 DOUBLE, deepdivetopicnotes STRING, ";
 
 //FD 2021.08.02 - ATA 2021 - Modify Stage3 - Add Sezione <DemonstrationAndDelivery>
 //createStatement_scores_presentation += "demonstrationanddelivery0 DOUBLE, demonstrationanddelivery1 DOUBLE, demonstrationanddelivery2 DOUBLE, demonstrationanddelivery3 DOUBLE, demonstrationanddelivery4 DOUBLE, demonstrationanddelivery5 DOUBLE, demonstrationanddeliverynotes STRING, ";
-createStatement_scores_presentation += "demonstrationanddelivery0 DOUBLE, demonstrationanddelivery1 DOUBLE, demonstrationanddelivery2 DOUBLE, demonstrationanddelivery3 DOUBLE, demonstrationanddelivery4 DOUBLE, demonstrationanddeliverynotes STRING, ";
+createStatement_scores_presentation += "demonstration0 DOUBLE, demonstration1 DOUBLE, demonstration2 DOUBLE, demonstration3 DOUBLE, demonstrationnotes STRING, ";
 
-createStatement_scores_presentation += "demonstrationandstructure0 DOUBLE, demonstrationandstructure1 DOUBLE, demonstrationandstructure2 DOUBLE, demonstrationandstructure3 DOUBLE, demonstrationandstructure4 DOUBLE, demonstrationandstructurenotes STRING, ";
-createStatement_scores_presentation += "delivery0 DOUBLE, delivery1 DOUBLE, delivery2 DOUBLE, delivery3 DOUBLE, delivery4 DOUBLE, delivery5 DOUBLE, delivery6 DOUBLE, delivery7 DOUBLE, delivery8 DOUBLE, deliverynotes STRING, ";
-createStatement_scores_presentation += "questions0 DOUBLE, questions1 DOUBLE, questions2 DOUBLE, questions3 DOUBLE, questions4 DOUBLE, questions5 DOUBLE, questions6 DOUBLE, questions7 DOUBLE, questions8 DOUBLE, questions9 DOUBLE, questionsnotes STRING, ";
+createStatement_scores_presentation += "structure0 DOUBLE, structure1 DOUBLE, structure2 DOUBLE, structure3 DOUBLE, structure4 DOUBLE, structure5 DOUBLE, structurenotes STRING, ";
+createStatement_scores_presentation += "delivery0 DOUBLE, delivery1 DOUBLE, delivery2 DOUBLE, delivery3 DOUBLE, delivery4 DOUBLE, delivery5 DOUBLE, delivery6 DOUBLE, delivery7 DOUBLE, delivery8 DOUBLE, delivery9 DOUBLE, deliverynotes STRING, ";
+createStatement_scores_presentation += "questions0 DOUBLE, questions1 DOUBLE, questions2 DOUBLE, questions3 DOUBLE, questions4 DOUBLE, questions5 DOUBLE, questions6 DOUBLE, questions7 DOUBLE, questionsnotes STRING, ";
 
 createStatement_scores_presentation += "generalimpression0 DOUBLE, generalimpression1 DOUBLE, generalimpression2 DOUBLE, generalimpressionnotes STRING, ";
 
@@ -205,25 +206,27 @@ createStatementView_scores_partial_presentation += " SELECT scoreid,";
 
 //FD 2021.08.02 - ATA 2021 - Modify Stage3 - BEGIN tolta parte di executive summary
 //FD 2021.08.02 - ATA 2021 - Modify Stage3 - BEGIN tolta parte novelty3
-createStatementView_scores_partial_presentation += " IFNULL(novelty0 + novelty1 + novelty2, 0)  novelty,";
+//createStatementView_scores_partial_presentation += " IFNULL(novelty0 + novelty1 + novelty2, 0)  novelty,";
 
 //FD 2021.08.02 - ATA 2021 - Modify Stage3 - BEGIN Add Content9
 //createStatementView_scores_partial_presentation += " IFNULL(content0 + content1 + content2 + content3 + content4 + content5 + content6 + content7 + content8 + content9, 0) content,";
-createStatementView_scores_partial_presentation += " IFNULL(content0 + content1 + content2 + content3 + content4 + content5 + content6 + content7 + content8, 0) content,";
+createStatementView_scores_partial_presentation += " IFNULL(content0 + content1 + content2 + content3 + content4 + content5 + content6 + content7 , 0) content,";
 
 //FD 2021.08.02 - ATA 2021 - Modify Stage3 - BEGIN tolta parte Finances2 e Finances4
-createStatementView_scores_partial_presentation += " IFNULL(finances0 + finances1 + finances2, 0) finances,";
+createStatementView_scores_partial_presentation += " IFNULL(finances0 + finances1 + finances2 + finances3, 0) finances,";
 
 //FD 2021.08.02 - ATA 2021 - Modify Stage3 - Add deepdivetopic4
 //createStatementView_scores_partial_presentation += " IFNULL(deepdivetopic0 + deepdivetopic1 + deepdivetopic2 + deepdivetopic3 + deepdivetopic4, 0) deepdivetopic,";
-createStatementView_scores_partial_presentation += " IFNULL(deepdivetopic0 + deepdivetopic1 + deepdivetopic2 , 0) deepdivetopic,";
+createStatementView_scores_partial_presentation += " IFNULL(deepdivetopic0 + deepdivetopic1 + deepdivetopic2 + deepdivetopic3 , 0) deepdivetopic,";
 
 //FD 2021.08.02 - ATA 2021 - Modify Stage3 - Add Sezione <DemonstrationAndDelivery>
 //createStatementView_scores_partial_presentation += " IFNULL(demonstrationanddelivery0 + demonstrationanddelivery1 + demonstrationanddelivery2 + demonstrationanddelivery3 + demonstrationanddelivery4 + demonstrationanddelivery5, 0) demonstrationanddelivery,";
-createStatementView_scores_partial_presentation += " IFNULL(demonstrationanddelivery0 + demonstrationanddelivery1 + demonstrationanddelivery2 + demonstrationanddelivery3 + demonstrationanddelivery4, 0) demonstrationanddelivery,";
+createStatementView_scores_partial_presentation += " IFNULL(demonstration0 + demonstration1 + demonstration2 + demonstration3 , 0) demonstration,";
 
-createStatementView_scores_partial_presentation += " IFNULL(delivery0 + delivery1 + delivery2 + delivery3 + delivery4 + delivery5 + delivery6 + delivery7 + delivery8, 0) delivery,";
-createStatementView_scores_partial_presentation += " IFNULL(questions0 + questions1 + questions2 + questions3 + questions4 + questions5 + questions6 + questions7 + questions8 + questions9, 0) questions,";
+createStatementView_scores_partial_presentation += " IFNULL(delivery0 + delivery1 + delivery2 + delivery3 + delivery4 + delivery5 + delivery6 + delivery7 + delivery8 + delivery9, 0) delivery,";
+createStatementView_scores_partial_presentation += " IFNULL(structure0 + structure1 + structure2 + structure3 + structure4 + structure5, 0) structure,";
+
+createStatementView_scores_partial_presentation += " IFNULL(questions0 + questions1 + questions2 + questions3 + questions4 + questions5 + questions6 + questions7 , 0) questions,";
 createStatementView_scores_partial_presentation += " IFNULL(generalimpression0 + generalimpression1 + generalimpression2, 0) generalimpression,";
 createStatementView_scores_partial_presentation += " IFNULL(miscellaneous, 0) miscellaneous,";
 //FD 2021.07.27 - ATA 2021  - Add Stage1
@@ -451,13 +454,13 @@ var deleteStatement_scores_design1C3 = "DELETE FROM TB_Scores_Design1C3 WHERE sc
 var selectStatement_scores_presentation_all = "SELECT ";
 
 selectStatement_scores_presentation_all += "TB_Scores_Presentation.id, scoreid, ";
-
+//FDT - ATA 2023 - modifiche stage3
 //FD 2021.08.02 - ATA 2021 - Modify Stage3 - BEGIN tolta parte di executive summary
 //FD 2021.08.02 - ATA 2021 - Modify Stage3 - BEGIN tolta parte novelty3
-selectStatement_scores_presentation_all += "novelty0, ";
-selectStatement_scores_presentation_all += "novelty1, ";
-selectStatement_scores_presentation_all += "novelty2, ";
-selectStatement_scores_presentation_all += "noveltynotes, ";
+//selectStatement_scores_presentation_all += "novelty0, ";
+//selectStatement_scores_presentation_all += "novelty1, ";
+//selectStatement_scores_presentation_all += "novelty2, ";
+//selectStatement_scores_presentation_all += "noveltynotes, ";
 
 //FD 2021.08.02 - ATA 2021 - Modify Stage3 - BEGIN Add Content9
 selectStatement_scores_presentation_all += "content0, ";
@@ -468,36 +471,37 @@ selectStatement_scores_presentation_all += "content4, ";
 selectStatement_scores_presentation_all += "content5, ";
 selectStatement_scores_presentation_all += "content6, ";
 selectStatement_scores_presentation_all += "content7, ";
-selectStatement_scores_presentation_all += "content8, ";
+//selectStatement_scores_presentation_all += "content8, ";
 //selectStatement_scores_presentation_all += "content9, ";
 selectStatement_scores_presentation_all += "contentnotes, ";
 
 //FD 2021.08.02 - ATA 2021 - Modify Stage3 - BEGIN tolta parte Finances2 e Finances4
-selectStatement_scores_presentation_all += "finances0, finances1, finances2, financesnotes, ";
+selectStatement_scores_presentation_all += "finances0, finances1, finances2, finances3, financesnotes, ";
 
 //FD 2021.08.02 - ATA 2021 - Modify Stage3 - Add deepdivetopic4
 selectStatement_scores_presentation_all += "deepdivetopic0, ";
 selectStatement_scores_presentation_all += "deepdivetopic1, ";
 selectStatement_scores_presentation_all += "deepdivetopic2, ";
-//selectStatement_scores_presentation_all += "deepdivetopic3, ";
+selectStatement_scores_presentation_all += "deepdivetopic3, ";
 //selectStatement_scores_presentation_all += "deepdivetopic4, ";
 selectStatement_scores_presentation_all += "deepdivetopicnotes, ";
 
 //FD 2021.08.02 - ATA 2021 - Modify Stage3 - Add Sezione <DemonstrationAndDelivery>
-selectStatement_scores_presentation_all += "demonstrationanddelivery0, ";
-selectStatement_scores_presentation_all += "demonstrationanddelivery1, ";
-selectStatement_scores_presentation_all += "demonstrationanddelivery2, ";
-selectStatement_scores_presentation_all += "demonstrationanddelivery3, ";
-selectStatement_scores_presentation_all += "demonstrationanddelivery4, ";
+selectStatement_scores_presentation_all += "demonstration0, ";
+selectStatement_scores_presentation_all += "demonstration1, ";
+selectStatement_scores_presentation_all += "demonstration2, ";
+selectStatement_scores_presentation_all += "demonstration3, ";
+//selectStatement_scores_presentation_all += "demonstrationanddelivery4, ";
 //selectStatement_scores_presentation_all += "demonstrationanddelivery5, ";
-selectStatement_scores_presentation_all += "demonstrationanddeliverynotes, ";
+selectStatement_scores_presentation_all += "demonstrationnotes, ";
 
-selectStatement_scores_presentation_all += "demonstrationandstructure0, "
-selectStatement_scores_presentation_all += "demonstrationandstructure1, "
-selectStatement_scores_presentation_all += "demonstrationandstructure2, "
-selectStatement_scores_presentation_all += "demonstrationandstructure3, "
-selectStatement_scores_presentation_all += "demonstrationandstructure4, "
-selectStatement_scores_presentation_all += "demonstrationandstructurenotes, ";
+selectStatement_scores_presentation_all += "structure0, "
+selectStatement_scores_presentation_all += "structure1, "
+selectStatement_scores_presentation_all += "structure2, "
+selectStatement_scores_presentation_all += "structure3, "
+selectStatement_scores_presentation_all += "structure4, "
+selectStatement_scores_presentation_all += "structure5, "
+selectStatement_scores_presentation_all += "structurenotes, ";
 
 selectStatement_scores_presentation_all += "delivery0, ";
 selectStatement_scores_presentation_all += "delivery1, ";
@@ -508,6 +512,7 @@ selectStatement_scores_presentation_all += "delivery5, ";
 selectStatement_scores_presentation_all += "delivery6, ";
 selectStatement_scores_presentation_all += "delivery7, ";
 selectStatement_scores_presentation_all += "delivery8, ";
+selectStatement_scores_presentation_all += "delivery9, ";
 selectStatement_scores_presentation_all += "deliverynotes, ";
 
 selectStatement_scores_presentation_all += "questions0, ";
@@ -518,8 +523,8 @@ selectStatement_scores_presentation_all += "questions4, ";
 selectStatement_scores_presentation_all += "questions5, ";
 selectStatement_scores_presentation_all += "questions6, ";
 selectStatement_scores_presentation_all += "questions7, ";
-selectStatement_scores_presentation_all += "questions8, ";
-selectStatement_scores_presentation_all += "questions9, ";
+//selectStatement_scores_presentation_all += "questions8, ";
+//selectStatement_scores_presentation_all += "questions9, ";
 selectStatement_scores_presentation_all += "questionsnotes, ";
 
 selectStatement_scores_presentation_all += "generalimpression0, ";
@@ -606,24 +611,24 @@ selectStatement_scores_presentation_all += "FROM TB_Scores_Presentation INNER JO
 var selectStatement_scores_presentation = "SELECT id, scoreid, ";
 //FD 2021.08.02 - ATA 2021 - Modify Stage3 - BEGIN tolta parte di executive summary
 //FD 2021.08.02 - ATA 2021 - Modify Stage3 - BEGIN tolta parte novelty3
-selectStatement_scores_presentation += "novelty0, novelty1, novelty2, noveltynotes, ";
+//selectStatement_scores_presentation += "novelty0, novelty1, novelty2, noveltynotes, ";
 
 //FD 2021.08.02 - ATA 2021 - Modify Stage3 - BEGIN Add Content9
 //selectStatement_scores_presentation += "content0, content1, content2, content3, content4, content5, content6, content7, content8, content9, contentnotes, ";
-selectStatement_scores_presentation += "content0, content1, content2, content3, content4, content5, content6, content7, content8, contentnotes, ";
+selectStatement_scores_presentation += "content0, content1, content2, content3, content4, content5, content6, content7, contentnotes, ";
 
 //FD 2021.08.02 - ATA 2021 - Modify Stage3 - BEGIN tolta parte Finances2 e Finances4
-selectStatement_scores_presentation += "finances0, finances1, finances2, financesnotes, ";
+selectStatement_scores_presentation += "finances0, finances1, finances2, finances3, financesnotes, ";
 
 //FD 2021.08.02 - ATA 2021 - Modify Stage3 - Add deepdivetopic4
 //selectStatement_scores_presentation += "deepdivetopic0, deepdivetopic1, deepdivetopic2, deepdivetopic3, deepdivetopic4, deepdivetopicnotes, ";
-selectStatement_scores_presentation += "deepdivetopic0, deepdivetopic1, deepdivetopic2, deepdivetopicnotes, ";
+selectStatement_scores_presentation += "deepdivetopic0, deepdivetopic1, deepdivetopic2, deepdivetopic3, deepdivetopicnotes, ";
 //FD 2021.08.02 - ATA 2021 - Modify Stage3 - Add Sezione <DemonstrationAndDelivery>
-//selectStatement_scores_presentation += "demonstrationanddelivery0, demonstrationanddelivery1, demonstrationanddelivery2, demonstrationanddelivery3, demonstrationanddelivery4, demonstrationanddelivery5, deepdivetopicnotes, ";
-selectStatement_scores_presentation += "demonstrationanddelivery0, demonstrationanddelivery1, demonstrationanddelivery2, demonstrationanddelivery3, demonstrationanddelivery4, deepdivetopicnotes, ";
+selectStatement_scores_presentation += "demonstration0, demonstration1, demonstration2, demonstration3, demonstrationnotes, ";
 
-selectStatement_scores_presentation += "delivery0, delivery1, delivery2, delivery3, delivery4, delivery5, delivery6, delivery7, delivery8, deliverynotes, ";
-selectStatement_scores_presentation += "questions0, questions1, questions2, questions3, questions4, questions5, questions6, questions7, questions8, questions9, questionsnotes, ";
+selectStatement_scores_presentation += "delivery0, delivery1, delivery2, delivery3, delivery4, delivery5, delivery6, delivery7, delivery8, delivery9, deliverynotes, ";
+selectStatement_scores_presentation += "structure0, structure1, structure2, structure3, structure4, structure5, structurenotes, ";
+selectStatement_scores_presentation += "questions0, questions1, questions2, questions3, questions4, questions5, questions6, questions7, questionsnotes, ";
 selectStatement_scores_presentation += "generalimpression0, generalimpression1, generalimpression2, generalimpressionnotes, ";
 selectStatement_scores_presentation += "miscellaneous, miscellaneousnotes, ";
 
@@ -703,31 +708,33 @@ selectStatement_scores_presentation += "FROM TB_Scores_Presentation WHERE scorei
 //FD 2021.08.02 - ATA 2021 - Modify Stage3 - Add deepdivetopic4
 //FD 2021.08.02 - ATA 2021 - Modify Stage3 - Add Sezione <DemonstrationAndDelivery>
 //FD 2021.09.12 - ATA 2021 - Add Section <Finals in Stage3>
-var insertStatement_scores_presentation = "INSERT INTO TB_Scores_Presentation VALUES( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+//var insertStatement_scores_presentation = "INSERT INTO TB_Scores_Presentation VALUES( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+var insertStatement_scores_presentation = "INSERT INTO TB_Scores_Presentation VALUES( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
 
 var updateStatement_scores_presentation = "UPDATE TB_Scores_Presentation SET ";
 //FD 2021.08.02 - ATA 2021 - Modify Stage3 - BEGIN tolta parte di executive summary
 //FD 2021.08.02 - ATA 2021 - Modify Stage3 - BEGIN tolta parte novelty3
-updateStatement_scores_presentation += "novelty0 = ?, novelty1 = ?, novelty2 = ?, noveltynotes = ?, ";
+//updateStatement_scores_presentation += "novelty0 = ?, novelty1 = ?, novelty2 = ?, noveltynotes = ?, ";
 
 //FD 2021.08.02 - ATA 2021 - Modify Stage3 - BEGIN Add Content9
 //updateStatement_scores_presentation += "content0 = ?, content1 = ?, content2 = ?, content3 = ?, content4 = ?, content5 = ?, content6 = ?, content7 = ?, content8 = ?, content9 = ?, contentnotes = ?, ";
-updateStatement_scores_presentation += "content0 = ?, content1 = ?, content2 = ?, content3 = ?, content4 = ?, content5 = ?, content6 = ?, content7 = ?, content8 = ?, contentnotes = ?, ";
+updateStatement_scores_presentation += "content0 = ?, content1 = ?, content2 = ?, content3 = ?, content4 = ?, content5 = ?, content6 = ?, content7 = ?, contentnotes = ?, ";
 
 //FD 2021.08.02 - ATA 2021 - Modify Stage3 - BEGIN tolta parte Finances2 e Finances4
-updateStatement_scores_presentation += "finances0 = ?, finances1 = ?, finances2 = ?, financesnotes = ?, ";
+updateStatement_scores_presentation += "finances0 = ?, finances1 = ?, finances2 = ?,finances3 = ?, financesnotes = ?, ";
 
 //FD 2021.08.02 - ATA 2021 - Modify Stage3 - Add deepdivetopic4
 //updateStatement_scores_presentation += "deepdivetopic0 = ?, deepdivetopic1 = ?, deepdivetopic2 = ?, deepdivetopic3 = ?, deepdivetopic4 = ?, deepdivetopicnotes = ?, ";
-updateStatement_scores_presentation += "deepdivetopic0 = ?, deepdivetopic1 = ?, deepdivetopic2 = ?, deepdivetopicnotes = ?, ";
+updateStatement_scores_presentation += "deepdivetopic0 = ?, deepdivetopic1 = ?, deepdivetopic2 = ?, deepdivetopic3 = ?, deepdivetopicnotes = ?, ";
 //FD 2021.08.02 - ATA 2021 - Modify Stage3 - Add Sezione <DemonstrationAndDelivery>
 //updateStatement_scores_presentation += "demonstrationanddelivery0 = ?, demonstrationanddelivery1 = ?, demonstrationanddelivery2 = ?, demonstrationanddelivery3 = ?, demonstrationanddelivery4 = ?, demonstrationanddelivery5 = ?,demonstrationanddeliverynotes = ?, ";
-updateStatement_scores_presentation += "demonstrationanddelivery0 = ?, demonstrationanddelivery1 = ?, demonstrationanddelivery2 = ?, demonstrationanddelivery3 = ?, demonstrationanddelivery4 = ?, demonstrationanddeliverynotes = ?, ";
+updateStatement_scores_presentation += "demonstration0 = ?, demonstration1 = ?, demonstration2 = ?, demonstration3 = ?, demonstrationnotes = ?, ";
 
-updateStatement_scores_presentation += "demonstrationandstructure0 = ?, demonstrationandstructure1 = ?, demonstrationandstructure2 = ?, demonstrationandstructure3 = ?, demonstrationandstructure4 = ?, demonstrationandstructurenotes = ?, ";
+updateStatement_scores_presentation += "structure0 = ?, structure1 = ?, structure2 = ?, structure3 = ?, structure4 = ?, structure5 = ?, structurenotes = ?, ";
 
-updateStatement_scores_presentation += "delivery0 = ?, delivery1 = ?, delivery2 = ?, delivery3 = ?, delivery4 = ?, delivery5 = ?, delivery6 = ?, delivery7 = ?, delivery8 = ?, deliverynotes = ?, ";
-updateStatement_scores_presentation += "questions0 = ?, questions1 = ?, questions2 = ?, questions3 = ?, questions4 = ?, questions5 = ?, questions6 = ?, questions7 = ?, questions8 = ?, questions9 = ?, questionsnotes = ?, ";
+updateStatement_scores_presentation += "delivery0 = ?, delivery1 = ?, delivery2 = ?, delivery3 = ?, delivery4 = ?, delivery5 = ?, delivery6 = ?, delivery7 = ?, delivery8 = ?, delivery9 = ?, deliverynotes = ?, ";
+updateStatement_scores_presentation += "questions0 = ?, questions1 = ?, questions2 = ?, questions3 = ?, questions4 = ?, questions5 = ?, questions6 = ?, questions7 = ?, questionsnotes = ?, ";
 
 updateStatement_scores_presentation += "generalimpression0 = ?, generalimpression1 = ?, generalimpression2 = ?, generalimpressionnotes = ?, ";
 updateStatement_scores_presentation += "miscellaneous = ?, miscellaneousnotes = ?, ";
@@ -3989,10 +3996,11 @@ function showRecords_scores_presentation(scoreid) {
                 		//});
                 		//scoreP.executiveSummaryNotes = item['executivesummarynotes'];
 
-                		$.each(scoreP.novelty, function (index, value) {
-                			scoreP.novelty[index] = item['novelty' + index];
-                		});
-                		scoreP.noveltyNotes = item['noveltynotes'];
+                        //FDT - ATA 2023 - modifiche stage3
+                		//$.each(scoreP.novelty, function (index, value) {
+                		//	scoreP.novelty[index] = item['novelty' + index];
+                		//});
+                		//scoreP.noveltyNotes = item['noveltynotes'];
 
                 		$.each(scoreP.content, function (index, value) {
                 			scoreP.content[index] = item['content' + index];
@@ -4010,16 +4018,16 @@ function showRecords_scores_presentation(scoreid) {
                 		scoreP.deepDiveTopicNotes = item['deepdivetopicnotes'];
 
                 		//FD 2021.08.02 - ATA 2021 - Modify Stage3 - Add Sezione <DemonstrationAndDelivery>
-                		$.each(scoreP.demonstrationAndDelivery, function (index, value) {
-                			scoreP.demonstrationAndDelivery[index] = item['demonstrationanddelivery' + index];
+                		$.each(scoreP.demonstration, function (index, value) {
+                			scoreP.demonstration[index] = item['demonstration' + index];
                 		});
-                		scoreP.demonstrationAndDeliveryNotes = item['demonstrationanddeliverynotes'];
-
+                		scoreP.demonstrationNotes = item['demonstrationnotes'];
+                        
                 		//FD 2021.08.02 - ATA 2021 - Modify Stage3 - Remove Sezione <DemonstrationAndStructure>
-                		$.each(scoreP.demonstrationAndStructure, function (index, value) {
-                			scoreP.demonstrationAndStructure[index] = item['demonstrationandstructure' + index];
+                		$.each(scoreP.structure, function (index, value) {
+                			scoreP.structure[index] = item['structure' + index];
                 		});
-                		scoreP.demonstrationAndStructureNotes = item['demonstrationandstructurenotes'];
+                		scoreP.structureNotes = item['structurenotes'];
 
                 		$.each(scoreP.delivery, function (index, value) {
                 			scoreP.delivery[index] = item['delivery' + index];
@@ -4127,14 +4135,15 @@ function showRecords_scores_presentation(scoreid) {
                 	////Event 2017 - Display partial totals on section title
                 	//$("#totalExecutiveSummaryBadge").html(scoreP.totalExecutiveSummary);
 
-                	$.each(scoreP.novelty, function (index, value) {
-                		$("#chkNovelty" + index).prop('checked', (parseFloat(value) > 0));
-                		scoreP.totalNovelty += parseFloat(value);
-                	});
-                	$("#totalNovelty").val(scoreP.totalNovelty);
-                	$('#noveltyNotes').val(scoreP.noveltyNotes);
+                    //FDT - ATA 2023 - modifiche stage3
+                	//$.each(scoreP.novelty, function (index, value) {
+                	//	$("#chkNovelty" + index).prop('checked', (parseFloat(value) > 0));
+                	//	scoreP.totalNovelty += parseFloat(value);
+                	//});
+                	//$("#totalNovelty").val(scoreP.totalNovelty);
+                	//$('#noveltyNotes').val(scoreP.noveltyNotes);
                 	//Event 2017 - Display partial totals on section title
-                	$("#totalNoveltyBadge").html(scoreP.totalNovelty);
+                	//$("#totalNoveltyBadge").html(scoreP.totalNovelty);
 
                 	$.each(scoreP.content, function (index, value) {
                 		$("#chkContent" + index).prop('checked', (parseFloat(value) > 0));
@@ -4167,26 +4176,26 @@ function showRecords_scores_presentation(scoreid) {
                 	$("#totalDeepDiveTopicBadge").html(scoreP.totalDeepDiveTopic);
 
                 	//FD 2021.08.02 - ATA 2021 - Modify Stage3 - Add Sezione <DemonstrationAndDelivery>
-                	$.each(scoreP.demonstrationAndDelivery, function (index, value) {
+                	$.each(scoreP.demonstration, function (index, value) {
                 		//Some of these items are radio buttons and some values could be 0 
                 		//I cannot test "value > 0" but "value equals to input value" to check the input correctly even when is set to 0
                 		//$("#chkQuestions" + index).prop('checked', (parseFloat(value) > 0));
-                		$("#chkDemonstrationAndDelivery" + index).prop('checked', (parseFloat($("#chkDemonstrationAndDelivery" + index).prop('value')) == parseFloat(value)));
-                		scoreP.totalDemonstrationAndDelivery += parseFloat(value);
+                		$("#chkDemonstration" + index).prop('checked', (parseFloat($("#chkDemonstration" + index).prop('value')) == parseFloat(value)));
+                		scoreP.totalDemonstration += parseFloat(value);
                 	});
-                	$("#totalDemonstrationAndDelivery").val(scoreP.totalDemonstrationAndDelivery);
-                	$('#demonstrationAndDeliveryNotes').val(scoreP.demonstrationAndDeliveryNotes);
+                	$("#totalDemonstration").val(scoreP.totalDemonstration);
+                	$('#demonstrationNotes').val(scoreP.demonstrationNotes);
                 	//Event 2017 - Display partial totals on section title
-                	$("#totalDemonstrationAndDeliveryBadge").html(scoreP.totalDemonstrationAndDelivery);
+                	$("#totalDemonstrationBadge").html(scoreP.totalDemonstration);
 
-                	$.each(scoreP.demonstrationAndStructure, function (index, value) {
-                		$("#chkDemonstrationAndStructure" + index).prop('checked', (parseFloat(value) > 0));
-                		scoreP.totalDemonstrationAndStructure += parseFloat(value);
+                	$.each(scoreP.structure, function (index, value) {
+                		$("#chkStructure" + index).prop('checked', (parseFloat(value) > 0));
+                		scoreP.totalStructure += parseFloat(value);
                 	});
-                	$("#totalDemonstrationAndStructure").val(scoreP.totalDemonstrationAndStructure);
-                	$('#demonstrationAndStructureNotes').val(scoreP.demonstrationAndStructureNotes);
+                	$("#totalStructure").val(scoreP.totalStructure);
+                	$('#structureNotes').val(scoreP.structureNotes);
                 	//Event 2017 - Display partial totals on section title
-                	$("#totalDemonstrationAndStructureBadge").html(scoreP.totalDemonstrationAndStructure);
+                	$("#totalStructureBadge").html(scoreP.totalStructure);
 
                 	$.each(scoreP.delivery, function (index, value) {
                 		$("#chkDelivery" + index).prop('checked', (parseFloat(value) > 0));
@@ -4234,18 +4243,20 @@ function showRecords_scores_presentation(scoreid) {
 
                 	$("#presentationNotes").val(scoreP.presentationNotes);
 
+                    //FDT - ATA2023 - modifiche stage3
                 	//FD 2021.08.02 - ATA 2021 - Modify Stage3 - BEGIN tolta parte di executive summary
-                	scoreP.totalPresentation = Number(parseFloat(scoreP.totalNovelty)) ? parseFloat(scoreP.totalNovelty) : 0;
+                	//scoreP.totalPresentation = Number(parseFloat(scoreP.totalNovelty)) ? parseFloat(scoreP.totalNovelty) : 0;
                 	scoreP.totalPresentation += Number(parseFloat(scoreP.totalContent)) ? parseFloat(scoreP.totalContent) : 0;
                 	scoreP.totalPresentation += Number(parseFloat(scoreP.totalFinances)) ? parseFloat(scoreP.totalFinances) : 0;
                 	scoreP.totalPresentation += Number(parseFloat(scoreP.totalDeepDiveTopic)) ? parseFloat(scoreP.totalDeepDiveTopic) : 0;
 
                 	//FD 2021.08.02 - ATA 2021 - Modify Stage3 - Add Sezione <DemonstrationAndDelivery>
-                	scoreP.totalPresentation += Number(parseFloat(scoreP.totalDemonstrationAndDelivery)) ? parseFloat(scoreP.totalDemonstrationAndDelivery) : 0;
+                	scoreP.totalPresentation += Number(parseFloat(scoreP.totalDemonstration)) ? parseFloat(scoreP.totalDemonstration) : 0;
 
                 	//FD 2021.08.02 - ATA 2021 - Modify Stage3 - Remove Sezione <DemonstrationAndStructure>
                 	//scoreP.totalPresentation += Number(parseFloat(scoreP.totalDemonstrationAndStructure))	? parseFloat(scoreP.totalDemonstrationAndStructure)		: 0;
-                	scoreP.totalPresentation += Number(parseFloat(scoreP.totalDelivery)) ? parseFloat(scoreP.totalDelivery) : 0;
+                    scoreP.totalPresentation += Number(parseFloat(scoreP.totalDelivery)) ? parseFloat(scoreP.totalDelivery) : 0;
+                    scoreP.totalPresentation += Number(parseFloat(scoreP.totalStructure)) ? parseFloat(scoreP.totalStructure) : 0;
                 	scoreP.totalPresentation += Number(parseFloat(scoreP.totalQuestions)) ? parseFloat(scoreP.totalQuestions) : 0;
                 	scoreP.totalPresentation += Number(parseFloat(scoreP.totalGeneralImpression)) ? parseFloat(scoreP.totalGeneralImpression) : 0;
                 	scoreP.totalPresentation += Number(parseFloat(scoreP.miscellaneous)) ? parseFloat(scoreP.miscellaneous) : 0;
@@ -4315,7 +4326,7 @@ function insertRecord_scores_presentation(eventid, carid, scoreP) {
 
 		//FD 2021.08.02 - ATA 2021 - Modify Stage3 - BEGIN tolta parte di executive summary
 		//scoreP.totalExecutiveSummary = scoreP.Total(scoreP.executiveSummary);
-		scoreP.totalNovelty = scoreP.Total(scoreP.novelty);
+		//scoreP.totalNovelty = scoreP.Total(scoreP.novelty);
 		scoreP.totalContent = scoreP.Total(scoreP.content);
 		scoreP.totalFinances = scoreP.Total(scoreP.finances);
 		scoreP.totalDeepDiveTopic = scoreP.Total(scoreP.deepDiveTopic);
@@ -4323,12 +4334,13 @@ function insertRecord_scores_presentation(eventid, carid, scoreP) {
 		//FD 2021.08.02 - ATA 2021 - Modify Stage3 - Remove Sezione <DemonstrationAndStructure>
 		//scoreP.totalDemonstrationAndStructure	= scoreP.Total(scoreP.demonstrationAndStructure);
 
-		scoreP.totalDelivery = scoreP.Total(scoreP.delivery);
+        scoreP.totalDelivery = scoreP.Total(scoreP.delivery);
+        scoreP.totalStructure = scoreP.Total(scoreP.structure);
 		scoreP.totalQuestions = scoreP.Total(scoreP.questions);
 		scoreP.totalGeneralImpression = scoreP.Total(scoreP.generalImpression);
 
 		//FD 2021.08.02 - ATA 2021 - Modify Stage3 - Add Sezione <DemonstrationAndDelivery>
-		scoreP.totalDemonstrationAndDelivery = scoreP.Total(scoreP.totalDemonstrationAndDelivery);
+		scoreP.totalDemonstration = scoreP.Total(scoreP.totalDemonstration);
 
 		//FD 2021.07.27 - ATA 2021  - Add Stage1
 		//FD 2021.08.02 - ATA 2021 - Modify Stage3 - BEGIN tolta parte di executive summary
@@ -4359,7 +4371,8 @@ function insertRecord_scores_presentation(eventid, carid, scoreP) {
 		//scoreP.totalPresentation = scoreP.Total(scoreP.stage1, scoreP.totalNovelty, scoreP.totalContent, scoreP.totalFinances, scoreP.totalDeepDiveTopic, scoreP.totalDemonstrationAndDelivery, scoreP.totalDelivery, scoreP.totalQuestions, scoreP.totalGeneralImpression, scoreP.miscellaneous);
 		//FD 2021.09.12 - ATA 2021 - Add Section <Finals in Stage3>
         //FDT - ATA 2023 - eliminato Business Figures, Content, Investor - aggiunto Financial Concept, Financial KPYs - INIZIO
-        scoreP.totalPresentation = scoreP.Total(scoreP.stage1, scoreP.totalNovelty, scoreP.totalContent, scoreP.totalFinances, scoreP.totalDeepDiveTopic, scoreP.totalDemonstrationAndDelivery, scoreP.totalDelivery, scoreP.totalQuestions, scoreP.totalGeneralImpression, scoreP.miscellaneous, scoreP.totalSt2FinConcept, scoreP.totalSt2DemonstrationAndDelivery, scoreP.totalSt2FinKPIs);
+        
+        scoreP.totalPresentation = scoreP.Total(scoreP.stage1, scoreP.totalContent, scoreP.totalFinances, scoreP.totalDeepDiveTopic, scoreP.totalDemonstration, scoreP.totalDelivery, scoreP.totalStructure, scoreP.totalQuestions, scoreP.totalGeneralImpression, scoreP.miscellaneous, scoreP.totalSt2FinConcept, scoreP.totalSt2DemonstrationAndDelivery, scoreP.totalSt2FinKPIs);
         //FDT - ATA 2023 - eliminato Business Figures, Content, Investor - aggiunto Financial Concept, Financial KPYs - FINE
         //scoreP.totalPresentation = scoreP.Total(scoreP.stage1, scoreP.totalNovelty, scoreP.totalContent, scoreP.totalFinances,
 		//										scoreP.totalDeepDiveTopic, scoreP.totalDemonstrationAndDelivery, scoreP.totalDelivery, scoreP.totalQuestions,
@@ -4375,27 +4388,27 @@ function insertRecord_scores_presentation(eventid, carid, scoreP) {
 			//FD 2021.08.02 - ATA 2021 - Modify Stage3 - BEGIN tolta parte di executive summary
 			//SqlString += "executivesummary0, executivesummary1, executivesummary2, executivesummary3, executivesummarynotes, ";
 			//FD 2021.08.02 - ATA 2021 - Modify Stage3 - BEGIN tolta parte novelty3
-			SqlString += "novelty0, novelty1, novelty2, noveltynotes, ";
+			//SqlString += "novelty0, novelty1, novelty2, noveltynotes, ";
 
 			//FD 2021.08.02 - ATA 2021 - Modify Stage3 - BEGIN Add Content9
 			//SqlString += "content0, content1, content2, content3, content4, content5, content6, content7, content8, content9, contentnotes, ";
-            SqlString += "content0, content1, content2, content3, content4, content5, content6, content7, content8, contentnotes, ";
+            SqlString += "content0, content1, content2, content3, content4, content5, content6, content7, contentnotes, ";
 
 			//FD 2021.08.02 - ATA 2021 - Modify Stage3 - BEGIN tolta parte Finances2 e Finances4
-			SqlString += "finances0, finances1, finances2, financesnotes, ";
+            SqlString += "finances0, finances1, finances2,finances3, financesnotes, ";
 
 			//FD 2021.08.02 - ATA 2021 - Modify Stage3 - Add deepdivetopic4
             //SqlString += "deepdivetopic0, deepdivetopic1, deepdivetopic2, deepdivetopic3, deepdivetopic4, deepdivetopicnotes, ";
-            SqlString += "deepdivetopic0, deepdivetopic1, deepdivetopic2, deepdivetopicnotes, ";
+            SqlString += "deepdivetopic0, deepdivetopic1, deepdivetopic2, deepdivetopic3, deepdivetopicnotes, ";
 
 			//FD 2021.08.02 - ATA 2021 - Modify Stage3 - Add Sezione <DemonstrationAndDelivery>
 			//SqlString += "demonstrationanddelivery0, demonstrationanddelivery1, demonstrationanddelivery2, demonstrationanddelivery3, demonstrationanddelivery4, demonstrationanddelivery5, demonstrationanddeliverynotes, ";
-            SqlString += "demonstrationanddelivery0, demonstrationanddelivery1, demonstrationanddelivery2, demonstrationanddelivery3, demonstrationanddelivery4, demonstrationanddeliverynotes, ";
+            SqlString += "demonstration0, demonstration1, demonstration2, demonstration3, demonstrationnotes, ";
 
-			SqlString += "demonstrationandstructure0, demonstrationandstructure1, demonstrationandstructure2, demonstrationandstructure3, demonstrationandstructure4, demonstrationandstructurenotes, ";
+            SqlString += "structure0, structure1, structure2, structure3, structure4, structure5, structurenotes, ";
 
-			SqlString += "delivery0, delivery1, delivery2, delivery3, delivery4, delivery5, delivery6, delivery7, delivery8, deliverynotes, ";
-            SqlString += "questions0, questions1, questions2, questions3, questions4, questions5, questions6, questions7, questions8, questions9, questionsnotes, ";
+            SqlString += "delivery0, delivery1, delivery2, delivery3, delivery4, delivery5, delivery6, delivery7, delivery8, delivery9, deliverynotes, ";
+            SqlString += "questions0, questions1, questions2, questions3, questions4, questions5, questions6, questions7, questionsnotes, ";
             SqlString += "generalimpression0, generalimpression1, generalimpression2, generalimpressionnotes, ";
 			SqlString += "miscellaneous, miscellaneousnotes, ";
 
@@ -4433,26 +4446,27 @@ function insertRecord_scores_presentation(eventid, carid, scoreP) {
 
 			SqlString += "VALUES( ";
 			SqlString += "(SELECT MAX(id) FROM TB_Scores), ";
-			//FD 2021.08.02 - ATA 2021 - Modify Stage3 - BEGIN tolta parte di executive summary
+            //FDT - ATA 2023 - midifiche stage3
+            //FD 2021.08.02 - ATA 2021 - Modify Stage3 - BEGIN tolta parte di executive summary
 			//FD 2021.08.02 - ATA 2021 - Modify Stage3 - BEGIN tolta parte novelty3
-			SqlString += "?, ?, ?, ?, ";															//novelty - 4
+			//SqlString += "?, ?, ?, ?, ";															//novelty - 4
 
 			//FD 2021.08.02 - ATA 2021 - Modify Stage3 - BEGIN Add Content9
-			SqlString += "?, ?, ?, ?, ?, ?, ?, ?, ?, ?,";										//content - 10
+			SqlString += "?, ?, ?, ?, ?, ?, ?, ?, ?,";										//content - 9                       (numeri e note) PER TUTTI
 
 			//FD 2021.08.02 - ATA 2021 - Modify Stage3 - BEGIN tolta parte Finances2 e Finances4
-			SqlString += "?, ?, ?, ?, ";															//finances - 4
+			SqlString += "?, ?, ?, ?, ?, ";															//finances - 5 
 
 			//FD 2021.08.02 - ATA 2021 - Modify Stage3 - Add deepdivetopic4
-			SqlString += "?, ?, ?, ?, ";														//deepdivetopic - 4
+			SqlString += "?, ?, ?, ?, ?, ";														//deepdivetopic - 5
 
 			//FD 2021.08.02 - ATA 2021 - Modify Stage3 - Add Sezione <DemonstrationAndDelivery>
-			SqlString += "?, ?, ?, ?, ?, ?, ";													//DemonstrationAndDelivery - 6
+			SqlString += "?, ?, ?, ?, ?, ";													//Demonstration - 5
 
 			//FD 2021.08.02 - ATA 2021 - Modify Stage3 - Remove Sezione <DemonstrationAndStructure>
-			SqlString += "?, ?, ?, ?, ?, ?, ";														//demonstrationandstructure - 6
-			SqlString += "?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ";											//structure(ex delivery) - 10
-			SqlString += "?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ";										//questions -11
+			SqlString += "?, ?, ?, ?, ?, ?, ?, ";														//structure - 7
+			SqlString += "?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ";											//delivery) - 11
+			SqlString += "?, ?, ?, ?, ?, ?, ?, ?, ?, ";										//questions -9
 			SqlString += "?, ?, ?, ?, ";															//generalimpression - 4
 			SqlString += "?, ?, ";																	//miscellaneous - 2
 
@@ -4500,21 +4514,19 @@ function insertRecord_scores_presentation(eventid, carid, scoreP) {
 				//	
 				tx.executeSql(
             		SqlString,
-            		[
-            			scoreP.novelty[0], scoreP.novelty[1], scoreP.novelty[2], scoreP.noveltyNotes,
-		            	//scoreP.content[0], scoreP.content[1], scoreP.content[2], scoreP.content[3], scoreP.content[4], scoreP.content[5], scoreP.content[6], scoreP.content[7], scoreP.content[8], scoreP.content[9], scoreP.contentNotes,
-                        scoreP.content[0], scoreP.content[1], scoreP.content[2], scoreP.content[3], scoreP.content[4], scoreP.content[5], scoreP.content[6], scoreP.content[7], scoreP.content[8], scoreP.contentNotes,
-                        scoreP.finances[0], scoreP.finances[1], scoreP.finances[2], scoreP.financesNotes,
-	            		//scoreP.deepDiveTopic[0], scoreP.deepDiveTopic[1], scoreP.deepDiveTopic[2], scoreP.deepDiveTopic[3], scoreP.deepDiveTopic[4], scoreP.deepDiveTopicNotes,
-                        scoreP.deepDiveTopic[0], scoreP.deepDiveTopic[1], scoreP.deepDiveTopic[2], scoreP.deepDiveTopicNotes,
+                    [
+                        //FDT -ATA 2023 - modifiche stage3
+            			//scoreP.novelty[0], scoreP.novelty[1], scoreP.novelty[2], scoreP.noveltyNotes,
+		            	scoreP.content[0], scoreP.content[1], scoreP.content[2], scoreP.content[3], scoreP.content[4], scoreP.content[5], scoreP.content[6], scoreP.content[7],scoreP.contentNotes,
+                        scoreP.finances[0], scoreP.finances[1], scoreP.finances[2], scoreP.finances[3], scoreP.financesNotes,
+                        scoreP.deepDiveTopic[0], scoreP.deepDiveTopic[1], scoreP.deepDiveTopic[2], scoreP.deepDiveTopic[3], scoreP.deepDiveTopicNotes,
 
-						//scoreP.demonstrationAndDelivery[0], scoreP.demonstrationAndDelivery[1], scoreP.demonstrationAndDelivery[2], scoreP.demonstrationAndDelivery[3], scoreP.demonstrationAndDelivery[4], scoreP.demonstrationAndDelivery[5], scoreP.demonstrationAndDeliveryNotes,
-                        scoreP.demonstrationAndDelivery[0], scoreP.demonstrationAndDelivery[1], scoreP.demonstrationAndDelivery[2], scoreP.demonstrationAndDelivery[3], scoreP.demonstrationAndDelivery[4], scoreP.demonstrationAndDeliveryNotes,
+						scoreP.demonstration[0], scoreP.demonstration[1], scoreP.demonstration[2], scoreP.demonstration[3], scoreP.demonstrationNotes,
 
-                        scoreP.demonstrationAndStructure[0], scoreP.demonstrationAndStructure[1], scoreP.demonstrationAndStructure[2], scoreP.demonstrationAndStructure[3], scoreP.demonstrationAndStructure[4], scoreP.demonstrationAndStructureNotes,
+                        scoreP.structure[0], scoreP.structure[1], scoreP.structure[2], scoreP.structure[3], scoreP.structure[4], scoreP.structure[5], scoreP.structureNotes,
 
-	            		scoreP.delivery[0], scoreP.delivery[1], scoreP.delivery[2], scoreP.delivery[3], scoreP.delivery[4], scoreP.delivery[5], scoreP.delivery[6], scoreP.delivery[7], scoreP.delivery[8], scoreP.deliveryNotes,
-                        scoreP.questions[0], scoreP.questions[1], scoreP.questions[2], scoreP.questions[3], scoreP.questions[4], scoreP.questions[5], scoreP.questions[6], scoreP.questions[7], scoreP.questions[8], scoreP.questions[9], scoreP.questionsNotes,
+                        scoreP.delivery[0], scoreP.delivery[1], scoreP.delivery[2], scoreP.delivery[3], scoreP.delivery[4], scoreP.delivery[5], scoreP.delivery[6], scoreP.delivery[7], scoreP.delivery[8], scoreP.delivery[9], scoreP.deliveryNotes,
+                        scoreP.questions[0], scoreP.questions[1], scoreP.questions[2], scoreP.questions[3], scoreP.questions[4], scoreP.questions[5], scoreP.questions[6], scoreP.questions[7], scoreP.questionsNotes,
                         scoreP.generalImpression[0], scoreP.generalImpression[1], scoreP.generalImpression[2], scoreP.generalImpressionNotes,
             			scoreP.miscellaneous, scoreP.miscellaneousNotes,
 
@@ -4553,17 +4565,18 @@ function insertRecord_scores_presentation(eventid, carid, scoreP) {
 					function (tx, result) { onError(tx, result); }
 				);
 
+                //FDT - ATA 2023 - modifiche stage3
 				//Inserimento punteggio Presentation
 				var SqlString = "INSERT INTO TB_Scores_Presentation VALUES( ?, ";				//scoreid - 1
 
-				SqlString += "?, ?, ?, ?, ";													//novelty - 4
-				SqlString += "?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ";								//content - 10
-				SqlString += "?, ?, ?, ?, ";													//finances - 4
-				SqlString += "?, ?, ?, ?,  ";												//deepdivetopic - 4
-				SqlString += "?, ?, ?, ?, ?, ?, ";											//DemonstrationAndDelivery - 6
-				SqlString += "?, ?, ?, ?, ?, ?, ";												//demonstrationandstructure - 6
-				SqlString += "?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ";									//structure(ex delivery) - 10
-				SqlString += "?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ";								//questions - 11
+				//SqlString += "?, ?, ?, ?, ";													//novelty - 4
+				SqlString += "?, ?, ?, ?, ?, ?, ?, ?, ?, ";								        //content - 9               (numeri più le note) PER TUTTI
+				SqlString += "?, ?, ?, ?, ?, ";													//finances - 5
+				SqlString += "?, ?, ?, ?, ?, ";												    //deepdivetopic - 5
+				SqlString += "?, ?, ?, ?, ?, ";											        //Demonstration - 5
+				SqlString += "?, ?, ?, ?, ?, ?, ?, ";											//structure - 7
+				SqlString += "?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ";								//delivery - 11
+				SqlString += "?, ?, ?, ?, ?, ?, ?, ?, ?, ";							        	//questions - 9
 				SqlString += "?, ?, ?, ?, ";													//generalimpression - 4
 				SqlString += "?, ?, ";															//miscellaneous - 2
 
@@ -4598,21 +4611,19 @@ function insertRecord_scores_presentation(eventid, carid, scoreP) {
 				//			
 				tx.executeSql(
 						insertStatement_scores_presentation
-						[
+                    [
+                            //FDT - ATA 2023 modifiche stage3
 							scoreP.scoreid,
-							scoreP.novelty[0], scoreP.novelty[1], scoreP.novelty[2], scoreP.noveltyNotes,
-							//scoreP.content[0], scoreP.content[1], scoreP.content[2], scoreP.content[3], scoreP.content[4], scoreP.content[5], scoreP.content[6], scoreP.content[7], scoreP.content[8], scoreP.content[9], scoreP.contentNotes,
-                            scoreP.content[0], scoreP.content[1], scoreP.content[2], scoreP.content[3], scoreP.content[4], scoreP.content[5], scoreP.content[6], scoreP.content[7], scoreP.content[8], scoreP.contentNotes,
-							scoreP.finances[0], scoreP.finances[1], scoreP.finances[2], scoreP.financesNotes,
-                            //scoreP.deepDiveTopic[0], scoreP.deepDiveTopic[1], scoreP.deepDiveTopic[2], scoreP.deepDiveTopic[3], scoreP.deepDiveTopic[4], scoreP.deepDiveTopicNotes,
-                            scoreP.deepDiveTopic[0], scoreP.deepDiveTopic[1], scoreP.deepDiveTopic[2], scoreP.deepDiveTopicNotes,
-							//scoreP.demonstrationAndDelivery[0], scoreP.demonstrationAndDelivery[1], scoreP.demonstrationAndDelivery[2], scoreP.demonstrationAndDelivery[3], scoreP.demonstrationAndDelivery[4], scoreP.demonstrationAndDelivery[5], scoreP.demonstrationAndDeliveryNotes,
-                            scoreP.demonstrationAndDelivery[0], scoreP.demonstrationAndDelivery[1], scoreP.demonstrationAndDelivery[2], scoreP.demonstrationAndDelivery[3], scoreP.demonstrationAndDelivery[4], scoreP.demonstrationAndDeliveryNotes,
+							//scoreP.novelty[0], scoreP.novelty[1], scoreP.novelty[2], scoreP.noveltyNotes,
+							scoreP.content[0], scoreP.content[1], scoreP.content[2], scoreP.content[3], scoreP.content[4], scoreP.content[5], scoreP.content[6], scoreP.content[7], scoreP.contentNotes,
+                            scoreP.finances[0], scoreP.finances[1], scoreP.finances[2], scoreP.finances[3], scoreP.financesNotes,
+                            scoreP.deepDiveTopic[0], scoreP.deepDiveTopic[1], scoreP.deepDiveTopic[2], scoreP.deepDiveTopic[3], scoreP.deepDiveTopicNotes,
+							scoreP.demonstration[0], scoreP.demonstration[1], scoreP.demonstration[2], scoreP.demonstration[3], scoreP.demonstrationNotes,
 
-							scoreP.demonstrationAndStructure[0], scoreP.demonstrationAndStructure[1], scoreP.demonstrationAndStructure[2], scoreP.demonstrationAndStructure[3], scoreP.demonstrationAndStructure[4], scoreP.demonstrationAndStructureNotes,
+                            scoreP.structure[0], scoreP.structure[1], scoreP.structure[2], scoreP.structure[3], scoreP.structure[4], scoreP.structure[5], scoreP.structureNotes,
 
-							scoreP.delivery[0], scoreP.delivery[1], scoreP.delivery[2], scoreP.delivery[3], scoreP.delivery[4], scoreP.delivery[5], scoreP.delivery[6], scoreP.delivery[7], scoreP.delivery[8], scoreP.deliveryNotes,
-							scoreP.questions[0], scoreP.questions[1], scoreP.questions[2], scoreP.questions[3], scoreP.questions[4], scoreP.questions[5], scoreP.questions[6], scoreP.questions[7], scoreP.questions[8], scoreP.questions[9], scoreP.questionsNotes,
+                            scoreP.delivery[0], scoreP.delivery[1], scoreP.delivery[2], scoreP.delivery[3], scoreP.delivery[4], scoreP.delivery[5], scoreP.delivery[6], scoreP.delivery[7], scoreP.delivery[8], scoreP.delivery[9], scoreP.deliveryNotes,
+							scoreP.questions[0], scoreP.questions[1], scoreP.questions[2], scoreP.questions[3], scoreP.questions[4], scoreP.questions[5], scoreP.questions[6], scoreP.questions[7], scoreP.questionsNotes,
                             
 							scoreP.generalImpression[0], scoreP.generalImpression[1], scoreP.generalImpression[2], scoreP.generalImpressionNotes,
 							scoreP.miscellaneous, scoreP.miscellaneousNotes,
@@ -4677,18 +4688,19 @@ function updateRecord_scores_presentation(scoreP) {
 
 		//FD 2021.08.02 - ATA 2021 - Modify Stage3 - BEGIN tolta parte di executive summary
 		//scoreP.totalExecutiveSummary = scoreP.Total(scoreP.executiveSummary);
-		scoreP.totalNovelty = scoreP.Total(scoreP.novelty);
+		//scoreP.totalNovelty = scoreP.Total(scoreP.novelty);
 		scoreP.totalContent = scoreP.Total(scoreP.content);
 		scoreP.totalFinances = scoreP.Total(scoreP.finances);
 		scoreP.totalDeepDiveTopic = scoreP.Total(scoreP.deepDiveTopic);
 
 		//FD 2021.08.02 - ATA 2021 - Modify Stage3 - Add Sezione <DemonstrationAndDelivery>
-		scoreP.totalDemonstrationAndDelivery = scoreP.Total(scoreP.totalDemonstrationAndDelivery);
+		scoreP.totalDemonstration = scoreP.Total(scoreP.totalDemonstration);
 
 		//FD 2021.08.02 - ATA 2021 - Modify Stage3 - Remove Sezione <DemonstrationAndStructure>
 		//scoreP.totalDemonstrationAndStructure	= scoreP.Total(scoreP.demonstrationAndStructure);
 
-		scoreP.totalDelivery = scoreP.Total(scoreP.delivery);
+        scoreP.totalDelivery = scoreP.Total(scoreP.delivery);
+        scoreP.totalStructure = scoreP.Total(scoreP.structure);
 		scoreP.totalQuestions = scoreP.Total(scoreP.questions);
 		scoreP.totalGeneralImpression = scoreP.Total(scoreP.generalImpression);
 
@@ -4720,8 +4732,10 @@ function updateRecord_scores_presentation(scoreP) {
 		//FD 2021.08.02 - ATA 2021 - Adding Stage2 - Add Section <Stage2>
 		//scoreP.totalPresentation = scoreP.Total(scoreP.stage1, scoreP.totalNovelty, scoreP.totalContent, scoreP.totalFinances, scoreP.totalDeepDiveTopic, scoreP.totalDemonstrationAndDelivery, scoreP.totalDelivery, scoreP.totalQuestions, scoreP.totalGeneralImpression, scoreP.miscellaneous);
 		//FD 2021.09.12 - ATA 2021 - Add Section <Finals in Stage3>
-		scoreP.totalPresentation = scoreP.Total(scoreP.stage1, scoreP.totalNovelty, scoreP.totalContent, scoreP.totalFinances,
-												scoreP.totalDeepDiveTopic, scoreP.totalDemonstrationAndDelivery, scoreP.totalDelivery, scoreP.totalQuestions,
+        scoreP.totalPresentation = scoreP.Total(scoreP.stage1,
+                                                //scoreP.totalNovelty,
+                                                scoreP.totalContent, scoreP.totalFinances,
+                                                scoreP.totalDeepDiveTopic, scoreP.totalDemonstration, scoreP.totalDelivery, scoreP.totalStructure, scoreP.totalQuestions,
                                                 scoreP.totalGeneralImpression, scoreP.miscellaneous,
                                                 //FDT - ATA 2023 - eliminato Business Figures - INIZIO
                                                 /*scoreP.totalSt2BusinnesFigures,*/
@@ -4761,21 +4775,18 @@ function updateRecord_scores_presentation(scoreP) {
 			tx.executeSql(
 				updateStatement_scores_presentation,
 				[
-					scoreP.novelty[0], scoreP.novelty[1], scoreP.novelty[2], scoreP.noveltyNotes,
-					//scoreP.content[0], scoreP.content[1], scoreP.content[2], scoreP.content[3], scoreP.content[4], scoreP.content[5], scoreP.content[6], scoreP.content[7], scoreP.content[8], scoreP.content[9], scoreP.contentNotes,
-                    scoreP.content[0], scoreP.content[1], scoreP.content[2], scoreP.content[3], scoreP.content[4], scoreP.content[5], scoreP.content[6], scoreP.content[7], scoreP.content[8], scoreP.contentNotes,
+					//scoreP.novelty[0], scoreP.novelty[1], scoreP.novelty[2], scoreP.noveltyNotes,
+					scoreP.content[0], scoreP.content[1], scoreP.content[2], scoreP.content[3], scoreP.content[4], scoreP.content[5], scoreP.content[6], scoreP.content[7], scoreP.contentNotes,
 
-                    scoreP.finances[0], scoreP.finances[1], scoreP.finances[2], scoreP.financesNotes,
-                    //scoreP.deepDiveTopic[0], scoreP.deepDiveTopic[1], scoreP.deepDiveTopic[2], scoreP.deepDiveTopic[3], scoreP.deepDiveTopic[4], scoreP.deepDiveTopicNotes,
-                    scoreP.deepDiveTopic[0], scoreP.deepDiveTopic[1], scoreP.deepDiveTopic[2], scoreP.deepDiveTopicNotes,
+                    scoreP.finances[0], scoreP.finances[1], scoreP.finances[2], scoreP.finances[3], scoreP.financesNotes,
+                    scoreP.deepDiveTopic[0], scoreP.deepDiveTopic[1], scoreP.deepDiveTopic[2], scoreP.deepDiveTopic[3], scoreP.deepDiveTopicNotes,
 
-					//scoreP.demonstrationAndDelivery[0], scoreP.demonstrationAndDelivery[1], scoreP.demonstrationAndDelivery[2], scoreP.demonstrationAndDelivery[3], scoreP.demonstrationAndDelivery[4], scoreP.demonstrationAndDelivery[5], scoreP.demonstrationAndDeliveryNotes,
-                    scoreP.demonstrationAndDelivery[0], scoreP.demonstrationAndDelivery[1], scoreP.demonstrationAndDelivery[2], scoreP.demonstrationAndDelivery[3], scoreP.demonstrationAndDelivery[4], scoreP.demonstrationAndDeliveryNotes,
+					scoreP.demonstration[0], scoreP.demonstration[1], scoreP.demonstration[2], scoreP.demonstration[3], scoreP.demonstrationNotes,
 
-                    scoreP.demonstrationAndStructure[0], scoreP.demonstrationAndStructure[1], scoreP.demonstrationAndStructure[2], scoreP.demonstrationAndStructure[3], scoreP.demonstrationAndStructure[4], scoreP.demonstrationAndStructureNotes,
+                    scoreP.structure[0], scoreP.structure[1], scoreP.structure[2], scoreP.structure[3], scoreP.structure[4], scoreP.structure[5], scoreP.structureNotes,
 
-					scoreP.delivery[0], scoreP.delivery[1], scoreP.delivery[2], scoreP.delivery[3], scoreP.delivery[4], scoreP.delivery[5], scoreP.delivery[6], scoreP.delivery[7], scoreP.delivery[8], scoreP.deliveryNotes,
-					scoreP.questions[0], scoreP.questions[1], scoreP.questions[2], scoreP.questions[3], scoreP.questions[4], scoreP.questions[5], scoreP.questions[6], scoreP.questions[7], scoreP.questions[8], scoreP.questions[9], scoreP.questionsNotes,
+                    scoreP.delivery[0], scoreP.delivery[1], scoreP.delivery[2], scoreP.delivery[3], scoreP.delivery[4], scoreP.delivery[5], scoreP.delivery[6], scoreP.delivery[7], scoreP.delivery[8], scoreP.delivery[9], scoreP.deliveryNotes,
+					scoreP.questions[0], scoreP.questions[1], scoreP.questions[2], scoreP.questions[3], scoreP.questions[4], scoreP.questions[5], scoreP.questions[6], scoreP.questions[7], scoreP.questionsNotes,
                     
 					scoreP.generalImpression[0], scoreP.generalImpression[1], scoreP.generalImpression[2], scoreP.generalImpressionNotes,
 					scoreP.miscellaneous, scoreP.miscellaneousNotes,
@@ -5310,7 +5321,7 @@ function calculate_scores_skidpad_adj(time, cones) {
 	cones = (isNaN(cones)) ? 0 : cones;
 
 	if ((time > 0) && (!isNaN(cones))) {
-		time = time + parseFloat(cones * 0.25);
+		time = time + parseFloat(cones * 0.2);
 		return time.toFixed(4);
 	}
 	else {
@@ -5543,7 +5554,7 @@ function calculate_scores_autocross_adj(time, cones, doc) {
 	doc = (isNaN(doc)) ? 0 : doc;
 
 	if ((time > 0) && (!isNaN(cones))) {
-		time = time + parseFloat(cones * 2) + parseFloat(doc * 20);
+		time = time + parseFloat(cones * 2) + parseFloat(doc * 10);
 		return time.toFixed(4);
 	}
 	else {
@@ -6141,7 +6152,8 @@ function showRecords_scores_presentation_partial(scoresidlist) {
                 		//cellsToAdd.push(item['stage1'], item['novelty'], item['content'], item['finances'], item['deepdivetopic'], item['demonstrationandstructure'], item['delivery'], item['questions'], item['generalimpression'], item['miscellaneous']);
                 		//FD 2021.08.02 - ATA 2021 - Modify Stage3 - Add Sezione <DemonstrationAndDelivery>
                 		//FD 2021.09.12 - ATA 2021 - Add Section <Finals in Stage3>
-                		cellsToAdd.push(item['stage1'], item['stage2'], item['novelty'], item['content'], item['finances'], item['deepdivetopic'], item['demonstrationanddelivery'], item['delivery'], item['questions'], item['generalimpression'], item['miscellaneous'], item['finals']);
+
+                        cellsToAdd.push(item['stage1'], item['stage2'], item['content'], item['finances'], item['deepdivetopic'], item['demonstration'], item['delivery'], item['structure'], item['questions'], item['generalimpression'], item['miscellaneous'], item['finals']);
 
                 		var row = $('tr[data-scoreid="' + scoreid + '"]');
                 		addCellsToTableRow(row, cellsToAdd, 'partial');

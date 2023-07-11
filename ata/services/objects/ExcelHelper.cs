@@ -495,13 +495,17 @@ namespace ATA.services
                     if (ClassType == TypeOfClass.Class1C)
                     {
                         oExcelSheet.Cells[sheetRow, 14].Value = rod.FuelType;
-                        oExcelSheet.Cells[sheetRow, 15].Value = rod.Co2Used;
+                        //FDT - ATA 2023 - da cambiare la colonna 15
+                        //oExcelSheet.Cells[sheetRow, 15].Value = rod.Co2Used;
+                        oExcelSheet.Cells[sheetRow, 15].Value = rod.EnergyCorr;
                         oExcelSheet.Cells[sheetRow, 16].Value = rod.EfficienctyScore;
                         oExcelSheet.Cells[sheetRow, 17].Value = rod.TotalScore;
                     }
                     else
                     {
-                        oExcelSheet.Cells[sheetRow, 14].Value = rod.Co2Used;
+                        //FDT - ATA 2023 - da cambiare la colonna 14
+                        //oExcelSheet.Cells[sheetRow, 14].Value = rod.Co2Used;
+                        oExcelSheet.Cells[sheetRow, 14].Value = rod.EnergyCorr;
                         oExcelSheet.Cells[sheetRow, 15].Value = rod.EfficienctyScore;
                         oExcelSheet.Cells[sheetRow, 16].Value = rod.TotalScore;
                     }
@@ -524,17 +528,25 @@ namespace ATA.services
                 item = rankingDetailsObjects.Where(d => d.EfficencyFactor > 0).OrderByDescending(d => d.EfficencyFactor).FirstOrDefault();
                 if (item != null) { maxEfficencyFactor = item.EfficencyFactor; }
 
+                //FDT - ATA 2023 - add scrittura min efficiency factor
+                //fuelEfficiencyFactorMin = myScores.Min(d => d.EfficencyFactor)
+                double minEfficiencyFactor = 0;
+                minEfficiencyFactor = rankingDetailsObjects.Where(x => x.EfficencyFactor >0).Min(d => d.EfficencyFactor);
+                oExcelSheet.Cells[7, 12].Value = minEfficiencyFactor;
+
                 if (ClassType == TypeOfClass.Class1C)
                 {
-                    oExcelSheet.Cells[3, 17].Value = minLapTotalCo2;
-                    oExcelSheet.Cells[5, 17].Value = minAvgLapTimeEfficiency;
-                    oExcelSheet.Cells[8, 17].Value = maxEfficencyFactor;
+                    //FDT - ATA 2023 - campi non più scritti
+                    //oExcelSheet.Cells[3, 17].Value = minLapTotalCo2;
+                    //oExcelSheet.Cells[5, 17].Value = minAvgLapTimeEfficiency;
+                    //oExcelSheet.Cells[8, 17].Value = maxEfficencyFactor;                    
                 }
                 else
                 {
-                    oExcelSheet.Cells[3, 16].Value = minLapTotalCo2;
-                    oExcelSheet.Cells[5, 16].Value = minAvgLapTimeEfficiency;
-                    oExcelSheet.Cells[8, 16].Value = maxEfficencyFactor;
+                    //FDT - ATA 2023 - campi non più scritti
+                    //oExcelSheet.Cells[3, 16].Value = minLapTotalCo2;
+                    //oExcelSheet.Cells[5, 16].Value = minAvgLapTimeEfficiency;
+                    //oExcelSheet.Cells[8, 16].Value = maxEfficencyFactor;
                 }
 
                 //Resize the columns 

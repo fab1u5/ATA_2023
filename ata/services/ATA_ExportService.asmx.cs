@@ -135,14 +135,14 @@ namespace ATA.services
                 }
             }
             else if ((ExcelHelper.TypeOfEventByName)eventType == ExcelHelper.TypeOfEventByName.Presentation)
-            {
+            {     
                 //AF - Lug 2016 - Added Notes for Presentation
 
 				//FD 2021.08.02 - ATA 2021 - Modify Stage3 - BEGIN tolta parte di executive summary
 				//FD 2021.08.02 - ATA 2021 - Modify Stage3 - Remove Sezione <DemonstrationAndStructure>
 				//FD 2021.08.02 - ATA 2021 - Modify Stage3 - Add Sezione <DemonstrationAndDelivery>
 				//sb.AppendLine("Car.No.; Reg.No.; Team Name; University; Best Time; Score; Normalized Score; Novelty Notes; Content Notes; Finances Notes; Deep Dive Topic Notes; Demonstration & Delivery Notes; Structure Notes; Questions Notes; General Impression Notes; Miscellaneous Notes; Presentation Notes;");
-				sb.AppendLine("Car.No.; Reg.No.; Team Name; University; Best Time; Score; Normalized Score; Novelty Notes; Content Notes; Finances Notes; Deep Dive Topic Notes; Demonstration & Delivery Notes; Structure Notes; Questions Notes; General Impression Notes; Miscellaneous Notes; Presentation Notes;");
+				sb.AppendLine("Car.No.; Reg.No.; Team Name; University; Best Time; Score; Normalized Score; Content Notes; Finances Notes; Deep Dive Topic Notes; Demonstration Notes; Delivery Notes; Structure Notes; Questions Notes; General Impression Notes; Miscellaneous Notes; Presentation Notes;");
 
                 //sb.AppendLine("Car.No.; Reg.No.; Team Name; University; Best Time; Score; Normalized Score; Executive Summary Notes; Novelty Notes; Content Notes; Finances Notes; Deep Dive Topic Notes; Demonstration & Structure Notes; Delivery Notes; Questions Notes; General Impression Notes; Miscellaneous Notes; Presentation Notes;");
                 List<RankingObject> myRankingList = new List<RankingObject>();
@@ -482,9 +482,17 @@ namespace ATA.services
                     "Cone; Doc; Driver Change Start; Efficiency Factor; Efficiency Score; Endurance Score; " +
                     "Fuel Type; Fuel Used; Laps; Penalties; Time; T Min Avg; Total Score; Normalized Score");
 */
+//FDT - ATA 2023 - midifiche stage3
                 sb.AppendLine("Car.No.; Reg.No.; Team Name; University; Laps; Best Time; " +
-                    "Adj Time; Adj Time DNF; Avg Lap Time; Avg Lap Time Efficiency; Co2 Lap; Co2 Used; " +
-                    "Cone; Doc; Driver Change Start; Efficiency Factor; Efficiency Score; Endurance Score; " +
+                    "Adj Time; Adj Time DNF; " +
+                    //"Avg Lap Time; " +
+                    //"Avg Lap Time Efficiency; " +
+                    //"Co2 Lap; " +
+                    //"Co2 Used; " +
+                    "Energy corrected;" +
+                    "Cone; Doc; " +
+                    //"Driver Change Start; " +
+                    "Efficiency Factor; Efficiency Score; Endurance Score; " +
                     "Fuel Type; Fuel Used; Laps; Penalties; Time; T Min Avg; Total Score");
 
                 List<EnduranceRankingObject> myRankingList = new List<EnduranceRankingObject>();
@@ -507,13 +515,14 @@ namespace ATA.services
                         line +=
                             EDRO.AdjTime.ToString() + ";" +
                             EDRO.AdjTimeDNF.ToString() + ";" +
-                            EDRO.AvgLapTime.ToString() + ";" +
-                            EDRO.AvgLapTimeEfficiency.ToString() + ";" +
-                            EDRO.Co2Lap.ToString() + ";" +
-                            EDRO.Co2Used.ToString() + ";" +
+                            //EDRO.AvgLapTime.ToString() + ";" +
+                            //EDRO.AvgLapTimeEfficiency.ToString() + ";" +
+                            //EDRO.Co2Lap.ToString() + ";" +
+                            //EDRO.Co2Used.ToString() + ";" +
+                            EDRO.EnergyCorr.ToString() + ";" +
                             EDRO.Cone.ToString() + ";" +
                             EDRO.Doc.ToString() + ";" +
-                            EDRO.DriverChangeStart.ToString() + ";" +
+                            //EDRO.DriverChangeStart.ToString() + ";" +
                             EDRO.EfficencyFactor.ToString() + ";" +
                             EDRO.EfficienctyScore.ToString() + ";" +
                             EDRO.EnduranceScore.ToString() + ";" +
@@ -548,13 +557,14 @@ namespace ATA.services
                             "0" + ";" +
                             "0" + ";" +
                             "0" + ";" +
+                            //"0" + ";" +
+                            //"0" + ";" +
+                            //"0" + ";" +
+                            //"0" + ";" +
                             "0" + ";" +
                             "0" + ";" +
                             "0" + ";" +
-                            "0" + ";" +
-                            "0" + ";" +
-                            "0" + ";" +
-                            string.Empty + ";" +
+                            //string.Empty + ";" +
                             "0" + ";" +
                             "0" + ";" +
                             "0" + ";" +

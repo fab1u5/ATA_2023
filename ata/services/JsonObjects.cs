@@ -72,16 +72,19 @@ namespace ATA.services
 		//public double executivesummary2 { get; set; }
 		//public double executivesummary3 { get; set; }
 		//public string executivesummarynotes { get; set; }
-		#region Novelty
-		public double novelty0 { get; set; }
-		public double novelty1 { get; set; }
-		public double novelty2 { get; set; }
-		#endregion
+		
+        //FDT - ATA 2023 - modifiche stage3
+        //#region Novelty
+		//public double novelty0 { get; set; }
+		//public double novelty1 { get; set; }
+		//public double novelty2 { get; set; }
+        //FD 2021.08.02 - ATA 2021 - Modify Stage3 - BEGIN tolta parte novelty3
+		//public double novelty3 { get; set; }
+		//public string noveltynotes { get; set; }
+		//#endregion
 
 		#region Content
-		//FD 2021.08.02 - ATA 2021 - Modify Stage3 - BEGIN tolta parte novelty3
-		//public double novelty3 { get; set; }
-		public string noveltynotes { get; set; }
+		
 		public double content0 { get; set; }
         public double content1 { get; set; }
         public double content2 { get; set; }
@@ -90,7 +93,7 @@ namespace ATA.services
         public double content5 { get; set; }
         public double content6 { get; set; }
         public double content7 { get; set; }
-        public double content8 { get; set; }
+        //public double content8 { get; set; }
 
 		//FD 2021.08.02 - ATA 2021 - Modify Stage3 - BEGIN Add Content9
 		//public double content9 { get; set; }
@@ -103,7 +106,7 @@ namespace ATA.services
 		public double finances2 { get; set; }
 
 		//FD 2021.08.02 - ATA 2021 - Modify Stage3 - BEGIN tolta parte Finances2 e Finances4
-		//public double finances3 { get; set; }
+		public double finances3 { get; set; }
 		//public double finances4 { get; set; }
 		//public double finances5 { get; set; }
 		//public double finances6 { get; set; }
@@ -114,7 +117,7 @@ namespace ATA.services
 		public double deepdivetopic0 { get; set; }
 		public double deepdivetopic1 { get; set; }
 		public double deepdivetopic2 { get; set; }
-		//public double deepdivetopic3 { get; set; }
+		public double deepdivetopic3 { get; set; }
 
 		//FD 2021.08.02 - ATA 2021 - Modify Stage3 - Add deepdivetopic4
 		//public double deepdivetopic4 { get; set; }
@@ -122,28 +125,29 @@ namespace ATA.services
 		public string deepdivetopicnotes { get; set; }
 		#endregion
 
-		#region DemonstrationAndDelivery
+		#region Demonstration
 		//FD 2021.08.02 - ATA 2021 - Modify Stage3 - Add Sezione <DemonstrationAndDelivery> - BEGIN
-		public double demonstrationanddelivery0		{ get; set; }
-		public double demonstrationanddelivery1		{ get; set; }
-		public double demonstrationanddelivery2		{ get; set; }
-		public double demonstrationanddelivery3		{ get; set; }
-		public double demonstrationanddelivery4		{ get; set; }
+		public double demonstration0		{ get; set; }
+		public double demonstration1		{ get; set; }
+		public double demonstration2		{ get; set; }
+		public double demonstration3		{ get; set; }
+		//public double demonstrationanddelivery4		{ get; set; }
 		//public double demonstrationanddelivery5		{ get; set; }
-		public string demonstrationanddeliverynotes { get; set; }
+		public string demonstrationnotes { get; set; }
 		//FD 2021.08.02 - ATA 2021 - Modify Stage3 - Add Sezione <DemonstrationAndDelivery> - END
 		#endregion
 
-		#region Demonstration And Structure
-		public double demonstrationandstructure0 { get; set; }
-		public double demonstrationandstructure1 { get; set; }
-		public double demonstrationandstructure2 { get; set; }
-		public double demonstrationandstructure3 { get; set; }
-		public double demonstrationandstructure4 { get; set; }
-		public string demonstrationandstructurenotes { get; set; }
+		#region Structure
+		public double structure0 { get; set; }
+		public double structure1 { get; set; }
+		public double structure2 { get; set; }
+		public double structure3 { get; set; }
+		public double structure4 { get; set; }
+        public double structure5 { get; set; }
+        public string structurenotes { get; set; }
 		#endregion
 
-		#region Structure (ex Delivery)
+		#region Delivery
 		public double delivery0 { get; set; }
         public double delivery1 { get; set; }
         public double delivery2 { get; set; }
@@ -153,6 +157,7 @@ namespace ATA.services
         public double delivery6 { get; set; }
         public double delivery7 { get; set; }
         public double delivery8 { get; set; }
+        public double delivery9 { get; set; }
         public string deliverynotes { get; set; }
 		#endregion
 
@@ -165,8 +170,8 @@ namespace ATA.services
 		public double questions5 { get; set; }
 		public double questions6 { get; set; }
 		public double questions7 { get; set; }
-		public double questions8 { get; set; }
-		public double questions9 { get; set; }
+		//public double questions8 { get; set; }
+		//public double questions9 { get; set; }
 		public string questionsnotes { get; set; }
 		#endregion
 

@@ -1604,9 +1604,10 @@ function WS_showScoresEvent(id, name, classId) {
                         $("#div_events").append('<div id="' + name + '" data-id="' + id + '"  class="row col s12"></div>');
                     }
 
+                    //FDT - ATA 2023 - modifiche stage3
                 	//FD 2021.09.12 - ATA 2021 - Add Section <Finals in Stage3>
                 	//$("#" + name).append('<table id="tabRankingPresentation" class="responsive-table bordered centered hoverable" style="margin-top: 20px;"><thead><tr><th data-field="CarNum">Car No.</th><th data-field="TeamName">Team Name</th><th data-field="University" >University</th><th data-field="ScoreValue">Score</th><th data-field="NormalizedScore">Normalized Score</th></thead><tbody id="tbodyPresentation">');
-                    $("#" + name).append('<table id="tabRankingPresentation" class="responsive-table bordered centered hoverable" style="margin-top: 20px;"><thead><tr><th data-field="CarNum">Car No.</th><th data-field="TeamName">Team Name</th><th data-field="University" >University</th><th data-field="ScoreValue">Score</th><th data-field="Finals">Finals</th><th data-field="NormalizedScore">Normalized Score</th></thead><tbody id="tbodyPresentation">');
+                    $("#" + name).append('<table id="tabRankingPresentation" class="responsive-table bordered centered hoverable" style="margin-top: 20px;"><thead><tr><th data-field="CarNum">Car No.</th><th data-field="TeamName">Team Name</th><th data-field="University" >University</th><th data-field="ExamBoardName">ExamBoard</th><th data-field="ScoreValue">Score</th><th data-field="Finals">Finals</th><th data-field="NormalizedScore">Normalized Score</th></thead><tbody id="tbodyPresentation">');
 
                     for (var i = 0; i < response.length; i++) {
                         console.log(response[i]);
@@ -1623,6 +1624,8 @@ function WS_showScoresEvent(id, name, classId) {
                         text2Append += '<td>' + item.CarNum + '</td>';
                         text2Append += '<td>' + item.TeamName + '</td>';
                         text2Append += '<td>' + item.University + '</td>';
+                        //FDT - ATA 2023 - modifiche stage3
+                        text2Append += '<td>' + item.ExamBoardName + '</td>';
                         text2Append += '<td>' + item.ScoreValue + '</td>';
 
                     	//FD 2021.09.12 - ATA 2021 - Add Section <Finals in Stage3>
@@ -2114,7 +2117,24 @@ function WS_showRecords_scores(classid, eventid) {
                 text2Append += '<td>' + item.CarNo + '</td>';
                 text2Append += '<td>' + item.TeamName + '</td>';
                 text2Append += '<td>' + item.University + '</td>';
-                text2Append += '<td>' + item.ExamBoardName + '</td>';
+                //FDT - ATA 2023 - Modifica Stage 3
+                if (eventid != 7) {
+                    text2Append += '<td>' + item.ExamBoardName + '</td>';
+                }
+                if (eventid == 7) {
+                    var EfficiencyScore = item.EfficiencyScore;
+                    if (EfficiencyScore != 0)
+                        text2Append += '<td class="bold">' + item.EfficiencyScore + '</td>';
+                    else
+                        text2Append += '<td class="bold"> 0 </td>';
+
+                    var EnduranceScore = item.EnduranceScore;
+                    if (EnduranceScore != 0)
+                        text2Append += '<td class="bold">' + item.EnduranceScore + '</td>';
+                    else
+                        text2Append += '<td class="bold"> 0 </td>';
+                }
+
                 var totScore = item.GivenScore;
                 if (totScore != 0)
                     text2Append += '<td class="bold">' + item.GivenScore + '</td>';
@@ -2834,12 +2854,13 @@ function WS_showRecords_scores_presentation(scoreid) {
                 //scoreP.executiveSummary[3]		= response.ExecutiveSummary3;
                 //scoreP.executiveSummaryNotes		= response.ExecutiveSummaryNotes;
 
-                scoreP.novelty[0]						= response.Novelty0;
-                scoreP.novelty[1]						= response.Novelty1;
-                scoreP.novelty[2]						= response.Novelty2;
-            	//FD 2021.08.02 - ATA 2021 - Modify Stage3 - BEGIN tolta parte novelty3
-                //scoreP.novelty[3]						= response.Novelty3;
-                scoreP.noveltyNotes						= response.NoveltyNotes;
+                //FDT - ATA 2023 - modifiche stage3
+             //   scoreP.novelty[0]						= response.Novelty0;
+             //   scoreP.novelty[1]						= response.Novelty1;
+             //   scoreP.novelty[2]						= response.Novelty2;
+            	////FD 2021.08.02 - ATA 2021 - Modify Stage3 - BEGIN tolta parte novelty3
+             //   //scoreP.novelty[3]						= response.Novelty3;
+             //   scoreP.noveltyNotes						= response.NoveltyNotes;
 
                 scoreP.content[0]						= response.Content0;
                 scoreP.content[1]						= response.Content1;
@@ -2848,47 +2869,37 @@ function WS_showRecords_scores_presentation(scoreid) {
                 scoreP.content[4]						= response.Content4;
                 scoreP.content[5]						= response.Content5;
                 scoreP.content[6]						= response.Content6;
-                scoreP.content[7]						= response.Content7;
-                scoreP.content[8]						= response.Content8;
-            	//FD 2021.08.02 - ATA 2021 - Modify Stage3 - BEGIN Add Content9
-                //scoreP.content[9]						= response.Content9;
-
+                scoreP.content[7]						= response.Content7;      
                 scoreP.contentNotes						= response.ContentNotes;
 
             	//FD 2021.08.02 - ATA 2021 - Modify Stage3 - BEGIN tolta parte Finances2 e Finances4
                 scoreP.finances[0]						= response.Finances0;
                 scoreP.finances[1]						= response.Finances1;
                 scoreP.finances[2]						= response.Finances2;
-                //scoreP.finances[3]					= response.Finances3;
-                //scoreP.finances[4]					= response.Finances4;
-                //scoreP.finances[5]					= response.Finances5;
-                //scoreP.finances[6]					= response.Finances6;
+                scoreP.finances[3]					    = response.Finances3;                
                 scoreP.financesNotes					= response.FinancesNotes;
 
                 scoreP.deepDiveTopic[0]					= response.DeepDiveTopic0;
                 scoreP.deepDiveTopic[1]					= response.DeepDiveTopic1;
                 scoreP.deepDiveTopic[2]					= response.DeepDiveTopic2;
-                //scoreP.deepDiveTopic[3]					= response.DeepDiveTopic3;
-            	//FD 2021.08.02 - ATA 2021 - Modify Stage3 - Add deepdivetopic4
-                //scoreP.deepDiveTopic[4]					= response.DeepDiveTopic4;
+                scoreP.deepDiveTopic[3]					= response.DeepDiveTopic3;            	
                 scoreP.deepDiveTopicNotes				= response.DeepDiveTopicNotes;
 
             	//FD 2021.08.02 - ATA 2021 - Modify Stage3 - Add Sezione <DemonstrationAndDelivery> - BEGIN
-                scoreP.demonstrationAndDelivery[0]		= response.DemonstrationAndDelivery0;
-                scoreP.demonstrationAndDelivery[1]		= response.DemonstrationAndDelivery1;
-                scoreP.demonstrationAndDelivery[2]		= response.DemonstrationAndDelivery2;
-                scoreP.demonstrationAndDelivery[3]		= response.DemonstrationAndDelivery3;
-                scoreP.demonstrationAndDelivery[4]		= response.DemonstrationAndDelivery4;
-                //scoreP.demonstrationAndDelivery[5]		= response.DemonstrationAndDelivery5;
-                scoreP.demonstrationAndDeliveryNotes	= response.DemonstrationAndDeliveryNotes;                
+                scoreP.demonstration[0]		= response.Demonstration0;
+                scoreP.demonstration[1]		= response.Demonstration1;
+                scoreP.demonstration[2]		= response.Demonstration2;
+                scoreP.demonstration[3]		= response.Demonstration3;                
+                scoreP.demonstrationNotes	= response.DemonstrationNotes;                
             	//FD 2021.08.02 - ATA 2021 - Modify Stage3 - Add Sezione <DemonstrationAndDelivery> - END
 
-                scoreP.demonstrationAndStructure[0]		= response.DemonstrationAndStructure0;
-                scoreP.demonstrationAndStructure[1]		= response.DemonstrationAndStructure1;
-                scoreP.demonstrationAndStructure[2]		= response.DemonstrationAndStructure2;
-                scoreP.demonstrationAndStructure[3]		= response.DemonstrationAndStructure3;
-                scoreP.demonstrationAndStructure[4]		= response.DemonstrationAndStructure4;
-                scoreP.demonstrationAndStructureNotes	= response.DemonstrationAndStructureNotes;
+                scoreP.structure[0]		= response.Structure0;
+                scoreP.structure[1]		= response.Structure1;
+                scoreP.structure[2]		= response.Structure2;
+                scoreP.structure[3]		= response.Structure3;
+                scoreP.structure[4]     = response.Structure4;
+                scoreP.structure[5]     = response.Structure5;
+                scoreP.structureNotes	= response.StructureNotes;
 
                 scoreP.delivery[0]						= response.Delivery0;
                 scoreP.delivery[1]						= response.Delivery1;
@@ -2898,7 +2909,8 @@ function WS_showRecords_scores_presentation(scoreid) {
                 scoreP.delivery[5]						= response.Delivery5;
                 scoreP.delivery[6]						= response.Delivery6;
                 scoreP.delivery[7]						= response.Delivery7;
-                scoreP.delivery[8]						= response.Delivery8;
+                scoreP.delivery[8]                      = response.Delivery8;
+                scoreP.delivery[9]                      = response.Delivery9;
                 scoreP.deliveryNotes					= response.DeliveryNotes;
 
                 scoreP.questions[0]						= response.Questions0;
@@ -2908,9 +2920,7 @@ function WS_showRecords_scores_presentation(scoreid) {
                 scoreP.questions[4]						= response.Questions4;
                 scoreP.questions[5]						= response.Questions5;
                 scoreP.questions[6]						= response.Questions6;
-                scoreP.questions[7]						= response.Questions7;
-                scoreP.questions[8]						= response.Questions8;
-                scoreP.questions[9]						= response.Questions9;
+                scoreP.questions[7]						= response.Questions7;                
                 scoreP.questionsNotes					= response.QuestionsNotes;
 
                 scoreP.generalImpression[0]				= response.GeneralImpression0;
@@ -3010,14 +3020,15 @@ function WS_showRecords_scores_presentation(scoreid) {
         	////Event 2017 - Display partial totals on section title
             //$("#totalExecutiveSummaryBadge").html(scoreP.totalExecutiveSummary);
 
-            $.each(scoreP.novelty, function (index, value) {
-            	$("#chkNovelty" + index).prop('checked', (parseFloat(value) > 0));
-            	scoreP.totalNovelty += parseFloat(value);
-            });
-            $("#totalNovelty").val(scoreP.totalNovelty);
-            $('#noveltyNotes').val(scoreP.noveltyNotes);
-        	//Event 2017 - Display partial totals on section title
-            $("#totalNoveltyBadge").html(scoreP.totalNovelty);
+            ////FDT - ATA 2023 - midifiche stage3
+            //$.each(scoreP.novelty, function (index, value) {
+            //	$("#chkNovelty" + index).prop('checked', (parseFloat(value) > 0));
+            //	scoreP.totalNovelty += parseFloat(value);
+            //});
+         //   $("#totalNovelty").val(scoreP.totalNovelty);
+         //   $('#noveltyNotes').val(scoreP.noveltyNotes);
+        	////Event 2017 - Display partial totals on section title
+         //   $("#totalNoveltyBadge").html(scoreP.totalNovelty);
 
             $.each(scoreP.content, function (index, value) {
             	$("#chkContent" + index).prop('checked', (parseFloat(value) > 0));
@@ -3050,23 +3061,23 @@ function WS_showRecords_scores_presentation(scoreid) {
             $("#totalDeepDiveTopicBadge").html(scoreP.totalDeepDiveTopic);
 
         	//FD 2021.08.02 - ATA 2021 - Modify Stage3 - Add Sezione <DemonstrationAndDelivery> - BEGIN
-            $.each(scoreP.demonstrationAndDelivery, function (index, value) {
-            	$("#chkDemonstrationAndDelivery" + index).prop('checked', (parseFloat(value) > 0));
-            	scoreP.totalDemonstrationAndDelivery += parseFloat(value);
+            $.each(scoreP.demonstration, function (index, value) {
+            	$("#chkDemonstration" + index).prop('checked', (parseFloat(value) > 0));
+            	scoreP.totalDemonstration += parseFloat(value);
             });
-            $("#totalDemonstrationAndDelivery").val(scoreP.totalDemonstrationAndDelivery);
-            $('#demonstrationAndDeliveryNotes').val(scoreP.demonstrationAndDeliveryNotes);
-            $("#totalDemonstrationAndDeliveryBadge").html(scoreP.totalDemonstrationAndDelivery);
+            $("#totalDemonstration").val(scoreP.totalDemonstration);
+            $('#demonstrationNotes').val(scoreP.demonstrationNotes);
+            $("#totalDemonstrationBadge").html(scoreP.totalDemonstration);
         	//FD 2021.08.02 - ATA 2021 - Modify Stage3 - Add Sezione <DemonstrationAndDelivery> - END
 
-            $.each(scoreP.demonstrationAndStructure, function (index, value) {
-            	$("#chkDemonstrationAndStructure" + index).prop('checked', (parseFloat(value) > 0));
-            	scoreP.totalDemonstrationAndStructure += parseFloat(value);
+            $.each(scoreP.structure, function (index, value) {
+            	$("#chkStructure" + index).prop('checked', (parseFloat(value) > 0));
+            	scoreP.totalStructure += parseFloat(value);
             });
-            $("#totalDemonstrationAndStructure").val(scoreP.totalDemonstrationAndStructure);
-            $('#demonstrationAndStructureNotes').val(scoreP.demonstrationAndStructureNotes);
+            $("#totalStructure").val(scoreP.totalStructure);
+            $('#structureNotes').val(scoreP.structureNotes);
         	//Event 2017 - Display partial totals on section title
-            $("#totalDemonstrationAndStructureBadge").html(scoreP.totalDemonstrationAndStructure);
+            $("#totalStructureBadge").html(scoreP.totalStructure);
 
             $.each(scoreP.delivery, function (index, value) {
             	$("#chkDelivery" + index).prop('checked', (parseFloat(value) > 0));
@@ -3205,8 +3216,9 @@ function WS_insertRecord_scores_presentation(eventid, carid, scoreP) {
 	//FD 2021.08.02 - ATA 2021 - Modify Stage3 - BEGIN tolta parte di executive summary
     //obj.executiveSummary					= scoreP.executiveSummary;
     //obj.executiveSummaryNotes				= scoreP.executiveSummaryNotes;
-    obj.novelty								= scoreP.novelty;
-    obj.noveltyNotes						= scoreP.noveltyNotes;
+    //FDT - ATA 2023 - modifiche stage3
+    //obj.novelty								= scoreP.novelty;
+    //obj.noveltyNotes						= scoreP.noveltyNotes;
 	obj.content								= scoreP.content;
 	obj.contentNotes						= scoreP.contentNotes;
 	obj.finances							= scoreP.finances;
@@ -3214,8 +3226,8 @@ function WS_insertRecord_scores_presentation(eventid, carid, scoreP) {
 	obj.deepDiveTopic						= scoreP.deepDiveTopic;
 	obj.deepDiveTopicNotes					= scoreP.deepDiveTopicNotes;
 
-	obj.demonstrationAndStructure			= scoreP.demonstrationAndStructure;
-	obj.demonstrationAndStructureNotes		= scoreP.demonstrationAndStructureNotes;
+	obj.structure			                = scoreP.structure;
+	obj.structureNotes		                = scoreP.structureNotes;
 
 	obj.delivery							= scoreP.delivery;
 	obj.deliveryNotes						= scoreP.deliveryNotes;
@@ -3235,8 +3247,8 @@ function WS_insertRecord_scores_presentation(eventid, carid, scoreP) {
 	obj.finals								= scoreP.finals;
 
 	//FD 2021.08.02 - ATA 2021 - Modify Stage3 - Add Sezione <DemonstrationAndDelivery>
-	obj.demonstrationAndDelivery			= scoreP.demonstrationAndDelivery;
-	obj.demonstrationAndDeliveryNotes		= scoreP.demonstrationAndDeliveryNotes;
+	obj.demonstration			            = scoreP.demonstration;
+	obj.demonstrationNotes		            = scoreP.demonstrationNotes;
 
 	//Event 2019 - Presentation Event has been changed
 	//FD 2021.08.02 - ATA 2021 - Adding Stage2 - Add Section <Stage2> - BEGIN
@@ -3293,8 +3305,8 @@ function WS_updateRecord_scores_presentation(scoreP) {
 	//FD 2021.08.02 - ATA 2021 - Modify Stage3 - BEGIN tolta parte di executive summary
     //obj.executiveSummary					= scoreP.executiveSummary;
     //obj.executiveSummaryNotes				= scoreP.executiveSummaryNotes;
-    obj.novelty								= scoreP.novelty;
-    obj.noveltyNotes						= scoreP.noveltyNotes;
+    //obj.novelty								= scoreP.novelty;
+    //obj.noveltyNotes						= scoreP.noveltyNotes;
     obj.content								= scoreP.content;
     obj.contentNotes						= scoreP.contentNotes;
     obj.finances							= scoreP.finances;
@@ -3302,8 +3314,8 @@ function WS_updateRecord_scores_presentation(scoreP) {
     obj.deepDiveTopic						= scoreP.deepDiveTopic;
     obj.deepDiveTopicNotes					= scoreP.deepDiveTopicNotes;
 
-    obj.demonstrationAndStructure			= scoreP.demonstrationAndStructure;
-    obj.demonstrationAndStructureNotes		= scoreP.demonstrationAndStructureNotes;
+    obj.structure			                = scoreP.structure;
+    obj.structureNotes		                = scoreP.structureNotes;
 
     obj.delivery							= scoreP.delivery;
     obj.deliveryNotes						= scoreP.deliveryNotes;
@@ -3323,8 +3335,8 @@ function WS_updateRecord_scores_presentation(scoreP) {
     obj.finals								= scoreP.finals;
 
 	//FD 2021.08.02 - ATA 2021 - Modify Stage3 - Add Sezione <DemonstrationAndDelivery>
-    obj.demonstrationAndDelivery			= scoreP.demonstrationAndDelivery;
-    obj.demonstrationAndDeliveryNotes		= scoreP.demonstrationAndDeliveryNotes;
+    obj.demonstration   			        = scoreP.demonstration;
+    obj.demonstrationNotes		            = scoreP.demonstrationNotes;
 
 	//FD 2021.08.02 - ATA 2021 - Adding Stage2 - Add Section <Stage2> - BEGIN
     //FDT - ATA 2023 - eliminato Business Figures - INIZIO
@@ -4300,10 +4312,11 @@ function WS_showDetailsEndurance(id) {
                 $("#EnduranceScore").val(response.EnduranceScore);
                 $("#FuelUsed").val(response.FuelUsed);
                 $("#FuelType").val(response.FuelType);
-                $("#Co2Used").val(response.Co2Used);
-                $("#Co2Lap").val(response.Co2Lap);
-                $("#TminAvgForEfficiency").val(response.TminAvg);
-                $("#driverChangeStart").val(response.DriverChangeStart);
+                $("#EnergyCorr").val(response.EnergyCorr); 
+                //$("#Co2Used").val(response.Co2Used);
+                //$("#Co2Lap").val(response.Co2Lap);
+                //$("#TminAvgForEfficiency").val(response.TminAvg);
+                //$("#driverChangeStart").val(response.DriverChangeStart);
                 $("#EfficiencyFactor").val(response.EfficencyFactor);
                 $("#EfficiencyScore").val(response.EfficienctyScore);
                 $("#TotalScore").val(response.TotalScore);
@@ -4596,7 +4609,7 @@ function WS_showRecords_scores_presentation_partial(scoresidlist) {
             	//cellsToAdd.push(item.Stage1, item.Novelty, item.Content, item.Finances, item.DeepDiveTopic, item.DemonstrationAndDelivery, item.Delivery, item.Questions, item.GeneralImpression, item.Miscellaneous);
             	//FD 2021.09.12 - ATA 2021 - Add Section <Finals in Stage3>
             	//cellsToAdd.push(item.Stage1, item.Stage2, item.Novelty, item.Content, item.Finances, item.DeepDiveTopic, item.DemonstrationAndDelivery, item.Delivery, item.Questions, item.GeneralImpression, item.Miscellaneous);
-                cellsToAdd.push(item.Stage1, item.Stage2, item.Novelty, item.Content, item.Finances, item.DeepDiveTopic, item.DemonstrationAndDelivery, item.Delivery, item.Questions, item.GeneralImpression, item.Miscellaneous, item.Finals);
+                cellsToAdd.push(item.Stage1, item.Stage2, item.Content, item.Finances, item.DeepDiveTopic, item.Demonstration, item.Delivery, item.Structure, item.Questions, item.GeneralImpression, item.Miscellaneous, item.Finals);
 
                 var row = $('tr[data-scoreid="' + scoreid + '"]');
                 addCellsToTableRow(row, cellsToAdd, 'partial outlined');

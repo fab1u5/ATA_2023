@@ -257,6 +257,9 @@
     <Content Include="templatesXLSX\2022\FSaeItalyResultsClass1E 2022_template.xlsx" />
     <Content Include="templatesXLSX\2022\FSaeItalyResultsClass3 2022_template.xlsm" />
     <Content Include="templatesXLSX\2022\FSaeItalyResultsClass3 2022_template.xlsx" />
+    <Content Include="templatesXLSX\2023\FSaeItalyResultsClass1C 2023_template.xlsx" />
+    <Content Include="templatesXLSX\2023\FSaeItalyResultsClass1E 2023_template.xlsx" />
+    <Content Include="templatesXLSX\2023\FSaeItalyResultsClass3 2023_template.xlsx" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
       <SubType>Designer</SubType>
@@ -469,6 +472,10 @@
     <Compile Include="Migrations\202305241418453_ATA_2023_addFinKPIs.designer.cs">
       <DependentUpon>202305241418453_ATA_2023_addFinKPIs.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202306270939161_ATA_2023_Stage3.cs" />
+    <Compile Include="Migrations\202306270939161_ATA_2023_Stage3.designer.cs">
+      <DependentUpon>202306270939161_ATA_2023_Stage3.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
@@ -656,6 +663,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202305241418453_ATA_2023_addFinKPIs.resx">
       <DependentUpon>202305241418453_ATA_2023_addFinKPIs.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202306270939161_ATA_2023_Stage3.resx">
+      <DependentUpon>202306270939161_ATA_2023_Stage3.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />

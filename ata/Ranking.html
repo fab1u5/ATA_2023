@@ -1,228 +1,234 @@
 ﻿<!DOCTYPE html>
 <html>
-    <head title="RANKING">
-        <title>ATA - Ranking</title>
+<head title="RANKING">
+    <title>ATA - Ranking</title>
 
-        <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
-        <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
 
-        <!--Import materialize.css-->
-        <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection" />
-        <link type="text/css" rel="stylesheet" href="css/materialdesignicons.min.css" media="all" />
+    <!--Import materialize.css-->
+    <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection" />
+    <link type="text/css" rel="stylesheet" href="css/materialdesignicons.min.css" media="all" />
 
-        <!--Let browser know website is optimized for mobile-->
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 
-        <!--Import jQuery before materialize.js-->
-        <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
-        <script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
-        <script type="text/javascript" src="js/materialize.min.js"></script>
-		<script type="text/javascript" src="js/stupidtable.min.js"> </script>
-		<script type="text/javascript" src="js/scoresPrototypes.js"> </script>
-        <script type="text/javascript" src="js/utilities.js"></script>
-        <script type="text/javascript" src="js/mbox.js"></script>
+    <!--Import jQuery before materialize.js-->
+    <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
+    <script type="text/javascript" src="js/materialize.min.js"></script>
+    <script type="text/javascript" src="js/stupidtable.min.js"></script>
+    <script type="text/javascript" src="js/scoresPrototypes.js"></script>
+    <script type="text/javascript" src="js/utilities.js"></script>
+    <script type="text/javascript" src="js/mbox.js"></script>
 
-        <script type="text/javascript" src="js/SQLiteDirectives.js"> </script>
-        <script type="text/javascript" src="js/WSDirectives.js"> </script>
+    <script type="text/javascript" src="js/SQLiteDirectives.js"></script>
+    <script type="text/javascript" src="js/WSDirectives.js"></script>
 
-        <link type="text/css" rel="stylesheet" href="css/ATA.css" media="screen,projection" />
-        <link type="text/css" rel="stylesheet" href="css/mbox.css" media="screen,projection" />
+    <link type="text/css" rel="stylesheet" href="css/ATA.css" media="screen,projection" />
+    <link type="text/css" rel="stylesheet" href="css/mbox.css" media="screen,projection" />
 
-        <script language="javascript" type="text/javascript">
-            function editRecord(classid, eventid) {
-                sessionStorage.scores_classid = classid;
-                sessionStorage.scores_eventid = eventid;
+    <script language="javascript" type="text/javascript">
+        function editRecord(classid, eventid) {
+            sessionStorage.scores_classid = classid;
+            sessionStorage.scores_eventid = eventid;
+        }
+
+        function eventtype_changed() {
+            ShowRecords();
+        }
+
+        function ClassType_changed() {
+            ShowRecords();
+        }
+
+        function ShowRecords() {
+            if ($('#ddl_type_event').val() != undefined && $('#ddl_class_car').val() != -1) {
+                WS_showRecords_eventsResults($('#ddl_type_event').val(), $('#ddl_class_car').val());
             }
+        }
 
-            function eventtype_changed() {
-                ShowRecords();
-            }
+        function showDetail(id) {
+            event.preventDefault();
+            WS_showDetailsEndurance(id);
+            $("#inserteddata-anchor").click();
+        }
 
-            function ClassType_changed() {
-                ShowRecords();
-            }
+        function onCloseModal() {
+            closeModalDialog('#modalEdit');
+        }
 
-            function ShowRecords() {
-                if ($('#ddl_type_event').val() != undefined && $('#ddl_class_car').val() != -1) {
-                    WS_showRecords_eventsResults($('#ddl_type_event').val(), $('#ddl_class_car').val());
-                }
-            }
+        function backToScores() {
+            event.preventDefault();
+            onCloseModal();
+        }
+    </script>
+</head>
 
-            function showDetail(id) {
-                event.preventDefault();
-                WS_showDetailsEndurance(id);
-                $("#inserteddata-anchor").click();
-            }
+<body>
+    <main>
+        <!-- Modal Structure -->
 
-            function onCloseModal() {
-                closeModalDialog('#modalEdit');
-            }
-
-            function backToScores() {
-                event.preventDefault();
-                onCloseModal();
-            }
-        </script>
-    </head>
-
-    <body>
-        <main>
-            <!-- Modal Structure -->
-
-            <div id="modalEdit" class="modal modal-fixed-footer large" style="width:80%">
-                <div class="modal-content">
-                    <div class="row">
-                        <div class="col l4 m6 s12">
-                            <div class="collection">
-                                <a class="left-menu-action" id="inserteddata-anchor">Inserted data</a>
-                                <a class="left-menu-action" id="scorevalues-anchor">Score values</a>
-                                <a class="left-menu-action" id="efficiency-anchor">Efficiency and consumption values</a>
-                                <a class="collection-header">
-                                    <div class="row">
-                                        <div class="col s12">
-                                            <h5 class="navbar-ata-backgrounded-1 white-text" style="padding:4px;">Total</h5>
-                                            <div class="divider"></div>
-                                            <div class="row">
-                                                <div class="col l12 m12 s12">
-                                                    <input placeholder="Total score" id="TotalScore" type="number" class="validate right-align" readonly="readonly" />
-                                                    <label class="active right ata-green-text" for="TotalScore">Total Score </label>
-                                                </div>
+        <div id="modalEdit" class="modal modal-fixed-footer large" style="width:80%">
+            <div class="modal-content">
+                <div class="row">
+                    <div class="col l4 m6 s12">
+                        <div class="collection">
+                            <a class="left-menu-action" id="inserteddata-anchor">Inserted data</a>
+                            <a class="left-menu-action" id="scorevalues-anchor">Score values</a>
+                            <a class="left-menu-action" id="efficiency-anchor">Efficiency and consumption values</a>
+                            <a class="collection-header">
+                                <div class="row">
+                                    <div class="col s12">
+                                        <h5 class="navbar-ata-backgrounded-1 white-text" style="padding:4px;">Total</h5>
+                                        <div class="divider"></div>
+                                        <div class="row">
+                                            <div class="col l12 m12 s12">
+                                                <input placeholder="Total score" id="TotalScore" type="number" class="validate right-align" readonly="readonly" />
+                                                <label class="active right ata-green-text" for="TotalScore">Total Score </label>
                                             </div>
                                         </div>
                                     </div>
-                                </a>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col l8 m6 s12">
+                        <div id="inserteddata-tab" class="card transparent">
+                            <div class="row"><div class="col"><h5 class="ata-red-text">Inserted data</h5></div></div>
+                            <div class="row">
+                                <div class="input-field col l3 m3 s2">
+                                    <input placeholder="" id="Time" type="text" />
+                                    <label class="active" for="Time">Time</label>
+                                </div>
+                                <div class="input-field col l3 m3 s2">
+                                    <input placeholder="" id="Laps" type="text" />
+                                    <label class="active" for="Laps">Laps</label>
+                                </div>
+                                <div class="input-field col l3 m3 s2">
+                                    <input placeholder="" id="Penalties" type="text" />
+                                    <label class="active" for="Penalties">Penalties</label>
+                                </div>
+                                <div class="input-field col l3 m3 s2">
+                                    <input placeholder="" id="Cone" type="text" />
+                                    <label class="active" for="Cone">Cone</label>
+                                </div>
+                                <div class="input-field col l3 m3 s2">
+                                    <input placeholder="" id="Doc" type="text" />
+                                    <label class="active" for="Doc">Doc</label>
+                                </div>
                             </div>
                         </div>
-                        <div class="col l8 m6 s12">
-                            <div id="inserteddata-tab" class="card transparent">
-                                <div class="row"><div class="col"><h5 class="ata-red-text">Inserted data</h5></div></div>
-                                <div class="row">
-                                    <div class="input-field col l3 m3 s2">
-                                        <input placeholder="" id="Time" type="text" />
-                                        <label class="active" for="Time">Time</label>
-                                    </div>
-                                    <div class="input-field col l3 m3 s2">
-                                        <input placeholder="" id="Laps" type="text" />
-                                        <label class="active" for="Laps">Laps</label>
-                                    </div>
-                                    <div class="input-field col l3 m3 s2">
-                                        <input placeholder="" id="Penalties" type="text" />
-                                        <label class="active" for="Penalties">Penalties</label>
-                                    </div>
-                                    <div class="input-field col l3 m3 s2">
-                                        <input placeholder="" id="Cone" type="text" />
-                                        <label class="active" for="Cone">Cone</label>
-                                    </div>
-                                    <div class="input-field col l3 m3 s2">
-                                        <input placeholder="" id="Doc" type="text" />
-                                        <label class="active" for="Doc">Doc</label>
-                                    </div>
+                        <div id="scorevalues-tab" class="card transparent">
+                            <div class="row"><div class="col"><h5 class="ata-red-text">Score values</h5></div></div>
+                            <div class="row">
+                                <div class="input-field col l3 m3 s2">
+                                    <input placeholder="" id="AdjTimeDNF" type="text" />
+                                    <label class="active" for="AdjTimeDNF">Adj. TimeDNF</label>
+                                </div>
+                                <div class="input-field col l3 m3 s2">
+                                    <input placeholder="" id="AdjTime" type="text" />
+                                    <label class="active" for="AdjTime">Adj. Time</label>
+                                </div>
+                                <!-- FDT - ATA 2023 - modifiche stage3 -->
+                                <!--<div class="input-field col l3 m3 s2">
+                                    <input placeholder="" id="AvgLapTime" type="text" />
+                                    <label class="active" for="AvgLapTime">Avg LapTime</label>
+                                </div>
+                                <div class="input-field col s3">
+                                    <input placeholder="" id="AvgLapTimeEfficiency" type="text" />
+                                    <label class="active" for="AvgLapTimeEfficiency">Avg LapTime for Efficiency</label>
+                                </div>-->
+                                <!-- FDT - ATA 2023 - modifiche stage3 -->
+                                <div class="input-field col l3 m3 s2">
+                                    <input placeholder="" id="EnduranceScore" type="text" />
+                                    <label class="active" for="EnduranceScore">Endurance Score </label>
                                 </div>
                             </div>
-                            <div id="scorevalues-tab" class="card transparent">
-                                <div class="row"><div class="col"><h5 class="ata-red-text">Score values</h5></div></div>
-                                <div class="row">
-                                    <div class="input-field col l3 m3 s2">
-                                        <input placeholder="" id="AdjTimeDNF" type="text" />
-                                        <label class="active" for="AdjTimeDNF">Adj. TimeDNF</label>
-                                    </div>
-                                    <div class="input-field col l3 m3 s2">
-                                        <input placeholder="" id="AdjTime" type="text" />
-                                        <label class="active" for="AdjTime">Adj. Time</label>
-                                    </div>
-                                    <div class="input-field col l3 m3 s2">
-                                        <input placeholder="" id="AvgLapTime" type="text" />
-                                        <label class="active" for="AvgLapTime">Avg LapTime</label>
-                                    </div>
-                                    <div class="input-field col s3">
-                                        <input placeholder="" id="AvgLapTimeEfficiency" type="text" />
-                                        <label class="active" for="AvgLapTimeEfficiency">Avg LapTime for Efficiency</label>
-                                    </div>
-                                    <div class="input-field col l3 m3 s2">
-                                        <input placeholder="" id="EnduranceScore" type="text" />
-                                        <label class="active" for="EnduranceScore">Endurance Score </label>
-                                    </div>
+                        </div>
+                        <div id="efficiency-tab" class="card transparent">
+                            <div class="row"><div class="col"><h5 class="ata-red-text">Efficiency and consumption values</h5></div></div>
+                            <div class="row">
+                                <div class="input-field col l3 m3 s2">
+                                    <input placeholder="" id="FuelUsed" type="text" />
+                                    <label class="active" for="FuelUsed">Fuel Used </label>
                                 </div>
-                            </div>
-                            <div id="efficiency-tab" class="card transparent">
-                                <div class="row"><div class="col"><h5 class="ata-red-text">Efficiency and consumption values</h5></div></div>
-                                <div class="row">
-                                    <div class="input-field col l3 m3 s2">
-                                        <input placeholder="" id="FuelUsed" type="text" />
-                                        <label class="active" for="FuelUsed">Fuel Used </label>
-                                    </div>
-                                    <div class="input-field col l3 m3 s2">
-                                        <input placeholder="" id="FuelType" type="text" />
-                                        <label class="active" for="FuelType">Fuel Type </label>
-                                    </div>
-
-                                    <div class="input-field col l3 m3 s2">
-                                        <input placeholder="" id="Co2Used" type="text" />
-                                        <label class="active" for="Co2Used">CO2 Kg</label>
-                                    </div>
-                                    <div class="input-field col l3 m3 s2">
-                                        <input placeholder="" id="Co2Lap" type="text" />
-                                        <label class="active" for="Co2Lap">CO2/Lap </label>
-                                    </div>
-                                    <div class="input-field col l3 m3 s2">
-                                        <input placeholder="" id="TminAvgForEfficiency" type="text" />
-                                        <label class="active" for="TminAvgForEfficiency">Tmin Avg for efficiency </label>
-                                    </div>
-                                    <div class="input-field col l3 m3 s2">
-                                        <input placeholder="" id="driverChangeStart" type="text" />
-                                        <label class="active" for="driverChangeStart">Driver Change Start </label>
-                                    </div>
-                                    <div class="input-field col l3 m3 s2">
-                                        <input placeholder="" id="EfficiencyFactor" type="text" />
-                                        <label class="active" for="EfficiencyFactor">Efficiency Factor </label>
-                                    </div>
-                                    <div class="input-field col l3 m3 s2">
-                                        <input placeholder="" id="EfficiencyScore" type="text" />
-                                        <label class="active" for="EfficiencyScore">Efficiency Score </label>
-                                    </div>
+                                <div class="input-field col l3 m3 s2">
+                                    <input placeholder="" id="FuelType" type="text" />
+                                    <label class="active" for="FuelType">Fuel Type </label>
+                                </div>
+                                <!-- FDT - ATA 2023 - modifiche stage3 -->
+                                <div class="input-field col l3 m3 s2">
+                                    <input placeholder="" id="EnergyCorr" type="text" />
+                                    <label class="active" for="EnergyCorr">Energy corrected</label>
+                                </div>
+                                <!--<div class="input-field col l3 m3 s2">
+                                    <input placeholder="" id="Co2Used" type="text" />
+                                    <label class="active" for="Co2Used">CO2 Kg</label>
+                                </div>-->
+                                <!--<div class="input-field col l3 m3 s2">
+                                    <input placeholder="" id="Co2Lap" type="text" />
+                                    <label class="active" for="Co2Lap">CO2/Lap </label>
+                                </div>-->
+                                <!--<div class="input-field col l3 m3 s2">
+                                    <input placeholder="" id="TminAvgForEfficiency" type="text" />
+                                    <label class="active" for="TminAvgForEfficiency">Tmin Avg for efficiency </label>
+                                </div>-->
+                                <!--<div class="input-field col l3 m3 s2">
+                                    <input placeholder="" id="driverChangeStart" type="text" />
+                                    <label class="active" for="driverChangeStart">Driver Change Start </label>
+                                </div>-->
+                                <!-- FDT - ATA 2023 - modifiche stage3 -->
+                                <div class="input-field col l3 m3 s2">
+                                    <input placeholder="" id="EfficiencyFactor" type="text" />
+                                    <label class="active" for="EfficiencyFactor">Efficiency Factor </label>
+                                </div>
+                                <div class="input-field col l3 m3 s2">
+                                    <input placeholder="" id="EfficiencyScore" type="text" />
+                                    <label class="active" for="EfficiencyScore">Efficiency Score </label>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="modal-footer modal-content-container">
-                    <div class="modal-img-container"></div>
-                    <div class="modal-blur"></div>
-                    <a class="waves-effect waves-green btn-flat" onclick="onCloseModal();">Close</a>
-                </div>
             </div>
-            <!-- END Modal Structure -->
-
-            <!-- EventType DropDownList -->
-            <table style="width: 620px; margin-left: auto; margin-right: auto;">
-                <tr>
-                    <td>
-                        <div style="width: 250px; margin-right: 10px;">
-                            <select id="ddl_type_event" onchange="eventtype_changed();"></select>
-                        </div>
-                    </td>
-                    <td>
-                        <div style="width: 250px; margin-left: 10px;">
-                            <select id="ddl_class_car" onchange="ClassType_changed();"></select>
-                        </div>
-                    </td>
-                    <td nowrap>
-                        <section>
-                            <input type="checkbox" class="filled-in" id="useMacro" value="1" /><label for="useMacro" class="small"><i class="mdi mdi-auto-fix ata-green-text"></i> Click here to use XLS Templates with Macro</label>
-                        </section>
-                        <a class="waves-effect waves-light btn ata-btn" id="btnExport" data-id="0" href="#"><i class="mdi mdi-download"></i> XLS</a>
-                        <a class="waves-effect waves-light btn ata-btn" id="btnExportCSV" data-id="0" href="#"><i class="mdi mdi-download"></i> CSV</a>
-                    </td>
-                </tr>
-            </table>
-
-            <!-- Tabs -->
-            <div id="tabs_content" style="width: 99% !important; margin-left: auto; margin-right: auto;">
-                <div class="row" id="div_events">
-                </div>
+            <div class="modal-footer modal-content-container">
+                <div class="modal-img-container"></div>
+                <div class="modal-blur"></div>
+                <a class="waves-effect waves-green btn-flat" onclick="onCloseModal();">Close</a>
             </div>
-        </main>
-    </body>
+        </div>
+        <!-- END Modal Structure -->
+        <!-- EventType DropDownList -->
+        <table style="width: 620px; margin-left: auto; margin-right: auto;">
+            <tr>
+                <td>
+                    <div style="width: 250px; margin-right: 10px;">
+                        <select id="ddl_type_event" onchange="eventtype_changed();"></select>
+                    </div>
+                </td>
+                <td>
+                    <div style="width: 250px; margin-left: 10px;">
+                        <select id="ddl_class_car" onchange="ClassType_changed();"></select>
+                    </div>
+                </td>
+                <td nowrap>
+                    <section>
+                        <input type="checkbox" class="filled-in" id="useMacro" value="1" /><label for="useMacro" class="small"><i class="mdi mdi-auto-fix ata-green-text"></i> Click here to use XLS Templates with Macro</label>
+                    </section>
+                    <a class="waves-effect waves-light btn ata-btn" id="btnExport" data-id="0" href="#"><i class="mdi mdi-download"></i> XLS</a>
+                    <a class="waves-effect waves-light btn ata-btn" id="btnExportCSV" data-id="0" href="#"><i class="mdi mdi-download"></i> CSV</a>
+                </td>
+            </tr>
+        </table>
+
+        <!-- Tabs -->
+        <div id="tabs_content" style="width: 99% !important; margin-left: auto; margin-right: auto;">
+            <div class="row" id="div_events">
+            </div>
+        </div>
+    </main>
+</body>
 </html>
 
 <script language="javascript" type="text/javascript">
@@ -403,7 +409,7 @@
 
                         switch (carClass) {
                             case TypeOfClass.Class1C.value:
-                                fileName = fileName + TypeOfClass.Class1C.name  + "_" + currentDate + ".csv";
+                                fileName = fileName + TypeOfClass.Class1C.name + "_" + currentDate + ".csv";
                                 break;
                             case TypeOfClass.Class1E.value:
                                 fileName = fileName + TypeOfClass.Class1E.name + "_" + currentDate + ".csv";
@@ -431,7 +437,7 @@
                     waitOFF();
                     WS_Error("ERROR " + error + ":\r\n" + msg.responseText + ":\r\n" + errorThrown);
                 }
-            }); 
+            });
         });
     });
 </script>

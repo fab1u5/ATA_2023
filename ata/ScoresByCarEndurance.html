@@ -129,12 +129,12 @@
             var id = $("#id").val();
             var scoreid = $("#scoreid").val();
 
-            var time = $("#time").val();
-            var laps = $("#laps").val();
-            var penalities = $("#penalities").val();
-            var cones = $("#cones").val();
-            var doc = $("#doc").val();
-            var fuelused = $("#fuelused").val();
+            var time = $("#time").val() === "" ? 0 : $("#time").val();
+            var laps = $("#laps").val() === "" ? 0 : $("#laps").val();
+            var penalities = $("#penalities").val() === "" ? 0 : $("#penalities").val();
+            var cones = $("#cones").val() === "" ? 0 : $("#cones").val();
+            var doc = $("#doc").val() === "" ? 0 : $("#doc").val();
+            var fuelused = $("#fuelused").val() === "" ? 0 : $("#fuelused").val();
             var fueltype = $("#fueltype").val();
 
             if ((fueltype.length > 0)) {

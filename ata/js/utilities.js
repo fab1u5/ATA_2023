@@ -59,7 +59,10 @@ var PartialCells = {
 	//Presentation: { headers: ['Stage1', 'Novelty', 'Content', 'Finances', 'Deep Dive Topic', 'Demonstr. & Delivery', 'Structure', 'Questions', 'General Impression', 'Miscellaneous'], sortfield: ['Stage1', 'Novelty', 'Content', 'Finances', 'DeepDiveTopic', 'DemonstrationAndDelivery', 'Delivery', 'Questions', 'GeneralImpression', 'Miscellaneous'] },
 	//FD 2021.09.12 - ATA 2021 - Add Section <Finals in Stage3>
 	//Presentation: { headers: ['Stage1', 'Stage2', 'Novelty', 'Content', 'Finances', 'Deep Dive Topic', 'Demonstr. & Delivery', 'Structure', 'Questions', 'General Impression', 'Miscellaneous'], sortfield: ['Stage1', 'Novelty', 'Content', 'Finances', 'DeepDiveTopic', 'DemonstrationAndDelivery', 'Delivery', 'Questions', 'GeneralImpression', 'Miscellaneous'] },
-	Presentation: { headers: ['Stage1', 'Stage2', 'Novelty', 'Content', 'Finances', 'Deep Dive Topic', 'Demonstr. & Delivery', 'Structure', 'Questions', 'General Impression', 'Miscellaneous', 'Finals'], sortfield: ['Stage1', 'Novelty', 'Content', 'Finances', 'DeepDiveTopic', 'DemonstrationAndDelivery', 'Delivery', 'Questions', 'GeneralImpression', 'Miscellaneous', 'Finals'] },
+
+    //FDT - ATA 2023 - modifiche stage 3
+    //Presentation: { headers: ['Stage1', 'Stage2', 'Novelty', 'Content', 'Finances', 'Deep Dive Topic', 'Demonstr. & Delivery', 'Structure', 'Questions', 'General Impression', 'Miscellaneous', 'Finals'], sortfield: ['Stage1', 'Novelty', 'Content', 'Finances', 'DeepDiveTopic', 'DemonstrationAndDelivery', 'Delivery', 'Questions', 'GeneralImpression', 'Miscellaneous', 'Finals'] },
+    Presentation: { headers: ['Stage1', 'Stage2', 'Content', 'Finances', 'Deep Dive Topic', 'Demonstration', 'Delivery', 'Structure', 'Questions', 'General Impression', 'Miscellaneous', 'Finals'], sortfield: ['Stage1',  'Content', 'Finances', 'DeepDiveTopic', 'Demonstration', 'Delivery', 'Questions', 'GeneralImpression', 'Miscellaneous', 'Finals'] },
 
 
 	Design1C3: { headers: ['Suspensions', 'Body /Aero', 'Powertrain', 'Cockpit /Safety', 'System Integration', 'Manufact. & Service', 'Style', 'Creativity', 'Misc'], sortfield: ['Suspensions', 'FrameBodyAero', 'PowerTrain', 'CockpitControlsBrakes/Safety', 'SystemManagementIntegration', 'ManufacturabilityServiceability', 'AestheticsStyle', 'Creativity', 'Miscellaneous'] },

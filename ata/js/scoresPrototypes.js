@@ -5,59 +5,60 @@ function ScorePresentation(id, scoreid) {
 	this.id = (id == undefined) ? -1 : id;
 	this.scoreid = (scoreid == undefined) ? -1 : scoreid;
 
+	//FDT - ATA 2023 - modifiche stage 3 - INIZIO
 	//FD 2021.08.02 - ATA 2021 - Modify Stage3 - BEGIN tolta parte di executive summary
 	//this.executiveSummary					= [0, 0, 0, 0];
 	//FD 2021.08.02 - ATA 2021 - Modify Stage3 - BEGIN tolta parte novelty3
 	//this.novelty							= [0, 0, 0, 0];
-	this.novelty							= [0, 0, 0];
+	//this.novelty							= [0, 0, 0];
 
 	//FD 2021.08.02 - ATA 2021 - Modify Stage3 - BEGIN Add Content9
 	//this.content							= [0, 0, 0, 0, 0, 0, 0, 0, 0];
-	this.content							= [0, 0, 0, 0, 0, 0, 0, 0, 0];
+	this.content							= [0, 0, 0, 0, 0, 0, 0, 0];
 
 	//FD 2021.08.02 - ATA 2021 - Modify Stage3 - BEGIN tolta parte Finances2 e Finances4
 	//this.finances							= [0, 0, 0, 0, 0, 0, 0];
-	this.finances							= [0, 0, 0];
+	this.finances							= [0, 0, 0, 0];
 
 	//FD 2021.08.02 - ATA 2021 - Modify Stage3 - BEGIN Add deepdivetopic4
 	//this.deepDiveTopic					= [0, 0, 0, 0];
-	this.deepDiveTopic						= [0, 0, 0];
+	this.deepDiveTopic						= [0, 0, 0, 0];
 
 	//FD 2021.08.02 - ATA 2021 - Modify Stage3 - Add Sezione <DemonstrationAndDelivery>
-	this.demonstrationAndDelivery			= [0, 0, 0, 0, 0];
+	this.demonstration						= [0, 0, 0, 0];
 
-	this.demonstrationAndStructure			= [0, 0, 0, 0, 0];
-	this.delivery							= [0, 0, 0, 0, 0, 0, 0, 0, 0];
-	this.questions							= [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+	this.structure							= [0, 0, 0, 0, 0, 0];
+	this.delivery							= [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+	this.questions							= [0, 0, 0, 0, 0, 0, 0, 0];
 	this.generalImpression					= [0, 0, 0];
 
 	//FD 2021.08.02 - ATA 2021 - Modify Stage3 - BEGIN tolta parte di executive summary
 	//this.executiveSummaryNotes			= '';
-	this.noveltyNotes						= '';
+	//this.noveltyNotes						= '';
 	this.contentNotes						= '';
 	this.financesNotes						= '';
 	this.deepDiveTopicNotes					= '';
-	this.demonstrationAndStructureNotes		= '';
+	this.structureNotes						= '';
 	this.deliveryNotes						= '';
 	this.questionsNotes						= '';
 	this.generalImpressionNotes				= '';
 
 	//FD 2021.08.02 - ATA 2021 - Modify Stage3 - Add Sezione <DemonstrationAndDelivery>
-	this.demonstrationAndDeliveryNotes	= '';
+	this.demonstrationNotes					= '';
 
 	//FD 2021.08.02 - ATA 2021 - Modify Stage3 - BEGIN tolta parte di executive summary
 	//this.totalExecutiveSummary = 0;
-	this.totalNovelty						= 0;
+	//this.totalNovelty						= 0;
 	this.totalContent						= 0;
 	this.totalFinances						= 0;
 	this.totalDeepDiveTopic					= 0;
-	this.totalDemonstrationAndStructure		= 0;
+	this.totalStructure						= 0;
 	this.totalDelivery						= 0;
 	this.totalQuestions						= 0;
 	this.totalGeneralImpression				= 0;
 
 	//FD 2021.08.02 - ATA 2021 - Modify Stage3 - Add Sezione <DemonstrationAndDelivery>
-	this.totalDemonstrationAndDelivery		= 0;
+	this.totalDemonstration					= 0;
 
 	//FD 2021.08.02 - ATA 2021 - Adding Stage2 - Add Section <Stage2> - BEGIN
 	//#region Arrays
@@ -141,36 +142,36 @@ ScorePresentation.prototype.Reset = function () {
 	//this.executiveSummary = [0, 0, 0, 0];
 	//FD 2021.08.02 - ATA 2021 - Modify Stage3 - BEGIN tolta parte novelty3
 	//this.novelty = [0, 0, 0, 0];
-	this.novelty							= [0, 0, 0];
-
+	//this.novelty							= [0, 0, 0];
+	
 	//FD 2021.08.02 - ATA 2021 - Modify Stage3 - BEGIN Add Content9
 	//this.content = [0, 0, 0, 0, 0, 0, 0, 0, 0];
-	this.content							= [0, 0, 0, 0, 0, 0, 0, 0, 0];
+	this.content							= [0, 0, 0, 0, 0, 0, 0, 0];
 
 	//FD 2021.08.02 - ATA 2021 - Modify Stage3 - BEGIN tolta parte Finances2 e Finances4
 	//this.finances = [0, 0, 0, 0, 0, 0, 0];
-	this.finances							= [0, 0, 0];
+	this.finances							= [0, 0, 0, 0];
 
-	this.deepDiveTopic						= [0, 0, 0];
-	this.demonstrationAndStructure			= [0, 0, 0, 0, 0];
-	this.delivery							= [0, 0, 0, 0, 0, 0, 0, 0, 0];
-	this.questions							= [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+	this.deepDiveTopic						= [0, 0, 0, 0];
+	this.structure							= [0, 0, 0, 0, 0, 0];
+	this.delivery							= [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+	this.questions							= [0, 0, 0, 0, 0, 0, 0, 0];
 	this.generalImpression					= [0, 0, 0];
 	//FD 2021.08.02 - ATA 2021 - Modify Stage3 - Add Sezione <DemonstrationAndDelivery>
-	this.demonstrationAndDelivery			= [0, 0, 0, 0, 0];
+	this.demonstration						= [0, 0, 0, 0, 0];
 
 	//FD 2021.08.02 - ATA 2021 - Modify Stage3 - BEGIN tolta parte di executive summary
 	//this.executiveSummaryNotes = '';
-	this.noveltyNotes						= '';
+	//this.noveltyNotes						= '';
 	this.contentNotes						= '';
 	this.financesNotes						= '';
 	this.deepDiveTopicNotes					= '';
-	this.demonstrationAndStructureNotes		= '';
+	this.structureNotes						= '';
 	this.deliveryNotes						= '';
 	this.questionsNotes						= '';
 	this.generalImpressionNotes				= '';
 	//FD 2021.08.02 - ATA 2021 - Modify Stage3 - Add Sezione <DemonstrationAndDelivery>
-	this.demonstrationAndDeliveryNotes		= '';
+	this.demonstrationNotes					= '';
 
 	//FD 2021.08.02 - ATA 2021 - Adding Stage2 - Add Section <Stage2> - BEGIN
 	//#region Arrays
@@ -235,16 +236,16 @@ ScorePresentation.prototype.Reset = function () {
 
 	//FD 2021.08.02 - ATA 2021 - Modify Stage3 - BEGIN tolta parte di executive summary
 	//this.totalExecutiveSummary = 0;
-	this.totalNovelty						= 0;
+	//this.totalNovelty						= 0;
 	this.totalContent						= 0;
 	this.totalFinances						= 0;
 	this.totalDeepDiveTopic					= 0;
-	this.totalDemonstrationAndStructure		= 0;
+	this.totalStructure						= 0;
 	this.totalDelivery						= 0;
 	this.totalQuestions						= 0;
 	this.totalGeneralImpression				= 0;
 	//FD 2021.08.02 - ATA 2021 - Modify Stage3 - Add Sezione <DemonstrationAndDelivery>
-	this.totalDemonstrationAndDelivery		= 0;
+	this.totalDemonstration					= 0;
 
 	this.miscellaneous						= 0;
 	this.miscellaneousNotes					= '';
@@ -266,35 +267,34 @@ ScorePresentation.prototype.Debug = function () {
 
 	//FD 2021.08.02 - ATA 2021 - Modify Stage3 - BEGIN tolta parte di executive summary
 	//console.log("EXECUTIVE SUMMARY "			+ this.executiveSummary.join(',')				+ " TOTAL " + this.totalExecutiveSummary			+ " NOTES " + this.executiveSummaryNotes);
-	console.log("NOVELTY "						+ this.novelty.join(',')						+ " TOTAL " + this.totalNovelty						+ " NOTES " + this.noveltyNotes);
+	//console.log("NOVELTY "						+ this.novelty.join(',')						+ " TOTAL " + this.totalNovelty						+ " NOTES " + this.noveltyNotes);
 	console.log("CONTENT "						+ this.content.join(',')						+ " TOTAL " + this.totalContent						+ " NOTES " + this.contentNotes);
 	console.log("FINANCES "						+ this.finances.join(',')						+ " TOTAL " + this.totalFinances					+ " NOTES " + this.financesNotes);
 	console.log("DEEP DIVE TOPIC "				+ this.deepDiveTopic.join(',')					+ " TOTAL " + this.totalDeepDiveTopic				+ " NOTES " + this.deepDiveTopicNotes);
 
 	//FD 2021.08.02 - ATA 2021 - Modify Stage3 - Remove Sezione <DemonstrationAndStructure>
-	//console.log("DEMONSTRATION AND STRUCTURE "+ this.demonstrationAndStructure.join(',')		+ " TOTAL " + this.totalDemonstrationAndStructure	+ " NOTES " + this.demonstrationAndStructureNotes);
-	console.log("STRUCTURE "					+ this.delivery.join(',')						+ " TOTAL " + this.totalDelivery					+ " NOTES " + this.deliveryNotes);
+	console.log("STRUCTURE "					+ this.structure.join(',')						+ " TOTAL " + this.totalStructure					+ " NOTES " + this.structureNotes);
 	console.log("QUESTIONS "					+ this.questions.join(',')						+ " TOTAL " + this.totalQuestions					+ " NOTES " + this.questionsNotes);
 	console.log("GENERAL IMPRESSION "			+ this.generalImpression.join(',')				+ " TOTAL " + this.totalGeneralImpression			+ " NOTES " + this.generalImpressionNotes);
 	console.log("MISCELLANEOUS "				+ this.miscellaneous							+ " NOTES " + this.miscellaneousNotes);
 
 	//FD 2021.08.02 - ATA 2021 - Modify Stage3 - Add Sezione <DemonstrationAndDelivery>
-	console.log("DEMONSTRATIONANDDELIVERY "		+ this.demonstrationAndDelivery.join(',')		+ " TOTAL " + this.totalDemonstrationAndDelivery	+ " NOTES " + this.demonstrationAndDeliveryNotes);
+	console.log("DEMONSTRATION "				+ this.demonstration.join(',')		+ " TOTAL " + this.totalDemonstration	+ " NOTES " + this.demonstrationNotes);
 
 	//FD 2021.08.02 - ATA 2021 - Adding Stage2 - Add Section <Stage2> - BEGIN
 	//FDT - ATA 2023 - eliminato Business Figures - INIZIO
 	//console.log("BUSINNESFIGURES " + this.st2BusinnesFigures.join(',') + " TOTAL " + this.totalSt2BusinnesFigures + " NOTES " + this.st2BusinnesFiguresNotes);
 	//FDT - ATA 2023 - eliminato Business Figures - INIZIO
 	//FDT - ATA 2023 - aggiunto Financial Concept - INIZIO
-	console.log("FINANCIALCONCEPT " + this.st2FinConcept.join(',') + " TOTAL " + this.totalSt2FinConcept + " NOTES " + this.st2FinConceptNotes);
+	console.log("ST2FINANCIALCONCEPT " + this.st2FinConcept.join(',') + " TOTAL " + this.totalSt2FinConcept + " NOTES " + this.st2FinConceptNotes);
 	//FDT - ATA 2023 - aggiunto Financial Concept - FINE
 	//FDT - ATA 2023 - aggiunto Financial KPIs & insights - INIZIO
-	console.log("FINANCIALKPIs " + this.st2FinKPIs.join(',') + " TOTAL " + this.totalst2FinKPIs + " NOTES " + this.totalSt2FinKPIs);
+	console.log("ST2FINANCIALKPIs " + this.st2FinKPIs.join(',') + " TOTAL " + this.totalst2FinKPIs + " NOTES " + this.totalSt2FinKPIs);
 	//FDT - ATA 2023 - aggiunto Financial KPIs & insights - FINE
 	//FDT - ATA 2023 - eliminato Content e Investors - INIZIO
 	//console.log("CONTENT " + this.st2Content.join(',') + " TOTAL " + this.totalSt2Content + " NOTES " + this.st2ContentNotes);
 	//FDT - ATA 2023 - eliminato Content e Investors - FINE
-	console.log("DEMONSTRATIONANDDELIVERY " + this.st2DemonstrationAndDelivery.join(',') + " TOTAL " + this.totalSt2DemonstrationAndDelivery + " NOTES " + this.st2DemonstrationAndDeliveryNotes);
+	console.log("ST2DEMONSTRATIONANDDELIVERY " + this.st2DemonstrationAndDelivery.join(',') + " TOTAL " + this.totalSt2DemonstrationAndDelivery + " NOTES " + this.st2DemonstrationAndDeliveryNotes);
 	//FDT - ATA 2023 - eliminato Content e Investors - INIZIO
 	//console.log("INVESTITORS " + this.st2Investitors.join(',') + " TOTAL " + this.totalSt2Investitors + " NOTES " + this.st2InvestitorsNotes);
 	//FDT - ATA 2023 - eliminato Content e Investors - INIZIO
