@@ -1,0 +1,314 @@
+﻿<!DOCTYPE html>
+<html>
+    <head title="EXAMBOARDS">
+        <title>ATA - ExamBoards Details</title>
+
+        <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+        <link rel="icon" href="/favicon.ico" type="image/x-icon">
+
+        <!--Import materialize.css-->
+        <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection" />
+        <link type="text/css" rel="stylesheet" href="css/materialdesignicons.min.css" media="all" />        
+
+        <!--Let browser know website is optimized for mobile-->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+        <!--Import jQuery before materialize.js-->
+        <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+        <script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
+        <script type="text/javascript" src="js/materialize.min.js"></script>
+		<script type="text/javascript" src="js/stupidtable.min.js"> </script>
+		<script type="text/javascript" src="js/scoresPrototypes.js"> </script>
+        <script type="text/javascript" src="js/utilities.js"></script>
+        <script type="text/javascript" src="js/mbox.js"></script>
+
+        <script type="text/javascript" src="js/SQLiteDirectives.js"> </script>
+        <script type="text/javascript" src="js/WSDirectives.js"> </script>
+
+        <link type="text/css" rel="stylesheet" href="css/ATA.css" media="screen,projection" />
+        <link type="text/css" rel="stylesheet" href="css/mbox.css" media="screen,projection" />
+
+        <script language="javascript" type="text/javascript">
+            function usecolor_changed() {
+                if ($('#usecolor').prop('checked')) {
+                    $('#color').prop("disabled", false);
+                    $('#color').toggleClass("disabled", false);
+                }
+                else {
+                    $('#color').prop("disabled", true);
+                    $('#color').toggleClass("disabled", true);
+                }
+            }
+
+            function editRecord(item) {
+                enableButton("#btnUpdateExamBoard");
+
+                loadRecord_examboards(item);
+
+                showRecords_examboards2examiners(item);
+                showRecords_examboards2cars(item);
+            }
+
+            function editRecord_Proceed() {
+                var examboardname = $("#examboardname").val().toString();
+                var description = $("#description").val().toString();
+                var usecolor = $("#usecolor").prop('checked');
+                var color = $("#color").val().toString();
+
+                //AF - Giu 2016 - Examboard is connected to a single Event
+                var eventid = $("#eventid").val().toString();
+
+                if ((examboardname.length > 0) && (description.length > 0) && (eventid.length > 0)) {
+                    updateRecord_examboards();
+                }
+                else
+                    ataToast("Please enter value in all fields");
+            }
+
+            function deleteRecord() {
+                mbox.confirm('Are you sure to delete the selected item?', function (yes) {
+                    if (yes) {
+                        deleteRecord_examboards($("#id2Edit").val());
+                        ataToast("Exam Board removed successfully");
+                        backToExamBoards();
+                    }
+                })
+            }
+
+            function checkExaminer(oo) {
+                if ($(oo).is(":checked")) {
+                    insertRecord_examboards2examiners($("#id2Edit").val(), $(oo).val());
+                }
+                else {
+                    deleteRecord_examboards2examiners($("#id2Edit").val(), $(oo).val());
+                }
+            }
+
+            function uncheckAllExaminers() {
+                $('[name="chkExaminer"]').each(function () {
+                    $(this).prop('checked', false);
+                    deleteRecord_examboards2examiners($("#id2Edit").val(), $(this).val());
+                });
+            }
+
+            function checkAllExaminers() {
+                $('[name="chkExaminer"]').each(function () {
+                    $(this).prop('checked', true);
+                    insertRecord_examboards2examiners($("#id2Edit").val(), $(this).val());
+                });
+            }
+
+            function checkCar(oo) {
+                    if ($(oo).is(":checked")) {
+                        insertRecord_examboards2cars($("#id2Edit").val(), $(oo).val());
+                    }
+                    else {
+                        deleteRecord_examboards2cars($("#id2Edit").val(), $(oo).val());
+                    }
+            }
+
+            function uncheckAllCars() {
+                $('[name="chkCar"]').each(function () {
+                    $(this).prop('checked', false);
+                    deleteRecord_examboards2cars($("#id2Edit").val(), $(this).val());
+                });
+            }
+
+            function checkAllCars() {
+                $('[name="chkCar"]').each(function () {
+                    $(this).prop('checked', true);
+                    insertRecord_examboards2cars($("#id2Edit").val(), $(this).val());
+                });
+            }
+
+            function backToExamBoards() {
+                window.location.replace("ExamBoards.html");
+            }
+
+        </script>
+    </head>
+
+    <body>
+        <main>
+            <!-- BACK BUTTON -->
+            <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
+                <a class="btn-floating btn-large amber" href="#" onclick="backToExamBoards();">
+                    <i class="mdi mdi-arrow-left" title="Back To previous page"></i>
+                </a>
+            </div>
+
+            <div class="row">
+                <div class="col l2 m4 s12">
+                    <div class="collection">
+                        <a class="left-menu-action" id="details-anchor">Details</a>
+                        <a class="left-menu-action" id="examiners-anchor">Examiners</a>
+                        <a class="left-menu-action" id="cars-anchor">Cars</a>
+                        <a class="collection-header">
+                            <div class="row">
+                                <div class="col s12">
+                                    <h5 class="navbar-ata-backgrounded-1 white-text" style="padding:4px;">Hint</h5>
+                                    <div class="divider"></div>
+                                    <div class="row">
+                                        <div class="col l12 m12 s12">
+                                            <h6 class="ata-green-text">What can you do here</h6>
+                                            <hr />
+                                            <p class="ata-green-text" style="font-size:smaller">
+                                                ° Update Examboard Details<br />
+                                                ° Add or remove Examiners<br />
+                                                ° Add or remove Cars
+                                            </p>
+                                            <blockquote style="font-size:smaller" class="black-text">
+                                                (1) An Examiner can be assigned to only one Examboard.
+                                                <hr />
+                                                (2) A Car can be assigned to more than one Examboard.
+                                            </blockquote>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col l10 m8 s12">
+                    <div id="details-tab" class="row card transparent">
+                        <div class="row">
+                            <div class="col"><h5 class="ata-red-text">Details</h5></div>
+                            <div class="col right">
+                                <a class="waves-effect waves-green btn ata-btn" id="btnUpdateExamBoard" href="#" onclick="editRecord_Proceed();">Update</a>
+                                <a class="waves-effect waves-green btn ata-btn" id="btnDeleteExamBoard" href="#" onclick="deleteRecord();">Delete</a>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s3">
+                                <i class="mdi mdi-library prefix ata-green-text"></i>
+                                <input placeholder="Enter the Examboard Name" id="examboardname" type="text" class="validate" />
+                                <label class="active" for="examboardname">Name</label>
+                            </div>
+                            <div class="input-field col s3">
+                                <input placeholder="Enter a Description" id="description" type="text" class="validate" />
+                                <label class="active" for="description">Description</label>
+                            </div>
+                            <!--//AF - Giu 2016 - Examboard is connected to a single Event-->
+                            <div class="input-field col s2" style="scrollbar-arrow-color:red">
+                                <label class="active" for="eventid">Event</label>
+                                <select id="eventid"></select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s3">
+                                <div class="switch">
+                                    <i class="mdi mdi-format-paint prefix ata-green-text"></i>
+                                    <label>
+                                        No
+                                        <input type="checkbox" id="usecolor" onclick="usecolor_changed();">
+                                        <span class="lever"></span>
+                                        Yes
+                                    </label>
+                                    <label class="active" for="usecolor">Use Color</label>
+                                </div>
+                            </div>
+                            <div class="input-field col s3">
+                                <br /><input id="color" class="validate" type="color" value="#ffffff" />
+                                <label class="active" for="color">Pick to select a Color</label>
+                            </div>
+                        </div>
+						<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+                    </div>
+                    <div id="examiners-tab" class="row card transparent">
+                        <div class="row">
+                            <div class="col"><h5 class="ata-red-text">Examiners</h5></div>
+                            <div class="col right">
+                                <a class="waves-effect waves-green btn ata-btn" id="btnCheckAllExaminers" href="#" onclick="checkAllExaminers();">Check All</a>
+                                <a class="waves-effect waves-green btn ata-btn" id="btnUncheckAllExaminers" href="#" onclick="uncheckAllExaminers();">Uncheck All</a>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col l12 m12 s12">
+                                <table id="tExaminers" class="responsive-table bordered centered hoverable stupidtable-sorted" style="margin-top: 20px;">
+                                    <thead>
+                                        <tr class="ata-green-text">
+                                            <th data-field="actions">&nbsp;</th>
+                                            <th style="cursor:pointer" data-sort="string" data-field="firstName">Name</th>
+                                            <th style="cursor:pointer" data-sort="string" data-field="surName">Surname</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="tbodyExamBoards2Examiners"></tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="cars-tab" class="row card transparent">
+                        <div class="row">
+                            <div class="col"><h5 class="ata-red-text">Cars</h5></div>
+                            <div class="col right">
+                                <a class="waves-effect waves-green btn ata-btn" id="btnCheckAllCars" href="#" onclick="checkAllCars();">Check All</a>
+                                <a class="waves-effect waves-green btn ata-btn" id="btnUncheckAllCars" href="#" onclick="uncheckAllCars();">Uncheck All</a>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col l12 m12 s12">
+                                <table id="tCars" class="responsive-table bordered centered hoverable stupidtable-sorted" style="margin-top: 20px;">
+                                    <thead>
+                                        <tr class="ata-green-text">
+                                            <th data-field="actions">&nbsp;</th>
+                                            <th style="cursor:pointer" data-sort="int" data-field="carno">Car No.</th>
+                                            <!--<th data-field="regno">Registration No.</th>-->
+                                            <th style="cursor:pointer" data-sort="string" data-field="team">Team</th>
+                                            <th style="cursor:pointer" data-sort="string" data-field="university">University</th>
+                                            <th style="cursor:pointer" data-sort="string" data-field="class">Class</th>
+                                            <th style="cursor:pointer" data-sort="string" data-field="fuel">Fuel</th>
+                                            <th style="cursor:pointer" data-sort="string" data-field="deliverydocdate">Doc. Delivery Date</th>
+                                            <th style="cursor:pointer" data-sort="int" data-field="boxno">Box No.</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="tbodyExamBoards2Cars"></tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <input type="hidden" id="id" />
+            <input type="hidden" id="id2Edit" />
+        </main>
+    </body>
+</html>
+
+<script language="javascript" type="text/javascript">
+    $(document).ready(function () {
+        Body.navBar();
+
+        pageInitializeNavBar('ExamBoards');
+
+        Body.footer();
+
+        //initDatabaseToLastVersion();
+
+        $('select').material_select();
+
+        var item = sessionStorage.getObj('ExamBoards2Edit');
+
+        if (item == 'undefined') {
+
+            mbox.alert('No Examboard has been selected, you will be redirect to previous page.<br/>Please select an Examboard or click New', { close_speed: 2000 }, function ()
+            {
+                backToExamBoards();
+            });
+        }
+        else {
+            if (isATablet()) {
+                $("#id2Edit").val((item['examboardid']).toString());
+            }
+            else {
+                $("#id2Edit").val((item.Id).toString());
+            }
+
+            editRecord(item);
+        }
+
+//      showRecords_examboards_events();
+
+        $("#details-anchor").click();
+
+    });
+</script>

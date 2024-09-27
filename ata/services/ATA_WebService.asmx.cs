@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Services;
 using System.Text;
 using System.Data.SqlClient;
+using System.Web.Script.Services;
 
 namespace ATA.services
 {
@@ -19,6 +20,19 @@ namespace ATA.services
 
     public class ATA_WebService : System.Web.Services.WebService
     {
+        // Metodo per gestire le opzioni CORS (richieste OPTIONS)
+        [WebMethod]
+        [ScriptMethod(UseHttpGet = true, ResponseFormat = ResponseFormat.Json)]
+        public void HandleOptionsRequest()
+        {
+            Context.Response.AddHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+            Context.Response.AddHeader("Access-Control-Allow-Headers", "Content-Type, Accept");
+            Context.Response.AddHeader("Access-Control-Allow-Origin", "*"); // Specifica l'origine consentita o usa * per tutti
+
+            // Imposta il codice di stato OK per l'opzione prefligth
+            Context.Response.StatusCode = 200;
+            Context.Response.End();
+        }
 
         #region ValidateUser
         [WebMethod(Description = "Validate the login credentials")]
@@ -3787,10 +3801,14 @@ namespace ATA.services
                         //    c = 3.5;
                         //FDT - ATA 2023 - modifiche formula - INIZIO
                         //c = 95.5 * a / b + 4.5;
-                        c = 71.5 * a / b + 3.5;                        
-                        if (c < 3.5)
-                            c = 3.5;
+                        //c = 71.5 * a / b + 3.5;                        
+                        //if (c < 3.5)
+                        //    c = 3.5;
                         //FDT - ATA 2023 - modifiche formula - FINE
+                        //FDT 2024 - modifica pesi
+                        c = 71.25 * a / b + 3.75;
+                        if (c < 3.75)
+                            c = 3.75;
                     }
                     else
                         c = 0;
@@ -4048,9 +4066,13 @@ namespace ATA.services
                         //c = 47.5 * (a / b) + 2.5;
                         //if (c < 2.5)
                         //    c = 2.5;
-                        c = 71.5 * (a / b) + 3.5;
-                        if (c < 3.5)
-                            c = 3.5;
+                        //c = 71.5 * (a / b) + 3.5;
+                        //if (c < 3.5)
+                        //    c = 3.5;
+                        //FDT 2024 - modifica pesi
+                        c = 71.25 * (a / b) + 3.75;
+                        if (c < 3.75)
+                            c = 3.75;
                     }
                     else
                         c = 0;
@@ -4322,10 +4344,15 @@ namespace ATA.services
                         //    c = 7.5;
                         //FDT - ATA 2023 - modifiche formula - INIZIO
                         //c = 118.5 * (a / b) + 6.5;
-                        c = 95.5 * (a / b) + 4.5;                        
-                        if (c < 4.5)
-                            c = 4.5;
+                        //c = 95.5 * (a / b) + 4.5;                        
+                        //if (c < 4.5)
+                        //    c = 4.5;
                         //FDT - ATA 2023 - modifiche formula - FINE
+
+                        //fdt 2024 - modifica pesi
+                        c = 95 * (a / b) + 5;
+                        if (c < 5)
+                            c = 5;
                     }
                     else
                         c = 0;

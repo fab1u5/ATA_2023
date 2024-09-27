@@ -1,0 +1,246 @@
+﻿<!DOCTYPE html>
+<html>
+    <head title="TOOLSUP">
+        <title>ATA - Upload Tools</title>
+
+        <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+        <link rel="icon" href="/favicon.ico" type="image/x-icon">
+
+        <!--Import materialize.css-->
+        <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection" />
+        <link type="text/css" rel="stylesheet" href="css/materialdesignicons.min.css" media="all" />
+
+        <!--Let browser know website is optimized for mobile-->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+        <!--Import jQuery before materialize.js-->
+        <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+        <script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
+        <script type="text/javascript" src="js/materialize.min.js"></script>
+        <script type="text/javascript" src="js/stupidtable.min.js"> </script>
+        <script type="text/javascript" src="js/utilities.js"></script>
+        <script type="text/javascript" src="js/WSDirectives.js"> </script>
+        <script type="text/javascript" src="js/ToolsUP.js"> </script>
+        <script type="text/javascript" src="js/mbox.js"></script>
+
+        <script type="text/javascript" src="js/xlsx/jszip.js"></script>
+        <script type="text/javascript" src="js/xlsx/xlsx.js"></script>
+
+        <link type="text/css" rel="stylesheet" href="css/ATA.css" media="screen,projection" />
+        <link type="text/css" rel="stylesheet" href="css/mbox.css" media="screen,projection" />
+    </head>
+
+    <body>
+        <main>
+            <!-- Modal Structure -->
+            <!--//Event 2017 - new upload added -->
+            <div id="modalUploadCost" class="modal modal-fixed-footer">
+                <div class="modal-content">
+                    <div class="row">
+                        <div class="col s12">
+                            <p class="flow-text green-text center">Upload Cost</p>
+                            <span class="title"><strong>Select the Excel file by clicking the FILE button</strong></span>
+                        </div>
+                    </div>
+                    <form action="#">
+                        <div class="file-field input-field">
+                            <div class="btn green">
+                                <span>File</span>
+                                <input type="file" id="btnSelectCost">
+                            </div>
+                            <div class="file-path-wrapper">
+                                <input class="file-path validate" type="text">
+                            </div>
+                        </div>
+                        <a class="waves-effect waves-light btn ata-btn" id="btnUploadCost">Upload <i class="mdi mdi-upload"></i></a>
+                    </form>
+                    <!--Spinner waiting message -->
+                    <table class="centered" id="tblWaitCost">
+                        <tr>
+                            <td>
+                                <div class="preloader-wrapper small active">
+                                    <div class="spinner-layer spinner-red-only">
+                                        <div class="circle-clipper left">
+                                            <div class="circle"></div>
+                                        </div><div class="gap-patch">
+                                            <div class="circle"></div>
+                                        </div><div class="circle-clipper right">
+                                            <div class="circle"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="modal-footer modal-content-container">
+                    <div class="modal-img-container"></div>
+                    <div class="modal-blur"></div>
+                    <a class="waves-effect waves-green btn-flat" id="btnCloseCost">Close</a>
+                </div>
+            </div>
+
+            <div id="modalUploadTiming" class="modal modal-fixed-footer">
+                <div class="modal-content">
+                    <div class="row">
+                        <div class="col s12">
+                            <p class="flow-text green-text center">Upload Timing</p>
+                            <span class="title"><strong>Select the Excel file by clicking the FILE button</strong></span>
+                        </div>
+                    </div>
+                    <form action="#">
+                        <div class="file-field input-field">
+                            <div class="btn green">
+                                <span>File</span>
+                                <input type="file" id="btnSelectTiming">
+                            </div>
+                            <div class="file-path-wrapper">
+                                <input class="file-path validate" type="text">
+                            </div>
+                        </div>
+                        <a class="waves-effect waves-light btn ata-btn" id="btnUploadTiming">Upload <i class="mdi mdi-upload"></i></a>
+                    </form>
+                    <!--Spinner waiting message -->
+                    <table class="centered" id="tblWaitTiming">
+                        <tr>
+                            <td>
+                                <div class="preloader-wrapper small active">
+                                    <div class="spinner-layer spinner-red-only">
+                                        <div class="circle-clipper left">
+                                            <div class="circle"></div>
+                                        </div><div class="gap-patch">
+                                            <div class="circle"></div>
+                                        </div><div class="circle-clipper right">
+                                            <div class="circle"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="modal-footer modal-content-container">
+                    <div class="modal-img-container"></div>
+                    <div class="modal-blur"></div>
+                    <a class="waves-effect waves-green btn-flat" id="btnCloseTiming">Close</a>
+                </div>
+            </div>
+
+            <div id="modalUploadFuelConsumption" class="modal modal-fixed-footer">
+                <div class="modal-content">
+                    <div class="row">
+                        <div class="col s12">
+                            <p class="flow-text green-text center">Upload Endurance Fuel Consumption</p>
+                            <span class="title"><strong>Select the Excel file by clicking the FILE button</strong></span>
+                        </div>
+                    </div>
+                    <form action="#">
+                        <div class="file-field input-field">
+                            <div class="btn green">
+                                <span>File</span>
+                                <input type="file" id="btnSelectFuelConsumption">
+                            </div>
+                            <div class="file-path-wrapper">
+                                <input class="file-path validate" type="text">
+                            </div>
+                        </div>
+                        <a class="waves-effect waves-light btn ata-btn" id="btnUploadFuelConsumption">Upload <i class="mdi mdi-upload"></i></a>
+                    </form>
+                    <!--Spinner waiting message -->
+                    <table class="centered" id="tblWaitFuelConsumption">
+                        <tr>
+                            <td>
+                                <div class="preloader-wrapper small active">
+                                    <div class="spinner-layer spinner-red-only">
+                                        <div class="circle-clipper left">
+                                            <div class="circle"></div>
+                                        </div><div class="gap-patch">
+                                            <div class="circle"></div>
+                                        </div><div class="circle-clipper right">
+                                            <div class="circle"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="modal-footer modal-content-container">
+                    <div class="modal-img-container"></div>
+                    <div class="modal-blur"></div>
+                    <a class="waves-effect waves-green btn-flat" id="btnCloseFuelConsumption">Close</a>
+                </div>
+            </div>
+
+            <div id="modalUploadDynamicPenalties" class="modal modal-fixed-footer">
+                <div class="modal-content">
+                    <div class="row">
+                        <div class="col s12">
+                            <p class="flow-text green-text center">Upload Dynamic Penalties</p>
+                            <span class="title"><strong>Select the Excel file by clicking the FILE button</strong></span>
+                        </div>
+                    </div>
+                    <form action="#">
+                        <div class="file-field input-field">
+                            <div class="btn green">
+                                <span>File</span>
+                                <input type="file" id="btnSelectDynamicPenalties">
+                            </div>
+                            <div class="file-path-wrapper">
+                                <input class="file-path validate" type="text">
+                            </div>
+                        </div>
+                        <a class="waves-effect waves-light btn ata-btn" id="btnUploadDynamicPenalties">Upload <i class="mdi mdi-upload"></i></a>
+                    </form>
+                    <!--Spinner waiting message -->
+                    <table class="centered" id="tblWaitDynamicPenalties">
+                        <tr>
+                            <td>
+                                <div class="preloader-wrapper small active">
+                                    <div class="spinner-layer spinner-red-only">
+                                        <div class="circle-clipper left">
+                                            <div class="circle"></div>
+                                        </div><div class="gap-patch">
+                                            <div class="circle"></div>
+                                        </div><div class="circle-clipper right">
+                                            <div class="circle"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="modal-footer modal-content-container">
+                    <div class="modal-img-container"></div>
+                    <div class="modal-blur"></div>
+                    <a class="waves-effect waves-green btn-flat" id="btnCloseDynamicPenalties">Close</a>
+                </div>
+            </div>
+            <!-- END Modal Structure -->
+
+            <div class="container">
+                <h5 class="ata-green-text">Upload Section</h5>
+                <h6 class="ata-green-text">What can you do here</h6>
+                <hr>
+                <div class="row">
+                    <div class="col s12 m6 l6">
+                        <h6>Hint</h6>
+                        <p>Here you can upload data by selecting Excel files as sources and save them.</p>
+                        <p>The uploading files must be in the correct Excel format accepted by the application.</p>
+                        <p>Select the data you want to upload by clicking the corresponding link in the right side of this page</p>
+                    </div>
+                    <div class="col s12 m6 l6">
+                        <h6>Available Uploads</h6>
+                        <div class="collection">
+                            <a href="" id="bUploadCost" class="tools-action"><i class="mdi mdi-upload"></i>Cost</a>
+                            <a href="" id="bUploadTiming" class="tools-action"><i class="mdi mdi-upload"></i>Timing</a>
+                            <a href="" id="bUploadFuelConsumption" class="tools-action"><i class="mdi mdi-upload"></i>Endurance Fuel Consumption</a>
+                            <a href="" id="bUploadDynamicPenalties" class="tools-action"><i class="mdi mdi-upload"></i>Dynamic Penalties</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </body>
+</html>

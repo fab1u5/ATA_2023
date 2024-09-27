@@ -1,0 +1,61 @@
+﻿<!DOCTYPE html>
+<html>
+    <head title="ADMIN ONLY">
+        <title>ATA - Admin</title>
+
+        <!--Import materialize.css-->
+        <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection" />
+        <link type="text/css" rel="stylesheet" href="css/materialdesignicons.min.css" media="all" />
+
+        <!--Let browser know website is optimized for mobile-->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+        <!--Import jQuery before materialize.js-->
+        <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+        <script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
+        <script type="text/javascript" src="js/materialize.min.js"></script>
+		<script type="text/javascript" src="js/stupidtable.min.js"> </script>
+		<script type="text/javascript" src="js/scoresPrototypes.js"> </script>
+        <script type="text/javascript" src="js/utilities.js"></script>
+        <script type="text/javascript" src="js/mbox.js"></script>
+
+        <script type="text/javascript" src="js/SQLiteDirectives.js"> </script>
+        <script type="text/javascript" src="js/WSDirectives.js"> </script>
+
+        <link type="text/css" rel="stylesheet" href="css/ATA.css" media="screen,projection" />
+        <link type="text/css" rel="stylesheet" href="css/mbox.css" media="screen,projection" />
+    </head>
+
+    <body>
+        <main>
+            <div id="index-banner" class="parallax-container">
+                <div class="section no-pad-bot">
+                    <div class="container">
+                        <br><br><br><br>
+                    </div>
+                </div>
+                <div class="parallax"><img src="images/bg08.png" alt=""></div>
+            </div>
+            <div class="row center">
+                <div class="input-field col s12">
+                    <h3 class="header center ata-red-text">This page is only for Administrator.</h3>
+                    <h4 class="header col s12 ata-red-text">Sorry for the inconvenience.</h4>
+                </div>
+            </div>
+        </main>
+    </body>
+</html>
+
+<script language="javascript" type="text/javascript">
+    $(document).ready(function () {
+        Body.navBarHome();
+
+        pageInitializeNavBar('');
+
+        Body.footer();
+
+        //initDatabaseToLastVersion();
+
+        $('.parallax').parallax();
+    });
+</script>

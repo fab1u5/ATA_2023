@@ -1,0 +1,289 @@
+﻿<!DOCTYPE html>
+<html>
+    <head title="LOGINTABLET">
+        <title>ATA - Tablet Login</title>
+
+        <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+        <link rel="icon" href="/favicon.ico" type="image/x-icon">
+
+        <!--Import materialize.css-->
+        <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection" />
+        <link type="text/css" rel="stylesheet" href="css/materialdesignicons.min.css" media="all" />
+
+        <!--Let browser know website is optimized for mobile-->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+        <!--Import jQuery before materialize.js-->
+        <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+        <script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
+        <script type="text/javascript" src="js/materialize.min.js"></script>
+		<script type="text/javascript" src="js/stupidtable.min.js"> </script>
+		<script type="text/javascript" src="js/scoresPrototypes.js"> </script>
+        <script type="text/javascript" src="js/utilities.js"></script>
+        <script type="text/javascript" src="js/mbox.js"></script>
+        <script type="text/javascript" src="js/ConfigurationDirectives.js"> </script>
+
+        <script type="text/javascript" src="js/SQLiteDirectives.js"> </script>
+        <script type="text/javascript" src="js/WSDirectives.js"> </script>
+
+        <link type="text/css" rel="stylesheet" href="css/ATA.css" media="screen,projection" />
+        <link type="text/css" rel="stylesheet" href="css/mbox.css" media="screen,projection" />
+
+        <script language="javascript"type="text/javascript">
+            var TypeOfPswProtectedOperation = {
+                GetConfiguration: { value: "1", name: "Get Configuration" },
+                ResetData: { value: "2", name: "Reset data" },
+                Compare: { value: "RlNBRTIwMTk=", name: "Compare" }
+            };
+
+            function editRecord(i) {
+                event.preventDefault();
+                if (isATablet()) {
+                    localStorage.setObj('ExamBoards2Handle', WS_dataset_examboards[i]);
+                }
+                else {
+                    localStorage.setObj('ExamBoards2Handle', dataset_examboards[i]);
+                }
+                login_step2();
+            }
+
+            function downloadConfiguration() {
+                window.location = "ConfigurationDN.html";
+            }
+
+            function uploadConfiguration() {
+                window.location = "ConfigurationUP.html";
+            }
+
+            function resetConfiguration() {
+                configuration_clear_step1();                
+            }
+
+            function login_step1() {
+                localStorage.setObj('ExamBoards2Handle', null);
+
+                $('#tblLoginTabletStep1').show();
+                $('#tblLoginTabletStep2').hide();
+                $('#pLoginTabletStep3').html('');
+
+                //Visualizzare solo i giudici e non le auto - req.Ciadamidaro Set 2015
+                //WS_loadExamBoardsWithCars();
+                WS_loadExamBoardsWithExaminers();
+            }
+
+            function login_step2() {
+                waitOFF();
+                $('#tblLoginTabletStep1').hide();
+                $('#tblLoginTabletStep2').show();
+
+                var item = localStorage.getObj('ExamBoards2Handle');
+
+                if ((item == 'undefined') || (item == null)) {
+                    $('#pLoginTabletStep3').html('No ExamBoard has been selected');
+                }
+                else {
+                    $('#pLoginTabletStep3').append('<i class="green-text mdi-maps-local-library" title="ExamBoards"></i>&nbsp;' + item.Name.toString());
+                }
+            }
+        </script>
+    </head>
+
+    <body>
+
+        <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
+            <a class="btn-floating btn-large amber" style="margin-right: 5px;" href="#" id="btnBack"><i class="large mdi mdi-arrow-left" title="Back"></i></a>
+        </div>
+
+        <main>
+            <!-- Modal Structure -->
+            <div id="modalPsw" class="modal bottom-sheet">
+                <div class="modal-content">
+                    <div class="input-field col s12">
+                        <blockquote>
+                            <h6 class="ata-red-text"><span id="modalPswMessage"></span></h6>
+                            <h6 class="ata-green-text">This operation is password-protected.</h6>
+                        </blockquote>
+                        <br />
+                    </div>
+                    <div class="input-field col s12">
+                        <i class="mdi mdi-lock prefix ata-green-text"></i>
+                        <input placeholder="Password" id="password" type="password" class="validate" />
+                        <label class="active" for="password">Password</label>
+                    </div>
+                    <div class="input-field col s12" id="divButtons">
+                        <a class="waves-effect waves-light btn ata-btn" style="margin-right: 5px;" id="pswReset">Reset</a>
+                        <a class="waves-effect waves-light btn ata-btn" id="pswConfirm">Confirm</a>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <a class="modal-action modal-close waves-effect waves-green btn-flat" id="btnClosePsw">Cancel</a>
+                </div>
+            </div>
+            <!-- END Modal Structure -->
+
+            <div class="container" id="tblLoginTabletStep1">
+                <div class="row">
+                    <div class="col s12 m8 l8 offset-m2 offset-l2">
+                        <h4 class="header center ata-red-text">Welcome!</h4>
+                        <h5 class="center ata-red-text">Please, select a Board from the list below</h5>
+                    </div>
+                </div>
+                <table class="centered">
+                    <tbody id="tbodyLoginTabletStep1"></tbody>
+                </table>
+            </div>
+
+            <div class="container" id="tblLoginTabletStep2" style="display:none">
+                <h5 class="ata-green-text">Allowed Activities</h5>
+                <h6 class="ata-green-text">What can you do here</h6>
+                <div class="row">
+                    <div class="col s12 m12 l12">
+                        <ul class="collection">
+                            <li class="collection-item avatar">
+                                <!--<i class="mdi mdi-car circle amber"></i>-->
+                                <img src="images/150x150_Cars.jpg" alt="" class="circle">
+                                <span class="title">Get Teams & Cars</span> (<i class="mdi mdi-lock ata-red-text"></i>)
+                                <p>
+                                    Click to download Teams and Cars for the selected Exam Board
+                                </p>
+                                <p class="ata-red-text">
+                                    Warning: any data already present will be deleted
+                                </p>
+                                <a href="#" id="downloadConf" class="btn-floating secondary-content ata-green"><i class="mdi mdi-play"></i></a>
+                            </li>
+                            <li class="collection-item avatar">
+                                <!--<i class="mdi mdi-chart-bar circle ata-green"></i>-->
+                                <img src="images/150x150_Scores.jpg" alt="" class="circle">
+                                <span class="title">Assign Scores</span>
+                                <p>
+                                    Assign or View Scores
+                                </p>
+                                <a href="Scores.html" class="btn-floating secondary-content ata-green"><i class="mdi mdi-play"></i></a>
+                            </li>
+                            <li class="collection-item avatar">
+                                <!--<i class="mdi mdi-upload circle blue"></i>-->
+                                <img src="images/150x150_Upload.jpg" alt="" class="circle">
+                                <span class="title">Upload Scores</span>
+                                <p>
+                                    Click to upload Scores to the Server
+                                </p>
+                                <a href="#" id="uploadConf" class="btn-floating secondary-content ata-green"><i class="mdi mdi-play"></i></a>
+                            </li>
+                            <li class="collection-item avatar">
+                                <!--<i class="mdi mdi-delete circle ata-red"></i>-->
+                                <img src="images/150x150_Reset.jpg" alt="" class="circle">
+                                <span class="title">Reset Data</span> (<i class="mdi mdi-lock ata-red-text"></i>)
+                                <p>
+                                    Click to clean all data
+                                </p>
+                                <a href="#" id="resetConf" class="btn-floating secondary-content ata-green"><i class="mdi mdi-play"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <blockquote style="font-size:smaller" class="black-text">
+                    Please note that <br />
+                    operations having the (<i class="mdi mdi-lock ata-red-text"></i>) icon are password protected
+                </blockquote>
+            </div>
+        </main>
+    </body>
+</html>
+
+<script language="javascript" type="text/javascript">
+
+    var body = document.getElementsByTagName('body')[0];
+    body.onkeydown = function (e) {
+        if (e.keyCode === 13) {  //enter key code
+            $("#pswConfirm").click();
+        }
+    }
+
+    $(document).ready(function () {
+        Body.navBar();
+        Body.spinnerSignal();
+
+        pageInitializeVoidMenu('');      
+
+        Body.footer();
+
+        var item = localStorage.getObj('ExamBoards2Handle');
+
+        if ((item == 'undefined') || (item == null)) {
+            login_step1();
+        }
+        else {
+            login_step2();
+        }
+
+        //initDatabaseToLastVersion();
+
+        $("#downloadConf").click(function (e) {
+            e.preventDefault();
+
+
+//          mbox.confirm('Are you sure? All data will be replaced.', function (yes) {
+//              if (yes) {
+                    $('#pswConfirm').attr('data-id', TypeOfPswProtectedOperation.GetConfiguration.value);
+                    $('#modalPswMessage').text('You clicked on Get Teams & Cars. WARNING: All data will be replaced');
+                    openModalDialog('#modalPsw');
+                    //downloadConfiguration();
+//              } else { }
+//          })
+        });
+
+        $("#uploadConf").click(function (e) {
+
+            e.preventDefault();
+            uploadConfiguration();
+        });
+
+        $("#resetConf").click(function (e) {
+            e.preventDefault();
+
+//          mbox.confirm(Are you sure you want to reset all scores?', function (yes) {
+//              if (yes) {
+            $('#pswConfirm').attr('data-id', TypeOfPswProtectedOperation.ResetData.value);
+            $('#modalPswMessage').text('You clicked on Reset Data. WARNING: All scores will be reset');
+            openModalDialog('#modalPsw');
+            //resetConfiguration();
+//              } else { }
+//          })
+        });
+
+        $('#btnBack').click(function (e) {
+            e.preventDefault();
+            mbox.confirm('Exit from Standalone mode?', function (yes) {
+                if (yes) {
+                    window.location = "Index.html";
+                } else { }
+            })
+        });
+
+        $("#pswConfirm").click(function (e) {
+            e.preventDefault();
+
+            if (encodeSomething($("#password").val()) == TypeOfPswProtectedOperation.Compare.value)
+            {
+                closeModalDialog('#modalPsw');
+                switch ($("#pswConfirm").attr('data-id')) {
+                    case TypeOfPswProtectedOperation.GetConfiguration.value:
+                        downloadConfiguration();
+                        break;
+                    case TypeOfPswProtectedOperation.ResetData.value:
+                        resetConfiguration();
+                        break;
+                }
+            }
+            else
+            {
+                ataToast('You have to enter a valid Username and Password to proceed!!', 4000);
+            }
+        });
+
+        $("#pswReset").click(function (e) {
+            e.preventDefault();
+            $("#password").val('');
+        });
+    });
+</script>

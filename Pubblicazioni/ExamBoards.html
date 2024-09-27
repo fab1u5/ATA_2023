@@ -1,0 +1,162 @@
+﻿<!DOCTYPE html>
+<html>
+    <head title="EXAMBOARDS">
+        <title>ATA - ExamBoards</title>
+
+        <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+        <link rel="icon" href="/favicon.ico" type="image/x-icon">
+
+        <!--Import materialize.css-->
+        <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection" />
+        <link type="text/css" rel="stylesheet" href="css/materialdesignicons.min.css" media="all" />        
+
+        <!--Let browser know website is optimized for mobile-->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+        <!--Import jQuery before materialize.js-->
+        <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+        <script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
+        <script type="text/javascript" src="js/materialize.min.js"></script>
+		<script type="text/javascript" src="js/stupidtable.min.js"> </script>
+		<script type="text/javascript" src="js/scoresPrototypes.js"> </script>
+        <script type="text/javascript" src="js/utilities.js"></script>
+        <script type="text/javascript" src="js/mbox.js"></script>
+
+        <script type="text/javascript" src="js/SQLiteDirectives.js"> </script>
+        <script type="text/javascript" src="js/WSDirectives.js"> </script>
+
+        <link type="text/css" rel="stylesheet" href="css/ATA.css" media="screen,projection" />
+        <link type="text/css" rel="stylesheet" href="css/mbox.css" media="screen,projection" />
+
+        <script language="javascript" type="text/javascript">
+
+            function usecolor_changed() {
+                if ($('#usecolor').prop('checked')) {
+                    $('#color').prop("disabled", false);
+                    $('#color').toggleClass("disabled", false);
+                }
+                else {
+                    $('#color').prop("disabled", true);
+                    $('#color').toggleClass("disabled", true);
+                }
+            }
+
+            function onCloseModal() {
+                closeModalDialog('#modalEdit');
+                showRecords_examboards();
+            }
+
+            function addRecord() {
+                resetForm_examboards();
+
+                enableButton("#btnInsertExamBoard");
+                disableButton("#btnUpdateExamBoard");
+                openModalDialog('#modalEdit');
+            }
+
+            function addRecord_Proceed() {
+                var examboardname = $("#examboardname").val().toString();
+                var description = $("#description").val().toString();
+                var usecolor = $("#usecolor").prop('checked');
+                var color = $("#color").val().toString();
+
+                //AF - Giu 2016 - Examboard is connected to a single Event
+                var eventid = $("#eventid").val().toString();
+
+                if ((examboardname.length > 0) && (description.length > 0) && (eventid.length > 0)) {
+                    insertRecord_examboards();
+                    closeModalDialog('#modalEdit');
+                }
+                else
+                    ataToast("Please enter Name, Description and Event");
+            }
+
+            function editRecord(i) {
+                if (isATablet()) {
+                    sessionStorage.setObj('ExamBoards2Edit', dataset_examboards.item(i));
+                }
+                else {
+                    sessionStorage.setObj('ExamBoards2Edit', dataset_examboards[i]);
+                }
+                window.location.replace("ExamBoardsDetails.html");
+            }
+
+        </script>
+    </head>
+
+    <body>
+        <main>
+            <!-- Modal Structure -->
+            <div id="modalEdit" class="modal modal-footer">
+                <div class="modal-content">
+                    <div class="row active">
+                        <div class="input-field col s12">
+                            <i class="mdi mdi-library prefix ata-green-text"></i>
+                            <input placeholder="Enter the Examboard Name" id="examboardname" type="text" class="validate" />
+                            <label class="active" for="examboardname">Name</label>
+                        </div>
+                        <div class="input-field col s12">
+                            <input placeholder="Enter a Description" id="description" type="text" class="validate" />
+                            <label class="active" for="description">Description</label>
+                        </div>
+                        <!--//AF - Giu 2016 - Examboard is connected to a single Event-->
+                        <div class="input-field col s12">
+                            <label class="active" for="eventid">Event</label>
+                            <select id="eventid"></select>
+                        </div>
+                        <div class="input-field col s6">
+                            <div class="switch">
+                                <i class="mdi mdi-format-paint prefix ata-green-text"></i>
+                                <label>
+                                    No
+                                    <input type="checkbox" id="usecolor" onclick="usecolor_changed();">
+                                    <span class="lever"></span>
+                                    Yes
+                                </label>
+                                <label class="active" for="usecolor">Use Color</label>
+                            </div>
+                        </div>
+                        <div class="input-field col s6">
+                            <br /><input id="color" class="validate" type="color" value="#ffffff" />
+                            <label class="active" for="color">Pick to select a Color</label>
+                        </div>
+                    </div>
+
+                    <input type="hidden" id="id" />
+                    <input type="hidden" id="id2Edit" />
+                </div>
+
+                <div class="modal-footer modal-content-container">
+                    <div class="modal-img-container"></div>
+                    <div class="modal-blur"></div>
+                    <a class="waves-effect waves-green btn-flat" id="btnCloseExamBoard" onclick="onCloseModal()">Close</a>
+                    <!--<a class="waves-effect waves-green btn-flat" id="btnResetExamBoard" onclick="resetForm_examboards()">Reset</a>-->
+                    <a class="waves-effect waves-green btn-flat" id="btnInsertExamBoard" onclick="addRecord_Proceed()">Insert</a>
+                </div>
+            </div>
+
+            <div>
+                <table class="bordered centered" style="width: 98% !important; margin-left:auto; margin-right: auto;">
+                    <tbody id="tbodyExamBoards"></tbody>
+                </table>
+            </div>
+        </main>
+    </body>
+</html>
+
+<script language="javascript" type="text/javascript">
+    $(document).ready(function () {
+        Body.navBar();
+        Body.spinnerSignal();
+        Body.addButton('addRecord', 'mdi-gavel');
+
+        pageInitializeNavBar('Examination Boards');
+
+        Body.footer();
+
+        $('select').material_select();
+
+        showRecords_examboards_events();
+        showRecords_examboards();
+    });
+</script>

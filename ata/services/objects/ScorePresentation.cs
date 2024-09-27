@@ -120,7 +120,8 @@ namespace ATA.services
 		public double Content4 { get; set; }
 		public double Content5 { get; set; }
 		public double Content6 { get; set; }
-		public double Content7 { get; set; }
+        //FDT - ATA2024
+        //public double Content7 { get; set; }
 		public string ContentNotes { get; set; }
 
 		#endregion
@@ -129,7 +130,16 @@ namespace ATA.services
 		public double Finances0 { get; set; }
 		public double Finances1 { get; set; }
 		public double Finances2 { get; set; }
-        public double Finances3 { get; set; }        
+        public double Finances3 { get; set; }
+		//FDT - ATA 2024
+        public double Finances4 { get; set; }
+        public double Finances5 { get; set; }
+        public double Finances6 { get; set; }
+        public double Finances7 { get; set; }
+        public double Finances8 { get; set; }
+        public double Finances9 { get; set; }
+        public double Finances10 { get; set; }
+        public double Finances11 { get; set; }
         public string FinancesNotes { get; set; }
 		#endregion
 
@@ -150,8 +160,11 @@ namespace ATA.services
         public double Demonstration0 { get; set; }
 		public double Demonstration1 { get; set; }
 		public double Demonstration2 { get; set; }
-		public double Demonstration3 { get; set; }				
-		public string DemonstrationNotes { get; set; }
+		public double Demonstration3 { get; set; }
+        //FDT - ATA2024
+        public double Demonstration4 { get; set; }
+        public double Demonstration5 { get; set; }
+        public string DemonstrationNotes { get; set; }
         #endregion
 		//FD 2021.08.02 - ATA 2021 - Modify Stage3 - Add Sezione <DemonstrationAndDelivery> - END
         
@@ -164,8 +177,9 @@ namespace ATA.services
 		public double Delivery5 { get; set; }
 		public double Delivery6 { get; set; }
 		public double Delivery7 { get; set; }
-		public double Delivery8 { get; set; }
-        public double Delivery9 { get; set; }
+        //FDT - ATA2024 
+        //public double Delivery8 { get; set; }
+        //public double Delivery9 { get; set; }
         public string DeliveryNotes { get; set; }
 		#endregion
 
@@ -176,7 +190,8 @@ namespace ATA.services
 		public double Structure2 { get; set; }
 		public double Structure3 { get; set; }
 		public double Structure4 { get; set; }
-        public double Structure5 { get; set; }
+        //FDT - ATA2024
+        //public double Structure5 { get; set; }
         public string StructureNotes { get; set; }
 		#endregion
 
@@ -342,7 +357,8 @@ namespace ATA.services
 			this.Content4							= content[4];
 			this.Content5							= content[5];
 			this.Content6							= content[6];
-			this.Content7							= content[7];
+            //FDT - ATA2024
+            //this.Content7							= content[7];
 			//this.Content8							= content[8];
 
 			//FD 2021.08.02 - ATA 2021 - Modify Stage3 - BEGIN Add Content9
@@ -353,10 +369,16 @@ namespace ATA.services
 			this.Finances1							= finances[1];
 			this.Finances2							= finances[2];
 			this.Finances3							= finances[3];
-			//this.Finances4						= finances[4];
-			//this.Finances5						= finances[5];
-			//this.Finances6						= finances[6];
-			this.FinancesNotes						= financesNotes;
+			//FDT - ATA 2024
+			this.Finances4							= finances[4];
+			this.Finances5							= finances[5];
+			this.Finances6							= finances[6];
+            this.Finances7							= finances[7];
+            this.Finances8							= finances[8];
+            this.Finances9							= finances[9];
+            this.Finances10							= finances[10];
+            this.Finances11							= finances[11];
+            this.FinancesNotes						= financesNotes;
 
 			this.DeepDiveTopic0						= deepDiveTopic[0];
 			this.DeepDiveTopic1						= deepDiveTopic[1];
@@ -371,7 +393,10 @@ namespace ATA.services
 			this.Demonstration1			= demonstration[1];
 			this.Demonstration2			= demonstration[2];
 			this.Demonstration3			= demonstration[3];
-			this.DemonstrationNotes		= demonstrationNotes;
+            //FDT - ATA2024
+            this.Demonstration4			= demonstration[4];
+            this.Demonstration5			= demonstration[5];
+            this.DemonstrationNotes		= demonstrationNotes;
 			//FD 2021.08.02 - ATA 2021 - Modify Stage3 - Add Sezione <DemonstrationAndDelivery> - END
 
 			this.Structure0			= structure[0];
@@ -379,7 +404,8 @@ namespace ATA.services
 			this.Structure2			= structure[2];
 			this.Structure3			= structure[3];
 			this.Structure4			= structure[4];
-			this.Structure5			= structure[5];	
+            //FDT - ATA2024
+            //this.Structure5			= structure[5];	
 			this.StructureNotes		= structureNotes;
 
 			this.Delivery0							= delivery[0];
@@ -390,8 +416,9 @@ namespace ATA.services
 			this.Delivery5							= delivery[5];
 			this.Delivery6							= delivery[6];
 			this.Delivery7							= delivery[7];
-			this.Delivery8							= delivery[8];
-            this.Delivery9							= delivery[9];
+            //FDT - ATA2024
+            //this.Delivery8							= delivery[8];
+            //this.Delivery9							= delivery[9];
             this.DeliveryNotes						= deliveryNotes;
 
 			this.Questions0							= questions[0];
@@ -426,21 +453,24 @@ namespace ATA.services
 		{
 			double givenscore = 0;
 
-			//FD 2021.08.02 - ATA 2021 - Modify Stage3 - BEGIN tolto executive summary
-			//givenscore += this.ExecutiveSummary0 + this.ExecutiveSummary1 + this.ExecutiveSummary2 + this.ExecutiveSummary3;
+            //FD 2021.08.02 - ATA 2021 - Modify Stage3 - BEGIN tolto executive summary
+            //givenscore += this.ExecutiveSummary0 + this.ExecutiveSummary1 + this.ExecutiveSummary2 + this.ExecutiveSummary3;
 
-			//FD 2021.08.02 - ATA 2021 - Modify Stage3 - BEGIN tolta parte novelty3
-			//givenscore += this.Novelty0 + this.Novelty1 + this.Novelty2 + this.Novelty3;
-			//FDT - ATA 2023 - Modifica Stage 3 - INIZIO
-			//givenscore += this.Novelty0 + this.Novelty1 + this.Novelty2;
+            //FD 2021.08.02 - ATA 2021 - Modify Stage3 - BEGIN tolta parte novelty3
+            //givenscore += this.Novelty0 + this.Novelty1 + this.Novelty2 + this.Novelty3;
+            //FDT - ATA 2023 - Modifica Stage 3 - INIZIO
+            //givenscore += this.Novelty0 + this.Novelty1 + this.Novelty2;
 
-			//FD 2021.08.02 - ATA 2021 - Modify Stage3 - BEGIN Add Content9
-			//givenscore += this.Content0 + this.Content1 + this.Content2 + this.Content3 + this.Content4 + this.Content5 + this.Content6 + this.Content7 + this.Content8;
-			givenscore += this.Content0 + this.Content1 + this.Content2 + this.Content3 + this.Content4 + this.Content5 + this.Content6 + this.Content7; //+ this.Content8;//+ this.Content9;
+            //FD 2021.08.02 - ATA 2021 - Modify Stage3 - BEGIN Add Content9
+            //givenscore += this.Content0 + this.Content1 + this.Content2 + this.Content3 + this.Content4 + this.Content5 + this.Content6 + this.Content7 + this.Content8;
+            //FDT - ATA2024
+            givenscore += this.Content0 + this.Content1 + this.Content2 + this.Content3 + this.Content4 + this.Content5 + this.Content6 ;
 
 			//FD 2021.08.02 - ATA 2021 - Modify Stage3 - BEGIN tolta parte Finances2 e Finances4
 			//givenscore += this.Finances0 + this.Finances1 + this.Finances2 + this.Finances3 + this.Finances4 + this.Finances5 + this.Finances6;
-			givenscore += this.Finances0 + this.Finances1 + this.Finances2 + this.Finances3;
+			//FDT - ATA 2024
+			givenscore += this.Finances0 + this.Finances1 + this.Finances2 + this.Finances3 + this.Finances4 + this.Finances5 
+				+ this.Finances6 + this.Finances7 + this.Finances8 + this.Finances9+ this.Finances10 + this.Finances11;
 
 			//FD 2021.08.02 - ATA 2021 - Modify Stage3 - Add deepdivetopic4
 			//givenscore += this.DeepDiveTopic0 + this.DeepDiveTopic1 + this.DeepDiveTopic2 + this.DeepDiveTopic3;
@@ -449,15 +479,16 @@ namespace ATA.services
 
 			//FD 2021.08.02 - ATA 2021 - Modify Stage3 - Add Sezione <DemonstrationAndDelivery> - BEGIN
 			//givenscore += this.DemonstrationAndDelivery0 + this.DemonstrationAndDelivery1 + this.DemonstrationAndDelivery2 + this.DemonstrationAndDelivery3 + this.DemonstrationAndDelivery4 + +this.DemonstrationAndDelivery5;
-			givenscore += this.Demonstration0 + this.Demonstration1 + this.Demonstration2 + this.Demonstration3; //+ this.Demonstration4;
-						
-            givenscore += this.Delivery0	+ this.Delivery1 + this.Delivery2 + this.Delivery3 + this.Delivery4 + this.Delivery5 + 
-				this.Delivery6 + this.Delivery7 + this.Delivery8 + this.Delivery9;
+			//FDT - ATA2024
+			givenscore += this.Demonstration0 + this.Demonstration1 + this.Demonstration2 + this.Demonstration3 + this.Demonstration4 + this.Demonstration5;
+            //FDT - ATA2024
+            givenscore += this.Delivery0 + this.Delivery1 + this.Delivery2 + this.Delivery3 + this.Delivery4 + this.Delivery5 +
+				this.Delivery6 + this.Delivery7;//+ this.Delivery8 + this.Delivery9;
 
 			givenscore += this.Questions0 + this.Questions1 + this.Questions2 + this.Questions3 + this.Questions4 + this.Questions5 + 
 				this.Questions6 + this.Questions7;// + this.Questions8 + this.Questions9;
-
-			givenscore += this.Structure0 + this.Structure1 + this.Structure2 + this.Structure3 + this.Structure4 + this.Structure5;
+            //FDT - ATA2024
+            givenscore += this.Structure0 + this.Structure1 + this.Structure2 + this.Structure3 + this.Structure4;
 
 			givenscore += this.GeneralImpression0			+ this.GeneralImpression1 + this.GeneralImpression2;
 

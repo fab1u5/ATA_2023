@@ -371,7 +371,8 @@ namespace ATA.services
                         item.Content4 = a.content4;
                         item.Content5 = a.content5;
                         item.Content6 = a.content6;
-                        item.Content7 = a.content7;
+                        //FDT - ATA2024
+                        //item.Content7 = a.content7;
                         //item.Content8 = a.content8;
                         item.ContentNotes = a.contentnotes;
 
@@ -379,6 +380,15 @@ namespace ATA.services
                         item.Finances1 = a.finances1;
                         item.Finances2 = a.finances2;
                         item.Finances3 = a.finances3;
+                        //FDT  - ATA 2024
+                        item.Finances4 = a.finances4;
+                        item.Finances5 = a.finances5;
+                        item.Finances6 = a.finances6;
+                        item.Finances7 = a.finances7;
+                        item.Finances8 = a.finances8;
+                        item.Finances9 = a.finances9;
+                        item.Finances10 = a.finances10;
+                        item.Finances11 = a.finances11;
                         item.FinancesNotes = a.financesnotes;
 
                         item.DeepDiveTopic0 = a.deepdivetopic0;
@@ -390,7 +400,10 @@ namespace ATA.services
                         item.Demonstration0 = a.demonstration0;
                         item.Demonstration1 = a.demonstration1;
                         item.Demonstration2 = a.demonstration2;
-                        item.Demonstration3 = a.demonstration3;                                              
+                        item.Demonstration3 = a.demonstration3;
+                        //FDT - ATA2024
+                        item.Demonstration4 = a.demonstration4;
+                        item.Demonstration5 = a.demonstration5;
                         item.DemonstrationNotes = a.demonstrationnotes;
 
                         item.Structure0 = a.structure0;
@@ -398,7 +411,8 @@ namespace ATA.services
                         item.Structure2 = a.structure2;
                         item.Structure3 = a.structure3;
                         item.Structure4 = a.structure4;
-                        item.Structure5 = a.structure5;
+                        //FDT - ATA2024
+                        //item.Structure5 = a.structure5;
                         item.StructureNotes = a.structurenotes;
 
 
@@ -410,8 +424,9 @@ namespace ATA.services
                         item.Delivery5 = a.delivery5;
                         item.Delivery6 = a.delivery6;
                         item.Delivery7 = a.delivery7;
-                        item.Delivery8 = a.delivery8;
-                        item.Delivery9 = a.delivery9;
+                        //FDT - ATA2024
+                        //item.Delivery8 = a.delivery8;
+                        //item.Delivery9 = a.delivery9;
                         item.DeliveryNotes = a.deliverynotes;
 
                         item.Questions0 = a.questions0;
@@ -496,11 +511,14 @@ namespace ATA.services
                         //FD 2021.08.02 - ATA 2021 - Modify Stage3 - BEGIN Add Content9
                         //var content = ToArray(a.content0, a.content1, a.content2, a.content3, a.content4, a.content5, a.content6, a.content7, a.content8);
                         //var content = ToArray(a.content0, a.content1, a.content2, a.content3, a.content4, a.content5, a.content6, a.content7, a.content8, a.content9);
-                        var content = ToArray(a.content0, a.content1, a.content2, a.content3, a.content4, a.content5, a.content6, a.content7);
+                        //FDT - ATA2024
+                        var content = ToArray(a.content0, a.content1, a.content2, a.content3, a.content4, a.content5, a.content6);
 
                         //FD 2021.08.02 - ATA 2021 - Modify Stage3 - BEGIN tolta parte Finances2 e Finances4
                         //var finances = ToArray(a.finances0, a.finances1, a.finances2, a.finances3, a.finances4, a.finances5, a.finances6);
-                        var finances = ToArray(a.finances0, a.finances1, a.finances2, a.finances3);
+                        //FDT - ATA 2024
+                        var finances = ToArray(a.finances0, a.finances1, a.finances2, a.finances3, a.finances4,
+                            a.finances5, a.finances6, a.finances7, a.finances8, a.finances9, a.finances10, a.finances11);
 
                         //FD 2021.08.02 - ATA 2021 - Modify Stage3 - BEGIN Add deepdivetopic4
                         //var deepdivetopic = ToArray(a.deepdivetopic0, a.deepdivetopic1, a.deepdivetopic2, a.deepdivetopic3);
@@ -509,11 +527,14 @@ namespace ATA.services
 
                         //FD 2021.08.02 - ATA 2021 - Modify Stage3 - Add Sezione <DemonstrationAndDelivery>
                         //var demonstrationanddelivery = ToArray(a.demonstrationanddelivery0, a.demonstrationanddelivery1, a.demonstrationanddelivery2, a.demonstrationanddelivery3, a.demonstrationanddelivery4, a.demonstrationanddelivery5);
-                        var demonstration = ToArray(a.demonstration0, a.demonstration1, a.demonstration2, a.demonstration3);
+                        //FDT - ATA2024
+                        var demonstration = ToArray(a.demonstration0, a.demonstration1, a.demonstration2, a.demonstration3, a.demonstration4, a.demonstration5);
 
                         //FD 2021.08.02 - ATA 2021 - Modify Stage3 - Remove Sezione <DemonstrationAndStructure>
-                        var structure = ToArray(a.structure0, a.structure1, a.structure2, a.structure3, a.structure4, a.structure5);
-                        var delivery = ToArray(a.delivery0, a.delivery1, a.delivery2, a.delivery3, a.delivery4, a.delivery5, a.delivery6, a.delivery7, a.delivery8, a.delivery9);
+                        //FDT - ATA2024
+                        var structure = ToArray(a.structure0, a.structure1, a.structure2, a.structure3, a.structure4);
+                        //FDT - ATA2024
+                        var delivery = ToArray(a.delivery0, a.delivery1, a.delivery2, a.delivery3, a.delivery4, a.delivery5, a.delivery6, a.delivery7);
                         var questions = ToArray(a.questions0, a.questions1, a.questions2, a.questions3, a.questions4, a.questions5, a.questions6, a.questions7);
                         var generalimpression = ToArray(a.generalimpression0, a.generalimpression1, a.generalimpression2);
 

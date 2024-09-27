@@ -15,7 +15,7 @@
         $.ajax({
             type: "POST",
             contentType: "application/json",
-            url: "https://app.polimatica.it/atabeta/services/ATA_ExportService.asmx/DownloadTeams",
+            url: "http://77.108.25.178:782/services/ATA_ExportService.asmx/DownloadTeams",
             dataType: "json",
             success: function (response) {
                 if (response.hasOwnProperty("d")) { response = response.d; }
@@ -47,7 +47,7 @@
         $.ajax({
             type: "POST",
             contentType: "application/json",
-            url: "https://app.polimatica.it/atabeta/services/ATA_ExportService.asmx/DownloadExaminers",
+            url: "http://77.108.25.178:782/services/ATA_ExportService.asmx/DownloadExaminers",
             dataType: "json",
             success: function (response) {
                 if (response.hasOwnProperty("d")) { response = response.d; }
@@ -79,7 +79,7 @@
         $.ajax({
             type: "POST",
             contentType: "application/json",
-            url: "https://app.polimatica.it/atabeta/services/ATA_ExportService.asmx/DownloadCars",
+            url: "http://77.108.25.178:782/services/ATA_ExportService.asmx/DownloadCars",
             dataType: "json",
             success: function (response) {
                 if (response.hasOwnProperty("d")) { response = response.d; }

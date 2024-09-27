@@ -116,8 +116,11 @@ namespace ATA.services
             {
                 //FDT - ATA 2023 - modifiche formula - INIZIO
                 //return 250 * (maxTime / adj - 1) / (maxTime / minTime - 1) + 25;
-                return 300 * (maxTime / adj - 1) / (maxTime / minTime - 1) + 25;
+                //return 300 * (maxTime / adj - 1) / (maxTime / minTime - 1) + 25;
                 //FDT - ATA 2023 - modifiche formula - INIZIO
+
+                //FDT 2024 - modifica pesi
+                return 292.5 * (maxTime / adj - 1) / (maxTime / minTime - 1) + 32.5;
             }
             //FDT - ATA 2023 - modifiche formula - INIZIO
             else return 0;

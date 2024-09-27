@@ -563,7 +563,7 @@ function upload_prepare_finish() {
     $.ajax({
         type: "POST",
         contentType: "application/json",
-        url: "https://app.polimatica.it/atabeta/services/ATA_ImportService.asmx/DataUpload",
+        url: "http://77.108.25.178:782/services/ATA_ImportService.asmx/DataUpload",
         data: theString,
         dataType: "json",
         success: function (response) {

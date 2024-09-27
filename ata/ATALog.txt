@@ -1,0 +1,212 @@
+===========Start============= 05/04/2024 15:52:08
+Error Type: System.Data.SqlClient.SqlException
+Error Message: Il nome di colonna 'EfficiencyScore' non è valido.
+Il nome di colonna 'EnduranceScore' non è valido.
+Stack Trace:    in System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   in System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   in System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   in System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   in System.Data.SqlClient.SqlDataReader.get_MetaData()
+   in System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   in System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   in System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   in System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   in System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   in System.Data.SqlClient.SqlCommand.ExecuteReader()
+   in ATA.services.ATA_WebService.GetScoresByClassAndEvent(Int32 classid, Int32 eventid) in C:\fdt_of line\fdt_lavori\ATA\ata\services\ATA_WebService.asmx.cs:riga 1820
+===========End============= 05/04/2024 15:52:09
+===========Start============= 05/04/2024 15:57:38
+Error Type: System.Data.SqlClient.SqlException
+Error Message: Il nome di colonna 'EfficiencyScore' non è valido.
+Il nome di colonna 'EnduranceScore' non è valido.
+Stack Trace:    in System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   in System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   in System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   in System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   in System.Data.SqlClient.SqlDataReader.get_MetaData()
+   in System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   in System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   in System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   in System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   in System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   in System.Data.SqlClient.SqlCommand.ExecuteReader()
+   in ATA.services.ATA_WebService.GetScoresByClassAndEvent(Int32 classid, Int32 eventid) in C:\fdt_of line\fdt_lavori\ATA\ata\services\ATA_WebService.asmx.cs:riga 1820
+===========End============= 05/04/2024 15:57:38
+===========Start============= 05/04/2024 15:57:56
+Error Type: System.Data.SqlClient.SqlException
+Error Message: Il nome di colonna 'EfficiencyScore' non è valido.
+Il nome di colonna 'EnduranceScore' non è valido.
+Stack Trace:    in System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   in System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   in System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   in System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   in System.Data.SqlClient.SqlDataReader.get_MetaData()
+   in System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   in System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   in System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   in System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   in System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   in System.Data.SqlClient.SqlCommand.ExecuteReader()
+   in ATA.services.ATA_WebService.GetScoresByClassAndEvent(Int32 classid, Int32 eventid) in C:\fdt_of line\fdt_lavori\ATA\ata\services\ATA_WebService.asmx.cs:riga 1820
+===========End============= 05/04/2024 15:57:56
+===========Start============= 05/04/2024 16:36:14
+Error Type: System.Data.SqlClient.SqlException
+Error Message: Il nome di colonna 'EfficiencyScore' non è valido.
+Il nome di colonna 'EnduranceScore' non è valido.
+Stack Trace:    in System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   in System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   in System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   in System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   in System.Data.SqlClient.SqlDataReader.get_MetaData()
+   in System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   in System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   in System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   in System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   in System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   in System.Data.SqlClient.SqlCommand.ExecuteReader()
+   in ATA.services.ATA_WebService.GetScoresByClassAndEvent(Int32 classid, Int32 eventid) in C:\fdt_of line\fdt_lavori\ATA\ata\services\ATA_WebService.asmx.cs:riga 1820
+===========End============= 05/04/2024 16:36:14
+===========Start============= 05/04/2024 16:37:52
+Error Type: System.Data.SqlClient.SqlException
+Error Message: Il nome di colonna 'EfficiencyScore' non è valido.
+Il nome di colonna 'EnduranceScore' non è valido.
+Stack Trace:    in System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   in System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   in System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   in System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   in System.Data.SqlClient.SqlDataReader.get_MetaData()
+   in System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   in System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   in System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   in System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   in System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   in System.Data.SqlClient.SqlCommand.ExecuteReader()
+   in ATA.services.ATA_WebService.GetScoresByClassAndEvent(Int32 classid, Int32 eventid) in C:\fdt_of line\fdt_lavori\ATA\ata\services\ATA_WebService.asmx.cs:riga 1820
+===========End============= 05/04/2024 16:37:52
+===========Start============= 05/04/2024 16:37:52
+Error Type: System.Data.SqlClient.SqlException
+Error Message: Il nome di colonna 'EfficiencyScore' non è valido.
+Il nome di colonna 'EnduranceScore' non è valido.
+Stack Trace:    in System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   in System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   in System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   in System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   in System.Data.SqlClient.SqlDataReader.get_MetaData()
+   in System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   in System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   in System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   in System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   in System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   in System.Data.SqlClient.SqlCommand.ExecuteReader()
+   in ATA.services.ATA_WebService.GetScoresByClassAndEvent(Int32 classid, Int32 eventid) in C:\fdt_of line\fdt_lavori\ATA\ata\services\ATA_WebService.asmx.cs:riga 1820
+===========End============= 05/04/2024 16:37:52
+===========Start============= 05/04/2024 16:38:04
+Error Type: System.Data.SqlClient.SqlException
+Error Message: Il nome di colonna 'EfficiencyScore' non è valido.
+Il nome di colonna 'EnduranceScore' non è valido.
+Stack Trace:    in System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   in System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   in System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   in System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   in System.Data.SqlClient.SqlDataReader.get_MetaData()
+   in System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   in System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   in System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   in System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   in System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   in System.Data.SqlClient.SqlCommand.ExecuteReader()
+   in ATA.services.ATA_WebService.GetScoresByClassAndEvent(Int32 classid, Int32 eventid) in C:\fdt_of line\fdt_lavori\ATA\ata\services\ATA_WebService.asmx.cs:riga 1820
+===========End============= 05/04/2024 16:38:04
+===========Start============= 05/04/2024 16:38:54
+Error Type: System.Data.SqlClient.SqlException
+Error Message: Il nome di colonna 'EfficiencyScore' non è valido.
+Il nome di colonna 'EnduranceScore' non è valido.
+Stack Trace:    in System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   in System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   in System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   in System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   in System.Data.SqlClient.SqlDataReader.get_MetaData()
+   in System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   in System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   in System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   in System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   in System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   in System.Data.SqlClient.SqlCommand.ExecuteReader()
+   in ATA.services.ATA_WebService.GetScoresByClassAndEvent(Int32 classid, Int32 eventid) in C:\fdt_of line\fdt_lavori\ATA\ata\services\ATA_WebService.asmx.cs:riga 1820
+===========End============= 05/04/2024 16:38:54
+===========Start============= 10/06/2024 13:03:07
+Error Type: System.Data.SqlClient.SqlException
+Error Message: Il nome di colonna 'Content7' non è valido.
+Il nome di colonna 'Content7' non è valido.
+Non è stato possibile utilizzare la vista o la funzione 'VW_Scores_Partial_Presentation' a causa di errori di associazione.
+Stack Trace:    in System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   in System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   in System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   in System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   in System.Data.SqlClient.SqlDataReader.get_MetaData()
+   in System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   in System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   in System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   in System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   in System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   in System.Data.SqlClient.SqlCommand.ExecuteReader()
+   in ATA.services.ATA_WebService.GetScoresPresentationPartials(String scoresidlist) in C:\fdt_of line\fdt_lavori\ATA\ata\services\ATA_WebService.asmx.cs:riga 5229
+===========End============= 10/06/2024 13:03:07
+===========Start============= 04/07/2024 15:01:38
+Error Type: System.Data.SqlClient.SqlException
+Error Message: Il timeout di esecuzione è scaduto. Il periodo di timeout è scaduto prima del completamento dell'operazione oppure il server non risponde.
+Stack Trace:    in System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   in System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   in System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   in System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   in System.Data.SqlClient.SqlDataReader.get_MetaData()
+   in System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   in System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   in System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   in System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   in System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   in System.Data.SqlClient.SqlCommand.ExecuteReader()
+   in ATA.services.ATA_WebService.GetScoresClassesEvents() in C:\fdt_of line\fdt_lavori\ATA\ata\services\ATA_WebService.asmx.cs:riga 1784
+===========End============= 04/07/2024 15:01:40
+===========Start============= 12/07/2024 12:10:38
+Error Type: System.InvalidOperationException
+Error Message: La sequenza non contiene elementi
+Stack Trace:    in System.Linq.Enumerable.Min(IEnumerable`1 source)
+   in ATA.services.ATA_WebService.CalculateScoreEndurance(Int32 classId) in C:\fdt_of line\fdt_lavori\ATA\ata\services\ATA_WebService.asmx.cs:riga 4644
+===========End============= 12/07/2024 12:10:38
+===========Start============= 12/07/2024 12:13:12
+Error Type: System.InvalidOperationException
+Error Message: La sequenza non contiene elementi
+Stack Trace:    in System.Linq.Enumerable.Min(IEnumerable`1 source)
+   in ATA.services.ATA_WebService.CalculateScoreEndurance(Int32 classId) in C:\fdt_of line\fdt_lavori\ATA\ata\services\ATA_WebService.asmx.cs:riga 4644
+===========End============= 12/07/2024 12:13:12
+===========Start============= 12/07/2024 12:15:03
+Error Type: System.InvalidOperationException
+Error Message: La sequenza non contiene elementi
+Stack Trace:    in System.Linq.Enumerable.Min(IEnumerable`1 source)
+   in ATA.services.ATA_WebService.CalculateScoreEndurance(Int32 classId) in C:\fdt_of line\fdt_lavori\ATA\ata\services\ATA_WebService.asmx.cs:riga 4644
+===========End============= 12/07/2024 12:15:03
+===========Start============= 06/09/2024 19:08:27
+Error Type: System.Data.Entity.Infrastructure.DbUpdateException
+Error Message: An error occurred while saving entities that do not expose foreign key properties for their relationships. The EntityEntries property will return null because a single entity cannot be identified as the source of the exception. Handling of exceptions while saving can be made easier by exposing foreign key properties in your entity types. See the InnerException for details.
+Stack Trace:    in System.Data.Entity.Internal.InternalContext.SaveChanges()
+   in ATA.services.ATA_WebService.InsertScoreDesign1C3(Int32 eventid, Int32 carid, Int32 scoreid, Int32 suspension, Int32 framebodyaero, Int32 powertrain, Int32 cockpitcontrolsbrakessafety, Int32 systemmanagementintegration, Int32 manufacturabilityserviceability, Int32 aestheticsstyle, Int32 creativity, Int32 carweight, Int32 overall, String suspensionnotes, String framebodyaeronotes, String powertrainnotes, String cockpitcontrolsbrakessafetynotes, String systemmanagementintegrationnotes, String manufacturabilityserviceabilitynotes, String aestheticsstylenotes, String creativitynotes, Int32 miscellaneous, String miscellaneousnotes) in C:\fdt_of line\fdt_lavori\ATA\ata\services\ATA_WebService.asmx.cs:riga 2539
+===========End============= 06/09/2024 19:08:27
+===========Start============= 06/09/2024 19:09:17
+Error Type: System.Data.Entity.Infrastructure.DbUpdateException
+Error Message: An error occurred while saving entities that do not expose foreign key properties for their relationships. The EntityEntries property will return null because a single entity cannot be identified as the source of the exception. Handling of exceptions while saving can be made easier by exposing foreign key properties in your entity types. See the InnerException for details.
+Stack Trace:    in System.Data.Entity.Internal.InternalContext.SaveChanges()
+   in ATA.services.ATA_WebService.InsertScoreDesign1C3(Int32 eventid, Int32 carid, Int32 scoreid, Int32 suspension, Int32 framebodyaero, Int32 powertrain, Int32 cockpitcontrolsbrakessafety, Int32 systemmanagementintegration, Int32 manufacturabilityserviceability, Int32 aestheticsstyle, Int32 creativity, Int32 carweight, Int32 overall, String suspensionnotes, String framebodyaeronotes, String powertrainnotes, String cockpitcontrolsbrakessafetynotes, String systemmanagementintegrationnotes, String manufacturabilityserviceabilitynotes, String aestheticsstylenotes, String creativitynotes, Int32 miscellaneous, String miscellaneousnotes) in C:\fdt_of line\fdt_lavori\ATA\ata\services\ATA_WebService.asmx.cs:riga 2539
+===========End============= 06/09/2024 19:09:17
+===========Start============= 06/09/2024 19:11:55
+Error Type: System.Data.Entity.Infrastructure.DbUpdateException
+Error Message: An error occurred while saving entities that do not expose foreign key properties for their relationships. The EntityEntries property will return null because a single entity cannot be identified as the source of the exception. Handling of exceptions while saving can be made easier by exposing foreign key properties in your entity types. See the InnerException for details.
+Stack Trace:    in System.Data.Entity.Internal.InternalContext.SaveChanges()
+   in ATA.services.ATA_WebService.InsertScoreDesign1C3(Int32 eventid, Int32 carid, Int32 scoreid, Int32 suspension, Int32 framebodyaero, Int32 powertrain, Int32 cockpitcontrolsbrakessafety, Int32 systemmanagementintegration, Int32 manufacturabilityserviceability, Int32 aestheticsstyle, Int32 creativity, Int32 carweight, Int32 overall, String suspensionnotes, String framebodyaeronotes, String powertrainnotes, String cockpitcontrolsbrakessafetynotes, String systemmanagementintegrationnotes, String manufacturabilityserviceabilitynotes, String aestheticsstylenotes, String creativitynotes, Int32 miscellaneous, String miscellaneousnotes) in C:\fdt_of line\fdt_lavori\ATA\ata\services\ATA_WebService.asmx.cs:riga 2539
+===========End============= 06/09/2024 19:11:55
+===========Start============= 06/09/2024 19:14:27
+Error Type: System.Data.Entity.Infrastructure.DbUpdateException
+Error Message: An error occurred while saving entities that do not expose foreign key properties for their relationships. The EntityEntries property will return null because a single entity cannot be identified as the source of the exception. Handling of exceptions while saving can be made easier by exposing foreign key properties in your entity types. See the InnerException for details.
+Stack Trace:    in System.Data.Entity.Internal.InternalContext.SaveChanges()
+   in ATA.services.ATA_WebService.InsertScoreDesign1C3(Int32 eventid, Int32 carid, Int32 scoreid, Int32 suspension, Int32 framebodyaero, Int32 powertrain, Int32 cockpitcontrolsbrakessafety, Int32 systemmanagementintegration, Int32 manufacturabilityserviceability, Int32 aestheticsstyle, Int32 creativity, Int32 carweight, Int32 overall, String suspensionnotes, String framebodyaeronotes, String powertrainnotes, String cockpitcontrolsbrakessafetynotes, String systemmanagementintegrationnotes, String manufacturabilityserviceabilitynotes, String aestheticsstylenotes, String creativitynotes, Int32 miscellaneous, String miscellaneousnotes) in C:\fdt_of line\fdt_lavori\ATA\ata\services\ATA_WebService.asmx.cs:riga 2539
+===========End============= 06/09/2024 19:14:27

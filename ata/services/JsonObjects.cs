@@ -92,7 +92,8 @@ namespace ATA.services
         public double content4 { get; set; }
         public double content5 { get; set; }
         public double content6 { get; set; }
-        public double content7 { get; set; }
+        //FDT - ATA2024
+        //public double content7 { get; set; }
         //public double content8 { get; set; }
 
 		//FD 2021.08.02 - ATA 2021 - Modify Stage3 - BEGIN Add Content9
@@ -107,10 +108,16 @@ namespace ATA.services
 
 		//FD 2021.08.02 - ATA 2021 - Modify Stage3 - BEGIN tolta parte Finances2 e Finances4
 		public double finances3 { get; set; }
-		//public double finances4 { get; set; }
-		//public double finances5 { get; set; }
-		//public double finances6 { get; set; }
-		public string financesnotes { get; set; }
+        //FDT - ATA 2024
+		public double finances4 { get; set; }
+		public double finances5 { get; set; }
+		public double finances6 { get; set; }
+        public double finances7 { get; set; }
+        public double finances8 { get; set; }
+        public double finances9 { get; set; }
+        public double finances10 { get; set; }
+        public double finances11 { get; set; }
+        public string financesnotes { get; set; }
 		#endregion
 
 		#region Deep Dive Topic
@@ -131,8 +138,9 @@ namespace ATA.services
 		public double demonstration1		{ get; set; }
 		public double demonstration2		{ get; set; }
 		public double demonstration3		{ get; set; }
-		//public double demonstrationanddelivery4		{ get; set; }
-		//public double demonstrationanddelivery5		{ get; set; }
+        //FDT - ATA2024
+        public double demonstration4		{ get; set; }
+		public double demonstration5		{ get; set; }
 		public string demonstrationnotes { get; set; }
 		//FD 2021.08.02 - ATA 2021 - Modify Stage3 - Add Sezione <DemonstrationAndDelivery> - END
 		#endregion
@@ -143,7 +151,8 @@ namespace ATA.services
 		public double structure2 { get; set; }
 		public double structure3 { get; set; }
 		public double structure4 { get; set; }
-        public double structure5 { get; set; }
+        //FDT - ATA2024
+        //public double structure5 { get; set; }
         public string structurenotes { get; set; }
 		#endregion
 
@@ -156,8 +165,9 @@ namespace ATA.services
         public double delivery5 { get; set; }
         public double delivery6 { get; set; }
         public double delivery7 { get; set; }
-        public double delivery8 { get; set; }
-        public double delivery9 { get; set; }
+        //FDT - ATA2024
+        //public double delivery8 { get; set; }
+        //public double delivery9 { get; set; }
         public string deliverynotes { get; set; }
 		#endregion
 

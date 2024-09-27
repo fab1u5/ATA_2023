@@ -10,7 +10,7 @@ function WS_loadExamBoards() {
     $.ajax({
         type: "POST",
         contentType: "application/json",
-        url: "https://app.polimatica.it/atabeta/services/ATA_WebService.asmx/GetExamBoards",
+        url: "http://77.108.25.178:782/services/ATA_WebService.asmx/GetExamBoards",
         data: "",
         dataType: "json",
         success: function (response) {
@@ -84,7 +84,7 @@ function WS_showRecords_examboards_events(preselectedValue) {
     $.ajax({
         type: "POST",
         contentType: "application/json",
-        url: "https://app.polimatica.it/atabeta/services/ATA_WebService.asmx/GetEvents",
+        url: "http://77.108.25.178:782/services/ATA_WebService.asmx/GetEvents",
         data: "",
         dataType: "json",
         success: function (response) {
@@ -116,7 +116,7 @@ function WS_loadExamBoardsWithCars() {
     $.ajax({
         type: "POST",
         contentType: "application/json",
-        url: "https://app.polimatica.it/atabeta/services/ATA_WebService.asmx/GetExamBoardsWithCars",
+        url: "http://77.108.25.178:782/services/ATA_WebService.asmx/GetExamBoardsWithCars",
         data: "",
         dataType: "json",
         success: function (response) {
@@ -187,7 +187,7 @@ function WS_loadExamBoardsWithExaminers() {
     $.ajax({
         type: "POST",
         contentType: "application/json",
-        url: "https://app.polimatica.it/atabeta/services/ATA_WebService.asmx/GetExamBoardsWithExaminers",
+        url: "http://77.108.25.178:782/services/ATA_WebService.asmx/GetExamBoardsWithExaminers",
         data: "",
         dataType: "json",
         success: function (response) {
@@ -250,7 +250,7 @@ function WS_insertRecords_fuels(name) {
     //$.ajax({
     //    type: "POST",
     //    contentType: "application/json", 
-    //    url: "https://app.polimatica.it/atabeta/services/ATA_WebService.asmx/InsertFuel",
+    //    url: "http://77.108.25.178:782/services/ATA_WebService.asmx/InsertFuel",
     //    data: theString,
     //    dataType: "json",
     //    success: function (response) {
@@ -270,7 +270,7 @@ function WS_insertRecords_classes(name) {
     //$.ajax({
     //    type: "POST",
     //    contentType: "application/json",
-    //    url: "https://app.polimatica.it/atabeta/services/ATA_WebService.asmx/InsertClass",
+    //    url: "http://77.108.25.178:782/services/ATA_WebService.asmx/InsertClass",
     //    data: theString,
     //    dataType: "json",
     //    success: function (response) {
@@ -297,7 +297,7 @@ function WS_insertRecord_cars(carno, regno, teamid, classid, fuelid, deliverydoc
     $.ajax({
         type: "POST",
         contentType: "application/json",
-        url: "https://app.polimatica.it/atabeta/services/ATA_WebService.asmx/InsertCar",
+        url: "http://77.108.25.178:782/services/ATA_WebService.asmx/InsertCar",
         data: theString,
         dataType: "json",
         success: function (response) {
@@ -319,7 +319,7 @@ function WS_deleteRecord_cars(id) {
     $.ajax({
         type: "POST",
         contentType: "application/json",
-        url: "https://app.polimatica.it/atabeta/services/ATA_WebService.asmx/DeleteCar",
+        url: "http://77.108.25.178:782/services/ATA_WebService.asmx/DeleteCar",
         data: theString,
         dataType: "json",
         success: function (response) {
@@ -349,7 +349,7 @@ function WS_updateRecord_cars(id, carno, regno, teamid, classid, fuelid, deliver
     $.ajax({
         type: "POST",
         contentType: "application/json",
-        url: "https://app.polimatica.it/atabeta/services/ATA_WebService.asmx/UpdateCar",
+        url: "http://77.108.25.178:782/services/ATA_WebService.asmx/UpdateCar",
         data: theString,
         dataType: "json",
         success: function (response) {
@@ -374,7 +374,7 @@ function WS_updateRecord_cars_scores(id, fuelid, deliverydocdate, boxno) {
     $.ajax({
         type: "POST",
         contentType: "application/json",
-        url: "https://app.polimatica.it/atabeta/services/ATA_WebService.asmx/UpdateCarFromScores",
+        url: "http://77.108.25.178:782/services/ATA_WebService.asmx/UpdateCarFromScores",
         data: theString,
         dataType: "json",
         success: function (response) {
@@ -391,7 +391,7 @@ function WS_showRecords_cars() {
     $.ajax({
         type: "POST",
         contentType: "application/json",
-        url: "https://app.polimatica.it/atabeta/services/ATA_WebService.asmx/GetCars",
+        url: "http://77.108.25.178:782/services/ATA_WebService.asmx/GetCars",
         data: "",
         dataType: "json",
         success: function (response) {
@@ -466,7 +466,7 @@ function WS_showRecords_cars_byfilters(carno, regno, teamid, classid, fuelid, de
     $.ajax({
         type: "POST",
         contentType: "application/json",
-        url: "https://app.polimatica.it/atabeta/services/ATA_WebService.asmx/GetCarsByFilters",
+        url: "http://77.108.25.178:782/services/ATA_WebService.asmx/GetCarsByFilters",
         data: theString,
         dataType: "json",
         success: function (response) {
@@ -531,7 +531,7 @@ function WS_showRecords_cars_classes(ooId) {
     $.ajax({
         type: "POST",
         contentType: "application/json",
-        url: "https://app.polimatica.it/atabeta/services/ATA_WebService.asmx/GetClasses",
+        url: "http://77.108.25.178:782/services/ATA_WebService.asmx/GetClasses",
         data: "",
         dataType: "json",
         success: function (response) {
@@ -565,7 +565,7 @@ function WS_showRecords_cars_fuels(ooId) {
     $.ajax({
         type: "POST",
         contentType: "application/json",
-        url: "https://app.polimatica.it/atabeta/services/ATA_WebService.asmx/GetFuels",
+        url: "http://77.108.25.178:782/services/ATA_WebService.asmx/GetFuels",
         data: "",
         dataType: "json",
         success: function (response) {
@@ -599,7 +599,7 @@ function WS_showRecords_cars_teams(ooId) {
     $.ajax({
         type: "POST",
         contentType: "application/json",
-        url: "https://app.polimatica.it/atabeta/services/ATA_WebService.asmx/GetTeams",
+        url: "http://77.108.25.178:782/services/ATA_WebService.asmx/GetTeams",
         data: "",
         dataType: "json",
         success: function (response) {
@@ -637,7 +637,7 @@ function WS_insertRecord_teams(teamname, university, country) {
     $.ajax({
         type: "POST",
         contentType: "application/json",
-        url: "https://app.polimatica.it/atabeta/services/ATA_WebService.asmx/InsertTeam",
+        url: "http://77.108.25.178:782/services/ATA_WebService.asmx/InsertTeam",
         data: theString,
         dataType: "json",
         success: function (response) {
@@ -659,7 +659,7 @@ function WS_deleteRecord_teams(id) {
     $.ajax({
         type: "POST",
         contentType: "application/json",
-        url: "https://app.polimatica.it/atabeta/services/ATA_WebService.asmx/DeleteTeam",
+        url: "http://77.108.25.178:782/services/ATA_WebService.asmx/DeleteTeam",
         data: theString,
         dataType: "json",
         success: function (response) {
@@ -686,7 +686,7 @@ function WS_updateRecord_teams(id, teamname, university, country) {
     $.ajax({
         type: "POST",
         contentType: "application/json",
-        url: "https://app.polimatica.it/atabeta/services/ATA_WebService.asmx/UpdateTeam",
+        url: "http://77.108.25.178:782/services/ATA_WebService.asmx/UpdateTeam",
         data: theString,
         dataType: "json",
         success: function (response) {
@@ -703,7 +703,7 @@ function WS_showRecords_teams() {
     $.ajax({
         type: "POST",
         contentType: "application/json",
-        url: "https://app.polimatica.it/atabeta/services/ATA_WebService.asmx/GetTeams",
+        url: "http://77.108.25.178:782/services/ATA_WebService.asmx/GetTeams",
         data: "",
         dataType: "json",
         success: function (response) {
@@ -755,7 +755,7 @@ function WS_insertRecord_examiners(firstname, surname, phone) {
     $.ajax({
         type: "POST",
         contentType: "application/json",
-        url: "https://app.polimatica.it/atabeta/services/ATA_WebService.asmx/InsertExaminer",
+        url: "http://77.108.25.178:782/services/ATA_WebService.asmx/InsertExaminer",
         data: theString,
         dataType: "json",
         success: function (response) {
@@ -777,7 +777,7 @@ function WS_deleteRecord_examiners(id) {
     $.ajax({
         type: "POST",
         contentType: "application/json",
-        url: "https://app.polimatica.it/atabeta/services/ATA_WebService.asmx/DeleteExaminer",
+        url: "http://77.108.25.178:782/services/ATA_WebService.asmx/DeleteExaminer",
         data: theString,
         dataType: "json",
         success: function (response) {
@@ -804,7 +804,7 @@ function WS_updateRecord_examiners(id, firstname, surname, phone) {
     $.ajax({
         type: "POST",
         contentType: "application/json",
-        url: "https://app.polimatica.it/atabeta/services/ATA_WebService.asmx/UpdateExaminer",
+        url: "http://77.108.25.178:782/services/ATA_WebService.asmx/UpdateExaminer",
         data: theString,
         dataType: "json",
         success: function (response) {
@@ -822,7 +822,7 @@ function WS_showRecords_examiners() {
     $.ajax({
         type: "POST",
         contentType: "application/json",
-        url: "https://app.polimatica.it/atabeta/services/ATA_WebService.asmx/GetExaminers",
+        url: "http://77.108.25.178:782/services/ATA_WebService.asmx/GetExaminers",
         data: "",
         dataType: "json",
         success: function (response) {
@@ -878,7 +878,7 @@ function WS_insertRecord_examboards(examboardname, description, usecolor, color,
     $.ajax({
         type: "POST",
         contentType: "application/json",
-        url: "https://app.polimatica.it/atabeta/services/ATA_WebService.asmx/InsertExamBoard",
+        url: "http://77.108.25.178:782/services/ATA_WebService.asmx/InsertExamBoard",
         data: theString,
         dataType: "json",
         success: function (response) {
@@ -900,7 +900,7 @@ function WS_deleteRecord_examboards(id) {
     $.ajax({
         type: "POST",
         contentType: "application/json",
-        url: "https://app.polimatica.it/atabeta/services/ATA_WebService.asmx/DeleteExamBoard",
+        url: "http://77.108.25.178:782/services/ATA_WebService.asmx/DeleteExamBoard",
         data: theString,
         dataType: "json",
         success: function (response) {
@@ -929,7 +929,7 @@ function WS_updateRecord_examboards(id, examboardname, description, usecolor, co
     $.ajax({
         type: "POST",
         contentType: "application/json",
-        url: "https://app.polimatica.it/atabeta/services/ATA_WebService.asmx/UpdateExamBoard",
+        url: "http://77.108.25.178:782/services/ATA_WebService.asmx/UpdateExamBoard",
         data: theString,
         dataType: "json",
         success: function (response) {
@@ -946,7 +946,7 @@ function WS_showRecords_examboards() {
     $.ajax({
         type: "POST",
         contentType: "application/json",
-        url: "https://app.polimatica.it/atabeta/services/ATA_WebService.asmx/GetExamBoards",
+        url: "http://77.108.25.178:782/services/ATA_WebService.asmx/GetExamBoards",
         data: "",
         dataType: "json",
         success: function (response) {
@@ -1008,7 +1008,7 @@ function WS_insertRecord_examboards2examiners(examboardid, examinerid) {
     $.ajax({
         type: "POST",
         contentType: "application/json",
-        url: "https://app.polimatica.it/atabeta/services/ATA_WebService.asmx/InsertExamBoardExaminer",
+        url: "http://77.108.25.178:782/services/ATA_WebService.asmx/InsertExamBoardExaminer",
         data: theString,
         dataType: "json",
         success: function (response) {
@@ -1030,7 +1030,7 @@ function WS_deleteRecord_examboards2examiners(examboardid, examinerid) {
     $.ajax({
         type: "POST",
         contentType: "application/json",
-        url: "https://app.polimatica.it/atabeta/services/ATA_WebService.asmx/DeleteExamBoardExaminer",
+        url: "http://77.108.25.178:782/services/ATA_WebService.asmx/DeleteExamBoardExaminer",
         data: theString,
         dataType: "json",
         success: function (response) {
@@ -1051,7 +1051,7 @@ function WS_showRecords_examboards2examiners(id) {
     $.ajax({
         type: "POST",
         contentType: "application/json",
-        url: "https://app.polimatica.it/atabeta/services/ATA_WebService.asmx/GetExamBoardExaminersAssignable",
+        url: "http://77.108.25.178:782/services/ATA_WebService.asmx/GetExamBoardExaminersAssignable",
         data: theString,
         dataType: "json",
         success: function (response) {
@@ -1103,7 +1103,7 @@ function WS_insertRecord_examboards2cars(examboardid, carid) {
     $.ajax({
         type: "POST",
         contentType: "application/json",
-        url: "https://app.polimatica.it/atabeta/services/ATA_WebService.asmx/InsertExamBoardCar",
+        url: "http://77.108.25.178:782/services/ATA_WebService.asmx/InsertExamBoardCar",
         data: theString,
         dataType: "json",
         success: function (response) {
@@ -1125,7 +1125,7 @@ function WS_deleteRecord_examboards2cars(examboardid, carid) {
     $.ajax({
         type: "POST",
         contentType: "application/json",
-        url: "https://app.polimatica.it/atabeta/services/ATA_WebService.asmx/DeleteExamBoardCar",
+        url: "http://77.108.25.178:782/services/ATA_WebService.asmx/DeleteExamBoardCar",
         data: theString,
         dataType: "json",
         success: function (response) {
@@ -1146,7 +1146,7 @@ function WS_showRecords_examboards2cars(id) {
     $.ajax({
         type: "POST",
         contentType: "application/json",
-        url: "https://app.polimatica.it/atabeta/services/ATA_WebService.asmx/GetExamBoardCarsAssignable",
+        url: "http://77.108.25.178:782/services/ATA_WebService.asmx/GetExamBoardCarsAssignable",
         data: theString,
         dataType: "json",
         success: function (response) {
@@ -1213,7 +1213,7 @@ function WS_insertRecords_eventstypes(name) {
     //$.ajax({
     //    type: "POST",
     //    contentType: "application/json", 
-    //    url: "https://app.polimatica.it/atabeta/services/ATA_WebService.asmx/InsertEventType",
+    //    url: "http://77.108.25.178:782/services/ATA_WebService.asmx/InsertEventType",
     //    data: theString,
     //    dataType: "json",
     //    success: function (response) {
@@ -1235,7 +1235,7 @@ function WS_insertRecords_eventsnames(name, eventTypeId) {
     //$.ajax({
     //    type: "POST",
     //    contentType: "application/json", 
-    //    url: "https://app.polimatica.it/atabeta/services/ATA_WebService.asmx/InsertEventName",
+    //    url: "http://77.108.25.178:782/services/ATA_WebService.asmx/InsertEventName",
     //    data: theString,
     //    dataType: "json",
     //    success: function (response) {
@@ -1260,7 +1260,7 @@ function WS_insertRecord_events(eventTypeId, eventNameId, description, isScoreNu
     $.ajax({
         type: "POST",
         contentType: "application/json",
-        url: "https://app.polimatica.it/atabeta/services/ATA_WebService.asmx/InsertEvent",
+        url: "http://77.108.25.178:782/services/ATA_WebService.asmx/InsertEvent",
         data: theString,
         dataType: "json",
         success: function (response) {
@@ -1283,7 +1283,7 @@ function WS_deleteRecord_events(id) {
     $.ajax({
         type: "POST",
         contentType: "application/json",
-        url: "https://app.polimatica.it/atabeta/services/ATA_WebService.asmx/DeleteEvent",
+        url: "http://77.108.25.178:782/services/ATA_WebService.asmx/DeleteEvent",
         data: theString,
         dataType: "json",
         success: function (response) {
@@ -1310,7 +1310,7 @@ function WS_updateRecord_events(id, eventTypeId, eventNameId, description, isSco
     $.ajax({
         type: "POST",
         contentType: "application/json",
-        url: "https://app.polimatica.it/atabeta/services/ATA_WebService.asmx/UpdateEvent",
+        url: "http://77.108.25.178:782/services/ATA_WebService.asmx/UpdateEvent",
         data: theString,
         dataType: "json",
         success: function (response) {
@@ -1328,7 +1328,7 @@ function WS_showRecords_events() {
     $.ajax({
         type: "POST",
         contentType: "application/json",
-        url: "https://app.polimatica.it/atabeta/services/ATA_WebService.asmx/GetEvents",
+        url: "http://77.108.25.178:782/services/ATA_WebService.asmx/GetEvents",
         data: "",
         dataType: "json",
         success: function (response) {
@@ -1383,7 +1383,7 @@ function WS_showRecords_events_eventstypes(id) {
     $.ajax({
         type: "POST",
         contentType: "application/json",
-        url: "https://app.polimatica.it/atabeta/services/ATA_WebService.asmx/GetEventsTypes",
+        url: "http://77.108.25.178:782/services/ATA_WebService.asmx/GetEventsTypes",
         data: "",
         dataType: "json",
         success: function (response) {
@@ -1418,7 +1418,7 @@ function WS_showRecords_events_eventsnames(id, preselectedValue) {
     $.ajax({
         type: "POST",
         contentType: "application/json",
-        url: "https://app.polimatica.it/atabeta/services/ATA_WebService.asmx/GetEventNameByEventTypeId",
+        url: "http://77.108.25.178:782/services/ATA_WebService.asmx/GetEventNameByEventTypeId",
         data: theString,
         dataType: "json",
         success: function (response) {
@@ -1464,7 +1464,7 @@ function WS_showRecords_eventsResults(id, classId) {
         $.ajax({
             type: "POST",
             contentType: "application/json",
-            url: "https://app.polimatica.it/atabeta/services/ATA_WebService.asmx/GetEventNameByEventTypeId",
+            url: "http://77.108.25.178:782/services/ATA_WebService.asmx/GetEventNameByEventTypeId",
             data: theString,
             dataType: "json",
             success: function (response) {
@@ -1505,7 +1505,7 @@ function WS_showRecords_eventsResults(id, classId) {
         $.ajax({
             type: "POST",
             contentType: "application/json",
-            url: "https://app.polimatica.it/atabeta/services/ATA_WebService.asmx/GetOverallRanking",
+            url: "http://77.108.25.178:782/services/ATA_WebService.asmx/GetOverallRanking",
             data: theString,
             dataType: "json",
             success: function (response) {
@@ -1591,7 +1591,7 @@ function WS_showScoresEvent(id, name, classId) {
             $.ajax({
                 type: "POST",
                 contentType: "application/json",
-                url: "https://app.polimatica.it/atabeta/services/ATA_WebService.asmx/CalculateScorePresentation",
+                url: "http://77.108.25.178:782/services/ATA_WebService.asmx/CalculateScorePresentation",
                 data: theString,
                 dataType: "json",
                 success: function (response) {
@@ -1650,7 +1650,7 @@ function WS_showScoresEvent(id, name, classId) {
             $.ajax({
                 type: "POST",
                 contentType: "application/json",
-                url: "https://app.polimatica.it/atabeta/services/ATA_WebService.asmx/CalculateScoreCost2015",
+                url: "http://77.108.25.178:782/services/ATA_WebService.asmx/CalculateScoreCost2015",
                 data: theString,
                 dataType: "json",
                 success: function (response) {
@@ -1701,7 +1701,7 @@ function WS_showScoresEvent(id, name, classId) {
             $.ajax({
                 type: "POST",
                 contentType: "application/json",
-                url: "https://app.polimatica.it/atabeta/services/ATA_WebService.asmx/CalculateDesignScore",
+                url: "http://77.108.25.178:782/services/ATA_WebService.asmx/CalculateDesignScore",
                 data: theString,
                 dataType: "json",
                 success: function (response) {
@@ -1753,7 +1753,7 @@ function WS_showScoresEvent(id, name, classId) {
             $.ajax({
                 type: "POST",
                 contentType: "application/json",
-                url: "https://app.polimatica.it/atabeta/services/ATA_WebService.asmx/CalculateScoreAcceleration",
+                url: "http://77.108.25.178:782/services/ATA_WebService.asmx/CalculateScoreAcceleration",
                 data: theString,
                 dataType: "json",
                 success: function (response) {
@@ -1804,7 +1804,7 @@ function WS_showScoresEvent(id, name, classId) {
             $.ajax({
                 type: "POST",
                 contentType: "application/json",
-                url: "https://app.polimatica.it/atabeta/services/ATA_WebService.asmx/CalculateScoreSkidPad",
+                url: "http://77.108.25.178:782/services/ATA_WebService.asmx/CalculateScoreSkidPad",
                 data: theString,
                 dataType: "json",
                 success: function (response) {
@@ -1855,7 +1855,7 @@ function WS_showScoresEvent(id, name, classId) {
             $.ajax({
                 type: "POST",
                 contentType: "application/json",
-                url: "https://app.polimatica.it/atabeta/services/ATA_WebService.asmx/CalculateScoreAutocross",
+                url: "http://77.108.25.178:782/services/ATA_WebService.asmx/CalculateScoreAutocross",
                 data: theString,
                 dataType: "json",
                 success: function (response) {
@@ -1906,7 +1906,7 @@ function WS_showScoresEvent(id, name, classId) {
             $.ajax({
                 type: "POST",
                 contentType: "application/json",
-                url: "https://app.polimatica.it/atabeta/services/ATA_WebService.asmx/CalculateScoreEndurance",
+                url: "http://77.108.25.178:782/services/ATA_WebService.asmx/CalculateScoreEndurance",
                 data: theString,
                 dataType: "json",
                 success: function (response) {
@@ -1964,7 +1964,7 @@ function WS_showRecords_scores_cars_classes(preselectedClass) {
     $.ajax({
         type: "POST",
         contentType: "application/json",
-        url: "https://app.polimatica.it/atabeta/services/ATA_WebService.asmx/GetScoresClassesEvents",
+        url: "http://77.108.25.178:782/services/ATA_WebService.asmx/GetScoresClassesEvents",
         data: "",
         dataType: "json",
         success: function (response) {
@@ -2068,7 +2068,7 @@ function WS_showRecords_scores(classid, eventid) {
     $.ajax({
         type: "POST",
         contentType: "application/json",
-        url: "https://app.polimatica.it/atabeta/services/ATA_WebService.asmx/GetScoresByClassAndEvent",
+        url: "http://77.108.25.178:782/services/ATA_WebService.asmx/GetScoresByClassAndEvent",
         data: theString,
         dataType: "json",
         success: function (response) {
@@ -2160,7 +2160,7 @@ function WS_insertMultipleRecord_scores(multipleScores2Insert) {
     $.ajax({
         type: "POST",
         contentType: "application/json",
-        url: "https://app.polimatica.it/atabeta/services/ATA_WebService.asmx/InsertScoresOneShot",
+        url: "http://77.108.25.178:782/services/ATA_WebService.asmx/InsertScoresOneShot",
         data: theString,
         dataType: "json",
         success: function (response) {
@@ -2185,7 +2185,7 @@ function WS_insertRecord_scores(eventid, carid, score, penalityscore, penalityno
     $.ajax({
         type: "POST",
         contentType: "application/json",
-        url: "https://app.polimatica.it/atabeta/services/ATA_WebService.asmx/InsertScore",
+        url: "http://77.108.25.178:782/services/ATA_WebService.asmx/InsertScore",
         data: theString,
         dataType: "json",
         success: function (response) {
@@ -2206,7 +2206,7 @@ function WS_deleteRecord_scores(eventid, carid) {
     $.ajax({
         type: "POST",
         contentType: "application/json",
-        url: "https://app.polimatica.it/atabeta/services/ATA_WebService.asmx/DeleteScoresOneShot",
+        url: "http://77.108.25.178:782/services/ATA_WebService.asmx/DeleteScoresOneShot",
         data: theString,
         dataType: "json",
         success: function (response) {
@@ -2232,7 +2232,7 @@ function WS_updateRecord_scores(eventid, carid, score, penalityscore, penalityno
     $.ajax({
         type: "POST",
         contentType: "application/json",
-        url: "https://app.polimatica.it/atabeta/services/ATA_WebService.asmx/UpdateScore",
+        url: "http://77.108.25.178:782/services/ATA_WebService.asmx/UpdateScore",
         data: theString,
         dataType: "json",
         success: function (response) {
@@ -2253,7 +2253,7 @@ function WS_updateRecord_scores_score(id, score) {
     $.ajax({
         type: "POST",
         contentType: "application/json",
-        url: "https://app.polimatica.it/atabeta/services/ATA_WebService.asmx/UpdateScoreGivenScore",
+        url: "http://77.108.25.178:782/services/ATA_WebService.asmx/UpdateScoreGivenScore",
         data: theString,
         dataType: "json",
         success: function (response) {
@@ -2274,7 +2274,7 @@ function WS_showRecords_scores_eventdetails(classid, eventid) {
     $.ajax({
         type: "POST",
         contentType: "application/json",
-        url: "https://app.polimatica.it/atabeta/services/ATA_WebService.asmx/GetScoreEventDetail",
+        url: "http://77.108.25.178:782/services/ATA_WebService.asmx/GetScoreEventDetail",
         data: theString,
         dataType: "json",
         success: function (response) {
@@ -2300,7 +2300,7 @@ function showRecords_scores_cars_fuels(carid, fuelid) {
     $.ajax({
         type: "POST",
         contentType: "application/json",
-        url: "https://app.polimatica.it/atabeta/services/ATA_WebService.asmx/GetFuels",
+        url: "http://77.108.25.178:782/services/ATA_WebService.asmx/GetFuels",
         data: "",
         dataType: "json",
         success: function (response) {
@@ -2335,7 +2335,7 @@ function WS_configuration_download(examboardid) {
     $.ajax({
         type: "POST",
         contentType: "application/json",
-        url: "https://app.polimatica.it/atabeta/services/ATA_ExportService.asmx/ConfigurationDownload",
+        url: "http://77.108.25.178:782/services/ATA_ExportService.asmx/ConfigurationDownload",
         data: theString,
         dataType: "json",
         success: function (response) {
@@ -2389,7 +2389,7 @@ function WS_insertRecord_scores_design1E(eventid, carid, scoreid, suspension, fr
     $.ajax({
         type: "POST",
         contentType: "application/json",
-        url: "https://app.polimatica.it/atabeta/services/ATA_WebService.asmx/InsertScoreDesign1E",
+        url: "http://77.108.25.178:782/services/ATA_WebService.asmx/InsertScoreDesign1E",
         data: theString,
         dataType: "json",
         success: function (response) {
@@ -2435,7 +2435,7 @@ function WS_updateRecord_scores_design1E(scoreid, suspension, framebodyaero, tra
     $.ajax({
         type: "POST",
         contentType: "application/json",
-        url: "https://app.polimatica.it/atabeta/services/ATA_WebService.asmx/UpdateScoreDesign1E",
+        url: "http://77.108.25.178:782/services/ATA_WebService.asmx/UpdateScoreDesign1E",
         data: theString,
         dataType: "json",
         success: function (response) {
@@ -2456,7 +2456,7 @@ function WS_deleteRecord_scores_design1E(scoreid) {
     $.ajax({
         type: "POST",
         contentType: "application/json",
-        url: "https://app.polimatica.it/atabeta/services/ATA_WebService.asmx/DeleteScoreDesign1E",
+        url: "http://77.108.25.178:782/services/ATA_WebService.asmx/DeleteScoreDesign1E",
         data: theString,
         dataType: "json",
         success: function (response) {
@@ -2476,7 +2476,7 @@ function WS_showRecords_scores_design1E(scoreid) {
     $.ajax({
         type: "POST",
         contentType: "application/json",
-        url: "https://app.polimatica.it/atabeta/services/ATA_WebService.asmx/GetScoreDesign1E",
+        url: "http://77.108.25.178:782/services/ATA_WebService.asmx/GetScoreDesign1E",
         data: theString,
         dataType: "json",
         success: function (response) {
@@ -2614,7 +2614,7 @@ function WS_insertRecord_scores_design1C3(eventid, carid, scoreid, suspension, f
     $.ajax({
         type: "POST",
         contentType: "application/json",
-        url: "https://app.polimatica.it/atabeta/services/ATA_WebService.asmx/InsertScoreDesign1C3",
+        url: "http://77.108.25.178:782/services/ATA_WebService.asmx/InsertScoreDesign1C3",
         data: theString,
         dataType: "json",
         success: function (response) {
@@ -2660,7 +2660,7 @@ function WS_updateRecord_scores_design1C3(scoreid, suspension, framebodyaero, po
     $.ajax({
         type: "POST",
         contentType: "application/json",
-        url: "https://app.polimatica.it/atabeta/services/ATA_WebService.asmx/UpdateScoreDesign1C3",
+        url: "http://77.108.25.178:782/services/ATA_WebService.asmx/UpdateScoreDesign1C3",
         data: theString,
         dataType: "json",
         success: function (response) {
@@ -2681,7 +2681,7 @@ function WS_deleteRecord_scores_design1C3(scoreid) {
     $.ajax({
         type: "POST",
         contentType: "application/json",
-        url: "https://app.polimatica.it/atabeta/services/ATA_WebService.asmx/DeleteScoreDesign1C3",
+        url: "http://77.108.25.178:782/services/ATA_WebService.asmx/DeleteScoreDesign1C3",
         data: theString,
         dataType: "json",
         success: function (response) {
@@ -2701,7 +2701,7 @@ function WS_showRecords_scores_design1C3(scoreid) {
     $.ajax({
         type: "POST",
         contentType: "application/json",
-        url: "https://app.polimatica.it/atabeta/services/ATA_WebService.asmx/GetScoreDesign1C3",
+        url: "http://77.108.25.178:782/services/ATA_WebService.asmx/GetScoreDesign1C3",
         data: theString,
         dataType: "json",
         success: function (response) {
@@ -2814,7 +2814,7 @@ function WS_showRecords_scores_presentation(scoreid) {
     $.ajax({
         type: "POST",
         contentType: "application/json",
-        url: "https://app.polimatica.it/atabeta/services/ATA_WebService.asmx/GetScorePresentation",
+        url: "http://77.108.25.178:782/services/ATA_WebService.asmx/GetScorePresentation",
         data: theString,
         dataType: "json",
         success: function (response) {
@@ -3199,7 +3199,7 @@ function WS_insertRecord_scores_presentation(eventid, carid, scoreP) {
     $.ajax({
         type: "POST",
         contentType: "application/json",
-        url: "https://app.polimatica.it/atabeta/services/ATA_WebService.asmx/InsertScorePresentation",
+        url: "http://77.108.25.178:782/services/ATA_WebService.asmx/InsertScorePresentation",
         data: theString,
         dataType: "json",
         success: function (response) {
@@ -3272,7 +3272,7 @@ function WS_updateRecord_scores_presentation(scoreP) {
     $.ajax({
         type: "POST",
         contentType: "application/json",
-        url: "https://app.polimatica.it/atabeta/services/ATA_WebService.asmx/UpdateScorePresentation",
+        url: "http://77.108.25.178:782/services/ATA_WebService.asmx/UpdateScorePresentation",
         data: theString,
         dataType: "json",
         success: function (response) {
@@ -3294,7 +3294,7 @@ function WS_deleteRecord_scores_presentation(scoreid) {
     $.ajax({
         type: "POST",
         contentType: "application/json",
-        url: "https://app.polimatica.it/atabeta/services/ATA_WebService.asmx/DeleteScorePresentation",
+        url: "http://77.108.25.178:782/services/ATA_WebService.asmx/DeleteScorePresentation",
         data: theString,
         dataType: "json",
         success: function (response) {
@@ -3323,7 +3323,7 @@ function WS_insertRecord_scores_cost(eventid, carid, scoreid, LowestCost, Accura
     $.ajax({
         type: "POST",
         contentType: "application/json",
-        url: "https://app.polimatica.it/atabeta/services/ATA_WebService.asmx/InsertScoreCost2015",
+        url: "http://77.108.25.178:782/services/ATA_WebService.asmx/InsertScoreCost2015",
         data: theString,
         dataType: "json",
         success: function (response) {
@@ -3350,7 +3350,7 @@ function WS_updateRecord_scores_cost(scoreid, LowestCost, Accuracy, EventDay, Pr
     $.ajax({
         type: "POST",
         contentType: "application/json",
-        url: "https://app.polimatica.it/atabeta/services/ATA_WebService.asmx/UpdateScoreCost2015",
+        url: "http://77.108.25.178:782/services/ATA_WebService.asmx/UpdateScoreCost2015",
         data: theString,
         dataType: "json",
         success: function (response) {
@@ -3372,7 +3372,7 @@ function WS_deleteRecord_scores_cost(scoreid) {
     $.ajax({
         type: "POST",
         contentType: "application/json",
-        url: "https://app.polimatica.it/atabeta/services/ATA_WebService.asmx/DeleteScoreCost2015",
+        url: "http://77.108.25.178:782/services/ATA_WebService.asmx/DeleteScoreCost2015",
         data: theString,
         dataType: "json",
         success: function (response) {
@@ -3392,7 +3392,7 @@ function WS_showRecords_scores_cost(scoreid) {
     $.ajax({
         type: "POST",
         contentType: "application/json",
-        url: "https://app.polimatica.it/atabeta/services/ATA_WebService.asmx/GetScoreCost2015",
+        url: "http://77.108.25.178:782/services/ATA_WebService.asmx/GetScoreCost2015",
         data: theString,
         dataType: "json",
         success: function (response) {
@@ -3470,7 +3470,7 @@ function WS_insertRecord_scores_acceleration(eventid, carid, scoreid, r1time, r1
     $.ajax({
         type: "POST",
         contentType: "application/json",
-        url: "https://app.polimatica.it/atabeta/services/ATA_WebService.asmx/InsertScoreAcceleration",
+        url: "http://77.108.25.178:782/services/ATA_WebService.asmx/InsertScoreAcceleration",
         data: theString,
         dataType: "json",
         success: function (response) {
@@ -3499,7 +3499,7 @@ function WS_updateRecord_scores_acceleration(scoreid, r1time, r1numofcones, r2ti
     $.ajax({
         type: "POST",
         contentType: "application/json",
-        url: "https://app.polimatica.it/atabeta/services/ATA_WebService.asmx/UpdateScoreAcceleration",
+        url: "http://77.108.25.178:782/services/ATA_WebService.asmx/UpdateScoreAcceleration",
         data: theString,
         dataType: "json",
         success: function (response) {
@@ -3520,7 +3520,7 @@ function WS_deleteRecord_scores_acceleration(scoreid) {
     $.ajax({
         type: "POST",
         contentType: "application/json",
-        url: "https://app.polimatica.it/atabeta/services/ATA_WebService.asmx/DeleteScoreAcceleration",
+        url: "http://77.108.25.178:782/services/ATA_WebService.asmx/DeleteScoreAcceleration",
         data: theString,
         dataType: "json",
         success: function (response) {
@@ -3540,7 +3540,7 @@ function WS_showRecords_scores_acceleration(scoreid) {
     $.ajax({
         type: "POST",
         contentType: "application/json",
-        url: "https://app.polimatica.it/atabeta/services/ATA_WebService.asmx/GetScoreAcceleration",
+        url: "http://77.108.25.178:782/services/ATA_WebService.asmx/GetScoreAcceleration",
         data: theString,
         dataType: "json",
         success: function (response) {
@@ -3637,7 +3637,7 @@ function WS_insertRecord_scores_skidpad(eventid, carid, scoreid, r1time, r1numof
     $.ajax({
         type: "POST",
         contentType: "application/json",
-        url: "https://app.polimatica.it/atabeta/services/ATA_WebService.asmx/InsertScoreSkidPad",
+        url: "http://77.108.25.178:782/services/ATA_WebService.asmx/InsertScoreSkidPad",
         data: theString,
         dataType: "json",
         success: function (response) {
@@ -3666,7 +3666,7 @@ function WS_updateRecord_scores_skidpad(scoreid, r1time, r1numofcones, r2time, r
     $.ajax({
         type: "POST",
         contentType: "application/json",
-        url: "https://app.polimatica.it/atabeta/services/ATA_WebService.asmx/UpdateScoreSkidPad",
+        url: "http://77.108.25.178:782/services/ATA_WebService.asmx/UpdateScoreSkidPad",
         data: theString,
         dataType: "json",
         success: function (response) {
@@ -3687,7 +3687,7 @@ function WS_deleteRecord_scores_skidpad(scoreid) {
     $.ajax({
         type: "POST",
         contentType: "application/json",
-        url: "https://app.polimatica.it/atabeta/services/ATA_WebService.asmx/DeleteScoreSkidPad",
+        url: "http://77.108.25.178:782/services/ATA_WebService.asmx/DeleteScoreSkidPad",
         data: theString,
         dataType: "json",
         success: function (response) {
@@ -3707,7 +3707,7 @@ function WS_showRecords_scores_skidpad(scoreid) {
     $.ajax({
         type: "POST",
         contentType: "application/json",
-        url: "https://app.polimatica.it/atabeta/services/ATA_WebService.asmx/GetScoreSkidPad",
+        url: "http://77.108.25.178:782/services/ATA_WebService.asmx/GetScoreSkidPad",
         data: theString,
         dataType: "json",
         success: function (response) {
@@ -3809,7 +3809,7 @@ function WS_insertRecord_scores_autocross(eventid, carid, scoreid, r1time, r1num
     $.ajax({
         type: "POST",
         contentType: "application/json",
-        url: "https://app.polimatica.it/atabeta/services/ATA_WebService.asmx/InsertScoreAutoCross",
+        url: "http://77.108.25.178:782/services/ATA_WebService.asmx/InsertScoreAutoCross",
         data: theString,
         dataType: "json",
         success: function (response) {
@@ -3843,7 +3843,7 @@ function WS_updateRecord_scores_autocross(scoreid, r1time, r1numofcones, r1doc, 
     $.ajax({
         type: "POST",
         contentType: "application/json",
-        url: "https://app.polimatica.it/atabeta/services/ATA_WebService.asmx/UpdateScoreAutoCross",
+        url: "http://77.108.25.178:782/services/ATA_WebService.asmx/UpdateScoreAutoCross",
         data: theString,
         dataType: "json",
         success: function (response) {
@@ -3864,7 +3864,7 @@ function WS_deleteRecord_scores_autocross(scoreid) {
     $.ajax({
         type: "POST",
         contentType: "application/json",
-        url: "https://app.polimatica.it/atabeta/services/ATA_WebService.asmx/DeleteScoreAutoCross",
+        url: "http://77.108.25.178:782/services/ATA_WebService.asmx/DeleteScoreAutoCross",
         data: theString,
         dataType: "json",
         success: function (response) {
@@ -3884,7 +3884,7 @@ function WS_showRecords_scores_autocross(scoreid) {
     $.ajax({
         type: "POST",
         contentType: "application/json",
-        url: "https://app.polimatica.it/atabeta/services/ATA_WebService.asmx/GetScoreAutoCross",
+        url: "http://77.108.25.178:782/services/ATA_WebService.asmx/GetScoreAutoCross",
         data: theString,
         dataType: "json",
         success: function (response) {
@@ -3982,7 +3982,7 @@ function WS_LoadEventsTypeResults() {
     $.ajax({
         type: "POST",
         contentType: "application/json",
-        url: "https://app.polimatica.it/atabeta/services/ATA_WebService.asmx/GetEventsTypes",
+        url: "http://77.108.25.178:782/services/ATA_WebService.asmx/GetEventsTypes",
         data: "",
         dataType: "json",
         success: function (response) {
@@ -4018,7 +4018,7 @@ function LoadRankingClasses() {
     $.ajax({
         type: "POST",
         contentType: "application/json",
-        url: "https://app.polimatica.it/atabeta/services/ATA_WebService.asmx/GetClasses",
+        url: "http://77.108.25.178:782/services/ATA_WebService.asmx/GetClasses",
         data: "",
         dataType: "json",
         success: function (response) {
@@ -4062,7 +4062,7 @@ function WS_insertRecord_scores_endurance(eventid, carid, scoreid, time, laps, p
     $.ajax({
         type: "POST",
         contentType: "application/json",
-        url: "https://app.polimatica.it/atabeta/services/ATA_WebService.asmx/InsertScoreEndurance",
+        url: "http://77.108.25.178:782/services/ATA_WebService.asmx/InsertScoreEndurance",
         data: theString,
         dataType: "json",
         success: function (response) {
@@ -4092,7 +4092,7 @@ function WS_updateRecord_scores_endurance(scoreid, time, laps, penalities, cones
     $.ajax({
         type: "POST",
         contentType: "application/json",
-        url: "https://app.polimatica.it/atabeta/services/ATA_WebService.asmx/UpdateScoreEndurance",
+        url: "http://77.108.25.178:782/services/ATA_WebService.asmx/UpdateScoreEndurance",
         data: theString,
         dataType: "json",
         success: function (response) {
@@ -4113,7 +4113,7 @@ function WS_deleteRecord_scores_endurance(scoreid) {
     $.ajax({
         type: "POST",
         contentType: "application/json",
-        url: "https://app.polimatica.it/atabeta/services/ATA_WebService.asmx/DeleteScoreEndurance",
+        url: "http://77.108.25.178:782/services/ATA_WebService.asmx/DeleteScoreEndurance",
         data: theString,
         dataType: "json",
         success: function (response) {
@@ -4133,7 +4133,7 @@ function WS_showRecords_scores_endurance(scoreid, carfuelid) {
     $.ajax({
         type: "POST",
         contentType: "application/json",
-        url: "https://app.polimatica.it/atabeta/services/ATA_WebService.asmx/GetScoreEndurance",
+        url: "http://77.108.25.178:782/services/ATA_WebService.asmx/GetScoreEndurance",
         data: theString,
         dataType: "json",
         success: function (response) {
@@ -4197,7 +4197,7 @@ function WS_showDetailsEndurance(id) {
     $.ajax({
         type: "POST",
         contentType: "application/json",
-        url: "https://app.polimatica.it/atabeta/services/ATA_WebService.asmx/GetScoreDetailsEndurance",
+        url: "http://77.108.25.178:782/services/ATA_WebService.asmx/GetScoreDetailsEndurance",
         data: theString,
         dataType: "json",
         success: function (response) {
@@ -4244,7 +4244,7 @@ function WS_set_endurance_settings(totallaps, laplenght, consumptionmax) {
     $.ajax({
         type: "POST",
         contentType: "application/json",
-        url: "https://app.polimatica.it/atabeta/services/ATA_WebService.asmx/SetEnduranceSettings",
+        url: "http://77.108.25.178:782/services/ATA_WebService.asmx/SetEnduranceSettings",
         data: theString,
         dataType: "json",
         success: function (response) {
@@ -4260,7 +4260,7 @@ function WS_getTotalLapEndurance() {
     $.ajax({
         type: "POST",
         contentType: "application/json",
-        url: "https://app.polimatica.it/atabeta/services/ATA_WebService.asmx/getTotalLapEndurance",
+        url: "http://77.108.25.178:782/services/ATA_WebService.asmx/getTotalLapEndurance",
         data: "",
         dataType: "json",
         success: function (response) {
@@ -4281,7 +4281,7 @@ function WS_getLapLenghtEndurance() {
     $.ajax({
         type: "POST",
         contentType: "application/json",
-        url: "https://app.polimatica.it/atabeta/services/ATA_WebService.asmx/getLapLenghtEndurance",
+        url: "http://77.108.25.178:782/services/ATA_WebService.asmx/getLapLenghtEndurance",
         data: "",
         dataType: "json",
         success: function (response) {
@@ -4302,7 +4302,7 @@ function WS_getConsumptionMaxEndurance() {
     $.ajax({
         type: "POST",
         contentType: "application/json",
-        url: "https://app.polimatica.it/atabeta/services/ATA_WebService.asmx/getConsumptionMaxEndurance",
+        url: "http://77.108.25.178:782/services/ATA_WebService.asmx/getConsumptionMaxEndurance",
         data: "",
         dataType: "json",
         success: function (response) {
@@ -4324,7 +4324,7 @@ function WS_ShowPenalties() {
     $.ajax({
         type: "POST",
         contentType: "application/json",
-        url: "https://app.polimatica.it/atabeta/services/ATA_WebService.asmx/GetPenalties",
+        url: "http://77.108.25.178:782/services/ATA_WebService.asmx/GetPenalties",
         data: "",
         dataType: "json",
         success: function (response) {
@@ -4422,7 +4422,7 @@ function WS_SavePenalties() {
     $.ajax({
         type: "POST",
         contentType: "application/json",
-        url: "https://app.polimatica.it/atabeta/services/ATA_WebService.asmx/SavePenalties",
+        url: "http://77.108.25.178:782/services/ATA_WebService.asmx/SavePenalties",
         data: theString,
         dataType: "json",
         success: function (response) {
@@ -4473,7 +4473,7 @@ function WS_showRecords_scores_presentation_partial(scoresidlist) {
     $.ajax({
         type: "POST",
         contentType: "application/json",
-        url: "https://app.polimatica.it/atabeta/services/ATA_WebService.asmx/GetScoresPresentationPartials",
+        url: "http://77.108.25.178:782/services/ATA_WebService.asmx/GetScoresPresentationPartials",
         data: theString,
         dataType: "json",
         success: function (response) {
@@ -4543,7 +4543,7 @@ function WS_showRecords_scores_design1C3_partial(scoresidlist) {
     $.ajax({
         type: "POST",
         contentType: "application/json",
-        url: "https://app.polimatica.it/atabeta/services/ATA_WebService.asmx/GetScoresDesign1C3Partials",
+        url: "http://77.108.25.178:782/services/ATA_WebService.asmx/GetScoresDesign1C3Partials",
         data: theString,
         dataType: "json",
         success: function (response) {
@@ -4599,7 +4599,7 @@ function WS_showRecords_scores_design1E_partial(scoresidlist) {
     $.ajax({
         type: "POST",
         contentType: "application/json",
-        url: "https://app.polimatica.it/atabeta/services/ATA_WebService.asmx/GetScoresDesign1EPartials",
+        url: "http://77.108.25.178:782/services/ATA_WebService.asmx/GetScoresDesign1EPartials",
         data: theString,
         dataType: "json",
         success: function (response) {

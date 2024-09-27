@@ -1,0 +1,235 @@
+﻿<!DOCTYPE html>
+<html>
+    <head title="MAINTENANCE">
+        <title>ATA - Maintenance</title>
+
+        <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+        <link rel="icon" href="/favicon.ico" type="image/x-icon">
+
+        <!--Import materialize.css-->
+        <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection" />
+        <link type="text/css" rel="stylesheet" href="css/materialdesignicons.min.css" media="all" />
+
+        <!--Let browser know website is optimized for mobile-->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+        <!--Import jQuery before materialize.js-->
+        <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+        <script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
+        <script type="text/javascript" src="js/materialize.min.js"></script>
+		<script type="text/javascript" src="js/stupidtable.min.js"> </script>
+		<script type="text/javascript" src="js/scoresPrototypes.js"> </script>
+        <script type="text/javascript" src="js/utilities.js"></script>
+        <script type="text/javascript" src="js/mbox.js"></script>
+
+        <script type="text/javascript" src="js/SQLiteDirectives.js"> </script>
+        <script type="text/javascript" src="js/WSDirectives.js"> </script>
+
+        <link type="text/css" rel="stylesheet" href="css/ATA.css" media="screen,projection" />
+        <link type="text/css" rel="stylesheet" href="css/mbox.css" media="screen,projection" />
+    </head>
+
+    <body>
+        <main>
+            <div class="container">
+                <h5 class="ata-green-text">Maintenance Section</h5>
+                <h6 class="ata-green-text">What can you do here</h6>
+                <hr>
+                <div class="row">
+                    <div class="col l2 m6 s12">
+                        <h6>Hint</h6>
+                        <p>Here you can drop SQLite objects (Tables or Views).</p>
+                        <p>Select the object you want to drop by clicking the corresponding link in the right side of this page</p>
+                        <p>
+                            <ul>
+                                <li class="ata-red-text"><i class="mdi mdi-table i-tiny"></i> - SQLite Table</li>
+                                <li class="ata-green-text"><i class="mdi mdi-panorama-wide-angle i-tiny"></i> - SQLite View</li>
+                            </ul>
+                        </p>
+                    </div>
+                    <div class="col l10 m6 s12">
+                        <h6>Available Objects</h6>
+                        <div class="collection">
+                            <a class="collection-header">
+                                <h6 class="navbar-ata-backgrounded-1 white-text" style="padding:4px;">Version</h6>
+                            </a>
+                            <div class="row">
+                                <div class="col l4 m6 s12">
+                                    <a href="" id="btnDropVersions" class="tools-action"><i class="mdi mdi-table i-tiny"></i>Version</a>
+                                </div>
+                            </div>
+                            <a class="collection-header">
+                                <h6 class="navbar-ata-backgrounded-1 white-text" style="padding:4px;">Teams</h6>
+                            </a>
+                            <div class="row">
+                                <div class="col l4 m6 s12">
+                                    <a href="" id="btnDropTeams" class="tools-action"><i class="mdi mdi-table i-tiny"></i>Teams</a>
+                                </div>
+                            </div>
+                            <a class="collection-header">
+                                <h6 class="navbar-ata-backgrounded-1 white-text" style="padding:4px;">Cars</h6>
+                            </a>
+                            <div class="row">
+                                <div class="col l4 m6 s12">
+                                    <a href="" id="btnDropClasses" class="tools-action"><i class="mdi mdi-table i-tiny"></i>Classes</a>
+                                </div>
+                                <div class="col l4 m6 s12">
+                                    <a href="" id="btnDropFuels" class="tools-action"><i class="mdi mdi-table i-tiny"></i>Fuels</a>
+                                </div>
+                                <div class="col l4 m6 s12">
+                                    <a href="" id="btnDropCars" class="tools-action"><i class="mdi mdi-table i-tiny"></i>Cars</a>
+                                </div>
+                                <div class="col l4 m6 s12">
+                                    <a href="" id="btnDropCarsView" class="tools-action"><i class="mdi mdi-panorama-wide-angle i-tiny"></i>Cars</a>
+                                </div>
+                            </div>
+                            <a class="collection-header">
+                                <h6 class="navbar-ata-backgrounded-1 white-text" style="padding:4px;">Examiners</h6>
+                            </a>
+                            <div class="row">
+                                <div class="col l4 m6 s12">
+                                    <a href="" id="btnDropExaminers" class="tools-action"><i class="mdi mdi-table i-tiny"></i>Examiners</a>
+                                </div>
+                            </div>
+                            <a class="collection-header">
+                                <h6 class="navbar-ata-backgrounded-1 white-text" style="padding:4px;">ExamBoards</h6>
+                            </a>
+                            <div class="row">
+                                <div class="col l4 m6 s12">
+                                    <a href="" id="btnDropExamBoards" class="tools-action"><i class="mdi mdi-table i-tiny"></i>ExamBoards</a>
+                                </div>
+                                <div class="col l4 m6 s12">
+                                    <a href="" id="btnDropExamBoards2Examiners" class="tools-action"><i class="mdi mdi-table i-tiny"></i>ExamBoards2Examiners</a>
+                                </div>
+                                <div class="col l4 m6 s12">
+                                    <a href="" id="btnDropExamBoards2Cars" class="tools-action"><i class="mdi mdi-table i-tiny"></i>ExamBoards2Cars</a>
+                                </div>
+                                <div class="col l4 m6 s12">
+                                    <a href="" id="btnDropExamBoards2ExaminersView" class="tools-action"><i class="mdi mdi-panorama-wide-angle i-tiny"></i>ExamBoards2Examiners</a>
+                                </div>
+                                <div class="col l4 m6 s12">
+                                    <a href="" id="btnDropExamBoards2CarsView" class="tools-action"><i class="mdi mdi-panorama-wide-angle i-tiny"></i>ExamBoards2Cars</a>
+                                </div>
+                            </div>
+                            <a class="collection-header">
+                                <h6 class="navbar-ata-backgrounded-1 white-text" style="padding:4px;">Events</h6>
+                            </a>
+                            <div class="row">
+                                <div class="col l4 m6 s12">
+                                    <a href="" id="btnDropEventsTypes" class="tools-action"><i class="mdi mdi-table i-tiny"></i>EventsTypes</a>
+                                </div>
+                                <div class="col l4 m6 s12">
+                                    <a href="" id="btnDropEventsNames" class="tools-action"><i class="mdi mdi-table i-tiny"></i>EventsNames</a>
+                                </div>
+                                <div class="col l4 m6 s12">
+                                    <a href="" id="btnDropEvents" class="tools-action"><i class="mdi mdi-table i-tiny"></i>Events</a>
+                                </div>
+                                <div class="col l4 m6 s12">
+                                    <a href="" id="btnDropEventsView" class="tools-action"><i class="mdi mdi-panorama-wide-angle i-tiny"></i>Events</a>
+                                </div>
+                            </div>
+                            <a class="collection-header">
+                                <h6 class="navbar-ata-backgrounded-1 white-text" style="padding:4px;">Scores</h6>
+                            </a>
+                            <div class="row">
+                                <div class="col l4 m6 s12">
+                                    <a href="" id="btnDropScores" class="tools-action"><i class="mdi mdi-table i-tiny"></i>Scores</a>
+                                </div>
+                                <div class="col l4 m6 s12">
+                                    <a href="" id="btnDropScoresAcc" class="tools-action"><i class="mdi mdi-table i-tiny"></i>Acceleration</a>
+                                </div>
+                                <div class="col l4 m6 s12">
+                                    <a href="" id="btnDropScoresCost" class="tools-action"><i class="mdi mdi-table i-tiny"></i>Cost</a>
+                                </div>
+                                <div class="col l4 m6 s12">
+                                    <a href="" id="btnDropScoresSkidP" class="tools-action"><i class="mdi mdi-table i-tiny"></i>Skid Pad</a>
+                                </div>
+                                <div class="col l4 m6 s12">
+                                    <a href="" id="btnDropScoresAutoC" class="tools-action"><i class="mdi mdi-table i-tiny"></i>Autocross</a>
+                                </div>
+                                <div class="col l4 m6 s12">
+                                    <a href="" id="btnDropScoresD1C3" class="tools-action"><i class="mdi mdi-table i-tiny"></i>Design 1C3</a>
+                                </div>
+                                <div class="col l4 m6 s12">
+                                    <a href="" id="btnDropScoresD1E" class="tools-action"><i class="mdi mdi-table i-tiny"></i>Design 1E</a>
+                                </div>
+                                <div class="col l4 m6 s12">
+                                    <a href="" id="btnDropScoresPres" class="tools-action"><i class="mdi mdi-table i-tiny"></i>Presentation</a>
+                                </div>
+                                <div class="col l4 m6 s12">
+                                    <a href="" id="btnDropScoresEnd" class="tools-action"><i class="mdi mdi-table i-tiny"></i>Endurance</a>
+                                </div>
+                                <div class="col l4 m6 s12">
+                                    <a href="" id="btnDropScoresD1EPartialView" class="tools-action"><i class="mdi mdi-panorama-wide-angle i-tiny"></i>Design 1E Partial</a>
+                                </div>
+                                <div class="col l4 m6 s12">
+                                    <a href="" id="btnDropScoresD1C3PartialView" class="tools-action"><i class="mdi mdi-panorama-wide-angle i-tiny"></i>Design 1C3 Partial</a>
+                                </div>
+                                <div class="col l4 m6 s12">
+                                    <a href="" id="btnDropScoresPresPartialView" class="tools-action"><i class="mdi mdi-panorama-wide-angle i-tiny"></i>Presentation Partial</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </body>
+</html>
+
+<script language="javascript" type="text/javascript">
+    $(document).ready(function () {
+
+        Body.navBarHome();
+
+        //window.location.replace("AdminOnly.html");
+
+        pageInitializeNavBar('Maintenance');
+
+        Body.footer();
+
+        $("#btnDropVersions").click(dropTable_versions);
+
+        $("#btnDropClasses").click(dropTable_classes);
+        $("#btnDropFuels").click(dropTable_fuels);
+
+        $("#btnDropTeams").click(dropTable_teams);
+
+        $("#btnDropCars").click(dropTable_cars);
+
+        $("#btnDropExaminers").click(dropTable_examiners);
+
+        $("#btnDropExamBoards").click(dropTable_examboards);
+        $("#btnDropExamBoards2Examiners").click(dropTable_examboards2examiners);
+        $("#btnDropExamBoards2Cars").click(dropTable_examboards2cars);
+
+        $("#btnDropEventsTypes").click(dropTable_eventstypes);
+        $("#btnDropEventsNames").click(dropTable_eventsnames);
+        $("#btnDropEvents").click(dropTable_events);
+
+        $("#btnDropScores").click(dropTable_scores);
+
+        $("#btnDropScoresAcc").click(dropTable_scores_acceleration);
+        $("#btnDropScoresCost").click(dropTable_scores_cost);
+        $("#btnDropScoresSkidP").click(dropTable_scores_skidpad);
+        $("#btnDropScoresAutoC").click(dropTable_scores_autocross);
+        $("#btnDropScoresD1C3").click(dropTable_scores_design1C3);
+        $("#btnDropScoresD1E").click(dropTable_scores_design1E);
+        $("#btnDropScoresPres").click(dropTable_scores_presentation);
+        $("#btnDropScoresEnd").click(dropTable_scores_endurance);
+        //Event 2018 - Show partials scores for Presentation and Design
+        $("#btnDropScoresD1EPartialView").click(dropView_scores_partial_design1E);
+        $("#btnDropScoresD1C3PartialView").click(dropView_scores_partial_design1C3);
+        $("#btnDropScoresPresPartialView").click(dropView_scores_partial_presentation);
+
+        $("#btnDropCarsView").click(dropView_cars);
+
+        $("#btnDropExamBoards2ExaminersView").click(dropView_examboards2examiners);
+
+        $("#btnDropExamBoards2CarsView").click(dropView_examboards2cars);
+
+        $("#btnDropEventsView").click(dropView_events);
+        
+        //initDatabaseToLastVersion();
+    });
+</script>

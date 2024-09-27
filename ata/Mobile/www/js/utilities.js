@@ -487,7 +487,7 @@ Body = {
     },
     footer: function () {
         $("body").append(function () {
-            return $('<footer/>').html('<div class="footer-copyright"><div class="container">&copy; 2022 Formula ATA<a class="grey-text text-lighten-4 right" href="http://www.polimatica.it">Powered by Polimatica S.r.l</a></div></div>')
+            return $('<footer/>').html('<div class="footer-copyright"><div class="container">&copy; 2024 Formula ATA<a class="grey-text text-lighten-4 right" href="http://www.polimatica.it">Powered by Polimatica S.r.l</a></div></div>')
                 .addClass('page-footer')
         });
     },

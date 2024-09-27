@@ -1,0 +1,4 @@
+Comando nuova migration
+	EntityFramework6\Add-Migration "ATA2024_content"
+Comando modifica DB dalle migration
+	EntityFramework6\update-database

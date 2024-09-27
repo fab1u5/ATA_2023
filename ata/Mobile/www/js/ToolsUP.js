@@ -176,7 +176,7 @@
         $.ajax({
             type: "POST",
             contentType: "application/json",
-            url: "https://app.polimatica.it/atabeta/services/ATA_ImportService.asmx/DynamicPenaltiesUpload",
+            url: "http://77.108.25.178:782/services/ATA_ImportService.asmx/DynamicPenaltiesUpload",
             data: theString,
             dataType: "json",
             success: function (response) {
@@ -345,7 +345,7 @@
         $.ajax({
             type: "POST",
             contentType: "application/json",
-            url: "https://app.polimatica.it/atabeta/services/ATA_ImportService.asmx/CostUpload",
+            url: "http://77.108.25.178:782/services/ATA_ImportService.asmx/CostUpload",
             data: theString,
             dataType: "json",
             success: function (response) {
@@ -560,7 +560,7 @@
         $.ajax({
             type: "POST",
             contentType: "application/json",
-            url: "https://app.polimatica.it/atabeta/services/ATA_ImportService.asmx/TimingUpload",
+            url: "http://77.108.25.178:782/services/ATA_ImportService.asmx/TimingUpload",
             data: theString,
             dataType: "json",
             success: function (response) {
@@ -721,7 +721,7 @@
         $.ajax({
             type: "POST",
             contentType: "application/json",
-            url: "https://app.polimatica.it/atabeta/services/ATA_ImportService.asmx/FuelConsumptionUpload",
+            url: "http://77.108.25.178:782/services/ATA_ImportService.asmx/FuelConsumptionUpload",
             data: theString,
             dataType: "json",
             success: function (response) {
