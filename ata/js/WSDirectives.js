@@ -4691,7 +4691,11 @@ function WS_showRecords_scores_design1C3_partial(scoresidlist) {
                 var scoreid = item.ScoreId;
 
                 cellsToAdd.length = 0;
-                cellsToAdd.push(item.Suspension, item.FrameBodyAero, item.Powertrain, item.CockpitControlsBrakesSafety, item.SystemManagementIntegration, item.ManufacturabilityServiceability, item.AestheticsStyle, item.Creativity, item.Miscellaneous);
+                cellsToAdd.push(item.Suspension, item.FrameBodyAero, item.Powertrain, item.CockpitControlsBrakesSafety, item.SystemManagementIntegration,
+                    item.ManufacturabilityServiceability, item.AestheticsStyle,
+                    //FDT - ATA 2025 - non mostro l'ultima colonna (a parte misc)
+                    //item.Creativity,
+                    item.Miscellaneous);
 
                 var row = $('tr[data-scoreid="' + scoreid + '"]');
                 addCellsToTableRow(row, cellsToAdd, 'partial');
@@ -4747,7 +4751,10 @@ function WS_showRecords_scores_design1E_partial(scoresidlist) {
                 var scoreid = item.ScoreId;
 
                 cellsToAdd.length = 0;
-                cellsToAdd.push(item.Suspension, item.FrameBodyAero, item.TractiveDriveRecoverySystem, item.CockpitControlsBrakesSafety, item.SystemManagementIntegration, item.ManufacturabilityServiceability, item.AestheticsStyle, item.Creativity, item.Miscellaneous);
+                cellsToAdd.push(item.Suspension, item.FrameBodyAero, item.TractiveDriveRecoverySystem, item.CockpitControlsBrakesSafety, item.SystemManagementIntegration, item.ManufacturabilityServiceability, item.AestheticsStyle,
+                    //FDT - ATA 2025 - non mostro l'ultima colonna (a parte misc)
+                    //item.Creativity,
+                    item.Miscellaneous);
 
                 var row = $('tr[data-scoreid="' + scoreid + '"]');
                 addCellsToTableRow(row, cellsToAdd, 'partial');

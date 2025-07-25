@@ -110,7 +110,9 @@ namespace ATA.services
 
             //Too long, return 25 (default value)
             if (adj > maxTime)
-                return 25;
+                //FDT - ATA 2025: Tutti quei team che concludono fuori dal tempo massimo, prendono solo il bonus (32.5).
+                //return 25;
+                return 32.5;
 
             if (adj > 1)
             {

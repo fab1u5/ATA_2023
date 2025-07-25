@@ -18,6 +18,7 @@ namespace ATA.services
     // To allow this Web Service to be called from script, using ASP.NET AJAX, uncomment the following line. 
     [System.Web.Script.Services.ScriptService]
 
+
     public class ATA_WebService : System.Web.Services.WebService
     {
         // Metodo per gestire le opzioni CORS (richieste OPTIONS)
@@ -25,13 +26,13 @@ namespace ATA.services
         [ScriptMethod(UseHttpGet = true, ResponseFormat = ResponseFormat.Json)]
         public void HandleOptionsRequest()
         {
-            Context.Response.AddHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
-            Context.Response.AddHeader("Access-Control-Allow-Headers", "Content-Type, Accept");
-            Context.Response.AddHeader("Access-Control-Allow-Origin", "*"); // Specifica l'origine consentita o usa * per tutti
+            //Context.Response.AddHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+            //Context.Response.AddHeader("Access-Control-Allow-Headers", "Content-Type, Accept");
+            //Context.Response.AddHeader("Access-Control-Allow-Origin", "*"); // Specifica l'origine consentita o usa * per tutti
 
-            // Imposta il codice di stato OK per l'opzione prefligth
-            Context.Response.StatusCode = 200;
-            Context.Response.End();
+            //// Imposta il codice di stato OK per l'opzione prefligth
+            //Context.Response.StatusCode = 200;
+            //Context.Response.End();
         }
 
         #region ValidateUser
@@ -5167,7 +5168,8 @@ namespace ATA.services
                             if (listPrimiTre.Contains(c.Id))
                                 scorePresentationNorm = maximumPresentation;
                             else
-                                scorePresentationNorm = scorePresentation * maximumPresentation / MaxPresentationForClass;
+                                if (MaxPresentationForClass != 0)
+                                    scorePresentationNorm = scorePresentation * maximumPresentation / MaxPresentationForClass;
                             //if (MaxPresentationForClass != 0)
                             //    scorePresentationNorm = scorePresentation * maximumPresentation / MaxPresentationForClass;
 

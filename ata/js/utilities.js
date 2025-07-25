@@ -66,9 +66,17 @@ var PartialCells = {
     //Presentation: { headers: ['Stage1', 'Stage2', 'Content', 'Finances', 'Deep Dive Topic', 'Demonstration', 'Delivery', 'Structure', 'Questions', 'General Impression', 'Miscellaneous', 'Finals'], sortfield: ['Stage1', 'Content', 'Finances', 'DeepDiveTopic', 'Demonstration', 'Delivery', 'Questions', 'GeneralImpression', 'Miscellaneous', 'Finals'] },
     Presentation: { headers: ['Stage1', 'Content', 'Finances', 'Deep Dive Topic', 'Demonstration', 'Delivery', 'Structure', 'Questions', 'General Impression', 'Miscellaneous', 'Finals'], sortfield: ['Stage1', 'Content', 'Finances', 'DeepDiveTopic', 'Demonstration', 'Delivery', 'Questions', 'GeneralImpression', 'Miscellaneous', 'Finals'] },
 
+    //FDT - ATA 2025 - nascosta una colonna
+	//Design1C3: { headers: ['Suspensions', 'Body /Aero', 'Powertrain', 'Cockpit /Safety', 'System Integration', 'Manufact. & Service', 'Style', 'Creativity', 'Misc'], sortfield: ['Suspensions', 'FrameBodyAero', 'PowerTrain', 'CockpitControlsBrakes/Safety', 'SystemManagementIntegration', 'ManufacturabilityServiceability', 'AestheticsStyle', 'Creativity', 'Miscellaneous'] },
+    Design1C3: {
+        headers: ['Overall Vehicle', 'Vehicle Dynamics', 'Aerodynamics', 'Powertrain - ICE', 'Chassis', 'Driver Interface', 'Low Voltage / Data Acquisition', 'Misc'],
+        sortfield: ['Suspensions', 'FrameBodyAero', 'PowerTrain', 'CockpitControlsBrakes/Safety', 'SystemManagementIntegration', 'ManufacturabilityServiceability', 'AestheticsStyle', 'Miscellaneous']
+    },
 
-	Design1C3: { headers: ['Suspensions', 'Body /Aero', 'Powertrain', 'Cockpit /Safety', 'System Integration', 'Manufact. & Service', 'Style', 'Creativity', 'Misc'], sortfield: ['Suspensions', 'FrameBodyAero', 'PowerTrain', 'CockpitControlsBrakes/Safety', 'SystemManagementIntegration', 'ManufacturabilityServiceability', 'AestheticsStyle', 'Creativity', 'Miscellaneous'] },
-    Design1E: { headers: ['Suspensions', 'Body /Aero', 'E-Powertain', 'Cockpit /Safety', 'System Integration', 'Manufact. & Service', 'Style', 'Creativity', 'Misc'], sortfield: ['Suspensions', 'FrameBodyAero', 'TractiveDriveRecoverySystem', 'CockpitControlsBrakes/Safety', 'SystemManagementIntegration', 'ManufacturabilityServiceability', 'AestheticsStyle', 'Creativity', 'Miscellaneous'] }
+    Design1E: {
+        headers: ['Overall Vehicle', 'Vehicle Dynamics', 'Aerodynamics', 'Powertrain - EV', 'Chassis', 'Driver Interface', 'Low Voltage / Data Acquisition', 'Misc'],
+        sortfield: ['Suspensions', 'FrameBodyAero', 'TractiveDriveRecoverySystem', 'CockpitControlsBrakes/Safety', 'SystemManagementIntegration', 'ManufacturabilityServiceability', 'AestheticsStyle', 'Miscellaneous']
+    }
 };
 
 function isATablet() {
@@ -492,7 +500,7 @@ Body = {
     },
     footer: function () {
         $("body").append(function () {
-            return $('<footer/>').html('<div class="footer-copyright"><div class="container">&copy; 2024 Formula ATA<a class="grey-text text-lighten-4 right" href="https://www.training4u.it/">Powered by TRAINING 4U S.r.l.</a></div></div>')
+            return $('<footer/>').html('<div class="footer-copyright"><div class="container">&copy; 2025 Formula ATA<a class="grey-text text-lighten-4 right" href="https://www.betacom.it/">Powered by BETACOM S.r.l.</a></div></div>')
                 .addClass('page-footer')
         });
     },
@@ -607,8 +615,8 @@ function toggleTableCellByIndex(tableSelector, cellIndex, bShow) {
 }
 
 var TabletTitles = {
-	Design1C3: { cockpit: "Cockpit/Ctrls/Brakes/Safety ", systemmanag: "Systems Mgmt./Integration ", manufact: "Manufact./Serviceability " },
-	Design1E: { cockpit: "Cockpit/Ctrls/Brakes/Safety ", systemmanag: "Systems Mgmt./Integration ", manufact: "Manufact./Serviceability " }
+    Design1C3: { cockpit: "Powertrain - ICE ", systemmanag: "Chassis ", manufact: "Driver Interface " },
+    Design1E:  { cockpit: "Powertrain - EV ",  systemmanag: "Chassis ", manufact: "Driver Interface " }
 };
 var TabletScenarios = {
 	Presentation: { scenario: "P", col1: "l3", col2: "l9" },

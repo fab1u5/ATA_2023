@@ -62,14 +62,15 @@
             <div class="row">
                 <div class="col l5 m5 s12">
                     <div class="collection">
-                        <a class="left-menu-action" id="suspension-anchor">Suspensions <span class="points badge badge-green" id="suspensionBadge"></span></a>
-                        <a class="left-menu-action" id="framebody-anchor">Frame/Body/Aero <span class="points badge badge-green" id="framebodyBadge"></span></a>
-                        <a class="left-menu-action" id="tractive-anchor">Tractive/Drive/Recovery System <span class="points badge badge-green" id="tractiveBadge"></span></a>
-                        <a class="left-menu-action" id="cockpit-anchor">Cockpit/Controls/Brakes/Safety <span class="points badge badge-green" id="cockpitBadge"></span></a>
-                        <a class="left-menu-action" id="systemmanag-anchor">Systems Management/Integration <span class="points badge badge-green" id="systemmanagBadge"></span></a>
-                        <a class="left-menu-action" id="manufact-anchor">Manufacturability/Serviceability <span class="points badge badge-green" id="manufactBadge"></span></a>
-                        <a class="left-menu-action" id="aesthetics-anchor">Aesthetics/Style <span class="points badge badge-green" id="aestheticsBadge"></span></a>
-                        <a class="left-menu-action" id="creativity-anchor">Creativity <span class="points badge badge-green" id="creativityBadge"></span></a>
+                        <a class="left-menu-action" id="suspension-anchor">Overall Vehicle <span class="points badge badge-green" id="suspensionBadge"></span></a>
+                        <a class="left-menu-action" id="framebody-anchor">Vehicle Dynamics <span class="points badge badge-green" id="framebodyBadge"></span></a>
+                        <a class="left-menu-action" id="tractive-anchor">Aerodynamics <span class="points badge badge-green" id="tractiveBadge"></span></a>
+                        <a class="left-menu-action" id="cockpit-anchor">Powertrain - EV <span class="points badge badge-green" id="cockpitBadge"></span></a>
+                        <a class="left-menu-action" id="systemmanag-anchor">Chassis <span class="points badge badge-green" id="systemmanagBadge"></span></a>
+                        <a class="left-menu-action" id="manufact-anchor">Driver Interface <span class="points badge badge-green" id="manufactBadge"></span></a>
+                        <a class="left-menu-action" id="aesthetics-anchor">Low Voltage / Data Acquisition <span class="points badge badge-green" id="aestheticsBadge"></span></a>
+                        <!--FDT - ATA 2025 - nascosco questo campo-->
+                        <a class="left-menu-action" id="creativity-anchor" style="visibility:hidden; position:absolute; left: -9999px" ">Creativity <span class="points badge badge-green" id="creativityBadge"><span class="points badge badge-green" id="creativityBadge"></span></a>
                         <a class="left-menu-action" id="miscellaneous-anchor">Miscellaneous <span class="points badge badge-green" id="miscellaneousBadge"></span></a>
                         <a class="collection-header">
                             <div class="row">
@@ -95,7 +96,7 @@
                     <div id="suspension-tab" class="card transparent">
                         <ul class="collection" style="border:none;">
                             <li class="collection-item " style="width:auto;height:auto">
-                                <h6 class="ata-red-text">Suspensions</h6>
+                                <h6 class="ata-red-text">Overall Vehicle</h6>
                                 <div class="secondary-content">
                                     <span class="points-label">Points</span>
                                     <label class="active right ata-red-text" for="suspension">____/25</label>
@@ -103,19 +104,21 @@
                                 </div>
                                 <blockquote>
                                     <span class="ata-green-text">
-                                        ° Design<br />
-                                        ° Build<br />
-                                        ° Refinement/Validation<br />
-                                        ° Understanding
+                                        ° Vehicle fundamentals<br />
+                                        ° Goals<br />
+                                        ° Concept Definition & Trade-off Studies<br />
+                                        ° Project Management & Execution<br />
+                                        ° Vehicle Execution<br />
+                                        ° Tools, Simulation & Validation
                                     </span>
-                                    <br /><br />
+                                    <!--<br /><br />
                                     Tires, wheels, hubs, uprights, control arms, steering linkage, springs, dampers, anti-roll bars,
-                                    geometry, kinematics, vehicle dynamics. Selection and use of materials.
+                                    geometry, kinematics, vehicle dynamics. Selection and use of materials.-->
                                 </blockquote>
                                 <div class="divider"></div>
                                 <div>
                                     <textarea id="suspensionnotes" class="materialize-textarea"></textarea>
-                                    <label for="suspensionnotes">Suspension Notes</label>
+                                    <label for="suspensionnotes">Overall Vehicle Notes</label>
                                 </div>
                             </li>
                         </ul>
@@ -123,7 +126,7 @@
                     <div id="framebody-tab" class="card transparent">
                         <ul class="collection" style="border:none;">
                             <li class="collection-item" style="width:auto;height:auto">
-                                <h6 class="ata-red-text">Frame/Body/Aero</h6>
+                                <h6 class="ata-red-text">Vehicle Dynamics</h6>
                                 <div class="secondary-content">
                                     <span class="points-label">Points</span>
                                     <label class="active right ata-red-text" for="framebody">____/25</label>
@@ -131,19 +134,18 @@
                                 </div>
                                 <blockquote>
                                     <span class="ata-green-text">
-                                        ° Design<br />
-                                        ° Build<br />
-                                        ° Refinement/Validation<br />
-                                        ° Understanding
+                                        ° Overall<br />
+                                        ° Tires<br />
+                                        ° Suspension & Steering (non-structural)
                                     </span>
-                                    <br /><br />
+                                    <!--<br /><br />
                                     Primary structure/tub/tubing, body, and aerodynamic/ ductwork systems. Rigidity and stress-relief methods.
-                                    <br />Load analyses. Fasteners. Selection and use of materials.
+                                    <br />Load analyses. Fasteners. Selection and use of materials.-->
                                 </blockquote>
                                 <div class="divider"></div>
                                 <div>
                                     <textarea id="framebodynotes" class="materialize-textarea"></textarea>
-                                    <label for="framebodynotes">Frame/Body/Aero Notes</label>
+                                    <label for="framebodynotes">Vehicle Dynamics Notes</label>
                                 </div>
                             </li>
                         </ul>
@@ -151,27 +153,28 @@
                     <div id="tractive-tab" class="card transparent">
                         <ul class="collection" style="border:none;">
                             <li class="collection-item" style="width:auto;height:auto">
-                                <h6 class="ata-red-text">Tractive/Drive/Recovery System</h6>
+                                <h6 class="ata-red-text">Aerodynamics</h6>
                                 <div class="secondary-content">
                                     <span class="points-label">Points</span>
-                                    <label class="active right ata-red-text" for="tractive">____/25</label>
-                                    <input placeholder="Tractive/Drive/Recovery System" id="tractive" type="number" class="validate" min="0" max="25" />
+                                    <label class="active right ata-red-text" for="tractive">____/15</label>
+                                    <input placeholder="Tractive/Drive/Recovery System" id="tractive" type="number" class="validate" min="0" max="15" />
                                 </div>
                                 <blockquote>
                                     <span class="ata-green-text">
-                                        ° Design<br />
-                                        ° Build<br />
-                                        ° Refinement/Validation<br />
-                                        ° Understanding
+                                        ° Aero Design & Architecture<br />
+                                        ° Cooling<br />
+                                        ° Computational Fluid Dynamics (CFD)<br />
+                                        ° Testing & Instrumentation<br />
+                                        ° Mechanical Design
                                     </span>
-                                    <br /><br />
+                                    <!--<br /><br />
                                     Accumulator(s), Power conversion, Motor/Controller selection/design, Wiring considerations, Transmission.
-                                    <br />Torque vectoring. Gearing. Regenerative braking. Selection/use of materials.
+                                    <br />Torque vectoring. Gearing. Regenerative braking. Selection/use of materials.-->
                                 </blockquote>
                                 <div class="divider"></div>
                                 <div>
                                     <textarea id="tractivenotes" class="materialize-textarea"></textarea>
-                                    <label for="tractivenotes">Tractive/Drive/Recovery System Notes</label>
+                                    <label for="tractivenotes">Aerodynamics Notes</label>
                                 </div>
                             </li>
                         </ul>
@@ -179,7 +182,7 @@
                     <div id="cockpit-tab" class="card transparent">
                         <ul class="collection" style="border:none;">
                             <li class="collection-item" style="width:auto;height:auto">
-                                <h6 class="ata-red-text">Cockpit/Controls/Brakes/Safety</h6>
+                                <h6 class="ata-red-text">Powertrain - EV</h6>
                                 <div class="secondary-content">
                                     <span class="points-label">Points</span>
                                     <label class="active right ata-red-text" for="cockpit">____/25</label>
@@ -187,20 +190,22 @@
                                 </div>
                                 <blockquote>
                                     <span class="ata-green-text">
-                                        ° Design<br />
-                                        ° Build<br />
-                                        ° Refinement/Validation<br />
-                                        ° Understanding
+                                        ° System Architecture<br />
+                                        ° Control & Calibration<br />
+                                        ° Analysis & Development<br />
+                                        ° Test, Tune & Validation<br />
+                                        ° Systems<br />
+                                        ° Integrated Vehicle Validation
                                     </span>
-                                    <br /><br />
+                                    <!--<br /><br />
                                     Driver interfaces, seat, belts, steering wheel, steering column, control panel/dash, cockpit sizing & protection,
                                     driver comfort/ease of control, pedals, braking system.
-                                    <br />Is this car as safe as it can be? Selection and use of materials.
+                                    <br />Is this car as safe as it can be? Selection and use of materials.-->
                                 </blockquote>
                                 <div class="divider"></div>
                                 <div>
                                     <textarea id="cockpitnotes" class="materialize-textarea"></textarea>
-                                    <label for="cockipitnotes">Cockpit Notes</label>
+                                    <label for="cockipitnotes">Powertrain - EV Notes</label>
                                 </div>
                             </li>
                         </ul>
@@ -208,29 +213,29 @@
                     <div id="systemmanag-tab" class="card transparent">
                         <ul class="collection" style="border:none;">
                             <li class="collection-item" style="width:auto;height:auto">
-                                <h6 class="ata-red-text">Systems Management/Integration</h6>
+                                <h6 class="ata-red-text">Chassis</h6>
                                 <div class="secondary-content">
                                     <span class="points-label">Points</span>
-                                    <label class="active right ata-red-text" for="systemmanag">____/20</label>
-                                    <input placeholder="Systems Management/Integration" id="systemmanag" type="number" class="validate" min="0" max="20" />
+                                    <label class="active right ata-red-text" for="systemmanag">____/30</label>
+                                    <input placeholder="Systems Management/Integration" id="systemmanag" type="number" class="validate" min="0" max="30" />
                                 </div>
                                 <blockquote>
                                     <span class="ata-green-text">
-                                        ° Packaging<br />
-                                        ° Electronics/power mgmt<br />
-                                        ° Team Organization<br />
-                                        ° Analysis methods/tools<br />
+                                        ° Global Targets<br />
+                                        ° Frame & Structure<br />
+                                        ° Suspension & Steering (structural)<br />
+                                        ° Fasteners
                                     </span>
-                                    <br /><br />
+                                    <!--<br /><br />
                                     Design integration, plumbing/wiring, power management, schematics. Are sensitive items protected?
                                     <br />Proper use of data? Do systems compliment another?
                                     <br />Are progressive project management/ organization methods evident?
-                                    <br />Special communication tools utilized? What testing/development tools have been used or created?
+                                    <br />Special communication tools utilized? What testing/development tools have been used or created?-->
                                 </blockquote>
                                 <div class="divider"></div>
                                 <div>
                                     <textarea id="systemmanagnotes" class="materialize-textarea"></textarea>
-                                    <label for="systemmanagnotes">Systems Management/Integration Notes</label>
+                                    <label for="systemmanagnotes">Chassis Notes</label>
                                 </div>
                             </li>
                         </ul>
@@ -238,22 +243,29 @@
                     <div id="manufact-tab" class="card transparent">
                         <ul class="collection" style="border:none;">
                             <li class="collection-item" style="width:auto;height:auto">
-                                <h6 class="ata-red-text">Manufacturability/Serviceability</h6>
+                                <h6 class="ata-red-text">Driver Interface</h6>
                                 <div class="secondary-content">
                                     <span class="points-label">Points</span>
                                     <label class="active right ata-red-text" for="manufact">____/15</label>
                                     <input placeholder="Manufacturability/Serviceability" id="manufact" type="number" class="validate" min="0" max="15" />
                                 </div>
                                 <blockquote>
-                                    Ease of repair? Sub-systems accessibility, parts interchangeability, manufacturing complexity?
+                                    <span class="ata-green-text">
+                                        ° Ingress & Cockpit<br />
+                                        ° Seat & Pressure Points<br />
+                                        ° Controls & Instrumentation<br />
+                                        ° Brakes<br />
+                                        ° Egress
+                                    </span>
+                                    <!--Ease of repair? Sub-systems accessibility, parts interchangeability, manufacturing complexity?
                                     <br />Have fasteners been standardized?
-                                    <br />Are special tools required to diagnose/service vehicle?
+                                    <br />Are special tools required to diagnose/service vehicle?-->
                                 </blockquote>
                                 <br /><br /><br />
                                 <div class="divider"></div>
                                 <div>
                                     <textarea id="manufactnotes" class="materialize-textarea"></textarea>
-                                    <label for="manufactnotes">Manufacturability/Serviceability Notes</label>
+                                    <label for="manufactnotes">Driver Interface Notes</label>
                                 </div>
                             </li>
                         </ul>
@@ -261,26 +273,33 @@
                     <div id="aesthetics-tab" class="card transparent">
                         <ul class="collection" style="border:none;">
                             <li class="collection-item" style="width:auto;height:auto">
-                                <h6 class="ata-red-text">Aesthetics/Style</h6>
+                                <h6 class="ata-red-text">Low Voltage / Data Acquisition</h6>
                                 <div class="secondary-content">
                                     <span class="points-label">Points</span>
-                                    <label class="active right ata-red-text" for="aesthetics">____/5</label>
-                                    <input placeholder="Aesthetics/Style" id="aesthetics" type="number" class="validate" min="0" max="5" />
+                                    <label class="active right ata-red-text" for="aesthetics">____/10</label>
+                                    <input placeholder="Aesthetics/Style" id="aesthetics" type="number" class="validate" min="0" max="10" />
                                 </div>
                                 <blockquote>
-                                    Attractive overall appearance? Is car clean, reflective of professional work?
-                                    <br />Does car instill pride in team, or apologies?
+                                    <span class="ata-green-text">
+                                        ° Battery<br />
+                                        ° Wiring Harness<br />
+                                        ° Power Management<br />
+                                        ° Data Acquisition (DAQ)
+                                    </span>
+                                    <!--Attractive overall appearance? Is car clean, reflective of professional work?
+                                    <br />Does car instill pride in team, or apologies?-->
                                 </blockquote>
                                 <br /><br /><br />
                                 <div class="divider"></div>
                                 <div>
                                     <textarea id="aestheticsnotes" class="materialize-textarea"></textarea>
-                                    <label for="aestheticsnotes">Aesthetics/Style Notes</label>
+                                    <label for="aestheticsnotes">Low Voltage / Data Acquisition Notes</label>
                                 </div>
                             </li>
                         </ul>
                     </div>
-                    <div id="creativity-tab" class="card transparent">
+                    <!--FDT - ATA 2025 - nascosto questo menu-->
+                    <div id="creativity-tab" class="card transparent" style="visibility:hidden;">
                         <ul class="collection" style="border:none;">
                             <li class="collection-item" style="width:auto;height:auto">
                                 <h6 class="ata-red-text">Creativity</h6>
@@ -434,16 +453,20 @@
 
             //Event 2017 - Confirm requested when partial totals found to zero
             //if (suspension == 0 || framebodyaero == 0 || tractivedriverecoverysystem == 0 || cockpitcontrolsbrakessafety == 0 || systemmanagementintegration == 0 || manufacturabilityserviceability == 0 || aestheticsstyle == 0 || creativity == 0 || miscellaneous == 0 || carweight == 0) {
-            if (suspension == 0 || framebodyaero == 0 || tractivedriverecoverysystem == 0 || cockpitcontrolsbrakessafety == 0 || systemmanagementintegration == 0 || manufacturabilityserviceability == 0 || aestheticsstyle == 0 || creativity == 0) {
+            if (suspension == 0 || framebodyaero == 0 || tractivedriverecoverysystem == 0 || cockpitcontrolsbrakessafety == 0 || systemmanagementintegration == 0 || manufacturabilityserviceability == 0 || aestheticsstyle == 0
+                //FDT - ATA 2025 - tolto questo controllo perchè ho eliminato un campo visibile
+                //|| creativity == 0
+                ) {
                 var someTotalDetails = "";
-                someTotalDetails += (suspension == 0) ? "Suspension" : "";
-                someTotalDetails += (framebodyaero == 0) ? ((someTotalDetails.length > 0) ? " - " : "") + "Frame/Body/Aero" : "";
-                someTotalDetails += (tractivedriverecoverysystem == 0) ? ((someTotalDetails.length > 0) ? " - " : "") + "Tractive/Drive/Recovery System" : "";
-                someTotalDetails += (cockpitcontrolsbrakessafety == 0) ? ((someTotalDetails.length > 0) ? " - " : "") + "Cockpit/Controls/Brakes/Safety" : "";
-                someTotalDetails += (systemmanagementintegration == 0) ? ((someTotalDetails.length > 0) ? " - " : "") + "Systems Management/Integration" : "";
-                someTotalDetails += (manufacturabilityserviceability == 0) ? ((someTotalDetails.length > 0) ? " - " : "") + "Manufacturability/Serviceability" : "";
-                someTotalDetails += (aestheticsstyle == 0) ? ((someTotalDetails.length > 0) ? " - " : "") + "Aesthetics/Style" : "";
-                someTotalDetails += (creativity == 0) ? ((someTotalDetails.length > 0) ? " - " : "") + "Creativity" : "";
+                someTotalDetails += (suspension == 0) ? "Overall Vehicle" : "";
+                someTotalDetails += (framebodyaero == 0) ? ((someTotalDetails.length > 0) ? " - " : "") + "Vehicle Dynamics" : "";
+                someTotalDetails += (tractivedriverecoverysystem == 0) ? ((someTotalDetails.length > 0) ? " - " : "") + "Aerodynamics" : "";
+                someTotalDetails += (cockpitcontrolsbrakessafety == 0) ? ((someTotalDetails.length > 0) ? " - " : "") + "Powertrain - EV" : "";
+                someTotalDetails += (systemmanagementintegration == 0) ? ((someTotalDetails.length > 0) ? " - " : "") + "Chassis" : "";
+                someTotalDetails += (manufacturabilityserviceability == 0) ? ((someTotalDetails.length > 0) ? " - " : "") + "Driver Interface" : "";
+                someTotalDetails += (aestheticsstyle == 0) ? ((someTotalDetails.length > 0) ? " - " : "") + "Low Voltage / Data Acquisition" : "";
+                //FDT - ATA 2025 - tolto questo controllo perchè ho eliminato un campo visibile
+                //someTotalDetails += (creativity == 0) ? ((someTotalDetails.length > 0) ? " - " : "") + "Creativity" : "";
                 //someTotalDetails += (miscellaneous == 0) ? ((someTotalDetails.length > 0) ? " - " : "") + "Miscellaneous" : "";
                 //someTotalDetails += (carweight == 0) ? ((someTotalDetails.length > 0) ? " - " : "") + "Car Weight" : "";
 

@@ -157,6 +157,7 @@
     <Content Include="favicon.ico" />
     <Content Include="font\material-design-icons\LICENSE.txt" />
     <Content Include="font\material-design-icons\Material-Design-Icons.svg" />
+    <Content Include="Global.asax" />
     <Content Include="images\150x150_Cars.jpg" />
     <Content Include="images\150x150_Reset.jpg" />
     <Content Include="images\150x150_Scores.jpg" />
@@ -212,6 +213,8 @@
     <None Include="Script DB\Viste ATA.sql" />
     <Content Include="Script DB\Anagrafiche ATA 2024\02.ATA 2024_Teams.sql" />
     <Content Include="Script DB\Anagrafiche ATA 2024\03.ATA 2024_Cars.sql" />
+    <Content Include="Script DB\Anagrafiche ATA 2025\02.ATA 2025_Teams.sql" />
+    <Content Include="Script DB\Anagrafiche ATA 2025\03.ATA 2025_Cars.sql" />
     <Content Include="ToolsUP.html" />
     <Content Include="ConfigurationUP.html" />
     <Content Include="css\materialdesignicons.min.css" />
@@ -378,6 +381,9 @@
     <Content Include="WIP.html" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\201507151016502_InitialCreate.cs" />
     <Compile Include="Migrations\201507151016502_InitialCreate.Designer.cs">
       <DependentUpon>201507151016502_InitialCreate.cs</DependentUpon>

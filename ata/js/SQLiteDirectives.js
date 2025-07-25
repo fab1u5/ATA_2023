@@ -1,7 +1,7 @@
 // DATABASE --------------------------------------------------------------------------------------------------------------
 //Open database
 //FDT ATA 2024 - non è più supportato
-var db = openDatabase("FormulaATA", "2.0", "Formula ATA", 2 * 1024 * 1024);  // Open SQLite Database
+var db //FDT - ATA 2025 - commento perchè va sempre in errore     = openDatabase("FormulaATA", "2.0", "Formula ATA", 2 * 1024 * 1024);  // Open SQLite Database
 //var db = window.sqlitePlugin.openDatabase({name: 'my.db', location: 'default'});
 
 //var db 
@@ -6267,7 +6267,7 @@ function showRecords_scores_design1C3_partial(scoresidlist) {
                 	addMissingCellsToRows(rowsStillWithoutScore, initialCellsNumber, headersToAdd.length, 'partial');
 
                 	//Hide University
-                	toggleTableCellByIndex("#tScoreCar", 4, false);
+                    toggleTableCellByIndex("#tScoreCar", 4, false);
 
                 	waitOFF();
                 }
